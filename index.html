@@ -3,10 +3,406 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gitania</title>
+  <title>Gitania | Melomancia</title>
+  <style>
+    :root {
+      --gold: #c7a35a;
+      --gold-soft: #e4cf97;
+      --red: #7f1024;
+      --red-deep: #26040c;
+      --ink: #110d0b;
+      --cream: #f5ead4;
+      --muted: #bfae8d;
+      --aqua: #2a9d8f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(228, 207, 151, 0.18), transparent 34%),
+        radial-gradient(circle at 20% 20%, rgba(127, 16, 36, 0.5), transparent 34%),
+        linear-gradient(145deg, #12090a 0%, #26040c 46%, #070505 100%);
+      overflow-x: hidden;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black, transparent 80%);
+    }
+
+    .shell {
+      width: min(100%, 980px);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 28px 20px 48px;
+      display: grid;
+      align-items: center;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 5;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(12, 7, 7, 0.74), transparent);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      letter-spacing: 0.34em;
+      font-size: 13px;
+      color: var(--gold-soft);
+      text-transform: uppercase;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      margin-left: 18px;
+    }
+
+    main {
+      padding-top: 70px;
+      text-align: center;
+      animation: arrive 1.2s ease both;
+    }
+
+    .sigil {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 28px;
+      border: 1px solid rgba(199, 163, 90, 0.42);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--gold-soft);
+      box-shadow: 0 0 42px rgba(199, 163, 90, 0.16);
+    }
+
+    .sigil span {
+      font-size: 34px;
+      transform: translateY(-2px);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(48px, 10vw, 108px);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--gold-soft);
+      text-shadow: 0 0 34px rgba(199, 163, 90, 0.22);
+    }
+
+    .subtitle {
+      margin: 22px auto 0;
+      max-width: 660px;
+      font-size: clamp(20px, 4vw, 34px);
+      line-height: 1.25;
+      color: var(--cream);
+    }
+
+    .hint {
+      margin: 18px auto 36px;
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .oracle {
+      width: min(100%, 680px);
+      margin: 0 auto;
+      padding: 28px;
+      border: 1px solid rgba(199, 163, 90, 0.28);
+      background:
+        linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015)),
+        rgba(17, 13, 11, 0.62);
+      box-shadow:
+        0 20px 80px rgba(0,0,0,0.42),
+        inset 0 0 70px rgba(199, 163, 90, 0.04);
+      backdrop-filter: blur(18px);
+    }
+
+    .question {
+      margin: 0 0 22px;
+      color: var(--gold-soft);
+      font-size: 18px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid rgba(228, 207, 151, 0.62);
+      color: var(--gold-soft);
+      background: linear-gradient(180deg, rgba(199, 163, 90, 0.16), rgba(199, 163, 90, 0.04));
+      padding: 15px 28px;
+      min-width: 190px;
+      font-family: inherit;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 0 26px rgba(199, 163, 90, 0.12);
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold-soft);
+      box-shadow: 0 0 38px rgba(199, 163, 90, 0.22);
+    }
+
+    .result {
+      display: none;
+      margin-top: 28px;
+      padding-top: 26px;
+      border-top: 1px solid rgba(199, 163, 90, 0.2);
+      text-align: left;
+    }
+
+    .result.show {
+      display: block;
+      animation: reveal 900ms ease both;
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .song {
+      margin: 8px 0 4px;
+      color: var(--gold-soft);
+      font-size: 30px;
+      line-height: 1.1;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .line {
+      margin: 22px 0 0;
+      padding: 20px;
+      color: var(--cream);
+      font-size: 20px;
+      line-height: 1.5;
+      background: rgba(127, 16, 36, 0.26);
+      border-left: 2px solid var(--gold);
+    }
+
+    .bridge {
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .secondary {
+      border-color: rgba(191, 174, 141, 0.35);
+      color: var(--muted);
+      box-shadow: none;
+    }
+
+    footer {
+      margin-top: 36px;
+      color: rgba(245, 234, 212, 0.48);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    @keyframes arrive {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(12px); filter: blur(8px); }
+      to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+
+    @media (max-width: 640px) {
+      header { padding: 16px 18px; }
+      nav a { margin-left: 12px; font-size: 12px; }
+      .oracle { padding: 22px; }
+      .actions { display: grid; }
+      button { width: 100%; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Gitania</h1>
-  <p>Pregunta. Escucha la señal. Abre la siguiente capa.</p>
+  <div class="grain"></div>
+
+  <header>
+    <div class="brand">Gitania</div>
+    <nav>
+      <a href="#melomancia">Melomancia</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <div class="shell">
+    <main id="melomancia">
+      <div class="sigil"><span>G</span></div>
+
+      <h1>GITANIA</h1>
+      <p class="subtitle">Pregunta en silencio. La canción llega primero.</p>
+      <p class="hint">
+        Haz una pregunta mentalmente y abre una señal. La respuesta no explica: aparece.
+      </p>
+
+      <section class="oracle">
+        <p class="question">Melomancia</p>
+
+        <button id="openSignal">Abrir una señal</button>
+
+        <div id="result" class="result">
+          <div class="label">La señal</div>
+          <h2 id="songTitle" class="song"></h2>
+          <div id="songMeta" class="meta"></div>
+          <div id="songLine" class="line"></div>
+          <p class="bridge">
+            Si la señal abrió algo, las cartas pueden terminar de nombrarlo.
+          </p>
+
+          <div class="actions">
+            <button id="newQuestion" class="secondary">Nueva pregunta</button>
+            <button onclick="window.location.href='mailto:gitania.tarot@gmail.com'">Escribir a Gitania</button>
+          </div>
+        </div>
+      </section>
+
+      <footer id="contacto">
+        Gitania · Tarot, melomancia, hipnosis, joyería y símbolos vivos.
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const songs = [
+      {
+        title: "El Murgüero",
+        artist: "Los Auténticos Decadentes",
+        composer: "Jorge Serrano, Martín Lorenzo",
+        line: "La alegría también puede ser una forma seria de responder."
+      },
+      {
+        title: "Sabor a mí",
+        artist: "Los Panchos",
+        composer: "Álvaro Carrillo",
+        line: "Hay presencias que no se van: cambian de habitación dentro de la memoria."
+      },
+      {
+        title: "Bésame mucho",
+        artist: "Consuelo Velázquez",
+        composer: "Consuelo Velázquez",
+        line: "Lo que pide intensidad tal vez teme que el tiempo cierre la puerta."
+      },
+      {
+        title: "La llorona",
+        artist: "Chavela Vargas",
+        composer: "Tradicional",
+        line: "No todo llanto busca consuelo; algunos vienen a devolver el nombre."
+      },
+      {
+        title: "Perfidia",
+        artist: "Los Panchos",
+        composer: "Alberto Domínguez",
+        line: "La duda no siempre acusa: a veces protege una herida que aprendió a vigilar."
+      },
+      {
+        title: "Volver",
+        artist: "Carlos Gardel",
+        composer: "Carlos Gardel, Alfredo Le Pera",
+        line: "Regresar no es repetir. Es mirar el mismo umbral con otros ojos."
+      },
+      {
+        title: "Quizás, quizás, quizás",
+        artist: "Nat King Cole",
+        composer: "Osvaldo Farrés",
+        line: "La respuesta aplazada también habla; su idioma es la demora."
+      },
+      {
+        title: "Piel canela",
+        artist: "Bobby Capó",
+        composer: "Bobby Capó",
+        line: "Lo que el deseo recuerda suele tener más precisión que la razón."
+      },
+      {
+        title: "Toda una vida",
+        artist: "Osvaldo Farrés",
+        composer: "Osvaldo Farrés",
+        line: "Hay promesas que no miden duración: miden profundidad."
+      },
+      {
+        title: "Gracias a la vida",
+        artist: "Violeta Parra",
+        composer: "Violeta Parra",
+        line: "La gratitud no borra la tristeza; la vuelve habitable."
+      }
+    ];
+
+    const openButton = document.getElementById("openSignal");
+    const newButton = document.getElementById("newQuestion");
+    const result = document.getElementById("result");
+    const title = document.getElementById("songTitle");
+    const meta = document.getElementById("songMeta");
+    const line = document.getElementById("songLine");
+
+    function chooseSong() {
+      result.classList.remove("show");
+      openButton.textContent = "Escuchando...";
+
+      setTimeout(() => {
+        const selected = songs[Math.floor(Math.random() * songs.length)];
+
+        title.textContent = selected.title;
+        meta.textContent = `${selected.artist} · ${selected.composer}`;
+        line.textContent = selected.line;
+
+        result.classList.add("show");
+        openButton.style.display = "none";
+      }, 900);
+    }
+
+    function resetOracle() {
+      openButton.style.display = "inline-block";
+      openButton.textContent = "Abrir una señal";
+      result.classList.remove("show");
+    }
+
+    openButton.addEventListener("click", chooseSong);
+    newButton.addEventListener("click", resetOracle);
+  </script>
 </body>
 </html>
