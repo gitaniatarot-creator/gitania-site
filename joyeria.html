@@ -340,6 +340,39 @@
       color: var(--ivory);
     }
 
+    /* ---------------- selector de idioma ---------------- */
+    .langbar {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .langbtn {
+      font-family: "Karla", -apple-system, "Segoe UI", sans-serif;
+      font-weight: 700;
+      font-size: 0.66rem;
+      letter-spacing: 0.06em;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1.5px solid var(--hairline);
+      background: transparent;
+      color: var(--ivory-muted);
+      cursor: pointer;
+    }
+
+    .langbtn.active {
+      background: var(--ivory);
+      border-color: var(--ivory);
+      color: var(--void);
+    }
+
+    @media (max-width: 560px) {
+      .langbtn {
+        padding: 4px 7px;
+        font-size: 0.6rem;
+      }
+    }
+
     /* ---------------- menús laterales ---------------- */
     .side-nav {
       position: fixed;
@@ -1489,17 +1522,18 @@
       <img class="brand-mark" src="assets/logo.webp" alt="" onerror="this.style.display='none'">
       Gitania
     </a>
+    <div class="langbar" id="langbar" aria-label="Idioma / Language / Langue"></div>
   </header>
 
   <nav class="side-nav side-nav--left" aria-label="Secciones">
-    <a href="blog.html" data-section="blog"><span class="rail-dot"></span>Blog</a>
-    <a href="lecturas.html" data-section="lecturas"><span class="rail-dot"></span>Lecturas Express</a>
-    <a href="melomancia.html" data-section="melomancia"><span class="rail-dot"></span>Melomancia</a>
-    <a href="vip.html" data-section="vip"><span class="rail-dot"></span>Sesiones VIP</a>
+    <a href="blog.html" data-section="blog"><span class="rail-dot"></span><span data-i18n="nav.blog">Blog</span></a>
+    <a href="lecturas.html" data-section="lecturas"><span class="rail-dot"></span><span data-i18n="nav.lecturas">Lecturas Express</span></a>
+    <a href="melomancia.html" data-section="melomancia"><span class="rail-dot"></span><span data-i18n="nav.melomancia">Melomancia</span></a>
+    <a href="vip.html" data-section="vip"><span class="rail-dot"></span><span data-i18n="nav.vip">Sesiones VIP</span></a>
   </nav>
 
   <nav class="side-nav side-nav--right" aria-label="Contacto">
-    <a class="whatsapp-rail" href="https://wa.me/5215515245147" target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp">
+    <a class="whatsapp-rail" href="https://wa.me/5215515245147" target="_blank" rel="noopener" data-i18n-aria="aria.whatsapp" aria-label="Escríbeme por WhatsApp">
       <img src="assets/whatsapp-gitania.png" alt="" loading="lazy">
     </a>
   </nav>
@@ -1508,14 +1542,14 @@
     <!-- ---------------- Joyería ---------------- -->
     <section class="page-section" id="joyeria" style="position: relative;">
       <div class="section-inner" data-reveal>
-        <a class="portal-button" data-reveal-child href="https://wa.me/5215515245147" target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp">
+        <a class="portal-button" data-reveal-child href="https://wa.me/5215515245147" target="_blank" rel="noopener" data-i18n-aria="aria.whatsapp" aria-label="Escríbeme por WhatsApp">
           <span class="portal-ring"><span class="portal-glyph">✦</span></span>
         </a>
-        <p class="section-eyebrow" data-reveal-child>Joyería</p>
-        <h2 class="section-title" data-reveal-child>Piezas con intención</h2>
-        <p class="section-copy" data-reveal-child>Cada pieza que estoy creando lleva un símbolo, una intención propia. Esta vitrina está tomando forma — pronto la abro para ti.</p>
+        <p class="section-eyebrow" data-reveal-child data-i18n="joy.eyebrow">Joyería</p>
+        <h2 class="section-title" data-reveal-child data-i18n="joy.title">Piezas con intención</h2>
+        <p class="section-copy" data-reveal-child data-i18n="joy.copy">Cada pieza que estoy creando lleva un símbolo, una intención propia. Esta vitrina está tomando forma — pronto la abro para ti.</p>
         <p class="vip-login-help">
-          <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
+          <a href="https://wa.me/5215515245147" target="_blank" rel="noopener" data-i18n="joy.whatsapp">Escríbeme por WhatsApp</a>
         </p>
       </div>
     </section>
@@ -1523,11 +1557,106 @@
 
   <footer>
     <span class="footer-address">Priv. Alejandrina 9, Hacienda Grande, Tequisquiapan, Qro., CP 76799, México © 2026</span>
-    Gitania® · <a href="lecturas.html">Tarot</a>, <a href="melomancia.html">Melomancia</a>, <a href="hipnosis.html">Hipnosis</a>, <a href="joyeria.html">Joyería</a> y <a href="simbolos-vivos.html">Símbolos vivos</a><br>
-    Hecho con ❤ e intuición
+    <span data-i18n="footer.brand">Gitania® · <a href="lecturas.html">Tarot</a>, <a href="melomancia.html">Melomancia</a>, <a href="hipnosis.html">Hipnosis</a>, <a href="joyeria.html">Joyería</a> y <a href="simbolos-vivos.html">Símbolos vivos</a></span><br>
+    <span data-i18n="footer.made">Hecho con ❤ e intuición</span>
   </footer>
 
   <script>
+
+    // ================= STRINGS (i18n) =================
+    var STRINGS = {
+      es: {
+        "nav.blog": "Blog",
+        "nav.lecturas": "Lecturas Express",
+        "nav.melomancia": "Melomancia",
+        "nav.vip": "Sesiones VIP",
+        "aria.whatsapp": "Escríbeme por WhatsApp",
+        "joy.eyebrow": "Joyería",
+        "joy.title": "Piezas con intención",
+        "joy.copy": "Cada pieza que estoy creando lleva un símbolo, una intención propia. Esta vitrina está tomando forma — pronto la abro para ti.",
+        "joy.whatsapp": "Escríbeme por WhatsApp",
+        "footer.brand": 'Gitania® · <a href="lecturas.html">Tarot</a>, <a href="melomancia.html">Melomancia</a>, <a href="hipnosis.html">Hipnosis</a>, <a href="joyeria.html">Joyería</a> y <a href="simbolos-vivos.html">Símbolos vivos</a>',
+        "footer.made": "Hecho con ❤ e intuición"
+      },
+      en: {
+        "nav.blog": "Blog",
+        "nav.lecturas": "Express Readings",
+        "nav.melomancia": "Melomancy",
+        "nav.vip": "VIP Sessions",
+        "aria.whatsapp": "Message me on WhatsApp",
+        "joy.eyebrow": "Jewelry",
+        "joy.title": "Pieces with intention",
+        "joy.copy": "Every piece I'm creating carries a symbol, its own intention. This showcase is taking shape — I'll open it for you soon.",
+        "joy.whatsapp": "Message me on WhatsApp",
+        "footer.brand": 'Gitania® · <a href="lecturas.html">Tarot</a>, <a href="melomancia.html">Melomancy</a>, <a href="hipnosis.html">Hypnosis</a>, <a href="joyeria.html">Jewelry</a> and <a href="simbolos-vivos.html">Living Symbols</a>',
+        "footer.made": "Made with ❤ and intuition"
+      },
+      fr: {
+        "nav.blog": "Blog",
+        "nav.lecturas": "Lectures Express",
+        "nav.melomancia": "Mélomancie",
+        "nav.vip": "Séances VIP",
+        "aria.whatsapp": "Écris-moi sur WhatsApp",
+        "joy.eyebrow": "Bijoux",
+        "joy.title": "Des pièces avec intention",
+        "joy.copy": "Chaque pièce que je crée porte un symbole, une intention qui lui est propre. Cette vitrine prend forme — je l'ouvrirai bientôt pour toi.",
+        "joy.whatsapp": "Écris-moi sur WhatsApp",
+        "footer.brand": 'Gitania® · <a href="lecturas.html">Tarot</a>, <a href="melomancia.html">Mélomancie</a>, <a href="hipnosis.html">Hypnose</a>, <a href="joyeria.html">Bijoux</a> et <a href="simbolos-vivos.html">Symboles vivants</a>',
+        "footer.made": "Fait avec ❤ et intuition"
+      }
+    };
+    // ================= fin STRINGS =================
+
+    var LANGS = ["es", "en", "fr"];
+    var LANG_LABEL = { es: "ES", en: "EN", fr: "FR" };
+    var lang = (function () {
+      try {
+        var saved = localStorage.getItem("gitania_lang");
+        if (LANGS.indexOf(saved) > -1) return saved;
+      } catch (e) {}
+      var nav = (navigator.language || "es").slice(0, 2);
+      return LANGS.indexOf(nav) > -1 ? nav : "es";
+    })();
+
+    function t(key) {
+      return (STRINGS[lang] && STRINGS[lang][key]) || STRINGS.es[key] || key;
+    }
+
+    function applyI18n() {
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        el.innerHTML = t(el.getAttribute("data-i18n"));
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+        el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder")));
+      });
+      document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+        el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria")));
+      });
+      buildLangbar();
+    }
+
+    function buildLangbar() {
+      var container = document.getElementById("langbar");
+      if (!container) return;
+      container.innerHTML = "";
+      LANGS.forEach(function (l) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "langbtn" + (l === lang ? " active" : "");
+        b.textContent = LANG_LABEL[l];
+        b.addEventListener("click", function () {
+          lang = l;
+          try {
+            localStorage.setItem("gitania_lang", l);
+          } catch (e) {}
+          applyI18n();
+        });
+        container.appendChild(b);
+      });
+    }
+
+    applyI18n();
 
     // ---- scroll-spy del menú lateral ----
     const railLinks = Array.from(document.querySelectorAll(".side-nav--left a"));
