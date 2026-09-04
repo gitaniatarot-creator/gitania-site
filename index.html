@@ -335,6 +335,39 @@
       transition: color 180ms ease;
     }
 
+    /* ---------------- selector de idioma ---------------- */
+    .langbar {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .langbtn {
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(255, 247, 232, 0.35);
+      background: transparent;
+      color: var(--ivory-muted);
+      cursor: pointer;
+    }
+
+    .langbtn.active {
+      background: var(--ivory);
+      border-color: var(--ivory);
+      color: #1a1410;
+    }
+
+    @media (max-width: 560px) {
+      .langbtn {
+        padding: 4px 7px;
+        font-size: 0.58rem;
+      }
+    }
+
     .contact-link:hover,
     .contact-link:focus-visible {
       color: var(--ivory);
@@ -720,8 +753,8 @@
     .gitania-portrait {
       position: relative;
       display: block;
-      width: clamp(170px, 22vw, 280px);
-      height: clamp(162px, 21vw, 266px);
+      width: clamp(190px, 25vw, 310px);
+      height: clamp(181px, 24vw, 295px);
       flex: none;
       margin: 0 auto 36px;
     }
@@ -732,7 +765,7 @@
       object-fit: contain;
       object-position: 50% 50%;
       display: block;
-      filter: drop-shadow(0 0 34px rgba(236, 200, 115, 0.28)) drop-shadow(0 0 70px rgba(43, 130, 141, 0.35));
+      filter: drop-shadow(0 0 26px rgba(236, 200, 115, 0.55)) drop-shadow(0 0 56px rgba(212, 160, 23, 0.4));
     }
 
     .eyebrow {
@@ -1546,14 +1579,15 @@
       <img class="brand-mark" src="assets/logo.webp" alt="" onerror="this.style.display='none'">
       Gitania
     </a>
+    <div class="langbar" id="langbar" aria-label="Idioma"></div>
   </header>
 
   <!-- Menú lateral izquierdo: secciones del sitio -->
   <nav class="side-nav side-nav--left" aria-label="Secciones">
-    <a href="#blog" data-section="blog"><span class="rail-dot"></span>Blog</a>
-    <a href="#lecturas" data-section="lecturas"><span class="rail-dot"></span>Lecturas Express</a>
-    <a href="#melomancia" data-section="melomancia"><span class="rail-dot"></span>Melomancia</a>
-    <a href="#vip" data-section="vip"><span class="rail-dot"></span>Sesiones VIP</a>
+    <a href="#blog" data-section="blog"><span class="rail-dot"></span><span data-i18n="nav.blog">Blog</span></a>
+    <a href="#lecturas" data-section="lecturas"><span class="rail-dot"></span><span data-i18n="nav.lecturas">Lecturas Express</span></a>
+    <a href="#melomancia" data-section="melomancia"><span class="rail-dot"></span><span data-i18n="nav.melomancia">Melomancia</span></a>
+    <a href="#vip" data-section="vip"><span class="rail-dot"></span><span data-i18n="nav.vip">Sesiones VIP</span></a>
   </nav>
 
   <!-- Menú lateral derecho: contacto directo, número oculto en el enlace -->
@@ -1570,13 +1604,13 @@
           <img id="gitaniaBlinkImg" src="assets/portrait/blink-frames/frame-0.webp" alt="">
         </span>
         <p class="eyebrow">
-          <a href="lecturas.html">Tarot</a><span class="eyebrow-dot">·</span><a href="melomancia.html">Melomancia</a><span class="eyebrow-dot">·</span><a href="hipnosis.html">Hipnosis</a><span class="eyebrow-dot">·</span><a href="joyeria.html">Joyería</a><span class="eyebrow-dot">·</span><a href="simbolos-vivos.html">Símbolos vivos</a>
+          <a href="lecturas.html" data-i18n="link.tarot">Tarot</a><span class="eyebrow-dot">·</span><a href="melomancia.html" data-i18n="link.melomancia">Melomancia</a><span class="eyebrow-dot">·</span><a href="hipnosis.html" data-i18n="link.hipnosis">Hipnosis</a><span class="eyebrow-dot">·</span><a href="joyeria.html" data-i18n="link.joyeria">Joyería</a><span class="eyebrow-dot">·</span><a href="simbolos-vivos.html" data-i18n="link.simbolos">Símbolos vivos</a>
         </p>
         <div class="hero-title-row">
           <h1>GITANIA</h1>
         </div>
-        <p class="hero-copy">Haz una pregunta en silencio. La respuesta llega en forma de canción.</p>
-        <p class="hero-note">
+        <p class="hero-copy" data-i18n="hero.copy">Haz una pregunta en silencio. La respuesta llega en forma de canción.</p>
+        <p class="hero-note" data-i18n="hero.note">
           Explora abajo: blog, lecturas express, el oráculo sonoro y las sesiones privadas.
         </p>
       </div>
@@ -1588,9 +1622,9 @@
         <a class="portal-button" data-reveal-child href="blog.html" aria-label="Blog">
           <span class="portal-ring"><img src="assets/portals/blog.webp" alt="" loading="lazy"></span>
         </a>
-        <p class="section-eyebrow" data-reveal-child>Blog</p>
-        <h2 class="section-title" data-reveal-child>Notas, símbolos y lecturas del camino</h2>
-        <p class="section-copy" data-reveal-child>Muy pronto: reflexiones cortas sobre tarot, ciclos y lo que las cartas van enseñando. Por ahora, esto está en construcción.</p>
+        <p class="section-eyebrow" data-reveal-child data-i18n="nav.blog">Blog</p>
+        <h2 class="section-title" data-reveal-child data-i18n="blog.title">Notas, símbolos y lecturas del camino</h2>
+        <p class="section-copy" data-reveal-child data-i18n="blog.copy">Muy pronto: reflexiones cortas sobre tarot, ciclos y lo que las cartas van enseñando. Por ahora, esto está en construcción.</p>
         <div class="ghost-grid" data-reveal-child>
           <div class="ghost-card"></div>
           <div class="ghost-card"></div>
@@ -1605,9 +1639,9 @@
         <a class="portal-button" data-reveal-child href="lecturas.html" aria-label="Lecturas Express">
           <span class="portal-ring"><img src="assets/portals/lecturas.webp" alt="" loading="lazy"></span>
         </a>
-        <p class="section-eyebrow" data-reveal-child>Lecturas Express</p>
-        <h2 class="section-title" data-reveal-child>Una pregunta, una respuesta clara</h2>
-        <p class="section-copy" data-reveal-child>3 preguntas por $333 MXN, con respuesta el mismo día. Escríbeme por WhatsApp con tu pregunta y te respondo breve y al punto, sin esperar días.</p>
+        <p class="section-eyebrow" data-reveal-child data-i18n="nav.lecturas">Lecturas Express</p>
+        <h2 class="section-title" data-reveal-child data-i18n="lecturas.title">Una pregunta, una respuesta clara</h2>
+        <p class="section-copy" data-reveal-child data-i18n="lecturas.copy">3 preguntas por $333 MXN, con respuesta el mismo día. Escríbeme por WhatsApp con tu pregunta y te respondo breve y al punto, sin esperar días.</p>
       </div>
     </section>
 
@@ -1621,11 +1655,11 @@
     -->
     <section class="page-section" id="calendario">
       <div class="section-inner" data-reveal>
-        <p class="section-eyebrow" data-reveal-child>Calendario</p>
-        <h2 class="section-title" data-reveal-child>Reserva y paga tu sesión por adelantado</h2>
-        <p class="section-copy" data-reveal-child>Muy pronto vas a poder elegir tu fecha y pagar aquí mismo para asegurar tu lugar. Mientras tanto, escríbeme por WhatsApp para agendar.</p>
+        <p class="section-eyebrow" data-reveal-child data-i18n="calendario.eyebrow">Calendario</p>
+        <h2 class="section-title" data-reveal-child data-i18n="calendario.title">Reserva y paga tu sesión por adelantado</h2>
+        <p class="section-copy" data-reveal-child data-i18n="calendario.copy">Muy pronto vas a poder elegir tu fecha y pagar aquí mismo para asegurar tu lugar. Mientras tanto, escríbeme por WhatsApp para agendar.</p>
         <div id="bookingEmbed" class="booking-placeholder" data-reveal-child>
-          <span>Calendario próximamente</span>
+          <span data-i18n="calendario.soon">Calendario próximamente</span>
         </div>
       </div>
     </section>
@@ -1636,9 +1670,9 @@
         <a class="portal-button" data-reveal-child href="melomancia.html" aria-label="Melomancia">
           <span class="portal-ring"><img src="assets/portals/melomancia.webp" alt="" loading="lazy"></span>
         </a>
-        <p class="section-eyebrow" data-reveal-child>Melomancia</p>
-        <h2 class="section-title" data-reveal-child>El oráculo sonoro</h2>
-        <p class="section-copy" data-reveal-child>Haz una pregunta en silencio. La respuesta te llega en forma de canción, elegida para ti en el momento.</p>
+        <p class="section-eyebrow" data-reveal-child data-i18n="nav.melomancia">Melomancia</p>
+        <h2 class="section-title" data-reveal-child data-i18n="melomancia.title">El oráculo sonoro</h2>
+        <p class="section-copy" data-reveal-child data-i18n="melomancia.copy">Haz una pregunta en silencio. La respuesta te llega en forma de canción, elegida para ti en el momento.</p>
       </div>
     </section>
 
@@ -1648,29 +1682,29 @@
         <a class="portal-button" data-reveal-child href="vip.html" aria-label="Sesiones VIP">
           <span class="portal-ring"><img src="assets/portals/vip.webp" alt="" loading="lazy"></span>
         </a>
-        <p class="section-eyebrow" data-reveal-child>Sesiones VIP</p>
-        <h2 class="section-title" data-reveal-child>Tu acceso privado</h2>
-        <p class="section-copy" data-reveal-child>Si ya tomaste una sesión conmigo, tu material vive aquí: guías, PDFs y audios pensados para ti.</p>
+        <p class="section-eyebrow" data-reveal-child data-i18n="nav.vip">Sesiones VIP</p>
+        <h2 class="section-title" data-reveal-child data-i18n="vip.title">Tu acceso privado</h2>
+        <p class="section-copy" data-reveal-child data-i18n="vip.copy">Si ya tomaste una sesión conmigo, tu material vive aquí: guías, PDFs y audios pensados para ti.</p>
       </div>
     </section>
 
     <!-- ---------------- Más caminos: Hipnosis, Joyería, Símbolos vivos ---------------- -->
     <section class="page-section" id="mas-caminos">
       <div class="section-inner" data-reveal>
-        <p class="section-eyebrow" data-reveal-child>Más caminos</p>
-        <h2 class="section-title" data-reveal-child>Otras formas de encontrarnos</h2>
+        <p class="section-eyebrow" data-reveal-child data-i18n="mascaminos.eyebrow">Más caminos</p>
+        <h2 class="section-title" data-reveal-child data-i18n="mascaminos.title">Otras formas de encontrarnos</h2>
         <div class="tarot-links" data-reveal-child>
           <a class="tarot-card-link" href="hipnosis.html" aria-label="Hipnosis">
             <img src="assets/sparks/the-magician.png" alt="" loading="lazy">
-            <span class="tarot-card-caption">Hipnosis</span>
+            <span class="tarot-card-caption" data-i18n="link.hipnosis">Hipnosis</span>
           </a>
           <a class="tarot-card-link" href="joyeria.html" aria-label="Joyería">
             <img src="assets/sparks/la-estratega.png" alt="" loading="lazy">
-            <span class="tarot-card-caption">Joyería</span>
+            <span class="tarot-card-caption" data-i18n="link.joyeria">Joyería</span>
           </a>
           <a class="tarot-card-link" href="simbolos-vivos.html" aria-label="Símbolos vivos">
             <img src="assets/sparks/el-inicio.png" alt="" loading="lazy">
-            <span class="tarot-card-caption">Símbolos vivos</span>
+            <span class="tarot-card-caption" data-i18n="link.simbolos">Símbolos vivos</span>
           </a>
         </div>
       </div>
@@ -1679,8 +1713,8 @@
 
   <footer>
     <span class="footer-address">Priv. Alejandrina 9, Hacienda Grande, Tequisquiapan, Qro., CP 76799, México © 2026</span>
-    Gitania® · <a href="lecturas.html">Tarot</a>, <a href="melomancia.html">Melomancia</a>, <a href="hipnosis.html">Hipnosis</a>, <a href="joyeria.html">Joyería</a> y <a href="simbolos-vivos.html">Símbolos vivos</a><br>
-    Hecho con ❤ e intuición
+    Gitania® · <a href="lecturas.html" data-i18n="link.tarot">Tarot</a>, <a href="melomancia.html" data-i18n="link.melomancia">Melomancia</a>, <a href="hipnosis.html" data-i18n="link.hipnosis">Hipnosis</a>, <a href="joyeria.html" data-i18n="link.joyeria">Joyería</a> <span data-i18n="footer.and">y</span> <a href="simbolos-vivos.html" data-i18n="link.simbolos">Símbolos vivos</a><br>
+    <span data-i18n="footer.made">Hecho con ❤ e intuición</span>
   </footer>
 
   <script>
@@ -1964,6 +1998,157 @@
       requestAnimationFrame(tick);
     })();
 
+  </script>
+
+  <script>
+    // ================= i18n (ES / EN / FR) =================
+    (function () {
+      var STRINGS = {
+        es: {
+          "nav.blog": "Blog",
+          "nav.lecturas": "Lecturas Express",
+          "nav.melomancia": "Melomancia",
+          "nav.vip": "Sesiones VIP",
+          "link.tarot": "Tarot",
+          "link.melomancia": "Melomancia",
+          "link.hipnosis": "Hipnosis",
+          "link.joyeria": "Joyería",
+          "link.simbolos": "Símbolos vivos",
+          "hero.copy": "Haz una pregunta en silencio. La respuesta llega en forma de canción.",
+          "hero.note": "Explora abajo: blog, lecturas express, el oráculo sonoro y las sesiones privadas.",
+          "blog.title": "Notas, símbolos y lecturas del camino",
+          "blog.copy": "Muy pronto: reflexiones cortas sobre tarot, ciclos y lo que las cartas van enseñando. Por ahora, esto está en construcción.",
+          "lecturas.title": "Una pregunta, una respuesta clara",
+          "lecturas.copy": "3 preguntas por $333 MXN, con respuesta el mismo día. Escríbeme por WhatsApp con tu pregunta y te respondo breve y al punto, sin esperar días.",
+          "calendario.eyebrow": "Calendario",
+          "calendario.title": "Reserva y paga tu sesión por adelantado",
+          "calendario.copy": "Muy pronto vas a poder elegir tu fecha y pagar aquí mismo para asegurar tu lugar. Mientras tanto, escríbeme por WhatsApp para agendar.",
+          "calendario.soon": "Calendario próximamente",
+          "melomancia.title": "El oráculo sonoro",
+          "melomancia.copy": "Haz una pregunta en silencio. La respuesta te llega en forma de canción, elegida para ti en el momento.",
+          "vip.title": "Tu acceso privado",
+          "vip.copy": "Si ya tomaste una sesión conmigo, tu material vive aquí: guías, PDFs y audios pensados para ti.",
+          "mascaminos.eyebrow": "Más caminos",
+          "mascaminos.title": "Otras formas de encontrarnos",
+          "footer.and": "y",
+          "footer.made": "Hecho con ❤ e intuición"
+        },
+        en: {
+          "nav.blog": "Blog",
+          "nav.lecturas": "Express Readings",
+          "nav.melomancia": "Melomancy",
+          "nav.vip": "VIP Sessions",
+          "link.tarot": "Tarot",
+          "link.melomancia": "Melomancy",
+          "link.hipnosis": "Hypnosis",
+          "link.joyeria": "Jewelry",
+          "link.simbolos": "Living Symbols",
+          "hero.copy": "Ask a question in silence. The answer arrives as a song.",
+          "hero.note": "Explore below: the blog, express readings, the sound oracle, and private sessions.",
+          "blog.title": "Notes, symbols, and readings from the path",
+          "blog.copy": "Coming soon: short reflections on tarot, cycles, and what the cards keep teaching. For now, this is under construction.",
+          "lecturas.title": "One question, one clear answer",
+          "lecturas.copy": "3 questions for $333 MXN, answered the same day. Message me on WhatsApp with your question and I'll reply short and to the point, no waiting days.",
+          "calendario.eyebrow": "Calendar",
+          "calendario.title": "Book and pay for your session in advance",
+          "calendario.copy": "Soon you'll be able to pick your date and pay right here to secure your spot. In the meantime, message me on WhatsApp to schedule.",
+          "calendario.soon": "Calendar coming soon",
+          "melomancia.title": "The sound oracle",
+          "melomancia.copy": "Ask a question in silence. The answer arrives as a song, chosen for you in the moment.",
+          "vip.title": "Your private access",
+          "vip.copy": "If you've already had a session with me, your material lives here: guides, PDFs, and audios made for you.",
+          "mascaminos.eyebrow": "More paths",
+          "mascaminos.title": "Other ways to find each other",
+          "footer.and": "and",
+          "footer.made": "Made with ❤ and intuition"
+        },
+        fr: {
+          "nav.blog": "Blog",
+          "nav.lecturas": "Lectures Express",
+          "nav.melomancia": "Mélomancie",
+          "nav.vip": "Séances VIP",
+          "link.tarot": "Tarot",
+          "link.melomancia": "Mélomancie",
+          "link.hipnosis": "Hypnose",
+          "link.joyeria": "Bijoux",
+          "link.simbolos": "Symboles vivants",
+          "hero.copy": "Pose une question en silence. La réponse arrive sous forme de chanson.",
+          "hero.note": "Explore ci-dessous : le blog, les lectures express, l'oracle sonore et les séances privées.",
+          "blog.title": "Notes, symboles et lectures du chemin",
+          "blog.copy": "Bientôt : de courtes réflexions sur le tarot, les cycles et ce que les cartes continuent d'enseigner. Pour l'instant, c'est en construction.",
+          "lecturas.title": "Une question, une réponse claire",
+          "lecturas.copy": "3 questions pour 333 MXN, avec réponse le jour même. Écris-moi sur WhatsApp avec ta question et je te réponds brièvement et directement, sans attendre des jours.",
+          "calendario.eyebrow": "Calendrier",
+          "calendario.title": "Réserve et paie ta séance à l'avance",
+          "calendario.copy": "Bientôt tu pourras choisir ta date et payer ici même pour assurer ta place. En attendant, écris-moi sur WhatsApp pour planifier.",
+          "calendario.soon": "Calendrier bientôt disponible",
+          "melomancia.title": "L'oracle sonore",
+          "melomancia.copy": "Pose une question en silence. La réponse t'arrive sous forme de chanson, choisie pour toi sur l'instant.",
+          "vip.title": "Ton accès privé",
+          "vip.copy": "Si tu as déjà eu une séance avec moi, ton matériel vit ici : guides, PDF et audios pensés pour toi.",
+          "mascaminos.eyebrow": "Autres chemins",
+          "mascaminos.title": "D'autres façons de nous retrouver",
+          "footer.and": "et",
+          "footer.made": "Fait avec ❤ et intuition"
+        }
+      };
+
+      var LANGS = ["es", "en", "fr"];
+      var LANG_LABEL = { es: "ES", en: "EN", fr: "FR" };
+
+      var lang = (function () {
+        try {
+          var saved = localStorage.getItem("gitania_lang");
+          if (LANGS.indexOf(saved) > -1) return saved;
+        } catch (e) {}
+        var nav = ((navigator.language || "es").slice(0, 2)).toLowerCase();
+        return LANGS.indexOf(nav) > -1 ? nav : "es";
+      })();
+
+      function t(key) {
+        return (STRINGS[lang] && STRINGS[lang][key]) || STRINGS.es[key] || key;
+      }
+
+      function applyI18n() {
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+          el.innerHTML = t(el.getAttribute("data-i18n"));
+        });
+        document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+          el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder")));
+        });
+        buildLangbar();
+      }
+
+      function buildLangbar() {
+        var container = document.getElementById("langbar");
+        if (!container) return;
+        container.innerHTML = "";
+        LANGS.forEach(function (l) {
+          var b = document.createElement("button");
+          b.type = "button";
+          b.className = "langbtn" + (l === lang ? " active" : "");
+          b.textContent = LANG_LABEL[l];
+          b.setAttribute("aria-label", l.toUpperCase());
+          b.addEventListener("click", function () {
+            if (lang === l) return;
+            lang = l;
+            try {
+              localStorage.setItem("gitania_lang", l);
+            } catch (e) {}
+            applyI18n();
+          });
+          container.appendChild(b);
+        });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", applyI18n);
+      } else {
+        applyI18n();
+      }
+    })();
+    // ================= fin i18n =================
   </script>
 </body>
 </html>
