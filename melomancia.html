@@ -326,6 +326,38 @@
       color: transparent;
     }
 
+    .langbar {
+      display: flex;
+      gap: 6px;
+    }
+
+    .langbtn {
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 247, 232, 0.35);
+      background: rgba(255, 247, 232, 0.06);
+      color: var(--ivory-muted);
+      cursor: pointer;
+      transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+    }
+
+    .langbtn.active {
+      background: var(--ivory);
+      border-color: var(--ivory);
+      color: #1a140b;
+    }
+
+    @media (max-width: 700px) {
+      .langbtn {
+        padding: 4px 8px;
+        font-size: 10px;
+      }
+    }
+
     .contact-link {
       color: var(--ivory-muted);
       font-size: 12px;
@@ -1479,34 +1511,34 @@
       <img class="brand-mark" src="assets/logo.webp" alt="" onerror="this.style.display='none'">
       Gitania
     </a>
+    <div class="langbar" id="langbar"></div>
   </header>
 
   <nav class="side-nav side-nav--left" aria-label="Secciones">
-    <a href="blog.html" data-section="blog"><span class="rail-dot"></span>Blog</a>
-    <a href="lecturas.html" data-section="lecturas"><span class="rail-dot"></span>Lecturas Express</a>
-    <a href="#melomancia" data-section="melomancia" class="is-active"><span class="rail-dot"></span>Melomancia</a>
-    <a href="index.html#vip" data-section="vip"><span class="rail-dot"></span>Sesiones VIP</a>
+    <a href="blog.html" data-section="blog"><span class="rail-dot"></span><span data-i18n="nav.blog">Blog</span></a>
+    <a href="lecturas.html" data-section="lecturas"><span class="rail-dot"></span><span data-i18n="nav.lecturas">Lecturas Express</span></a>
+    <a href="#melomancia" data-section="melomancia" class="is-active"><span class="rail-dot"></span><span data-i18n="nav.melomancia">Melomancia</span></a>
+    <a href="index.html#vip" data-section="vip"><span class="rail-dot"></span><span data-i18n="nav.vip">Sesiones VIP</span></a>
   </nav>
 
   <nav class="side-nav side-nav--right" aria-label="Contacto">
-    <a class="whatsapp-rail" href="https://wa.me/5215515245147" target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp">
+    <a class="whatsapp-rail" href="https://wa.me/5215515245147" target="_blank" rel="noopener" data-i18n-aria="nav.whatsapp" aria-label="Escríbeme por WhatsApp">
       <img src="assets/whatsapp-gitania.png" alt="" loading="lazy">
     </a>
   </nav>
 
   <main>
     <section class="page-section--soft" id="melomancia" style="padding-top: 140px; position: relative;">
-      <img class="spark spark--a" data-reveal src="assets/sparks/el-inicio.png" alt="" aria-hidden="true">
-      <button class="portal-button" type="button" id="melomanciaPortal" aria-label="Ir al oráculo sonoro" data-reveal="scale" style="margin-bottom:56px;">
+      <button class="portal-button" type="button" id="melomanciaPortal" data-i18n-aria="portal.aria" aria-label="Ir al oráculo sonoro" data-reveal="scale" style="margin-bottom:56px;">
         <span class="portal-ring"><img src="assets/portals/melomancia.webp" alt="" loading="lazy"></span>
       </button>
       <p class="section-eyebrow" style="text-align:center; margin-top:0;">Melomancia</p>
 
       <section class="oracle" id="oracleBox" aria-live="polite">
         <div class="oracle-inner" data-reveal="scale">
-          <p class="oracle-title" data-reveal-child>El oráculo sonoro</p>
-          <h2 class="oracle-prompt" data-reveal-child>Sostén tu pregunta un instante.</h2>
-          <p class="oracle-instruction" data-reveal-child>
+          <p class="oracle-title" data-reveal-child data-i18n="oracle.title">El oráculo sonoro</p>
+          <h2 class="oracle-prompt" data-reveal-child data-i18n="oracle.prompt">Sostén tu pregunta un instante.</h2>
+          <p class="oracle-instruction" data-reveal-child data-i18n="oracle.instruction">
             Cuando estés lista, abre la señal.
           </p>
           <textarea
@@ -1515,18 +1547,19 @@
             rows="2"
             maxlength="300"
             placeholder="Escribe tu pregunta aquí (opcional)"
+            data-i18n-placeholder="oracle.placeholder"
             data-reveal-child
           ></textarea>
-          <button class="primary-button" id="openSignal" type="button" data-reveal-child>
+          <button class="primary-button" id="openSignal" type="button" data-reveal-child data-i18n="oracle.button">
             Da click y descubre tu respuesta
           </button>
-          <div class="listening" role="status">Escuchando</div>
+          <div class="listening" role="status" data-i18n="oracle.listening">Escuchando</div>
         </div>
       </section>
 
       <section class="result-band" id="resultBand" hidden>
         <div class="result" id="result">
-          <div class="result-label">Tu señal</div>
+          <div class="result-label" data-i18n="result.label">Tu señal</div>
 
           <div class="cover-wrap">
             <img id="cardImg" src="" alt="">
@@ -1547,14 +1580,14 @@
               <span class="time" id="timeTotal">0:00</span>
             </div>
             <div class="transport">
-              <button class="transport-btn" id="prevBtn" type="button" aria-label="Señal anterior" disabled>
+              <button class="transport-btn" id="prevBtn" type="button" data-i18n-aria="player.prev" aria-label="Señal anterior" disabled>
                 <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
               </button>
-              <button class="transport-btn play-btn" id="playBtn" type="button" aria-label="Reproducir">
+              <button class="transport-btn play-btn" id="playBtn" type="button" data-i18n-aria="player.play" aria-label="Reproducir">
                 <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none"><path d="M7 5h4v14H7zm6 0h4v14h-4z"/></svg>
               </button>
-              <button class="transport-btn" id="nextBtn" type="button" aria-label="Siguiente señal" disabled>
+              <button class="transport-btn" id="nextBtn" type="button" data-i18n-aria="player.next" aria-label="Siguiente señal" disabled>
                 <svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 6l8.5 6L6 18z"/></svg>
               </button>
             </div>
@@ -1562,16 +1595,17 @@
 
           <p class="arcano-read" id="arcanoRead"></p>
 
-          <p class="bridge">
+          <p class="bridge" data-i18n="result.bridge">
             Si la señal abrió algo, las cartas pueden terminar de nombrarlo.
           </p>
           <div class="actions">
-            <button class="secondary-button" id="newQuestion" type="button">
+            <button class="secondary-button" id="newQuestion" type="button" data-i18n="result.newQuestion">
               Nueva pregunta
             </button>
             <a
               class="primary-button contact-button"
               href="mailto:gitania.tarot@gmail.com?subject=Quiero%20una%20lectura"
+              data-i18n="result.contact"
             >
               Escribir a Gitania
             </a>
@@ -1583,11 +1617,192 @@
 
   <footer>
     <span class="footer-address">Priv. Alejandrina 9, Hacienda Grande, Tequisquiapan, Qro., CP 76799, México © 2026</span>
-    Gitania® · <a href="lecturas.html">Tarot</a>, <a href="#melomancia">Melomancia</a>, <a href="hipnosis.html">Hipnosis</a>, <a href="joyeria.html">Joyería</a> y <a href="simbolos-vivos.html">Símbolos vivos</a><br>
-    Hecho con ❤ y música
+    <span data-i18n="footer.brand">Gitania® · <a href="lecturas.html">Tarot</a>, <a href="#melomancia">Melomancia</a>, <a href="hipnosis.html">Hipnosis</a>, <a href="joyeria.html">Joyería</a> y <a href="simbolos-vivos.html">Símbolos vivos</a></span><br>
+    <span data-i18n="footer.made">Hecho con ❤ y música</span>
   </footer>
 
   <script>
+    // ================= i18n =================
+    var STRINGS = {
+      es: {
+        "nav.blog": "Blog",
+        "nav.lecturas": "Lecturas Express",
+        "nav.melomancia": "Melomancia",
+        "nav.vip": "Sesiones VIP",
+        "nav.whatsapp": "Escríbeme por WhatsApp",
+        "portal.aria": "Ir al oráculo sonoro",
+        "oracle.title": "El oráculo sonoro",
+        "oracle.prompt": "Sostén tu pregunta un instante.",
+        "oracle.instruction": "Cuando estés lista, abre la señal.",
+        "oracle.placeholder": "Escribe tu pregunta aquí (opcional)",
+        "oracle.button": "Da click y descubre tu respuesta",
+        "oracle.listening": "Escuchando",
+        "result.label": "Tu señal",
+        "result.bridge": "Si la señal abrió algo, las cartas pueden terminar de nombrarlo.",
+        "result.newQuestion": "Nueva pregunta",
+        "result.contact": "Escribir a Gitania",
+        "player.prev": "Señal anterior",
+        "player.play": "Reproducir",
+        "player.next": "Siguiente señal",
+        "footer.brand": "Gitania® · <a href=\"lecturas.html\">Tarot</a>, <a href=\"#melomancia\">Melomancia</a>, <a href=\"hipnosis.html\">Hipnosis</a>, <a href=\"joyeria.html\">Joyería</a> y <a href=\"simbolos-vivos.html\">Símbolos vivos</a>",
+        "footer.made": "Hecho con ❤ y música",
+        "card.alt": "Carta {arcano}"
+      },
+      en: {
+        "nav.blog": "Blog",
+        "nav.lecturas": "Express Readings",
+        "nav.melomancia": "Melomancy",
+        "nav.vip": "VIP Sessions",
+        "nav.whatsapp": "Write to me on WhatsApp",
+        "portal.aria": "Go to the sound oracle",
+        "oracle.title": "The sound oracle",
+        "oracle.prompt": "Hold your question for a moment.",
+        "oracle.instruction": "When you're ready, open the signal.",
+        "oracle.placeholder": "Type your question here (optional)",
+        "oracle.button": "Click and discover your answer",
+        "oracle.listening": "Listening",
+        "result.label": "Your signal",
+        "result.bridge": "If the signal opened something, the cards can finish naming it.",
+        "result.newQuestion": "New question",
+        "result.contact": "Write to Gitania",
+        "player.prev": "Previous signal",
+        "player.play": "Play",
+        "player.next": "Next signal",
+        "footer.brand": "Gitania® · <a href=\"lecturas.html\">Tarot</a>, <a href=\"#melomancia\">Melomancy</a>, <a href=\"hipnosis.html\">Hypnosis</a>, <a href=\"joyeria.html\">Jewelry</a> and <a href=\"simbolos-vivos.html\">Living Symbols</a>",
+        "footer.made": "Made with ❤ and music",
+        "card.alt": "Card {arcano}"
+      },
+      fr: {
+        "nav.blog": "Blog",
+        "nav.lecturas": "Lectures Express",
+        "nav.melomancia": "Mélomancie",
+        "nav.vip": "Séances VIP",
+        "nav.whatsapp": "Écris-moi sur WhatsApp",
+        "portal.aria": "Aller à l'oracle sonore",
+        "oracle.title": "L'oracle sonore",
+        "oracle.prompt": "Garde ta question un instant.",
+        "oracle.instruction": "Quand tu es prête, ouvre le signal.",
+        "oracle.placeholder": "Écris ta question ici (facultatif)",
+        "oracle.button": "Clique et découvre ta réponse",
+        "oracle.listening": "À l'écoute",
+        "result.label": "Ton signal",
+        "result.bridge": "Si le signal a ouvert quelque chose, les cartes peuvent achever de le nommer.",
+        "result.newQuestion": "Nouvelle question",
+        "result.contact": "Écrire à Gitania",
+        "player.prev": "Signal précédent",
+        "player.play": "Lecture",
+        "player.next": "Signal suivant",
+        "footer.brand": "Gitania® · <a href=\"lecturas.html\">Tarot</a>, <a href=\"#melomancia\">Mélomancie</a>, <a href=\"hipnosis.html\">Hypnose</a>, <a href=\"joyeria.html\">Bijoux</a> et <a href=\"simbolos-vivos.html\">Symboles vivants</a>",
+        "footer.made": "Fait avec ❤ et musique",
+        "card.alt": "Carte {arcano}"
+      }
+    };
+
+    var LANGS = ["es", "en", "fr"];
+    var LANG_LABEL = { es: "ES", en: "EN", fr: "FR" };
+    var ARCANO_I18N = {
+      "El Mago": { en: "The Magician", fr: "Le Bateleur" },
+      "Los Enamorados": { en: "The Lovers", fr: "L'Amoureux" },
+      "La Emperatriz": { en: "The Empress", fr: "L'Impératrice" },
+      "La Templanza": { en: "Temperance", fr: "Tempérance" },
+      "El Diablo": { en: "The Devil", fr: "Le Diable" },
+      "La Luna": { en: "The Moon", fr: "La Lune" },
+      "El Loco": { en: "The Fool", fr: "Le Mat" }
+    };
+    var SONG_LINE_I18N = {
+      "Midas": {
+        en: "There are two ways to read a coin: by its face or by its ring. You already chose — no need to bite it to be sure. What you touch now becomes what you are, in every direction at once.",
+        fr: "Il y a deux façons de lire une pièce : par sa face ou par son tintement. Tu as déjà choisi — inutile de la mordre pour t'en assurer. Ce que tu touches maintenant devient ce que tu es, dans toutes les directions à la fois."
+      },
+      "Tarde": {
+        en: "Somewhere it's still early and you haven't decided anything. Here it's already late, and it doesn't matter: being late is also a way of arriving on time for what truly matters.",
+        fr: "Quelque part, il est encore tôt et tu n'as encore rien décidé. Ici, il est déjà tard, et peu importe : être en retard est aussi une façon d'arriver à temps pour ce qui compte vraiment."
+      },
+      "La casa florece": {
+        en: "Before something is born, it was already born in several ways inside you: as fear, as a plan, as an accident. Today, choose to keep the version that looks like a garden.",
+        fr: "Avant que quelque chose ne naisse, cela est déjà né en toi de plusieurs façons : comme peur, comme projet, comme accident. Aujourd'hui, choisis de garder la version qui ressemble à un jardin."
+      },
+      "Lo que viene": {
+        en: "What's coming has already traveled three different roads to reach this sentence: one that hurt, one that took too long, one that finally looked like you. That's the one arriving.",
+        fr: "Ce qui vient a déjà emprunté trois chemins différents pour arriver jusqu'à cette phrase : un qui faisait mal, un qui traînait, un qui a fini par te ressembler. C'est celui-là qui arrive."
+      },
+      "Domingo en mi casa": {
+        en: "There's a Sunday that stays and another that has already gone; both fit in the same house if you stop demanding they be the same day. The right blend never picks just one time.",
+        fr: "Il y a un dimanche qui reste et un autre qui est déjà parti ; les deux tiennent dans la même maison si tu cesses d'exiger qu'ils soient le même jour. Le bon mélange ne choisit jamais un seul temps."
+      },
+      "Materia": {
+        en: "What binds you has a name in at least three languages: desire, habit, fear of letting go. Name it in the one that hurts most — that's the true one, and it already weighs less for having been said.",
+        fr: "Ce qui t'attache a un nom dans au moins trois langues : désir, habitude, peur de lâcher prise. Nomme-le dans celle qui fait le plus mal — c'est la vraie, et elle pèse déjà moins pour avoir été dite."
+      },
+      "llego": {
+        en: "Under the moon, every version of why you arrived fits: late, early, or exactly on time without knowing it. Don't choose which one is true — just come in.",
+        fr: "Sous la lune, toutes les versions de pourquoi tu es arrivée y trouvent leur place : en retard, en avance, ou exactement à l'heure sans le savoir. Ne choisis pas laquelle est vraie — entre, simplement."
+      },
+      "Loco": {
+        en: "Before you take the step, the path exists in every form: the one that stumbles, the one that gets lost, the one that arrives. Take the step anyway — that's how one is chosen among all.",
+        fr: "Avant de faire le pas, le chemin existe sous toutes ses formes : celui qui trébuche, celui qui se perd, celui qui arrive. Fais le pas quand même — c'est ainsi qu'on en choisit un parmi tous."
+      }
+    };
+
+    var lang = (function () {
+      try {
+        var saved = localStorage.getItem("gitania_lang");
+        if (LANGS.indexOf(saved) > -1) return saved;
+      } catch (e) {}
+      var nav = (navigator.language || "es").slice(0, 2);
+      return LANGS.indexOf(nav) > -1 ? nav : "es";
+    })();
+
+    function t(key) {
+      return (STRINGS[lang] && STRINGS[lang][key]) || STRINGS.es[key] || key;
+    }
+
+    function trArcano(arcano) {
+      if (lang === "es") return arcano;
+      var entry = ARCANO_I18N[arcano];
+      return (entry && entry[lang]) || arcano;
+    }
+
+    function trLine(song) {
+      if (lang === "es") return song.line;
+      var entry = SONG_LINE_I18N[song.title];
+      return (entry && entry[lang]) || song.line;
+    }
+
+    function buildLangbar() {
+      var container = document.getElementById("langbar");
+      if (!container) return;
+      container.innerHTML = "";
+      LANGS.forEach(function (l) {
+        var b = document.createElement("button");
+        b.className = "langbtn" + (l === lang ? " active" : "");
+        b.type = "button";
+        b.textContent = LANG_LABEL[l];
+        b.addEventListener("click", function () {
+          lang = l;
+          try { localStorage.setItem("gitania_lang", l); } catch (e) {}
+          applyI18n();
+        });
+        container.appendChild(b);
+      });
+    }
+
+    function applyI18n() {
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        el.innerHTML = t(el.getAttribute("data-i18n"));
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+        el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder")));
+      });
+      document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+        el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria")));
+      });
+      buildLangbar();
+      if (typeof refreshCurrentSong === "function") refreshCurrentSong();
+    }
+    // ================= fin i18n =================
+
     // Cada canción está anclada a un arcano del Tarot de Marsella.
     const songs = [
       {
@@ -1696,13 +1911,25 @@
       return m + ":" + String(s).padStart(2, "0");
     }
 
+    let currentSongIndex = -1;
+
+    function refreshCurrentSong() {
+      if (currentSongIndex < 0) return;
+      const song = songs[currentSongIndex];
+      cardImg.alt = t("card.alt").replace("{arcano}", trArcano(song.arcano));
+      arcanoTag.textContent = trArcano(song.arcano);
+      arcanoRead.textContent = song.customReading || trLine(song);
+    }
+
     function loadSong(index, autoplay) {
       const song = songs[index];
+      currentSongIndex = index;
       cardImg.src = song.cover;
-      cardImg.alt = "Carta " + song.arcano;
-      arcanoTag.textContent = song.arcano;
+      cardImg.alt = t("card.alt").replace("{arcano}", trArcano(song.arcano));
+      arcanoTag.textContent = trArcano(song.arcano);
       title.textContent = song.title;
-      arcanoRead.textContent = song.line;
+      arcanoRead.textContent = trLine(song);
+      song.customReading = null;
 
       audio.src = song.file;
       progressFill.style.width = "0%";
@@ -1784,6 +2011,7 @@
 
         loadSong(selectedIndex, true);
         if (customReading) {
+          songs[selectedIndex].customReading = customReading;
           arcanoRead.textContent = customReading;
         }
 
@@ -2109,6 +2337,7 @@
       requestAnimationFrame(tick);
     })();
 
+    applyI18n();
   </script>
 </body>
 </html>
