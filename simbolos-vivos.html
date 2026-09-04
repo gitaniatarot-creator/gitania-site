@@ -340,6 +340,31 @@
       color: var(--ivory);
     }
 
+    /* ---------------- lang switcher ---------------- */
+    .langbar {
+      display: flex;
+      gap: 6px;
+    }
+
+    .langbtn {
+      font-family: "Karla", -apple-system, "Segoe UI", sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1.5px solid var(--hairline);
+      background: transparent;
+      color: var(--ivory-muted);
+      cursor: pointer;
+    }
+
+    .langbtn.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--void);
+    }
+
     /* ---------------- menús laterales ---------------- */
     .side-nav {
       position: fixed;
@@ -1489,17 +1514,18 @@
       <img class="brand-mark" src="assets/logo.webp" alt="" onerror="this.style.display='none'">
       Gitania
     </a>
+    <div class="langbar" id="langbar"></div>
   </header>
 
   <nav class="side-nav side-nav--left" aria-label="Secciones">
-    <a href="blog.html" data-section="blog"><span class="rail-dot"></span>Blog</a>
-    <a href="lecturas.html" data-section="lecturas"><span class="rail-dot"></span>Lecturas Express</a>
-    <a href="melomancia.html" data-section="melomancia"><span class="rail-dot"></span>Melomancia</a>
-    <a href="vip.html" data-section="vip"><span class="rail-dot"></span>Sesiones VIP</a>
+    <a href="blog.html" data-section="blog"><span class="rail-dot"></span><span data-i18n="nav.blog">Blog</span></a>
+    <a href="lecturas.html" data-section="lecturas"><span class="rail-dot"></span><span data-i18n="nav.lecturas">Lecturas Express</span></a>
+    <a href="melomancia.html" data-section="melomancia"><span class="rail-dot"></span><span data-i18n="nav.melomancia">Melomancia</span></a>
+    <a href="vip.html" data-section="vip"><span class="rail-dot"></span><span data-i18n="nav.vip">Sesiones VIP</span></a>
   </nav>
 
   <nav class="side-nav side-nav--right" aria-label="Contacto">
-    <a class="whatsapp-rail" href="https://wa.me/5215515245147" target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp">
+    <a class="whatsapp-rail" href="https://wa.me/5215515245147" target="_blank" rel="noopener" data-i18n-aria-label="whatsapp.aria" aria-label="Escríbeme por WhatsApp">
       <img src="assets/whatsapp-gitania.png" alt="" loading="lazy">
     </a>
   </nav>
@@ -1508,14 +1534,14 @@
     <!-- ---------------- Símbolos vivos ---------------- -->
     <section class="page-section" id="simbolos-vivos" style="position: relative;">
       <div class="section-inner" data-reveal>
-        <a class="portal-button" data-reveal-child href="https://wa.me/5215515245147" target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp">
+        <a class="portal-button" data-reveal-child href="https://wa.me/5215515245147" target="_blank" rel="noopener" data-i18n-aria-label="whatsapp.aria" aria-label="Escríbeme por WhatsApp">
           <span class="portal-ring"><span class="portal-glyph">✵</span></span>
         </a>
-        <p class="section-eyebrow" data-reveal-child>Símbolos vivos</p>
-        <h2 class="section-title" data-reveal-child>El lenguaje que nos habita</h2>
-        <p class="section-copy" data-reveal-child>Estoy dando forma a este espacio dedicado a los símbolos que nos atraviesan y nos acompañan. Vuelve pronto, o escríbeme si quieres adelantarte.</p>
+        <p class="section-eyebrow" data-reveal-child data-i18n="sv.eyebrow">Símbolos vivos</p>
+        <h2 class="section-title" data-reveal-child data-i18n="sv.title">El lenguaje que nos habita</h2>
+        <p class="section-copy" data-reveal-child data-i18n="sv.copy">Estoy dando forma a este espacio dedicado a los símbolos que nos atraviesan y nos acompañan. Vuelve pronto, o escríbeme si quieres adelantarte.</p>
         <p class="vip-login-help">
-          <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
+          <a href="https://wa.me/5215515245147" target="_blank" rel="noopener" data-i18n="whatsapp.link">Escríbeme por WhatsApp</a>
         </p>
       </div>
     </section>
@@ -1523,11 +1549,120 @@
 
   <footer>
     <span class="footer-address">Priv. Alejandrina 9, Hacienda Grande, Tequisquiapan, Qro., CP 76799, México © 2026</span>
-    Gitania® · <a href="lecturas.html">Tarot</a>, <a href="melomancia.html">Melomancia</a>, <a href="hipnosis.html">Hipnosis</a>, <a href="joyeria.html">Joyería</a> y <a href="simbolos-vivos.html">Símbolos vivos</a><br>
-    Hecho con ❤ e intuición
+    Gitania® · <a href="lecturas.html" data-i18n="footer.tarot">Tarot</a>, <a href="melomancia.html" data-i18n="footer.melomancia">Melomancia</a>, <a href="hipnosis.html" data-i18n="footer.hipnosis">Hipnosis</a>, <a href="joyeria.html" data-i18n="footer.joyeria">Joyería</a> <span data-i18n="footer.and">y</span> <a href="simbolos-vivos.html" data-i18n="footer.simbolos">Símbolos vivos</a><br>
+    <span data-i18n="footer.made">Hecho con ❤ e intuición</span>
   </footer>
 
   <script>
+
+    // ================= i18n =================
+    var STRINGS = {
+      es: {
+        "nav.blog": "Blog",
+        "nav.lecturas": "Lecturas Express",
+        "nav.melomancia": "Melomancia",
+        "nav.vip": "Sesiones VIP",
+        "whatsapp.aria": "Escríbeme por WhatsApp",
+        "whatsapp.link": "Escríbeme por WhatsApp",
+        "sv.eyebrow": "Símbolos vivos",
+        "sv.title": "El lenguaje que nos habita",
+        "sv.copy": "Estoy dando forma a este espacio dedicado a los símbolos que nos atraviesan y nos acompañan. Vuelve pronto, o escríbeme si quieres adelantarte.",
+        "footer.tarot": "Tarot",
+        "footer.melomancia": "Melomancia",
+        "footer.hipnosis": "Hipnosis",
+        "footer.joyeria": "Joyería",
+        "footer.and": "y",
+        "footer.simbolos": "Símbolos vivos",
+        "footer.made": "Hecho con ❤ e intuición"
+      },
+      en: {
+        "nav.blog": "Blog",
+        "nav.lecturas": "Express Readings",
+        "nav.melomancia": "Melomancy",
+        "nav.vip": "VIP Sessions",
+        "whatsapp.aria": "Write to me on WhatsApp",
+        "whatsapp.link": "Write to me on WhatsApp",
+        "sv.eyebrow": "Living symbols",
+        "sv.title": "The language that dwells within us",
+        "sv.copy": "I'm shaping this space dedicated to the symbols that move through us and accompany us. Come back soon, or write to me if you'd like a preview.",
+        "footer.tarot": "Tarot",
+        "footer.melomancia": "Melomancy",
+        "footer.hipnosis": "Hypnosis",
+        "footer.joyeria": "Jewelry",
+        "footer.and": "and",
+        "footer.simbolos": "Living symbols",
+        "footer.made": "Made with ❤ and intuition"
+      },
+      fr: {
+        "nav.blog": "Blog",
+        "nav.lecturas": "Lectures Express",
+        "nav.melomancia": "Mélomancie",
+        "nav.vip": "Séances VIP",
+        "whatsapp.aria": "Écrivez-moi sur WhatsApp",
+        "whatsapp.link": "Écrivez-moi sur WhatsApp",
+        "sv.eyebrow": "Symboles vivants",
+        "sv.title": "Le langage qui nous habite",
+        "sv.copy": "Je façonne cet espace dédié aux symboles qui nous traversent et nous accompagnent. Reviens bientôt, ou écris-moi si tu veux avoir un aperçu.",
+        "footer.tarot": "Tarot",
+        "footer.melomancia": "Mélomancie",
+        "footer.hipnosis": "Hypnose",
+        "footer.joyeria": "Bijouterie",
+        "footer.and": "et",
+        "footer.simbolos": "Symboles vivants",
+        "footer.made": "Fait avec ❤ et intuition"
+      }
+    };
+    // ================= fin STRINGS =================
+
+    var LANGS = ["es", "en", "fr"];
+    var LANG_LABEL = { es: "ES", en: "EN", fr: "FR" };
+    var lang = (function () {
+      try {
+        var saved = localStorage.getItem("gitania_lang");
+        if (LANGS.indexOf(saved) > -1) return saved;
+      } catch (e) {}
+      var nav = (navigator.language || "es").slice(0, 2);
+      return LANGS.indexOf(nav) > -1 ? nav : "es";
+    })();
+
+    function t(key) {
+      return (STRINGS[lang] && STRINGS[lang][key]) || STRINGS.es[key] || key;
+    }
+
+    function applyI18n() {
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        el.innerHTML = t(el.getAttribute("data-i18n"));
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+        el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder")));
+      });
+      document.querySelectorAll("[data-i18n-aria-label]").forEach(function (el) {
+        el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria-label")));
+      });
+      buildLangbar(document.getElementById("langbar"));
+    }
+
+    function buildLangbar(container) {
+      if (!container) return;
+      container.innerHTML = "";
+      LANGS.forEach(function (l) {
+        var b = document.createElement("button");
+        b.className = "langbtn" + (l === lang ? " active" : "");
+        b.textContent = LANG_LABEL[l];
+        b.addEventListener("click", function () {
+          lang = l;
+          try {
+            localStorage.setItem("gitania_lang", l);
+          } catch (e) {}
+          applyI18n();
+        });
+        container.appendChild(b);
+      });
+    }
+
+    applyI18n();
+    // ================= fin i18n =================
 
     // ---- scroll-spy del menú lateral ----
     const railLinks = Array.from(document.querySelectorAll(".side-nav--left a"));
