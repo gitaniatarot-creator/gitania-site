@@ -438,7 +438,7 @@
     }
 
     .page-section--soft {
-      background: rgba(245, 239, 226, 0.025);
+      background: transparent;
     }
 
     .section-inner {
@@ -746,35 +746,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 50% 22%;
+      object-position: 50% 50%;
       border-radius: 50%;
       display: block;
       filter: drop-shadow(0 0 18px rgba(236, 200, 115, 0.35));
-    }
-
-    .blink-lid {
-      position: absolute;
-      width: 11%;
-      height: 7%;
-      border-radius: 50%;
-      background: #d98850;
-      transform-origin: center;
-      transform: scaleY(0.05);
-      opacity: 0;
-      animation: gitania-blink 5.5s ease-in-out infinite;
-    }
-
-    .blink-lid.left  { top: 39%; left: 33%; }
-    .blink-lid.right { top: 39%; left: 56%; animation-delay: 0.02s; }
-
-    @keyframes gitania-blink {
-      0%, 90%, 100% { transform: scaleY(0.05); opacity: 0; }
-      93%, 96%      { transform: scaleY(1);    opacity: 1; }
-      98%           { transform: scaleY(0.05); opacity: 0; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .blink-lid { display: none; }
     }
 
     .eyebrow {
@@ -1462,9 +1437,7 @@
         <p class="eyebrow">Tarot · Melomancia · Sesiones</p>
         <div class="hero-title-row">
           <span class="gitania-portrait" aria-hidden="true">
-            <img src="assets/portrait/gitania-cutout.png" alt="">
-            <span class="blink-lid left"></span>
-            <span class="blink-lid right"></span>
+            <img id="gitaniaBlinkImg" src="assets/portrait/blink-frames/frame-0.webp" alt="">
           </span>
           <h1>GITANIA</h1>
         </div>
@@ -2073,6 +2046,50 @@
     } else {
       revealEls.forEach(function (el) { el.classList.add("is-visible"); });
     }
+
+    // ---- el parpadeo de Gitania avanza con el scroll, no solo. ----
+    (function () {
+      const blinkImg = document.getElementById("gitaniaBlinkImg");
+      if (!blinkImg) return;
+
+      const FRAME_COUNT = 8;
+      const CYCLE_PX = 500; // cuántos px de scroll = un parpadeo completo
+      const frameSrcs = [];
+      for (let i = 0; i < FRAME_COUNT; i++) {
+        frameSrcs.push("assets/portrait/blink-frames/frame-" + i + ".webp");
+      }
+      // precarga
+      frameSrcs.forEach(function (src) {
+        const im = new Image();
+        im.src = src;
+      });
+
+      let currentFrame = -1;
+      let ticking = false;
+
+      function updateBlinkFrame() {
+        const y = window.scrollY || window.pageYOffset;
+        const progress = (y % CYCLE_PX) / CYCLE_PX; // 0..1
+        const frame = Math.floor(progress * FRAME_COUNT) % FRAME_COUNT;
+        if (frame !== currentFrame) {
+          currentFrame = frame;
+          blinkImg.src = frameSrcs[frame];
+        }
+        ticking = false;
+      }
+
+      window.addEventListener(
+        "scroll",
+        function () {
+          if (ticking) return;
+          ticking = true;
+          window.requestAnimationFrame(updateBlinkFrame);
+        },
+        { passive: true }
+      );
+
+      updateBlinkFrame();
+    })();
 
     // ---- parallax sutil de la galaxia de fondo ----
     if (!reduceMotion) {
