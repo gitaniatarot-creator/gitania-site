@@ -318,11 +318,10 @@
     }
 
     .brand-mark {
-      width: 34px;
-      height: 34px;
+      width: 40px;
+      height: 40px;
       object-fit: cover;
-      -webkit-mask-image: radial-gradient(circle at center, #000 55%, transparent 78%);
-      mask-image: radial-gradient(circle at center, #000 55%, transparent 78%);
+      border-radius: 50%;
       filter: drop-shadow(0 0 10px rgba(245, 239, 226, 0.25));
       color: transparent;
     }
@@ -1486,7 +1485,7 @@
   </div>
 
   <header class="site-header">
-    <a class="brand" href="#inicio">
+    <a class="brand" href="index.html">
       <img class="brand-mark" src="assets/logo.webp" alt="" onerror="this.style.display='none'">
       Gitania
     </a>
@@ -1510,7 +1509,7 @@
     <section class="page-section" id="blog" style="position: relative;">
       <div class="section-inner" data-reveal>
         <a class="portal-button" data-reveal-child href="https://wa.me/5215515245147" target="_blank" rel="noopener" aria-label="Mientras tanto, escríbeme por WhatsApp">
-          <span class="portal-ring"><span class="portal-glyph">✧</span></span>
+          <span class="portal-ring"><img src="assets/portals/blog.webp" alt="" loading="lazy"></span>
         </a>
         <p class="section-eyebrow" data-reveal-child>Blog</p>
         <h2 class="section-title" data-reveal-child>Notas, símbolos y lecturas del camino</h2>
