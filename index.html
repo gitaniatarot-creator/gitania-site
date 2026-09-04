@@ -1317,6 +1317,55 @@
     .spark--b { width: clamp(56px, 7vw, 104px); height: clamp(56px, 7vw, 104px); bottom: -24px; left: clamp(4%, 6vw, 10%); transition-delay: 140ms; }
     .spark--c { width: clamp(60px, 8vw, 116px); height: clamp(60px, 8vw, 116px); top: 8%; left: clamp(4%, 5vw, 8%); transition-delay: 80ms; }
 
+    /* ---------------- tarjetas estilo tarot: Hipnosis / Joyería / Símbolos vivos ---------------- */
+    .tarot-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: center;
+      gap: clamp(18px, 3vw, 32px);
+      margin-top: 36px;
+    }
+
+    .tarot-card-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .tarot-card-link img {
+      width: clamp(112px, 15vw, 158px);
+      aspect-ratio: 3 / 4.3;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid rgba(236, 200, 115, 0.55);
+      box-shadow:
+        0 0 0 1px rgba(236, 200, 115, 0.18),
+        0 18px 34px -18px rgba(0, 0, 0, 0.6),
+        0 0 26px 2px rgba(212, 160, 23, 0.22);
+      transition: transform 260ms ease, box-shadow 260ms ease;
+    }
+
+    .tarot-card-link:hover img,
+    .tarot-card-link:focus-visible img {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow:
+        0 0 0 1px rgba(236, 200, 115, 0.4),
+        0 22px 40px -18px rgba(0, 0, 0, 0.65),
+        0 0 32px 4px rgba(212, 160, 23, 0.35);
+    }
+
+    .tarot-card-caption {
+      font-family: "Karla", sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+    }
+
     /* ---------------- chispitas mágicas al hacer scroll ---------------- */
     .magic-spark {
       position: fixed;
@@ -1536,7 +1585,6 @@
 
     <!-- ---------------- Blog ---------------- -->
     <section class="page-section" id="blog" style="position: relative;">
-      <img class="spark spark--a" data-reveal src="assets/sparks/the-magician.png" alt="" aria-hidden="true">
       <div class="section-inner" data-reveal>
         <a class="portal-button" data-reveal-child href="blog.html" aria-label="Blog">
           <span class="portal-ring"><img src="assets/portals/blog.webp" alt="" loading="lazy"></span>
@@ -1554,7 +1602,6 @@
 
     <!-- ---------------- Lecturas Express ---------------- -->
     <section class="page-section page-section--soft" id="lecturas" style="position: relative;">
-      <img class="spark spark--b" data-reveal src="assets/sparks/la-estratega.png" alt="" aria-hidden="true">
       <div class="section-inner" data-reveal="scale">
         <a class="portal-button" data-reveal-child href="lecturas.html" aria-label="Lecturas Express">
           <span class="portal-ring"><img src="assets/portals/lecturas.webp" alt="" loading="lazy"></span>
@@ -1586,7 +1633,6 @@
 
     <!-- ---------------- Melomancia (teaser: la experiencia completa vive en melomancia.html) ---------------- -->
     <section class="page-section page-section--soft" id="melomancia" style="position: relative;">
-      <img class="spark spark--a" data-reveal src="assets/sparks/el-inicio.png" alt="" aria-hidden="true">
       <div class="section-inner" data-reveal="scale">
         <a class="portal-button" data-reveal-child href="melomancia.html" aria-label="Melomancia">
           <span class="portal-ring"><img src="assets/portals/melomancia.webp" alt="" loading="lazy"></span>
@@ -1599,7 +1645,6 @@
 
     <!-- ---------------- Sesiones VIP (teaser: el login completo vive en vip.html) ---------------- -->
     <section class="page-section" id="vip" style="position: relative;">
-      <img class="spark spark--c" data-reveal src="assets/sparks/los-enamorados.png" alt="" aria-hidden="true">
       <div class="section-inner" data-reveal>
         <a class="portal-button" data-reveal-child href="vip.html" aria-label="Sesiones VIP">
           <span class="portal-ring"><img src="assets/portals/vip.webp" alt="" loading="lazy"></span>
@@ -1607,6 +1652,28 @@
         <p class="section-eyebrow" data-reveal-child>Sesiones VIP</p>
         <h2 class="section-title" data-reveal-child>Tu acceso privado</h2>
         <p class="section-copy" data-reveal-child>Si ya tomaste una sesión conmigo, tu material vive aquí: guías, PDFs y audios pensados para ti.</p>
+      </div>
+    </section>
+
+    <!-- ---------------- Más caminos: Hipnosis, Joyería, Símbolos vivos ---------------- -->
+    <section class="page-section" id="mas-caminos">
+      <div class="section-inner" data-reveal>
+        <p class="section-eyebrow" data-reveal-child>Más caminos</p>
+        <h2 class="section-title" data-reveal-child>Otras formas de encontrarnos</h2>
+        <div class="tarot-links" data-reveal-child>
+          <a class="tarot-card-link" href="hipnosis.html" aria-label="Hipnosis">
+            <img src="assets/sparks/the-magician.png" alt="" loading="lazy">
+            <span class="tarot-card-caption">Hipnosis</span>
+          </a>
+          <a class="tarot-card-link" href="joyeria.html" aria-label="Joyería">
+            <img src="assets/sparks/la-estratega.png" alt="" loading="lazy">
+            <span class="tarot-card-caption">Joyería</span>
+          </a>
+          <a class="tarot-card-link" href="simbolos-vivos.html" aria-label="Símbolos vivos">
+            <img src="assets/sparks/el-inicio.png" alt="" loading="lazy">
+            <span class="tarot-card-caption">Símbolos vivos</span>
+          </a>
+        </div>
       </div>
     </section>
   </main>
