@@ -673,6 +673,35 @@
       color: var(--red-bright);
     }
 
+    .vip-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--ink-muted);
+      cursor: pointer;
+    }
+
+    .vip-consent input {
+      flex: none;
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      accent-color: var(--gold);
+      cursor: pointer;
+    }
+
+    .vip-consent a {
+      color: var(--gold-bright);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(236, 200, 115, 0.4);
+    }
+
+    .vip-consent a:hover {
+      border-bottom-color: var(--gold-bright);
+    }
+
     .vip-login-help {
       margin: 18px 0 0;
       font-size: 12.5px;
@@ -1549,10 +1578,15 @@
             data-i18n-placeholder="vip.pass"
             autocomplete="current-password"
           />
+          <label class="vip-consent">
+            <input type="checkbox" id="vipConsent" required />
+            <span data-i18n="vip.consent">He leído y acepto el <a href="privacidad.html" target="_blank" rel="noopener" data-i18n="vip.consentlink">Aviso de Privacidad</a>.</span>
+          </label>
           <button class="vip-access-button" id="vipLoginButton" type="submit" data-i18n="vip.button">
             Entrar a mi espacio
           </button>
           <p class="vip-login-error" id="vipLoginError" hidden data-i18n="vip.error">Usuario o contraseña incorrectos. Revísalos o escríbeme por WhatsApp.</p>
+          <p class="vip-login-error" id="vipConsentError" hidden data-i18n="vip.consenterror">Debes aceptar el aviso de privacidad para continuar.</p>
         </form>
         <p class="vip-login-help">
           <span data-i18n="vip.help">¿Aún no tienes tus credenciales?</span>
@@ -1584,9 +1618,17 @@
     const vipUserInput = document.getElementById("vipUser");
     const vipPassInput = document.getElementById("vipPass");
     const vipLoginError = document.getElementById("vipLoginError");
+    const vipConsentInput = document.getElementById("vipConsent");
+    const vipConsentError = document.getElementById("vipConsentError");
     if (vipLoginForm) {
       vipLoginForm.addEventListener("submit", (e) => {
         e.preventDefault();
+        if (!vipConsentInput.checked) {
+          vipConsentError.hidden = false;
+          vipLoginError.hidden = true;
+          return;
+        }
+        vipConsentError.hidden = true;
         const user = (vipUserInput.value || "").trim().toLowerCase();
         const pass = (vipPassInput.value || "").trim();
         const account = vipUsers[user];
