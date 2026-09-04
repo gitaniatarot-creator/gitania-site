@@ -29,8 +29,8 @@
       --gold-bright: #ecc873;
       --aqua-bright: #5fe0cd;
 
-      --void: #120f26;
-      --void-soft: #1b1738;
+      --void: #0d222b;
+      --void-soft: #123243;
       --ink: #f5efe2;
       --ink-muted: #a79d8c;
       --hairline: rgba(245, 239, 226, 0.14);
@@ -407,12 +407,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 46px;
-      height: 46px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      background: #25d366;
-      color: #fff;
-      box-shadow: 0 10px 26px rgba(37, 211, 102, 0.35);
+      background: none;
+      box-shadow: 0 10px 26px rgba(200, 30, 63, 0.35);
       transition: transform 180ms ease;
     }
 
@@ -421,10 +420,11 @@
       transform: translateY(-2px) scale(1.04);
     }
 
-    .whatsapp-rail svg {
-      width: 22px;
-      height: 22px;
-      fill: currentColor;
+    .whatsapp-rail img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: block;
     }
 
     @media (max-width: 1180px) {
@@ -621,90 +621,67 @@
       text-transform: uppercase;
     }
 
-    .vip-grid {
-      display: grid;
-      gap: 14px;
-      margin-top: 44px;
+    .vip-login {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 340px;
+      margin: 44px auto 0;
       text-align: left;
     }
 
-    .vip-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 4px;
-      background: transparent;
-      border-bottom: 1px solid var(--hairline);
-      text-decoration: none;
-      color: var(--ink);
-      transition: border-color 180ms ease, transform 180ms ease;
-    }
-
-    .vip-card:not(.vip-card--ghost):hover {
-      border-color: var(--gold);
-      transform: translateX(4px);
-    }
-
-    .vip-card--ghost {
-      color: var(--ink-muted);
-    }
-
-    .vip-name {
-      font-family: "Karla", -apple-system, "Segoe UI", sans-serif;
-      font-size: 18px;
-    }
-
-    .vip-cta {
-      font-size: 11.5px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--red-bright);
-    }
-
-    .vip-card--ghost .vip-cta {
-      color: var(--ink-muted);
-    }
-
-    .vip-card--form {
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .vip-name-input {
-      flex: 1;
-      min-width: 140px;
+    .vip-login-input {
       background: transparent;
       border: none;
-      border-bottom: 1px solid transparent;
+      border-bottom: 1px solid var(--hairline);
       color: var(--ink);
       font-family: "Karla", -apple-system, "Segoe UI", sans-serif;
       font-size: 18px;
-      padding: 4px 0;
+      padding: 8px 2px;
     }
 
-    .vip-name-input::placeholder {
+    .vip-login-input::placeholder {
       color: var(--ink-muted);
     }
 
-    .vip-name-input:focus {
+    .vip-login-input:focus {
       outline: none;
       border-bottom-color: var(--gold);
     }
 
     .vip-access-button {
-      background: none;
+      background: var(--red);
       border: none;
-      padding: 0;
-      font-size: 11.5px;
-      letter-spacing: 0.12em;
+      border-radius: 999px;
+      padding: 14px 22px;
+      margin-top: 6px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--red-bright);
+      color: var(--ivory);
       cursor: pointer;
       font-family: "Karla", -apple-system, "Segoe UI", sans-serif;
+      transition: background 180ms ease;
     }
 
     .vip-access-button:hover {
-      text-decoration: underline;
+      background: var(--red-deep);
+    }
+
+    .vip-login-error {
+      margin: 0;
+      font-size: 12.5px;
+      color: var(--red-bright);
+    }
+
+    .vip-login-help {
+      margin: 18px 0 0;
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    .vip-login-help a {
+      color: var(--gold-bright);
     }
 
     @media (max-width: 700px) {
@@ -743,27 +720,49 @@
 
     .gitania-portrait {
       position: relative;
-      width: clamp(56px, 7vw, 92px);
-      height: clamp(56px, 7vw, 92px);
+      display: block;
+      width: clamp(170px, 22vw, 280px);
+      height: clamp(162px, 21vw, 266px);
       flex: none;
+      margin: 0 auto 36px;
     }
 
     .gitania-portrait img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       object-position: 50% 50%;
-      border-radius: 50%;
       display: block;
-      filter: drop-shadow(0 0 18px rgba(236, 200, 115, 0.35));
+      filter: drop-shadow(0 0 34px rgba(236, 200, 115, 0.28)) drop-shadow(0 0 70px rgba(43, 130, 141, 0.35));
     }
 
     .eyebrow {
       margin: 0 0 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 6px 10px;
       color: var(--gold-light);
       font-size: 12px;
       letter-spacing: 0.32em;
       text-transform: uppercase;
+    }
+
+    .eyebrow a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
+
+    .eyebrow a:hover,
+    .eyebrow a:focus-visible {
+      color: var(--ivory);
+      opacity: 0.9;
+    }
+
+    .eyebrow span.eyebrow-dot {
+      opacity: 0.6;
     }
 
     h1 {
@@ -1395,6 +1394,65 @@
         transform: none !important;
       }
     }
+  
+
+    /* ---------------- Cursor: esfera blanca chispeante con estela ---------------- */
+    .cursor-orb {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 32%, #ffffff 0%, #fdf6e3 38%, rgba(255, 255, 255, 0.55) 68%, rgba(255, 255, 255, 0) 100%);
+      box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.85), 0 0 22px 6px rgba(236, 200, 115, 0.35);
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0;
+      will-change: transform, opacity;
+      animation: cursor-orb-twinkle 1.6s ease-in-out infinite;
+    }
+
+    @keyframes cursor-orb-twinkle {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.35); }
+    }
+
+    body.cursor-ready,
+    body.cursor-ready a,
+    body.cursor-ready button,
+    body.cursor-ready .portal-button,
+    body.cursor-ready .whatsapp-rail,
+    body.cursor-ready [role="button"] {
+      cursor: none;
+    }
+
+    @media (hover: none) {
+      .cursor-orb { display: none; }
+    }
+
+    /* ---------------- Cursor stardust ---------------- */
+    .stardust-sparkle {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.9), 0 0 12px 2px rgba(255, 255, 255, 0.4);
+      pointer-events: none;
+      z-index: 9999;
+      will-change: transform, opacity;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    @media (hover: none) {
+      .stardust-sparkle { display: none; }
+    }
+
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -1437,7 +1495,7 @@
 
   <header class="site-header">
     <a class="brand" href="#inicio">
-      <img class="brand-mark" src="assets/logo.jpg" alt="" onerror="this.style.display='none'">
+      <img class="brand-mark" src="assets/logo.webp" alt="" onerror="this.style.display='none'">
       Gitania
     </a>
   </header>
@@ -1453,18 +1511,20 @@
   <!-- Menú lateral derecho: contacto directo, número oculto en el enlace -->
   <nav class="side-nav side-nav--right" aria-label="Contacto">
     <a class="whatsapp-rail" href="https://wa.me/5215515245147" target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.34-.5.05-1.05.24-3.54-.74-2.99-1.18-4.87-4.2-5.02-4.4-.15-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.46.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.68.53.25.6.85 2.06.92 2.21.07.15.12.33.02.53-.1.2-.15.33-.3.5-.15.18-.31.4-.44.53-.15.15-.3.32-.13.62.17.3.76 1.26 1.64 2.04 1.13 1 2.08 1.32 2.38 1.47.3.15.48.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.66-.15.27.1 1.72.81 2.02.96.3.15.5.22.57.35.08.13.08.73-.16 1.41Z"/></svg>
+      <img src="assets/whatsapp-gitania.png" alt="" loading="lazy">
     </a>
   </nav>
 
   <main>
     <section class="hero" id="inicio">
       <div class="hero-content">
-        <p class="eyebrow">Tarot · Melomancia · Sesiones</p>
+        <span class="gitania-portrait" aria-hidden="true">
+          <img id="gitaniaBlinkImg" src="assets/portrait/blink-frames/frame-0.webp" alt="">
+        </span>
+        <p class="eyebrow">
+          <a href="lecturas.html">Tarot</a><span class="eyebrow-dot">·</span><a href="melomancia.html">Melomancia</a><span class="eyebrow-dot">·</span><a href="hipnosis.html">Hipnosis</a><span class="eyebrow-dot">·</span><a href="joyeria.html">Joyería</a><span class="eyebrow-dot">·</span><a href="simbolos-vivos.html">Símbolos vivos</a>
+        </p>
         <div class="hero-title-row">
-          <span class="gitania-portrait" aria-hidden="true">
-            <img id="gitaniaBlinkImg" src="assets/portrait/blink-frames/frame-0.webp" alt="">
-          </span>
           <h1>GITANIA</h1>
         </div>
         <p class="hero-copy">Haz una pregunta en silencio. La respuesta llega en forma de canción.</p>
@@ -1478,9 +1538,8 @@
     <section class="page-section" id="blog" style="position: relative;">
       <img class="spark spark--a" data-reveal src="assets/sparks/the-magician.png" alt="" aria-hidden="true">
       <div class="section-inner" data-reveal>
-        <a class="portal-button" data-reveal-child href="https://wa.me/5215515245147" target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp">
-          <span class="portal-ring"><img src="assets/portals/blog.jpg" alt="" loading="lazy"></span>
-          <span class="portal-label">Escríbeme</span>
+        <a class="portal-button" data-reveal-child href="blog.html" aria-label="Blog">
+          <span class="portal-ring"><img src="assets/portals/blog.webp" alt="" loading="lazy"></span>
         </a>
         <p class="section-eyebrow" data-reveal-child>Blog</p>
         <h2 class="section-title" data-reveal-child>Notas, símbolos y lecturas del camino</h2>
@@ -1497,16 +1556,12 @@
     <section class="page-section page-section--soft" id="lecturas" style="position: relative;">
       <img class="spark spark--b" data-reveal src="assets/sparks/la-estratega.png" alt="" aria-hidden="true">
       <div class="section-inner" data-reveal="scale">
-        <a class="portal-button" data-reveal-child href="https://wa.me/5215515245147" target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp">
-          <span class="portal-ring"><img src="assets/portals/lecturas.jpg" alt="" loading="lazy"></span>
-          <span class="portal-label">Escríbeme</span>
+        <a class="portal-button" data-reveal-child href="lecturas.html" aria-label="Lecturas Express">
+          <span class="portal-ring"><img src="assets/portals/lecturas.webp" alt="" loading="lazy"></span>
         </a>
         <p class="section-eyebrow" data-reveal-child>Lecturas Express</p>
         <h2 class="section-title" data-reveal-child>Una pregunta, una respuesta clara</h2>
-        <p class="section-copy" data-reveal-child>Por ahora, las lecturas express se agendan directo por WhatsApp: cuéntame tu pregunta y te respondo con una lectura breve y al punto.</p>
-        <a class="primary-button whatsapp-button" data-reveal-child href="https://wa.me/5215515245147" target="_blank" rel="noopener">
-          Escríbeme por WhatsApp
-        </a>
+        <p class="section-copy" data-reveal-child>3 preguntas por $333 MXN, con respuesta el mismo día. Escríbeme por WhatsApp con tu pregunta y te respondo breve y al punto, sin esperar días.</p>
       </div>
     </section>
 
@@ -1529,428 +1584,40 @@
       </div>
     </section>
 
-    <!-- ---------------- Melomancia ---------------- -->
-    <section class="page-section--soft" id="melomancia" style="padding-top: 140px; position: relative;">
+    <!-- ---------------- Melomancia (teaser: la experiencia completa vive en melomancia.html) ---------------- -->
+    <section class="page-section page-section--soft" id="melomancia" style="position: relative;">
       <img class="spark spark--a" data-reveal src="assets/sparks/el-inicio.png" alt="" aria-hidden="true">
-      <button class="portal-button" type="button" id="melomanciaPortal" aria-label="Ir al oráculo sonoro" data-reveal="scale" style="margin-bottom:56px;">
-        <span class="portal-ring"><img src="assets/portals/melomancia.png" alt="" loading="lazy"></span>
-        <span class="portal-label">Escúchalo</span>
-      </button>
-      <p class="section-eyebrow" style="text-align:center; margin-top:0;">Melomancia</p>
-
-      <section class="oracle" id="oracleBox" aria-live="polite">
-        <div class="oracle-inner" data-reveal="scale">
-          <p class="oracle-title" data-reveal-child>El oráculo sonoro</p>
-          <h2 class="oracle-prompt" data-reveal-child>Sostén tu pregunta un instante.</h2>
-          <p class="oracle-instruction" data-reveal-child>
-            Cuando estés lista, abre la señal.
-          </p>
-          <textarea
-            class="oracle-question"
-            id="oracleQuestion"
-            rows="2"
-            maxlength="300"
-            placeholder="Escribe tu pregunta aquí (opcional)"
-            data-reveal-child
-          ></textarea>
-          <button class="primary-button" id="openSignal" type="button" data-reveal-child>
-            Da click y descubre tu respuesta
-          </button>
-          <div class="listening" role="status">Escuchando</div>
-        </div>
-      </section>
-
-      <section class="result-band" id="resultBand" hidden>
-        <div class="result" id="result">
-          <div class="result-label">Tu señal</div>
-
-          <div class="cover-wrap">
-            <img id="cardImg" src="" alt="">
-            <div class="arcano-tag" id="arcanoTag"></div>
-          </div>
-
-          <h2 class="song" id="songTitle"></h2>
-          <div class="meta">By Gitania</div>
-
-          <div class="player">
-            <audio id="audio" preload="metadata"></audio>
-            <div class="progress-row">
-              <span class="time" id="timeCurrent">0:00</span>
-              <div class="progress-track" id="progressTrack">
-                <div class="progress-fill" id="progressFill"></div>
-                <div class="progress-thumb" id="progressThumb"></div>
-              </div>
-              <span class="time" id="timeTotal">0:00</span>
-            </div>
-            <div class="transport">
-              <button class="transport-btn" id="prevBtn" type="button" aria-label="Señal anterior" disabled>
-                <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
-              </button>
-              <button class="transport-btn play-btn" id="playBtn" type="button" aria-label="Reproducir">
-                <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none"><path d="M7 5h4v14H7zm6 0h4v14h-4z"/></svg>
-              </button>
-              <button class="transport-btn" id="nextBtn" type="button" aria-label="Siguiente señal" disabled>
-                <svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 6l8.5 6L6 18z"/></svg>
-              </button>
-            </div>
-          </div>
-
-          <p class="arcano-read" id="arcanoRead"></p>
-
-          <p class="bridge">
-            Si la señal abrió algo, las cartas pueden terminar de nombrarlo.
-          </p>
-          <div class="actions">
-            <button class="secondary-button" id="newQuestion" type="button">
-              Nueva pregunta
-            </button>
-            <a
-              class="primary-button contact-button"
-              href="mailto:gitania.tarot@gmail.com?subject=Quiero%20una%20lectura"
-            >
-              Escribir a Gitania
-            </a>
-          </div>
-        </div>
-      </section>
+      <div class="section-inner" data-reveal="scale">
+        <a class="portal-button" data-reveal-child href="melomancia.html" aria-label="Melomancia">
+          <span class="portal-ring"><img src="assets/portals/melomancia.webp" alt="" loading="lazy"></span>
+        </a>
+        <p class="section-eyebrow" data-reveal-child>Melomancia</p>
+        <h2 class="section-title" data-reveal-child>El oráculo sonoro</h2>
+        <p class="section-copy" data-reveal-child>Haz una pregunta en silencio. La respuesta te llega en forma de canción, elegida para ti en el momento.</p>
+      </div>
     </section>
 
-    <!-- ---------------- Sesiones VIP ---------------- -->
+    <!-- ---------------- Sesiones VIP (teaser: el login completo vive en vip.html) ---------------- -->
     <section class="page-section" id="vip" style="position: relative;">
       <img class="spark spark--c" data-reveal src="assets/sparks/los-enamorados.png" alt="" aria-hidden="true">
       <div class="section-inner" data-reveal>
-        <a class="portal-button" data-reveal-child href="https://wa.me/5215515245147" target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp">
-          <span class="portal-ring"><img src="assets/portals/vip.png" alt="" loading="lazy"></span>
-          <span class="portal-label">Escríbeme</span>
+        <a class="portal-button" data-reveal-child href="vip.html" aria-label="Sesiones VIP">
+          <span class="portal-ring"><img src="assets/portals/vip.webp" alt="" loading="lazy"></span>
         </a>
         <p class="section-eyebrow" data-reveal-child>Sesiones VIP</p>
         <h2 class="section-title" data-reveal-child>Tu acceso privado</h2>
-        <p class="section-copy" data-reveal-child>Si ya tomaste una sesión conmigo, tu material de seguimiento vive aquí. Busca tu nombre y entra con el código que te compartí.</p>
-        <div class="vip-grid" data-reveal-child>
-          <a class="vip-card" href="https://claude.ai/code/artifact/08905999-0fb2-4c4e-a858-2b66ceef6cfb" target="_blank" rel="noopener">
-            <span class="vip-name">Elois</span>
-            <span class="vip-cta">Ver mi manual</span>
-          </a>
-          <div class="vip-card vip-card--form">
-            <input
-              class="vip-name-input"
-              id="vipNameInput"
-              type="text"
-              maxlength="60"
-              placeholder="Tu nombre aquí"
-              autocomplete="name"
-            />
-            <button class="vip-access-button" id="vipAccessButton" type="button">
-              Escríbeme para tu acceso
-            </button>
-          </div>
-        </div>
+        <p class="section-copy" data-reveal-child>Si ya tomaste una sesión conmigo, tu material vive aquí: guías, PDFs y audios pensados para ti.</p>
       </div>
     </section>
   </main>
 
   <footer>
     <span class="footer-address">Priv. Alejandrina 9, Hacienda Grande, Tequisquiapan, Qro., CP 76799, México © 2026</span>
-    Gitania® · <a href="#lecturas">Tarot</a>, <a href="#melomancia">Melomancia</a>, <a href="#vip">Hipnosis</a>, <a href="#vip">Joyería</a> y <a href="#vip">Símbolos vivos</a><br>
-    Hecho con ❤ <span id="footerTagline">e intuición</span>
+    Gitania® · <a href="lecturas.html">Tarot</a>, <a href="melomancia.html">Melomancia</a>, <a href="hipnosis.html">Hipnosis</a>, <a href="joyeria.html">Joyería</a> y <a href="simbolos-vivos.html">Símbolos vivos</a><br>
+    Hecho con ❤ e intuición
   </footer>
 
   <script>
-    // Cada canción está anclada a un arcano del Tarot de Marsella.
-    const songs = [
-      {
-        title: "Midas",
-        arcano: "El Mago",
-        cover: "assets/cards/mago.jpg",
-        file: "assets/songs/Midas.mp3",
-        line: "Hay dos maneras de leer una moneda: por su cara o por su canto. Tú ya elegiste — no la muerdas para comprobarlo. Lo que tocas ahora se vuelve lo que eres, en todas las direcciones a la vez."
-      },
-      {
-        title: "Tarde",
-        arcano: "Los Enamorados",
-        cover: "assets/cards/enamorados.jpg",
-        file: "assets/songs/Tarde.mp3",
-        line: "En algún lugar todavía es temprano y no has decidido nada. Aquí ya es tarde, y da igual: la tarde también es una forma de llegar a tiempo a lo que de verdad importa."
-      },
-      {
-        title: "La casa florece",
-        arcano: "La Emperatriz",
-        cover: "assets/cards/emperatriz.jpg",
-        file: "assets/songs/La_casa_florece.mp3",
-        line: "Antes de que algo nazca, ya nació de varias maneras dentro de ti: como miedo, como plan, como accidente. Hoy elige quedarte con la versión que se parece a un jardín."
-      },
-      {
-        title: "Lo que viene",
-        arcano: "La Emperatriz",
-        cover: "assets/cards/emperatriz.jpg",
-        file: "assets/songs/Lo_que_viene.mp3",
-        line: "Lo que viene ya pasó por tres caminos distintos para llegar hasta esta frase: uno que dolía, uno que tardaba, uno que finalmente se pareció a ti. Ese es el que llega."
-      },
-      {
-        title: "Domingo en mi casa",
-        arcano: "La Templanza",
-        cover: "assets/cards/templanza.jpg",
-        file: "assets/songs/Domingo_en_mi_casa.mp3",
-        line: "Hay un domingo que se queda y otro que ya se fue; los dos caben en la misma casa si dejas de exigirles que sean el mismo día. La mezcla justa nunca elige un solo tiempo."
-      },
-      {
-        title: "Materia",
-        arcano: "El Diablo",
-        cover: "assets/cards/diablo.jpg",
-        file: "assets/songs/Materia.mp3",
-        line: "Lo que te ata tiene nombre en al menos tres idiomas: deseo, costumbre, miedo a soltar. Nómbralo en el que más te duela — ese es el verdadero, y ya pesa menos por haberlo dicho."
-      },
-      {
-        title: "llego",
-        arcano: "La Luna",
-        cover: "assets/cards/luna.jpg",
-        file: "assets/songs/llego.mp3",
-        line: "Bajo la luna caben todas las versiones de por qué llegaste: tarde, pronto, o exactamente a tiempo sin saberlo. No elijas cuál es cierta — solo entra."
-      },
-      {
-        title: "Loco",
-        arcano: "El Loco",
-        cover: "assets/cards/loco.jpg",
-        file: "assets/songs/Loco.mp3",
-        line: "Antes de que des el paso, el camino existe en todas sus formas: el que tropieza, el que se pierde, el que llega. Da el paso igual — así es como se elige uno solo entre todos."
-      }
-    ];
-
-    // URL del servidor del oráculo (Vercel + Gemini). Si algún día cambia,
-    // solo hay que actualizar esta línea.
-    const ORACLE_API_URL = "https://gitania-oracle-api.vercel.app/api/oracle";
-
-    const openButton = document.getElementById("openSignal");
-    const newButton = document.getElementById("newQuestion");
-    const oracleQuestion = document.getElementById("oracleQuestion");
-    const oracle = document.getElementById("oracleBox");
-    const resultBand = document.getElementById("resultBand");
-    const result = document.getElementById("result");
-
-    const vipNameInput = document.getElementById("vipNameInput");
-    const vipAccessButton = document.getElementById("vipAccessButton");
-    if (vipAccessButton) {
-      vipAccessButton.addEventListener("click", () => {
-        const nombre = (vipNameInput.value || "").trim();
-        const mensaje = nombre
-          ? `Hola Gitania, soy ${nombre} y quiero mi acceso VIP.`
-          : "Hola Gitania, quiero mi acceso VIP.";
-        window.open(`https://wa.me/5215515245147?text=${encodeURIComponent(mensaje)}`, "_blank", "noopener");
-      });
-    }
-
-    const melomanciaPortal = document.getElementById("melomanciaPortal");
-    if (melomanciaPortal) {
-      melomanciaPortal.addEventListener("click", () => {
-        oracle.scrollIntoView({ behavior: "smooth", block: "center" });
-        setTimeout(() => oracleQuestion.focus(), 450);
-      });
-    }
-
-    const cardImg = document.getElementById("cardImg");
-    const arcanoTag = document.getElementById("arcanoTag");
-    const title = document.getElementById("songTitle");
-    const arcanoRead = document.getElementById("arcanoRead");
-
-    const audio = document.getElementById("audio");
-    const playBtn = document.getElementById("playBtn");
-    const playIcon = document.getElementById("playIcon");
-    const pauseIcon = document.getElementById("pauseIcon");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const progressTrack = document.getElementById("progressTrack");
-    const progressFill = document.getElementById("progressFill");
-    const progressThumb = document.getElementById("progressThumb");
-    const timeCurrent = document.getElementById("timeCurrent");
-    const timeTotal = document.getElementById("timeTotal");
-
-    let revealTimer = null;
-    let history = [];   // índices de señales reveladas en esta sesión
-    let historyPos = -1;
-
-    function formatTime(sec) {
-      if (!isFinite(sec) || sec < 0) sec = 0;
-      const m = Math.floor(sec / 60);
-      const s = Math.floor(sec % 60);
-      return m + ":" + String(s).padStart(2, "0");
-    }
-
-    function loadSong(index, autoplay) {
-      const song = songs[index];
-      cardImg.src = song.cover;
-      cardImg.alt = "Carta " + song.arcano;
-      arcanoTag.textContent = song.arcano;
-      title.textContent = song.title;
-      arcanoRead.textContent = song.line;
-
-      audio.src = song.file;
-      progressFill.style.width = "0%";
-      progressThumb.style.left = "0%";
-      timeCurrent.textContent = "0:00";
-      timeTotal.textContent = "0:00";
-
-      prevBtn.disabled = historyPos <= 0;
-      nextBtn.disabled = historyPos >= history.length - 1;
-
-      if (autoplay) {
-        audio.play().catch(function () {});
-      }
-    }
-
-    async function askOracle(question) {
-      // Intenta que Gemini elija la señal y escriba la lectura.
-      // Si algo falla (sin internet, servidor caído, etc.) regresa null
-      // y el oráculo cae de vuelta a elegir al azar, como antes.
-      try {
-        const res = await fetch(ORACLE_API_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question: question }),
-        });
-        if (!res.ok) return null;
-        const data = await res.json();
-        if (
-          !Number.isInteger(data.index) ||
-          data.index < 0 ||
-          data.index >= songs.length
-        ) {
-          return null;
-        }
-        return {
-          index: data.index,
-          reading: typeof data.reading === "string" ? data.reading.trim() : "",
-        };
-      } catch (err) {
-        return null;
-      }
-    }
-
-    function chooseSong() {
-      if (oracle.classList.contains("is-listening")) return;
-
-      const question = (oracleQuestion.value || "").trim();
-
-      oracle.classList.add("is-listening");
-      result.classList.remove("show");
-      resultBand.hidden = true;
-
-      const minWait = new Promise(function (resolve) {
-        revealTimer = window.setTimeout(resolve, 1100);
-      });
-
-      const oraclePromise =
-        question.length >= 2 ? askOracle(question) : Promise.resolve(null);
-
-      Promise.all([oraclePromise, minWait]).then(function (values) {
-        const oracleResult = values[0];
-        const lastIndex = history.length ? history[history.length - 1] : -1;
-
-        let selectedIndex;
-        let customReading = null;
-
-        if (oracleResult) {
-          selectedIndex = oracleResult.index;
-          customReading = oracleResult.reading || null;
-        } else {
-          selectedIndex = Math.floor(Math.random() * songs.length);
-          if (songs.length > 1 && selectedIndex === lastIndex) {
-            selectedIndex = (selectedIndex + 1) % songs.length;
-          }
-        }
-
-        history.push(selectedIndex);
-        historyPos = history.length - 1;
-
-        loadSong(selectedIndex, true);
-        if (customReading) {
-          arcanoRead.textContent = customReading;
-        }
-
-        oracle.classList.remove("is-listening");
-        resultBand.hidden = false;
-        result.classList.add("show");
-        resultBand.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    }
-
-    function resetOracle() {
-      window.clearTimeout(revealTimer);
-      audio.pause();
-      oracle.classList.remove("is-listening");
-      result.classList.remove("show");
-      resultBand.hidden = true;
-      oracleQuestion.value = "";
-      oracle.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-
-    function goHistory(delta) {
-      const target = historyPos + delta;
-      if (target < 0 || target >= history.length) return;
-      historyPos = target;
-      loadSong(history[historyPos], true);
-    }
-
-    openButton.addEventListener("click", chooseSong);
-    newButton.addEventListener("click", resetOracle);
-    prevBtn.addEventListener("click", function () { goHistory(-1); });
-    nextBtn.addEventListener("click", function () { goHistory(1); });
-
-    playBtn.addEventListener("click", function () {
-      if (audio.paused) {
-        audio.play().catch(function () {});
-      } else {
-        audio.pause();
-      }
-    });
-
-    audio.addEventListener("play", function () {
-      playIcon.style.display = "none";
-      pauseIcon.style.display = "block";
-    });
-    audio.addEventListener("pause", function () {
-      playIcon.style.display = "block";
-      pauseIcon.style.display = "none";
-    });
-    audio.addEventListener("ended", function () {
-      playIcon.style.display = "block";
-      pauseIcon.style.display = "none";
-    });
-
-    audio.addEventListener("loadedmetadata", function () {
-      timeTotal.textContent = formatTime(audio.duration);
-    });
-
-    audio.addEventListener("timeupdate", function () {
-      if (!audio.duration) return;
-      const pct = (audio.currentTime / audio.duration) * 100;
-      progressFill.style.width = pct + "%";
-      progressThumb.style.left = pct + "%";
-      timeCurrent.textContent = formatTime(audio.currentTime);
-    });
-
-    function seekFromEvent(clientX) {
-      if (!audio.duration) return;
-      const rect = progressTrack.getBoundingClientRect();
-      const pct = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
-      audio.currentTime = pct * audio.duration;
-    }
-
-    progressTrack.addEventListener("click", function (e) {
-      seekFromEvent(e.clientX);
-    });
-
-    let dragging = false;
-    progressTrack.addEventListener("pointerdown", function (e) {
-      dragging = true;
-      seekFromEvent(e.clientX);
-    });
-    window.addEventListener("pointermove", function (e) {
-      if (dragging) seekFromEvent(e.clientX);
-    });
-    window.addEventListener("pointerup", function () {
-      dragging = false;
-    });
 
     // ---- scroll-spy del menú lateral ----
     const railLinks = Array.from(document.querySelectorAll(".side-nav--left a"));
@@ -1973,20 +1640,6 @@
       spySections.forEach(function (section) { spy.observe(section); });
     }
 
-    // ---- footer: "e intuición" salvo en la sección de melomancia, donde dice "y música" ----
-    const footerTagline = document.getElementById("footerTagline");
-    const melomanciaSection = document.getElementById("melomancia");
-    if (footerTagline && melomanciaSection && "IntersectionObserver" in window) {
-      const footerSpy = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            footerTagline.textContent = entry.isIntersecting ? "y música" : "e intuición";
-          });
-        },
-        { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
-      );
-      footerSpy.observe(melomanciaSection);
-    }
 
     // ---- oculta el rail lateral mientras el hero está a la vista ----
     const leftRail = document.querySelector(".side-nav--left");
@@ -2132,24 +1785,6 @@
       updateBlinkFrame();
     })();
 
-    // ---- parallax sutil de la galaxia de fondo ----
-    if (!reduceMotion) {
-      const starfield = document.querySelector(".starfield");
-      let ticking = false;
-      window.addEventListener(
-        "scroll",
-        function () {
-          if (ticking) return;
-          ticking = true;
-          window.requestAnimationFrame(function () {
-            const y = window.scrollY || window.pageYOffset;
-            starfield.style.transform = "translateY(" + y * 0.12 + "px)";
-            ticking = false;
-          });
-        },
-        { passive: true }
-      );
-    }
 
     // ---- GSAP: los círculos reaccionan al cursor (tilt 3D) y giran con el scroll ----
     if (window.gsap && !reduceMotion) {
@@ -2195,6 +1830,74 @@
         }
       });
     }
+  
+    /* ---------------- Cursor: esfera blanca chispeante con estela ---------------- */
+    (function () {
+      if (window.matchMedia && window.matchMedia("(hover: none)").matches) return;
+
+      const orb = document.createElement("div");
+      orb.className = "cursor-orb";
+      document.body.appendChild(orb);
+
+      let targetX = window.innerWidth / 2;
+      let targetY = window.innerHeight / 2;
+      let orbX = targetX;
+      let orbY = targetY;
+      let started = false;
+      let lastTrail = 0;
+      const TRAIL_INTERVAL = 22;
+
+      function spawnTrailDot(x, y) {
+        const el = document.createElement("span");
+        el.className = "stardust-sparkle";
+        const size = 3 + Math.random() * 3;
+        el.style.width = size + "px";
+        el.style.height = size + "px";
+        el.style.left = x + "px";
+        el.style.top = y + "px";
+        document.body.appendChild(el);
+
+        el.animate(
+          [
+            { transform: "translate(-50%, -50%) scale(1)", opacity: 0.9 },
+            { transform: "translate(-50%, -50%) scale(0.2)", opacity: 0 },
+          ],
+          { duration: 420, easing: "ease-out" }
+        ).onfinish = () => el.remove();
+      }
+
+      function tick() {
+        orbX += (targetX - orbX) * 0.22;
+        orbY += (targetY - orbY) * 0.22;
+        orb.style.transform = "translate(" + orbX + "px, " + orbY + "px) translate(-50%, -50%)";
+        if (started) orb.style.opacity = "1";
+
+        const now = performance.now();
+        if (started && now - lastTrail > TRAIL_INTERVAL) {
+          lastTrail = now;
+          spawnTrailDot(orbX, orbY);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      window.addEventListener(
+        "pointermove",
+        (e) => {
+          targetX = e.clientX;
+          targetY = e.clientY;
+          if (!started) {
+            started = true;
+            orbX = targetX;
+            orbY = targetY;
+            document.body.classList.add("cursor-ready");
+          }
+        },
+        { passive: true }
+      );
+
+      requestAnimationFrame(tick);
+    })();
+
   </script>
 </body>
 </html>
