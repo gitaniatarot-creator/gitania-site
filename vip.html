@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#8f1028" />
   <meta
     name="description"
-    content="Tu acceso privado a Gitania: entra con tu usuario y contraseña a tus guías, PDFs y audios."
+    content="Sesiones VIP de Gitania: tu material personal (guías, PDFs y audios) se entrega por un enlace privado, no en esta página."
   />
   <title>Sesiones VIP | Gitania</title>
   <style>
@@ -1557,41 +1557,13 @@
           <span class="portal-ring"><img src="assets/portals/vip.webp" alt="" loading="lazy"></span>
         </a>
         <p class="section-eyebrow" data-reveal-child data-i18n="vip.eyebrow">Sesiones VIP</p>
-        <h2 class="section-title" data-reveal-child data-i18n="vip.title">Tu acceso privado</h2>
-        <p class="section-copy" data-reveal-child data-i18n="vip.copy">Si ya tomaste una sesión conmigo, tu material vive aquí: guías, PDFs y audios pensados para ti. Entra con el usuario y la contraseña que te compartí.</p>
-        <form class="vip-login" id="vipLoginForm" data-reveal-child autocomplete="off">
-          <input
-            class="vip-login-input"
-            id="vipUser"
-            type="text"
-            maxlength="60"
-            placeholder="Usuario"
-            data-i18n-placeholder="vip.user"
-            autocomplete="username"
-          />
-          <input
-            class="vip-login-input"
-            id="vipPass"
-            type="password"
-            maxlength="60"
-            placeholder="Contraseña"
-            data-i18n-placeholder="vip.pass"
-            autocomplete="current-password"
-          />
-          <label class="vip-consent">
-            <input type="checkbox" id="vipConsent" required />
-            <span data-i18n="vip.consent">He leído y acepto el <a href="privacidad.html" target="_blank" rel="noopener" data-i18n="vip.consentlink">Aviso de Privacidad</a>.</span>
-          </label>
-          <button class="vip-access-button" id="vipLoginButton" type="submit" data-i18n="vip.button">
-            Entrar a mi espacio
-          </button>
-          <p class="vip-login-error" id="vipLoginError" hidden data-i18n="vip.error">Usuario o contraseña incorrectos. Revísalos o escríbeme por WhatsApp.</p>
-          <p class="vip-login-error" id="vipConsentError" hidden data-i18n="vip.consenterror">Debes aceptar el aviso de privacidad para continuar.</p>
-        </form>
-        <p class="vip-login-help">
-          <span data-i18n="vip.help">¿Aún no tienes tus credenciales?</span>
+        <h2 class="section-title" data-reveal-child data-i18n="vip.title">Tu material, por enlace privado</h2>
+        <p class="section-copy" data-reveal-child data-i18n="vip.copy">Si ya tomaste una sesión conmigo, tus guías, PDFs y audios te llegan por un enlace privado y personal. Por tu privacidad, ese material ya no se guarda en esta página.</p>
+        <p class="vip-login-help" data-reveal-child>
+          <span data-i18n="vip.help">¿No encuentras tu enlace o necesitas uno nuevo?</span>
           <a href="https://wa.me/5215515245147" target="_blank" rel="noopener" data-i18n="vip.helplink">Escríbeme por WhatsApp</a>.
         </p>
+        <p class="vip-login-help" data-reveal-child data-i18n="vip.privacy">Consulta el <a href="privacidad.html">Aviso de Privacidad</a>.</p>
       </div>
     </section>
   </main>
@@ -1604,38 +1576,6 @@
 
   <script>
 
-    // ---- login VIP: cada persona tiene su usuario/contraseña y su propio espacio ----
-    // Para dar de alta a alguien nuevo, agrega una línea aquí con su usuario,
-    // contraseña y la URL de su material (artifact, PDF, carpeta, etc).
-    const vipUsers = { elois: { password: "***REMOVED***", url: "clientes/***REMOVED***/elois-manual.html" }, gayaneh: { password: "***REMOVED***", url: "***REMOVED***" } };
-
-    const vipLoginForm = document.getElementById("vipLoginForm");
-    const vipUserInput = document.getElementById("vipUser");
-    const vipPassInput = document.getElementById("vipPass");
-    const vipLoginError = document.getElementById("vipLoginError");
-    const vipConsentInput = document.getElementById("vipConsent");
-    const vipConsentError = document.getElementById("vipConsentError");
-    if (vipLoginForm) {
-      vipLoginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        if (!vipConsentInput.checked) {
-          vipConsentError.hidden = false;
-          vipLoginError.hidden = true;
-          return;
-        }
-        vipConsentError.hidden = true;
-        const user = (vipUserInput.value || "").trim().toLowerCase();
-        const pass = (vipPassInput.value || "").trim();
-        const account = vipUsers[user];
-        if (account && account.password === pass) {
-          vipLoginError.hidden = true;
-          window.open(account.url, "_blank", "noopener");
-        } else {
-          vipLoginError.hidden = false;
-        }
-      });
-    }
-
     // ---- idiomas (es/en/fr) ----
     var STRINGS = {
       es: {
@@ -1644,16 +1584,11 @@
         "nav.melomancia": "Melomancia",
         "nav.vip": "Sesiones VIP",
         "vip.eyebrow": "Sesiones VIP",
-        "vip.title": "Tu acceso privado",
-        "vip.copy": "Si ya tomaste una sesión conmigo, tu material vive aquí: guías, PDFs y audios pensados para ti. Entra con el usuario y la contraseña que te compartí.",
-        "vip.user": "Usuario",
-        "vip.pass": "Contraseña",
-        "vip.button": "Entrar a mi espacio",
-        "vip.error": "Usuario o contraseña incorrectos. Revísalos o escríbeme por WhatsApp.",
-        "vip.help": "¿Aún no tienes tus credenciales?",
+        "vip.title": "Tu material, por enlace privado",
+        "vip.copy": "Si ya tomaste una sesión conmigo, tus guías, PDFs y audios te llegan por un enlace privado y personal. Por tu privacidad, ese material ya no se guarda en esta página.",
+        "vip.help": "¿No encuentras tu enlace o necesitas uno nuevo?",
+        "vip.privacy": "Consulta el <a href=\"privacidad.html\">Aviso de Privacidad</a>.",
         "vip.helplink": "Escríbeme por WhatsApp",
-        "vip.consent": "He leído y acepto el <a href=\"privacidad.html\" target=\"_blank\" rel=\"noopener\">Aviso de Privacidad</a>.",
-        "vip.consenterror": "Debes aceptar el aviso de privacidad para continuar.",
         "footer.tarot": "Tarot",
         "footer.melomancia": "Melomancia",
         "footer.hipnosis": "Hipnosis",
@@ -1668,16 +1603,11 @@
         "nav.melomancia": "Melomancy",
         "nav.vip": "VIP Sessions",
         "vip.eyebrow": "VIP Sessions",
-        "vip.title": "Your private access",
-        "vip.copy": "If you've already had a session with me, your material lives here: guides, PDFs and audios made just for you. Log in with the username and password I shared with you.",
-        "vip.user": "Username",
-        "vip.pass": "Password",
-        "vip.button": "Enter my space",
-        "vip.error": "Incorrect username or password. Double-check them or write to me on WhatsApp.",
-        "vip.help": "Don't have your credentials yet?",
+        "vip.title": "Your material, by private link",
+        "vip.copy": "If you've already had a session with me, your guides, PDFs and audios reach you through a private, personal link. For your privacy, that material is no longer kept on this page.",
+        "vip.help": "Can't find your link or need a new one?",
+        "vip.privacy": "Read the <a href=\"privacidad.html\">Privacy Notice</a>.",
         "vip.helplink": "Write to me on WhatsApp",
-        "vip.consent": "I have read and accept the <a href=\"privacidad.html\" target=\"_blank\" rel=\"noopener\">Privacy Notice</a>.",
-        "vip.consenterror": "You must accept the privacy notice to continue.",
         "footer.tarot": "Tarot",
         "footer.melomancia": "Melomancy",
         "footer.hipnosis": "Hypnosis",
@@ -1692,16 +1622,11 @@
         "nav.melomancia": "Mélomancie",
         "nav.vip": "Séances VIP",
         "vip.eyebrow": "Séances VIP",
-        "vip.title": "Ton accès privé",
-        "vip.copy": "Si tu as déjà eu une séance avec moi, ton matériel se trouve ici : guides, PDF et audios pensés pour toi. Connecte-toi avec l'identifiant et le mot de passe que je t'ai partagés.",
-        "vip.user": "Identifiant",
-        "vip.pass": "Mot de passe",
-        "vip.button": "Entrer dans mon espace",
-        "vip.error": "Identifiant ou mot de passe incorrect. Vérifie-les ou écris-moi sur WhatsApp.",
-        "vip.help": "Tu n'as pas encore tes identifiants ?",
+        "vip.title": "Ton matériel, par lien privé",
+        "vip.copy": "Si tu as déjà eu une séance avec moi, tes guides, PDF et audios t'arrivent par un lien privé et personnel. Pour ta confidentialité, ce matériel n'est plus conservé sur cette page.",
+        "vip.help": "Tu ne trouves pas ton lien ou il t'en faut un nouveau ?",
+        "vip.privacy": "Consulte l'<a href=\"privacidad.html\">Avis de confidentialité</a>.",
         "vip.helplink": "Écris-moi sur WhatsApp",
-        "vip.consent": "J'ai lu et j'accepte l'<a href=\"privacidad.html\" target=\"_blank\" rel=\"noopener\">Avis de confidentialité</a>.",
-        "vip.consenterror": "Tu dois accepter l'avis de confidentialité pour continuer.",
         "footer.tarot": "Tarot",
         "footer.melomancia": "Mélomancie",
         "footer.hipnosis": "Hypnose",
