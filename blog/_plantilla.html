@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <!-- PLANTILLA: copia este archivo como blog/<slug>.html y reemplaza todo lo que esté entre {{ }}.
+       Los archivos que empiezan con "_" no se publican en GitHub Pages. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d222b" />
+  <title>{{TITULO_CORTO}} | Gitania</title>
+  <meta name="description" content="{{DESCRIPCION_150_CARACTERES}}" />
+  <link rel="canonical" href="https://gitania.gold/blog/{{SLUG}}.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Gitania" />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:title" content="{{TITULO}}" />
+  <meta property="og:description" content="{{DESCRIPCION_150_CARACTERES}}" />
+  <meta property="og:url" content="https://gitania.gold/blog/{{SLUG}}.html" />
+  <meta property="og:image" content="https://gitania.gold/assets/og/{{IMAGEN_OG}}.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="{{TEXTO_ALT_IMAGEN}}" />
+  <meta property="article:published_time" content="{{AAAA-MM-DD}}" />
+  <meta property="article:section" content="{{SECCION}}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{TITULO}}" />
+  <meta name="twitter:description" content="{{DESCRIPCION_150_CARACTERES}}" />
+  <meta name="twitter:image" content="https://gitania.gold/assets/og/{{IMAGEN_OG}}.jpg" />
+  <link rel="stylesheet" href="../assets/blog.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://gitania.gold/blog/{{SLUG}}.html#article",
+        "headline": "{{TITULO}}",
+        "description": "{{DESCRIPCION_150_CARACTERES}}",
+        "image": "https://gitania.gold/assets/og/{{IMAGEN_OG}}.jpg",
+        "datePublished": "{{AAAA-MM-DD}}",
+        "dateModified": "{{AAAA-MM-DD}}",
+        "inLanguage": "es",
+        "articleSection": "{{SECCION}}",
+        "keywords": ["{{palabra clave 1}}", "{{palabra clave 2}}"],
+        "author": { "@type": "Organization", "name": "Gitania", "url": "https://gitania.gold/" },
+        "publisher": { "@type": "Organization", "name": "Gitania", "url": "https://gitania.gold/", "logo": { "@type": "ImageObject", "url": "https://gitania.gold/assets/logo.webp" } },
+        "mainEntityOfPage": "https://gitania.gold/blog/{{SLUG}}.html",
+        "citation": [
+          "{{URL_FUENTE_1}}",
+          "{{URL_FUENTE_2}}"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://gitania.gold/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gitania.gold/blog.html" },
+          { "@type": "ListItem", "position": 3, "name": "{{TITULO_CORTO}}" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html">
+      <img class="brand-mark" src="../assets/logo.webp" alt="" width="40" height="40">
+      Gitania
+    </a>
+    <nav class="site-nav" aria-label="Secciones">
+      <a href="../blog.html" aria-current="page">Blog</a>
+      <a href="../lecturas.html">Lecturas Express</a>
+      <a href="../melomancia.html">Melomancia</a>
+      <a href="../vip.html">Sesiones VIP</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="post">
+      <p class="breadcrumb"><a href="../index.html">Inicio</a> · <a href="../blog.html">Blog</a></p>
+      <p class="post-eyebrow">{{SECCION}}</p>
+      <h1>{{TITULO}}</h1>
+      <p class="post-dek">{{BAJADA: una o dos frases que resumen la entrada}}</p>
+      <p class="post-meta"><time datetime="{{AAAA-MM-DD}}">{{DD de mes de AAAA}}</time> · Lectura de {{N}} minutos</p>
+
+      <!-- Opcional: imagen. Usa una que ya exista en assets/ (por ejemplo assets/cards/*.webp). -->
+      <figure class="post-figure">
+        <img src="../assets/cards/{{CARTA}}.webp" alt="{{TEXTO_ALT_IMAGEN}}" width="280" height="497" loading="eager">
+        <figcaption>{{PIE_DE_FOTO}}</figcaption>
+      </figure>
+
+      <div class="post-body">
+        <p>{{Párrafo de entrada: el mito o la pregunta, y qué dicen las fuentes.}}</p>
+
+        <h2>{{Subtítulo}}</h2>
+        <p>{{Desarrollo. Cada dato debe salir de una fuente de la lista de abajo. Las creencias se presentan como creencias.}}</p>
+
+        <blockquote>«{{Cita textual traducida}}».<cite>{{Autor}}, citado en <em>{{Fuente}}</em> (traducción propia)</cite></blockquote>
+
+        <h2>{{Subtítulo}}</h2>
+        <p>{{Cierre que conecte el tema con la lectura simbólica como reflexión, sin prometer predicciones ni curas.}}</p>
+      </div>
+
+      <aside class="post-cta" aria-label="Lecturas con Gitania">
+        <h2>Leer las cartas para reflexionar</h2>
+        <p>En Gitania las cartas se usan así: como lectura simbólica para la reflexión, la introspección y el autoconocimiento, no como predicción. Si tienes una pregunta que quieras mirar desde otro ángulo, puedes pedir una <strong>Lectura Express</strong>. Y si buscas un acompañamiento más largo, están las <strong>Sesiones VIP</strong>.</p>
+        <div class="buttons">
+          <a class="button" href="../lecturas.html">Lecturas Express</a>
+          <a class="button secondary" href="../vip.html">Sesiones VIP</a>
+        </div>
+        <p class="post-disclaimer">Las lecturas de Gitania son un espacio de reflexión y acompañamiento. No sustituyen la atención psicológica ni médica.</p>
+      </aside>
+
+      <section class="sources" aria-labelledby="fuentes">
+        <h2 id="fuentes">Fuentes</h2>
+        <ol>
+          <li>{{Autor/Institución}}. <em>{{Título}}</em>. {{Editorial o medio}}, {{año}}. <a href="{{URL_FUENTE_1}}" target="_blank" rel="noopener">{{dominio}}</a></li>
+          <li>{{Autor/Institución}}. <em>{{Título}}</em>. {{Editorial o medio}}, {{año}}. <a href="{{URL_FUENTE_2}}" target="_blank" rel="noopener">{{dominio}}</a></li>
+        </ol>
+        <p class="note">{{Nota opcional: de dónde vienen las citas y si las traducciones son propias.}}</p>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <span class="footer-address">Priv. Alejandrina 9, Hacienda Grande, Tequisquiapan, Qro., CP 76799, México © 2026</span>
+    Gitania® · <a href="../lecturas.html">Tarot</a>, <a href="../melomancia.html">Melomancia</a>, <a href="../hipnosis.html">Hipnosis</a>, <a href="../joyeria.html">Joyería</a> y <a href="../simbolos-vivos.html">Símbolos vivos</a> · <a href="../blog.html">Blog</a>
+    <span class="footer-disclaimer">Gitania ofrece lecturas simbólicas de las cartas para la reflexión, la introspección y el autoconocimiento. No sustituye la atención psicológica ni médica.</span>
+  </footer>
+</body>
+</html>
