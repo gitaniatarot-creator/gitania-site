@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#8f1028" />
   <meta
     name="description"
-    content="El oráculo sonoro de Gitania: haz una pregunta en silencio y recibe tu respuesta en forma de canción."
+    content="El oráculo sonoro de Gitania: haz una pregunta en silencio y recibe una canción como punto de partida para reflexionar."
   />
   <title>Melomancia | Gitania</title>
   <style>
@@ -1462,6 +1462,8 @@
       .stardust-sparkle { display: none; }
     }
 
+    .footer-disclaimer { display: block; margin: 12px auto 0; max-width: 620px; text-transform: none; letter-spacing: 0.02em; line-height: 1.5; opacity: 0.85; }
+    .service-note { font-size: 13px; opacity: 0.85; max-width: 560px; margin-left: auto; margin-right: auto; }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -1551,7 +1553,7 @@
             data-reveal-child
           ></textarea>
           <button class="primary-button" id="openSignal" type="button" data-reveal-child data-i18n="oracle.button">
-            Da click y descubre tu respuesta
+            Da click y escucha tu señal
           </button>
           <div class="listening" role="status" data-i18n="oracle.listening">Escuchando</div>
         </div>
@@ -1619,6 +1621,7 @@
     <span class="footer-address">Priv. Alejandrina 9, Hacienda Grande, Tequisquiapan, Qro., CP 76799, México © 2026</span>
     <span data-i18n="footer.brand">Gitania® · <a href="lecturas.html">Tarot</a>, <a href="#melomancia">Melomancia</a>, <a href="hipnosis.html">Hipnosis</a>, <a href="joyeria.html">Joyería</a> y <a href="simbolos-vivos.html">Símbolos vivos</a></span><br>
     <span data-i18n="footer.made">Hecho con ❤ y música</span>
+    <span class="footer-disclaimer" data-i18n="footer.disclaimer">Gitania ofrece lecturas simbólicas de las cartas para la reflexión, la introspección y el autoconocimiento. No sustituye la atención psicológica ni médica.</span>
   </footer>
 
   <script>
@@ -1635,7 +1638,7 @@
         "oracle.prompt": "Sostén tu pregunta un instante.",
         "oracle.instruction": "Cuando estés lista, abre la señal.",
         "oracle.placeholder": "Escribe tu pregunta aquí (opcional)",
-        "oracle.button": "Da click y descubre tu respuesta",
+        "oracle.button": "Da click y escucha tu señal",
         "oracle.listening": "Escuchando",
         "result.label": "Tu señal",
         "result.bridge": "Si la señal abrió algo, las cartas pueden terminar de nombrarlo.",
@@ -1646,6 +1649,7 @@
         "player.next": "Siguiente señal",
         "footer.brand": "Gitania® · <a href=\"lecturas.html\">Tarot</a>, <a href=\"#melomancia\">Melomancia</a>, <a href=\"hipnosis.html\">Hipnosis</a>, <a href=\"joyeria.html\">Joyería</a> y <a href=\"simbolos-vivos.html\">Símbolos vivos</a>",
         "footer.made": "Hecho con ❤ y música",
+        "footer.disclaimer": "Gitania ofrece lecturas simbólicas de las cartas para la reflexión, la introspección y el autoconocimiento. No sustituye la atención psicológica ni médica.",
         "card.alt": "Carta {arcano}"
       },
       en: {
@@ -1659,7 +1663,7 @@
         "oracle.prompt": "Hold your question for a moment.",
         "oracle.instruction": "When you're ready, open the signal.",
         "oracle.placeholder": "Type your question here (optional)",
-        "oracle.button": "Click and discover your answer",
+        "oracle.button": "Click and hear your signal",
         "oracle.listening": "Listening",
         "result.label": "Your signal",
         "result.bridge": "If the signal opened something, the cards can finish naming it.",
@@ -1670,6 +1674,7 @@
         "player.next": "Next signal",
         "footer.brand": "Gitania® · <a href=\"lecturas.html\">Tarot</a>, <a href=\"#melomancia\">Melomancy</a>, <a href=\"hipnosis.html\">Hypnosis</a>, <a href=\"joyeria.html\">Jewelry</a> and <a href=\"simbolos-vivos.html\">Living Symbols</a>",
         "footer.made": "Made with ❤ and music",
+        "footer.disclaimer": "Gitania offers symbolic card readings for reflection, introspection and self-knowledge. It does not replace psychological or medical care.",
         "card.alt": "Card {arcano}"
       },
       fr: {
@@ -1683,7 +1688,7 @@
         "oracle.prompt": "Garde ta question un instant.",
         "oracle.instruction": "Quand tu es prête, ouvre le signal.",
         "oracle.placeholder": "Écris ta question ici (facultatif)",
-        "oracle.button": "Clique et découvre ta réponse",
+        "oracle.button": "Clique et écoute ton signal",
         "oracle.listening": "À l'écoute",
         "result.label": "Ton signal",
         "result.bridge": "Si le signal a ouvert quelque chose, les cartes peuvent achever de le nommer.",
@@ -1694,6 +1699,7 @@
         "player.next": "Signal suivant",
         "footer.brand": "Gitania® · <a href=\"lecturas.html\">Tarot</a>, <a href=\"#melomancia\">Mélomancie</a>, <a href=\"hipnosis.html\">Hypnose</a>, <a href=\"joyeria.html\">Bijoux</a> et <a href=\"simbolos-vivos.html\">Symboles vivants</a>",
         "footer.made": "Fait avec ❤ et musique",
+        "footer.disclaimer": "Gitania propose des lectures symboliques des cartes pour la réflexion, l'introspection et la connaissance de soi. Cela ne remplace pas un suivi psychologique ou médical.",
         "card.alt": "Carte {arcano}"
       }
     };
