@@ -38,3 +38,18 @@ El blog es HTML estático en GitHub Pages (repo `gitania-site`, rama `main`). Ca
 - Los estilos de las entradas están en `assets/blog.css`.
 - Los archivos que empiezan con `_` (como la plantilla) no se publican en GitHub Pages.
 - `blog/index.html` solo redirige a `blog.html`, para que `gitania.gold/blog/` no dé error.
+
+## Acceso VIP (vip.html)
+
+El sitio no guarda contraseñas legibles. `vip.html` tiene solo una lista `VIP_HASHES` con el SHA-256 de `usuario:contraseña` (usuario en minúsculas). Al entrar, la página calcula a dónde ir: `clientes/<carpeta>/<usuario>-manual.html`, donde `<carpeta>` son los primeros 32 caracteres del SHA-256 de `gitania-path:usuario:contraseña`. Así la carpeta tampoco aparece en el código.
+
+Para dar de alta a alguien (en tu computadora, no en el sitio):
+
+```bash
+python3 -c "import hashlib,getpass; u=input('usuario: ').strip().lower(); p=getpass.getpass('contraseña: ').strip(); print('hash para VIP_HASHES:', hashlib.sha256(f'{u}:{p}'.encode()).hexdigest()); print('carpeta: clientes/' + hashlib.sha256(f'gitania-path:{u}:{p}'.encode()).hexdigest()[:32] + '/')"
+```
+
+1. Agrega el hash a `VIP_HASHES` en `vip.html`.
+2. Crea la carpeta que te dio el comando y pon ahí `<usuario>-manual.html` y sus archivos. Cada HTML lleva `<meta name="robots" content="noindex,nofollow">`.
+3. No agregues esa carpeta a `sitemap.xml` ni a `robots.txt`.
+4. Usa contraseñas largas: este acceso es una cortina, no una caja fuerte. Quien conozca el método puede probar contraseñas cortas por fuerza bruta. Si cambias la contraseña, cambia también la carpeta.
