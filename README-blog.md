@@ -41,15 +41,35 @@ El blog es HTML estático en GitHub Pages (repo `gitania-site`, rama `main`). Ca
 
 ## Acceso VIP (vip.html)
 
-El sitio no guarda contraseñas legibles. `vip.html` tiene solo una lista `VIP_HASHES` con el SHA-256 de `usuario:contraseña` (usuario en minúsculas). Al entrar, la página calcula a dónde ir: `clientes/<carpeta>/<usuario>-manual.html`, donde `<carpeta>` son los primeros 32 caracteres del SHA-256 de `gitania-path:usuario:contraseña`. Así la carpeta tampoco aparece en el código.
+El sitio no guarda contraseñas legibles ni nombres de carpetas. Hay dos tipos de acceso:
 
-Para dar de alta a alguien (en tu computadora, no en el sitio):
+- **v1 (Elois, sin cambios):** `VIP_HASHES` guarda el SHA-256 de `usuario:contraseña`. Carpeta: primeros 32 caracteres del SHA-256 de `gitania-path:usuario:contraseña`.
+- **v2 (clientas nuevas, p. ej. Ana):** `VIP_HASHES_V2` guarda un PBKDF2-SHA256 (sal `gitania-vip:usuario`, 200 000 vueltas). Es miles de veces más lento de adivinar. Carpeta: primeros 32 caracteres del SHA-256 de `gitania-path-v2:<ese hash>`.
+
+En ambos casos se entra a `clientes/<carpeta>/<usuario>-manual.html`.
+
+### Poner o cambiar la contraseña de una clienta v2
 
 ```bash
-python3 -c "import hashlib,getpass; u=input('usuario: ').strip().lower(); p=getpass.getpass('contraseña: ').strip(); print('hash para VIP_HASHES:', hashlib.sha256(f'{u}:{p}'.encode()).hexdigest()); print('carpeta: clientes/' + hashlib.sha256(f'gitania-path:{u}:{p}'.encode()).hexdigest()[:32] + '/')"
+python3 tools/set-vip-pass.py ana            # te pide la contraseña sin mostrarla
+# o: tools/set-vip-pass.sh ana "frase-larga-de-4-palabras"
 ```
 
-1. Agrega el hash a `VIP_HASHES` en `vip.html`.
-2. Crea la carpeta que te dio el comando y pon ahí `<usuario>-manual.html` y sus archivos. Cada HTML lleva `<meta name="robots" content="noindex,nofollow">`.
-3. No agregues esa carpeta a `sitemap.xml` ni a `robots.txt`.
-4. Usa contraseñas largas: este acceso es una cortina, no una caja fuerte. Quien conozca el método puede probar contraseñas cortas por fuerza bruta. Si cambias la contraseña, cambia también la carpeta.
+El script exige 12 caracteres o más, actualiza `vip.html` y la página de la clienta, y renombra su carpeta. Al cambiar la contraseña, el link viejo deja de servir. Después: `git status`, revisar y commit.
+
+### Nueva clienta v2
+
+1. Copia la carpeta de Ana a `clientes/<cualquier-nombre>/`, renombra `ana-manual.html` a `<usuario>-manual.html` y pon `accessHash: "PENDIENTE_HASH_<NOMBRE>"`.
+2. Agrega ese mismo texto a `VIP_HASHES_V2` en `vip.html`.
+3. Corre `tools/set-vip-pass.py <usuario>`.
+
+### Membresía (página de Ana)
+
+En el bloque `CONFIG` de `ana-manual.html`: `pagadoHasta` (fecha), `pagoMembresiaUrl`, `joyas[].url`, y los audios, videos y PDF. Pasada la fecha, la página muestra el aviso de renovación. Para ver el aviso sin esperar: agrega `?vista=vencida` al link.
+Ojo: el candado por fecha corre en el navegador. Es una cortina, no una caja fuerte. Si alguien no paga, cambia su contraseña con el script.
+
+### Reglas
+
+- Cada HTML lleva `<meta name="robots" content="noindex,nofollow">`.
+- No agregues carpetas de clientas a `sitemap.xml` ni a `robots.txt`.
+- Usa contraseñas largas (12+). Las cortas se pueden adivinar.

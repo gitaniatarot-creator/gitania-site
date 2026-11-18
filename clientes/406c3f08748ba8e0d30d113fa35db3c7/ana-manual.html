@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Espacio privado de Ana · Gitania</title>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700;800&display=swap');
+  :root{
+    --paper:#FBFAF6; --raised:#FFFFFF; --ink:#17130F; --soft:#55503F; --line:#E3DFD3;
+    --clay:#B30E20; --clay-soft:#F3D2D2; --sky:#03989E; --sky-soft:#CFEBEC; --gold:#B8860B;
+    --shadow:25 40% 6%;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Karla",-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55}
+  img,video{max-width:100%;display:block}
+  h1,h2,h3{margin:0;text-wrap:balance}
+  a{color:var(--clay)}
+  .label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--clay)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* gate */
+  #gate,#expired{position:fixed;inset:0;background:var(--paper);display:flex;align-items:center;justify-content:center;padding:24px;z-index:50}
+  #expired{display:none}
+  .card{max-width:380px;width:100%;background:var(--raised);border:1px solid var(--line);border-radius:20px;padding:30px 26px;text-align:center;box-shadow:0 24px 50px -28px hsl(var(--shadow)/.5)}
+  .card img.logo{width:64px;height:64px;margin:0 auto 10px;border-radius:50%}
+  .card h1{font-size:1.45rem;font-weight:700;margin:8px 0}
+  .card p{color:var(--soft);font-size:.92rem;margin:0 0 16px}
+  .inp{width:100%;font:inherit;font-size:1rem;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);margin-bottom:10px;outline:none}
+  .inp:focus{border-color:var(--sky)}
+  .btn{display:inline-block;width:100%;font:inherit;font-weight:700;font-size:.95rem;border:none;border-radius:12px;padding:13px 14px;background:var(--clay);color:#fff;cursor:pointer;text-decoration:none;text-align:center}
+  .btn.alt{background:var(--sky)}
+  .btn.ghost{background:transparent;color:var(--clay);border:1.5px solid var(--clay)}
+  .err{margin-top:10px;font-size:.84rem;color:var(--clay);min-height:1.1em}
+  .small{font-size:.8rem;color:var(--soft)}
+
+  #app{display:none}
+  #app.on{display:block}
+
+  /* header */
+  header.top{position:sticky;top:0;z-index:10;background:rgba(251,250,246,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  header.top .wrap{display:flex;align-items:center;gap:12px;padding-top:10px;padding-bottom:10px}
+  header.top img{width:36px;height:36px;border-radius:50%}
+  header.top nav{display:flex;gap:6px;overflow-x:auto;margin-left:auto}
+  header.top nav a{font-size:.78rem;font-weight:700;text-decoration:none;color:var(--soft);padding:6px 10px;border-radius:999px;white-space:nowrap}
+  header.top nav a:hover{background:var(--clay-soft);color:var(--clay)}
+
+  section{padding:42px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:1.6rem;font-weight:800;margin:6px 0 10px}
+  section p.lead{color:var(--soft);margin:0 0 18px}
+  .hero{padding:48px 0 36px;text-align:center}
+  .hero h1{font-size:2rem;font-weight:800;margin:8px 0 10px}
+  .hero p{color:var(--soft);max-width:560px;margin:0 auto}
+  .membership{display:inline-block;margin-top:14px;font-size:.8rem;background:var(--sky-soft);color:#035f63;padding:6px 12px;border-radius:999px;font-weight:700}
+
+  .box{background:var(--raised);border:1px solid var(--line);border-radius:16px;padding:20px;margin:14px 0}
+  .pending{border:1.5px dashed #C9C2AE;background:#FFFDF7;color:var(--soft);border-radius:12px;padding:12px 14px;font-size:.88rem}
+  .pending b{color:var(--ink)}
+  .grid{display:grid;gap:14px}
+  @media(min-width:640px){.grid.two{grid-template-columns:1fr 1fr}}
+  .ex h3{font-size:1.15rem;font-weight:800;margin:4px 0 6px}
+  .ex .for{font-size:.75rem;font-weight:700;color:var(--sky);text-transform:uppercase;letter-spacing:.1em}
+  .media{margin-top:12px;display:grid;gap:10px}
+  audio{width:100%}
+  ol.steps{margin:8px 0 0;padding-left:20px}
+
+  /* tapping */
+  .tap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+  @media(min-width:640px){.tap-grid{grid-template-columns:repeat(5,1fr)}}
+  .tap{background:var(--raised);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:.74rem}
+  .tap img,.tap video{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 20%}
+  .tap div{padding:6px 8px}
+  .tap b{display:block;font-size:.8rem}
+  .phrase{font-size:1.05rem;font-style:italic;border-left:3px solid var(--clay);padding:6px 0 6px 14px;margin:10px 0}
+
+  /* joyas */
+  .jewel{text-align:center}
+  .jewel .ph{aspect-ratio:1/1;border-radius:12px;background:linear-gradient(135deg,#F6EFE0,#EADBC0);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:2.4rem;margin-bottom:12px}
+  .jewel h3{font-size:1.1rem;font-weight:800}
+  .price{font-weight:800;margin:6px 0 12px}
+
+  .note{background:var(--clay-soft);border-radius:14px;padding:16px 18px;font-size:.9rem}
+  .note b{color:var(--clay)}
+  footer{padding:30px 0 50px;text-align:center;font-size:.82rem;color:var(--soft)}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     CONFIGURACIÓN DE ANA — todo lo que se cambia está en el bloque
+     <script> de abajo llamado "CONFIG" (fecha de pago, links de pago,
+     audios y videos). No hace falta tocar nada más.
+     ============================================================ -->
+
+<div id="gate">
+  <div class="card">
+    <img class="logo" src="logo.png" alt="Gitania">
+    <span class="label">Acceso privado</span>
+    <h1>Espacio de Ana</h1>
+    <p>Escribe el usuario y la contraseña que te compartí.</p>
+    <input class="inp" id="gUser" type="text" placeholder="Usuario" autocomplete="username" autocapitalize="none">
+    <input class="inp" id="gPass" type="password" placeholder="Contraseña" autocomplete="current-password">
+    <button class="btn" id="gBtn">Entrar</button>
+    <div class="err" id="gErr"></div>
+  </div>
+</div>
+
+<div id="expired">
+  <div class="card">
+    <img class="logo" src="logo.png" alt="Gitania">
+    <span class="label">Membresía de seguimiento</span>
+    <h1>Tu membresía mensual venció</h1>
+    <p>Tu membresía mensual de seguimiento venció; renuévala para seguir viendo tus recursos.</p>
+    <p>La mensualidad incluye <b>tu lectura del mes</b> y mantiene tu acceso a todos tus materiales.</p>
+    <a class="btn" id="renewBtn" href="#" target="_blank" rel="noopener">Renovar mi membresía</a>
+    <p class="small" style="margin-top:14px">¿Ya pagaste o tienes dudas? <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>.</p>
+    <p class="small">Este espacio es de acompañamiento y reflexión; no sustituye la atención psicológica ni médica.</p>
+  </div>
+</div>
+
+<div id="app">
+  <header class="top">
+    <div class="wrap">
+      <a href="https://gitania.gold/" target="_blank" rel="noopener"><img src="logo.png" alt="Gitania"></a>
+      <nav>
+        <a href="#lectura">Tu lectura</a>
+        <a href="#ejercicios">Ejercicios</a>
+        <a href="#tapping">Tapping</a>
+        <a href="#joyas">Joyas</a>
+        <a href="#apoyo">Apoyo</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="hero">
+      <span class="label">Bienvenida</span>
+      <h1>Hola, Ana. Este es tu espacio.</h1>
+      <p>Aquí vas a encontrar lo que trabajamos en tu lectura y los recursos para acompañarte a ti y a Obed en las próximas semanas. Ve a tu ritmo. Vuelve cuando lo necesites.</p>
+      <span class="membership" id="membershipBadge"></span>
+      <div class="box" style="text-align:left;margin-top:18px">
+        <span class="label">Cómo funciona tu espacio</span>
+        <ul style="margin:8px 0 0;padding-left:20px">
+          <li><b>Este primer mes</b> puedes usar todo sin restricción y <b>descargar</b> los audios, videos y PDFs que necesites. Busca el botón <i>Descargar</i>.</li>
+          <li><b>Desde el segundo mes</b>, la mensualidad de seguimiento incluye <b>tu lectura del mes</b> y mantiene tu acceso a todos tus materiales.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== Tu lectura ===== -->
+    <section id="lectura">
+      <span class="label">I · Tu lectura</span>
+      <h2>Lo que vimos en las cartas</h2>
+      <p class="lead">Un resumen para volver a él cuando quieras.</p>
+      <div class="box">
+        <p><b>Tema central:</b> desbloquear la intuición y soltar el miedo.</p>
+        <div class="pending"><b>Pendiente (Tania):</b> resumen de la lectura con tus palabras — cartas que salieron, qué te mostraron y qué te invitan a mirar.</div>
+      </div>
+      <div class="media" id="lecturaMedia"></div>
+    </section>
+
+    <!-- ===== Ejercicios ===== -->
+    <section id="ejercicios">
+      <span class="label">II · Ejercicios</span>
+      <h2>Ejercicios para Ana y Obed</h2>
+      <p class="lead">Cada ejercicio tiene un audio con mi voz y, cuando aplique, un video. Hazlos en un lugar tranquilo.</p>
+
+      <div class="box ex">
+        <span class="for">Para Ana y Obed</span>
+        <h3>Doble cono infinito</h3>
+        <p>Un ejercicio de visualización para desbloquear y equilibrar tu energía.</p>
+        <div class="pending"><b>Pendiente (Tania):</b> instrucciones paso a paso, duración y cada cuándo hacerlo.</div>
+        <div class="media" data-media="dobleCono"></div>
+      </div>
+
+      <div class="box ex">
+        <span class="for">Para Ana y Obed</span>
+        <h3>Hoyo negro</h3>
+        <p>Un ejercicio de visualización para soltar lo que pesa y dejar ir la energía estancada.</p>
+        <div class="pending"><b>Pendiente (Tania):</b> instrucciones paso a paso, duración y cada cuándo hacerlo.</div>
+        <div class="media" data-media="hoyoNegro"></div>
+      </div>
+
+      <div class="box ex">
+        <span class="for">Para Obed</span>
+        <h3>Antiterrorismo</h3>
+        <p>Un ejercicio para cultivar calma y paz, contigo mismo y con los demás. Úsalo todos los días durante al menos un mes.</p>
+        <div class="pending"><b>Pendiente (Tania):</b> imagen de cuerpo completo de Obed trabajada por Tania, e instrucciones de uso.</div>
+        <div class="media" data-media="antiterrorismo"></div>
+      </div>
+    </section>
+
+    <!-- ===== Tapping ===== -->
+    <section id="tapping">
+      <span class="label">III · Tapping para Ana</span>
+      <h2>Tus frases, con tapping</h2>
+      <p class="lead">Para practicar de 3 a 6 meses. Frente a un espejo, mírate a los ojos y repite la frase mientras das golpecitos suaves en cada punto, en este orden.</p>
+
+      <div class="box">
+        <span class="label">Tus frases</span>
+        <div id="phrases"></div>
+        <p class="small">Si alguna frase se te dificulta, repite en su lugar: <i id="closingPhrase"></i></p>
+      </div>
+
+      <div class="tap-grid" id="tapGrid"></div>
+
+      <div class="box">
+        <span class="label">Al cerrar la ronda (después del punto kárate)</span>
+        <ol class="steps">
+          <li>Cierra los ojos un segundo, luego ábrelos.</li>
+          <li>Mira hacia abajo a la izquierda, sin mover la cabeza.</li>
+          <li>Mira hacia abajo a la derecha.</li>
+          <li>Haz un giro completo con los ojos en un sentido.</li>
+          <li>Haz un giro completo con los ojos en el sentido contrario.</li>
+          <li>Respira hondo y suelta.</li>
+        </ol>
+      </div>
+      <div class="media" data-media="tapping"></div>
+    </section>
+
+    <!-- ===== Joyas ===== -->
+    <section id="joyas">
+      <span class="label">IV · Joyas para ti</span>
+      <h2>Pulseras y collares hechos con intención</h2>
+      <p class="lead">Si quieres acompañar tu proceso con una pieza, puedes pedirla aquí. Obed puede elegir la suya, con el visto bueno de su mamá. El precio cambia según el material (plata, cobre, piedras).</p>
+      <div class="grid two" id="jewels"></div>
+      <p class="small">Después de pagar, escríbeme por <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">WhatsApp</a> para elegir juntas los detalles de tu pieza.</p>
+    </section>
+
+    <!-- ===== Apoyo ===== -->
+    <section id="apoyo" style="border-bottom:none">
+      <div class="note">
+        <p style="margin-top:0"><b>Importante.</b> Este espacio es de acompañamiento, reflexión e introspección a partir de la lectura simbólica de las cartas. <b>No sustituye la atención psicológica ni médica</b>, ni ningún tratamiento.</p>
+        <p style="margin-bottom:0">Si tú u Obed necesitan apoyo profesional —también con el consumo de sustancias—, en México pueden llamar gratis a la <b>Línea de la Vida: <a href="tel:8009112000">800 911 2000</a></b>, las 24 horas, los 365 días del año.</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    Hecho con ♡ e intuición — <a href="https://gitania.gold/" target="_blank" rel="noopener">Gitania</a><br>
+    <span id="membershipFoot"></span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ======================= CONFIG (editar aquí) =======================
+  var CONFIG = {
+    // Hash de acceso de Ana. Lo pone tools/set-vip-pass.py. No editar a mano.
+    accessHash: "PENDIENTE_HASH_ANA",
+
+    // Membresía: acceso pagado hasta este día (inclusive, hora local del navegador).
+    pagadoHasta: "2026-12-18",
+
+    // Links de pago (marcadores hasta que Tania elija cuenta).
+    pagoMembresiaUrl: "PAGO_MEMBRESIA_URL",
+    joyas: [
+      { nombre: "Pulsera hecha con intención", detalle: "Plata, cobre o piedras, a tu elección.", precio: "Precio por confirmar", url: "JOYA_PAGO_URL", icono: "◯" },
+      { nombre: "Collar hecho con intención",  detalle: "Plata, cobre o piedras, a tu elección.", precio: "Precio por confirmar", url: "JOYA_PAGO_URL", icono: "◇" }
+    ],
+
+    // Audios (voz de Tania, ElevenLabs) y videos. Deja "" si aún no existe.
+    // Pon el archivo en esta misma carpeta y escribe aquí su nombre, p. ej. "doble-cono.mp3".
+    media: {
+      lectura:        { audio: "", video: "", pdf: "" },
+      dobleCono:      { audio: "", video: "" },
+      hoyoNegro:      { audio: "", video: "" },
+      antiterrorismo: { audio: "", video: "", imagen: "" },
+      tapping:        { audio: "", video: "" }
+    },
+
+    // Frases de tapping (borrador; Tania las revisa). Ver contenido-ana-obed.md.
+    frases: [
+      "Aunque a veces tengo miedo, elijo escuchar mi intuición y confiar en lo que siento.",
+      "Aunque cargué con heridas de mi mamá, elijo perdonarla y perdonarme, y me doy permiso de estar en paz.",
+      "Aunque como madre no siempre supe cómo hacerlo, me perdono: hice lo mejor que pude con lo que sabía."
+    ],
+    fraseCierre: "Me amo y me acepto total y completamente."
+  };
+  // ===================== fin CONFIG =====================
+
+  var PBKDF2_ITER = 200000;   // igual que vip.html y tools/set-vip-pass.py
+
+  function hex(buf){ return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,"0");}).join(""); }
+  async function deriveKey(user, pass){
+    var enc = new TextEncoder();
+    var base = await crypto.subtle.importKey("raw", enc.encode(pass), "PBKDF2", false, ["deriveBits"]);
+    var bits = await crypto.subtle.deriveBits({name:"PBKDF2", hash:"SHA-256", salt: enc.encode("gitania-vip:" + user), iterations: PBKDF2_ITER}, base, 256);
+    return hex(bits);
+  }
+
+  // ---- candado de membresía (por fecha, en el navegador) ----
+  function isExpired(){
+    if (/[?&]vista=vencida\b/.test(location.search)) return true; // solo para revisar el aviso
+    var p = CONFIG.pagadoHasta.split("-").map(Number);
+    var end = new Date(p[0], p[1]-1, p[2], 23, 59, 59, 999);
+    return new Date() > end;
+  }
+  function fmtDate(iso){
+    var p = iso.split("-").map(Number);
+    var m = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+    return p[2] + " de " + m[p[1]-1] + " de " + p[0];
+  }
+  function isPlaceholder(u){ return !u || /^[A-Z_]+$/.test(u); }
+
+  // ---- abrir ----
+  var gate = document.getElementById("gate"), app = document.getElementById("app"), expired = document.getElementById("expired");
+  function open(){
+    gate.style.display = "none";
+    if (isExpired()){
+      expired.style.display = "flex";
+      var rb = document.getElementById("renewBtn");
+      rb.href = isPlaceholder(CONFIG.pagoMembresiaUrl) ? "https://wa.me/5215515245147" : CONFIG.pagoMembresiaUrl;
+      return;
+    }
+    app.classList.add("on");
+    render();
+  }
+  var KEY = "gitania_vip_ok";
+  try{ if (sessionStorage.getItem(KEY) === CONFIG.accessHash) open(); }catch(e){}
+
+  async function tryUnlock(){
+    var u = (document.getElementById("gUser").value || "").trim().toLowerCase();
+    var p = (document.getElementById("gPass").value || "").trim();
+    var err = document.getElementById("gErr");
+    err.textContent = "Revisando…";
+    var h = "";
+    try{ h = await deriveKey(u, p); }catch(e){}
+    if (h && h === CONFIG.accessHash){
+      try{ sessionStorage.setItem(KEY, h); }catch(e){}
+      err.textContent = "";
+      open();
+    } else {
+      err.textContent = "Usuario o contraseña incorrectos.";
+    }
+  }
+  document.getElementById("gBtn").addEventListener("click", tryUnlock);
+  document.getElementById("gPass").addEventListener("keydown", function(e){ if (e.key === "Enter") tryUnlock(); });
+
+  // ---- contenido ----
+  function dl(src, txt){
+    return '<a class="btn ghost dl" href="' + src + '" download>⬇ ' + txt + '</a>';
+  }
+  function mediaBlock(m, label){
+    var out = "";
+    if (m.audio) out += '<audio controls preload="none" src="' + m.audio + '"></audio>' + dl(m.audio, "Descargar audio");
+    else out += '<div class="pending"><b>Audio pendiente:</b> ' + label + ' con la voz de Tania. Tendrá botón de descarga.</div>';
+    if (m.video) out += '<video controls playsinline preload="none" src="' + m.video + '"></video>' + dl(m.video, "Descargar video");
+    else out += '<div class="pending"><b>Video pendiente</b> (opcional).</div>';
+    if ("pdf" in m){
+      if (m.pdf) out += '<a class="btn ghost" href="' + m.pdf + '" target="_blank" rel="noopener">Abrir el PDF de tu lectura ↗</a>' + dl(m.pdf, "Descargar PDF");
+      else out += '<div class="pending"><b>PDF pendiente:</b> tu lectura por escrito.</div>';
+    }
+    if ("imagen" in m){
+      if (m.imagen) out += '<img src="' + m.imagen + '" alt="Imagen de Obed para el ejercicio" style="border-radius:12px">' + dl(m.imagen, "Descargar imagen");
+      else out += '<div class="pending"><b>Imagen pendiente:</b> foto de cuerpo completo de Obed, trabajada por Tania.</div>';
+    }
+    return out;
+  }
+  var POINTS = [
+    ["crown","jpg","Coronilla","En el centro de la parte más alta de la cabeza."],
+    ["eyebrow","jpg","Inicio de la ceja","Justo arriba del puente de la nariz, donde nace la ceja."],
+    ["sideeye","mp4","Lateral del ojo","Sobre el hueso al lado del ojo, en la sien."],
+    ["undereye","jpg","Debajo del ojo","Sobre el hueso debajo del ojo, alineado con la pupila."],
+    ["nose","jpg","Debajo de la nariz","En el surco entre la nariz y el labio."],
+    ["chin","mp4","Mentón","En el hueco entre el labio inferior y la barbilla."],
+    ["collarbone","jpg","Clavícula","Justo debajo de donde se unen las clavículas."],
+    ["underarm","jpg","Costado","Unos 10 cm debajo de la axila."],
+    ["karate","jpg","Punto kárate","En el canto de la mano. Aquí cierras la ronda."]
+  ];
+  function render(){
+    var badge = "Membresía de seguimiento activa hasta el " + fmtDate(CONFIG.pagadoHasta);
+    document.getElementById("membershipBadge").textContent = badge;
+    document.getElementById("membershipFoot").textContent = badge + ".";
+    document.getElementById("lecturaMedia").innerHTML = mediaBlock(CONFIG.media.lectura, "la lectura grabada");
+    Array.from(document.querySelectorAll("[data-media]")).forEach(function(el){
+      var k = el.getAttribute("data-media");
+      var names = {dobleCono:"guía del doble cono infinito", hoyoNegro:"guía del hoyo negro", antiterrorismo:"guía del ejercicio", tapping:"ronda de tapping guiada"};
+      el.innerHTML = mediaBlock(CONFIG.media[k], names[k] || "guía");
+    });
+    document.getElementById("phrases").innerHTML = CONFIG.frases.map(function(f, i){
+      return '<p class="phrase">' + (i+1) + '. “' + f + '”</p>';
+    }).join("");
+    document.getElementById("closingPhrase").textContent = "“" + CONFIG.fraseCierre + "”";
+    document.getElementById("tapGrid").innerHTML = POINTS.map(function(p, i){
+      var src = "tapping/" + p[0] + "." + p[1];
+      var m = p[1] === "mp4" ? '<video src="' + src + '" autoplay muted loop playsinline></video>' : '<img src="' + src + '" alt="' + p[2] + '" loading="lazy">';
+      return '<div class="tap">' + m + '<div><b>' + (i+1) + '. ' + p[2] + '</b>' + p[3] + '<br><a href="' + src + '" download>⬇ Descargar</a></div></div>';
+    }).join("");
+    document.getElementById("jewels").innerHTML = CONFIG.joyas.map(function(j){
+      var href = isPlaceholder(j.url) ? "https://wa.me/5215515245147" : j.url;
+      return '<div class="box jewel"><div class="ph">' + j.icono + '</div><h3>' + j.nombre + '</h3><p class="small">' + j.detalle + '</p><p class="price">' + j.precio + '</p><a class="btn alt" href="' + href + '" target="_blank" rel="noopener">Pagar mi pieza</a></div>';
+    }).join("");
+  }
+})();
+</script>
+</body>
+</html>
