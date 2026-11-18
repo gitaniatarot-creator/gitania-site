@@ -97,10 +97,40 @@
   .jcard .pr{font-weight:800}
   .jcard .ex{font-size:.68rem;color:var(--soft);font-weight:400}
   .jcard .btn{padding:9px;font-size:.82rem;margin-top:4px}
-  .cart .row{display:flex;justify-content:space-between;gap:10px;font-size:.9rem;padding:6px 0;border-bottom:1px solid var(--line)}
-  .cart .row button{border:none;background:none;color:var(--clay);cursor:pointer;font:inherit}
-  .cart .total{font-weight:800;font-size:1.05rem}
-  .cart .btn{margin-top:8px}
+  .mgrid{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:640px){.mgrid{grid-template-columns:repeat(2,1fr)}}
+  .mcard{background:var(--raised);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+  .mcard.on{border:2px solid var(--gold);box-shadow:0 0 0 3px #F6E7B8}
+  .mcard.off{opacity:.55}
+  .mcard figure{margin:0;position:relative}
+  .mcard figure img{width:100%;aspect-ratio:1/1;object-fit:cover;background:#fff}
+  .mcard figure .noimg{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#F3EEE4;color:var(--soft);font-size:.85rem}
+  .mcard figcaption{position:absolute;right:8px;bottom:6px;font-size:.62rem;color:#8a8070;background:rgba(255,255,255,.85);padding:1px 6px;border-radius:6px}
+  .mcard .in{padding:12px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .mcard h3{font-size:1.05rem;font-weight:800}
+  .mcard .d{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--sky);font-weight:700}
+  .mcard .img{font-size:.86rem}
+  .mcard .inv{font-size:.86rem;font-style:italic}
+  .mcard .anc{font-size:.88rem;border-left:3px solid var(--clay);padding-left:10px}
+  .mcard .cre{font-size:.74rem;color:var(--soft)}
+  .mcard .src{font-size:.68rem;color:var(--soft)}
+  .mcard .src a{color:var(--soft)}
+  .mcard .btn{padding:9px;font-size:.85rem;margin-top:auto}
+  .order{margin-top:18px;display:flex;flex-direction:column;gap:8px}
+  .order textarea{width:100%;font:inherit;padding:8px;border:1px solid var(--line);border-radius:10px}
+  .tipo{display:flex;gap:8px}
+  .tipo button{flex:1;padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff;font:inherit;font-weight:700;cursor:pointer}
+  .tipo button.on{background:var(--gold);color:#fff;border-color:var(--gold)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chips span{background:#FFF6E0;border:1px solid var(--gold);border-radius:20px;padding:3px 10px;font-size:.82rem}
+  .price-range{font-weight:800}
+  .order .btn.dis{opacity:.5;pointer-events:none}
+  .sold{margin-top:22px}
+  .sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+  @media(min-width:640px){.sgrid{grid-template-columns:repeat(6,1fr)}}
+  .sgrid div{position:relative;font-size:.62rem;color:var(--soft);text-align:center}
+  .sgrid img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;filter:grayscale(.35)}
+  .sgrid b{position:absolute;top:4px;left:4px;background:var(--clay);color:#fff;font-size:.58rem;padding:1px 5px;border-radius:5px;text-transform:uppercase;letter-spacing:.05em}
   .note{background:var(--clay-soft);border-radius:14px;padding:16px 18px;font-size:.9rem}
   .note b{color:var(--clay)}
   footer{padding:30px 0 50px;text-align:center;font-size:.82rem;color:var(--soft)}
@@ -263,15 +293,31 @@
 
     <!-- ===== Joyas ===== -->
     <section id="joyas">
-      <span class="label">IV · Joyas para ti</span>
-      <h2>Pulseras y collares programados</h2>
-      <p class="lead">Si quieres acompañar tu proceso con una pieza, agrégala aquí y págala en esta misma página. Obed puede elegir la suya —collar o pulsera—, con el visto bueno de su mamá. El precio cambia según el material (plata 950 o 999, cobre, oro laminado, piedras). También hago piezas a tu medida.</p>
-      <div class="jgrid" id="jewels"></div>
-      <div class="box cart" id="cart">
+      <span class="label">IV · Joyas programadas</span>
+      <h2>Elige las piedras para la pulsera de Obed</h2>
+      <div class="box featured intro-joyas">
+        <p>Las joyas son un lenguaje para la psique. A cada pieza le confiero intenciones y programaciones; al traerla puesta, eso se suma a la carga simbólica de sus materiales, y la pieza se vuelve un anclaje muy completo: un recordatorio en la piel de la idea nueva que eliges.</p>
+        <p class="small">Es un acompañamiento simbólico —una reprogramación simbólica, una forma de anclar una intención—. Lo que se cuenta de cada piedra es tradición y creencia, no un efecto comprobado. No sustituye la atención psicológica ni médica.</p>
+      </div>
+      <p class="lead">Toca <b>Elegir</b> en las piedras que te hablen para Obed. Cada una trae una imagen para la psique y la idea que ayuda a anclar.</p>
+      <div class="mgrid" id="materials"></div>
+
+      <div class="box order" id="order">
         <span class="label">Tu pedido</span>
-        <div id="cartItems"><p class="small">Aún no agregas piezas.</p></div>
-        <p class="total" id="cartTotal"></p>
-        <div id="cartActions"></div>
+        <div class="tipo" id="tipoSel"></div>
+        <p class="small">Piedras elegidas:</p>
+        <div id="orderMats" class="chips"><p class="small">Aún no eliges piedras.</p></div>
+        <label class="small" for="orderNota">Intención o nota para Tania (opcional): medida de la muñeca, colores, la idea que quieres anclar…</label>
+        <textarea id="orderNota" rows="3"></textarea>
+        <p class="price-range" id="orderPrice"></p>
+        <a class="btn" id="orderBtn" href="#" target="_blank" rel="noopener">Pedir mi pieza</a>
+        <p class="small">Se abre WhatsApp con tu pedido escrito. Tania te confirma el precio final antes de hacer la pieza.</p>
+      </div>
+
+      <div class="sold">
+        <span class="label">Piezas hechas antes · todas vendidas</span>
+        <p class="small">Cada pieza es única; estas ya encontraron dueña o dueño. Quedan aquí solo como inspiración.</p>
+        <div class="sgrid" id="soldGrid"></div>
       </div>
     </section>
 
@@ -335,106 +381,346 @@
     precioMembresia: null,            // pendiente (ver propuesta-cobro.md); null = "por confirmar"
     pagoMembresiaUrl: "PAGO_MEMBRESIA_URL",
     pagoLecturaUrl: "PAGO_LECTURA_URL",
-    preciosDeEjemplo: false,           // true = muestra "precio de ejemplo" bajo cada joya
-    joyas: [
+    // Pedido de pieza a la medida (la sección de joyas). Precio orientativo; Tania confirma el final.
+    pedido: { precioMin: 666, precioMax: 1111, tipos: ["Pulsera", "Collar"], tipoPorDefecto: "Pulsera", para: "Obed" },
+    // Materiales en existencia. Para agregar uno, copia un bloque y cambia los textos.
+    // disponible:false lo muestra como "por ahora no disponible" y no se puede elegir.
+    // foto: imagen ilustrativa generada (no es la piedra real que se usará).
+    materiales: [
       {
-            "id": "p01",
-            "nombre": "Cianita y volcán",
-            "tipo": "Collar",
-            "mat": "Cuentas de piedra volcánica, dije de cianita azul en bruto; broche y garra del dije de oro laminado.",
-            "foto": "joyas/01.jpg",
-            "precio": 999,
-            "url": "JOYA_PAGO_URL_P01"
+        "id": "cuarzo",
+        "nombre": "Cuarzo",
+        "detalle": "Cuarzo blanco / cristal de roca",
+        "foto": "materiales/cuarzo.jpg",
+        "disponible": true,
+        "imagen": "Los antiguos lo creían hielo petrificado: «cristal» viene del griego krystallos, de kryos, «escarcha».",
+        "invita": "Como agua que se volvió piedra para quedarse clara, te invita a mirar con transparencia: ver lo que es, sin adornos.",
+        "ancla": "Veo claro y confío en lo que veo.",
+        "creencia": "En la tradición de los cristales se le llama «amplificador»: se cree que sostiene la intención que le pones.",
+        "fuentes": [
+          [
+            "Etimología: Etymonline",
+            "https://www.etymonline.com/word/crystal"
+          ],
+          [
+            "Tradición: Crystal Vaults",
+            "https://www.crystalvaults.com/crystal-encyclopedia/quartz/"
+          ]
+        ]
       },
       {
-            "id": "p02",
-            "nombre": "Turmalina de luna nueva",
-            "tipo": "Collar",
-            "mat": "Turmalina negra envuelta en alambre de plata 950, cordón de hilo de algodón encerado, cuentas de piedra volcánica.",
-            "foto": "joyas/02.jpg",
-            "precio": 1111,
-            "url": "JOYA_PAGO_URL_P02"
+        "id": "amatista",
+        "nombre": "Amatista",
+        "detalle": "Cuarzo violeta",
+        "foto": "materiales/amatista.jpg",
+        "disponible": true,
+        "imagen": "Tiene el color del vino, pero su nombre griego, amethystos, significa «no ebria». Los antiguos creían que mantenía la mente despejada.",
+        "invita": "Te invita a mirar lo que te aturde —la prisa, el miedo, el ruido— y volver a tu centro.",
+        "ancla": "Elijo la calma y la mente clara.",
+        "creencia": "Leyendas antiguas la asocian con mantenerse lúcido y sereno.",
+        "fuentes": [
+          [
+            "Etimología: Etymonline",
+            "https://www.etymonline.com/word/amethyst"
+          ],
+          [
+            "Leyendas: GIA",
+            "https://www.gia.edu/amethyst-history-lore"
+          ]
+        ]
       },
       {
-            "id": "p03",
-            "nombre": "Jade y ámbar",
-            "tipo": "Collar",
-            "mat": "Dije de jade serpentino, separadores de ámbar, cuentas de piedra volcánica, broche de acero.",
-            "foto": "joyas/03.jpg",
-            "precio": 1111,
-            "url": "JOYA_PAGO_URL_P03"
+        "id": "citrino",
+        "nombre": "Citrino",
+        "detalle": "Cuarzo dorado",
+        "foto": "materiales/citrino.jpg",
+        "disponible": true,
+        "imagen": "Su nombre viene del latín citrus, por su color de limón. La tradición lo llama «la piedra del mercader».",
+        "invita": "Es un pedazo de sol en la mano. Te invita a mirar lo que sí florece en ti y a darte permiso de disfrutarlo.",
+        "ancla": "Me permito la alegría y la abundancia.",
+        "creencia": "En la tradición de los cristales se asocia con el optimismo, la confianza y la abundancia.",
+        "fuentes": [
+          [
+            "Etimología: Etymonline",
+            "https://www.etymonline.com/word/citrine"
+          ],
+          [
+            "Tradición: Crystals for Healing",
+            "https://crystals-for-healing.com/citrine/"
+          ]
+        ]
       },
       {
-            "id": "p04",
-            "nombre": "Brasa y cianita",
-            "tipo": "Pulsera tejida",
-            "mat": "Tejido de cobre plastificado rojo, cianita, broche de acero.",
-            "foto": "joyas/04.jpg",
-            "precio": 777,
-            "url": "JOYA_PAGO_URL_P04"
+        "id": "calcita",
+        "nombre": "Calcita",
+        "detalle": "Blanca y miel",
+        "foto": "materiales/calcita.jpg",
+        "disponible": true,
+        "imagen": "Su nombre viene del latín calx, «cal»: es la piedra de la que nace la cal que blanquea los muros.",
+        "invita": "Te invita a mirar qué patrón viejo ya puedes soltar, como quien encala una pared para empezar de nuevo.",
+        "ancla": "Me abro a una forma nueva de ver.",
+        "creencia": "En la tradición de los cristales se le cree limpiadora de energía y se le llama «piedra de la mente».",
+        "fuentes": [
+          [
+            "Etimología: Etymonline",
+            "https://www.etymonline.com/word/calcite"
+          ],
+          [
+            "Tradición: HealingCrystals",
+            "https://www.healingcrystals.com/Calcite_Articles_122.html"
+          ]
+        ]
       },
       {
-            "id": "p05",
-            "nombre": "Mar y coral",
-            "tipo": "Pulsera tejida",
-            "mat": "Cobre plastificado verde azulado, coral rojo, broche de acero.",
-            "foto": "joyas/05.jpg",
-            "precio": 777,
-            "url": "JOYA_PAGO_URL_P05"
+        "id": "agata",
+        "nombre": "Ágata",
+        "detalle": "Variedad de calcedonia (familia del cuarzo)",
+        "foto": "materiales/agata.jpg",
+        "disponible": true,
+        "imagen": "Es calcedonia: cuarzo de cristales tan finos que no se ven. Su nombre viene del río Achates, en Sicilia, según Teofrasto y Plinio. Crece en capas, anillo tras anillo.",
+        "invita": "Como el tronco de un árbol, te invita a honrar cada etapa que te formó.",
+        "ancla": "Cada capa de mi historia me sostiene.",
+        "creencia": "En la Antigüedad se llevaba como talismán y amuleto de protección.",
+        "fuentes": [
+          [
+            "Calcedonia y nombre: GIA",
+            "https://www.gia.edu/gia-news-research/gem-cutters-reveal-beauty-chalcedony"
+          ],
+          [
+            "Talismán: ICA",
+            "https://www.gemstone.org/agate"
+          ]
+        ]
       },
       {
-            "id": "p06",
-            "nombre": "Turquesa nocturna",
-            "tipo": "Collar",
-            "mat": "Turquesa sintética, cuentas de vidrio negro, broche de acero.",
-            "foto": "joyas/06.jpg",
-            "precio": 666,
-            "url": "JOYA_PAGO_URL_P06"
+        "id": "cornalina",
+        "nombre": "Cornalina",
+        "detalle": "Variedad roja de calcedonia (familia del cuarzo)",
+        "foto": "materiales/cornalina.jpg",
+        "disponible": true,
+        "imagen": "Es calcedonia roja. Su nombre se acercó al latín carnem, «carne», por su color de carne viva.",
+        "invita": "Tiene el color del fuego y de la sangre que corre. Te invita a mirar tu propia valentía, esa que habla con voz firme.",
+        "ancla": "Tengo el valor de hablar y de actuar.",
+        "creencia": "Tradicionalmente se asocia con el valor y con hablar en público.",
+        "fuentes": [
+          [
+            "Etimología: Etymonline",
+            "https://www.etymonline.com/word/carnelian"
+          ],
+          [
+            "Calcedonia: CAMEO (MFA Boston)",
+            "https://cameo.mfa.org/wiki/Carnelian"
+          ],
+          [
+            "Tradición: Gem Society",
+            "https://www.gemsociety.org/article/history-legend-carnelian-gems-yore/"
+          ]
+        ]
       },
       {
-            "id": "p07",
-            "nombre": "Coral en la sombra",
-            "tipo": "Pulsera tejida",
-            "mat": "Cobre plastificado negro, coral rojo, broche de acero.",
-            "foto": "joyas/07.jpg",
-            "precio": 777,
-            "url": "JOYA_PAGO_URL_P07"
+        "id": "cianita",
+        "nombre": "Cianita",
+        "detalle": "Azul",
+        "foto": "materiales/cianita.jpg",
+        "disponible": true,
+        "imagen": "Su nombre viene del griego kyanos, «azul oscuro». Crece en hojas largas, como plumas o filos.",
+        "invita": "Te invita a escuchar tu voz interior —esa que a veces callas— y a decir tu verdad con calma.",
+        "ancla": "Escucho mi intuición y la digo con calma.",
+        "creencia": "En la tradición de los cristales se asocia con la calma, la comunicación clara y la meditación.",
+        "fuentes": [
+          [
+            "Etimología: NMNHS",
+            "https://nmnhs.com/gemmology/classification/gem_id_en-9AF15-Kyanite.html"
+          ],
+          [
+            "Tradición: Crystal Vaults",
+            "https://www.crystalvaults.com/crystal-encyclopedia/kyanite/"
+          ]
+        ]
       },
       {
-            "id": "p08",
-            "nombre": "Coral y cobre",
-            "tipo": "Pulsera tejida",
-            "mat": "Cobre plastificado negro, coral rojo, remates y broche de cobre.",
-            "foto": "joyas/08.jpg",
-            "precio": 777,
-            "url": "JOYA_PAGO_URL_P08"
+        "id": "coral",
+        "nombre": "Coral rojo",
+        "detalle": "Del mar",
+        "foto": "materiales/coral.jpg",
+        "disponible": true,
+        "imagen": "Según el mito griego, la sangre de Medusa convirtió las algas en coral. Los romanos creían que calmaba las olas, y por siglos se colgó a los niños como amuleto.",
+        "invita": "Es la imagen de lo herido que se transforma en protección. Te invita a mirar cómo cuidas a los tuyos y cómo te dejas cuidar.",
+        "ancla": "Lo que me dolió hoy me protege.",
+        "creencia": "Se ha llevado como amuleto de protección y buena suerte.",
+        "fuentes": [
+          [
+            "Mito y tradición: GIA",
+            "https://4cs.gia.edu/en-us/blog/captivated-coral/"
+          ],
+          [
+            "Amuleto infantil: Hunt Museum",
+            "https://www.huntmuseum.com/stories/objects-in-focus/16th-century-ad-coral-amulet/"
+          ]
+        ]
       },
       {
-            "id": "p09",
-            "nombre": "El Mago",
-            "tipo": "Pulsera",
-            "mat": "Cobre, cianita, broche de cobre con baño color oro.",
-            "foto": "joyas/09.jpg",
-            "precio": 999,
-            "url": "JOYA_PAGO_URL_P09"
+        "id": "turquesa",
+        "nombre": "Turquesa con pirita",
+        "detalle": "Turquesa auténtica con pequeñas inclusiones de pirita",
+        "foto": "materiales/turquesa.jpg",
+        "disponible": true,
+        "imagen": "«Turquesa» quiere decir «piedra turca»: llegó a Europa por tierras otomanas. Las chispas doradas son pirita, el llamado «oro de los tontos».",
+        "invita": "Es un cielo con chispas de oro. Te invita a mirar el cielo que llevas dentro y las pequeñas luces que nunca se apagaron.",
+        "ancla": "Hay luz en mí, aun en lo pequeño.",
+        "creencia": "La turquesa se ha considerado piedra de buena fortuna y protección (es la gema nacional del Tíbet). En la tradición de los cristales, la pirita se asocia con la confianza y la voluntad.",
+        "fuentes": [
+          [
+            "Etimología: Etymonline",
+            "https://www.etymonline.com/word/turquoise"
+          ],
+          [
+            "Tradición: GIA",
+            "https://www.gia.edu/turquoise-history-lore"
+          ],
+          [
+            "Pirita: Crystal Vaults",
+            "https://www.crystalvaults.com/crystal-encyclopedia/pyrite/"
+          ]
+        ]
       },
       {
-            "id": "p10",
-            "nombre": "La Amarra",
-            "tipo": "Pulsera",
-            "mat": "Cobre plastificado negro, coral rojo, broche de acero.",
-            "foto": "joyas/10.jpg",
-            "precio": 888,
-            "url": "JOYA_PAGO_URL_P10"
+        "id": "hematita",
+        "nombre": "Hematita",
+        "detalle": "La «piedra de sangre»",
+        "foto": "materiales/hematita.jpg",
+        "disponible": true,
+        "imagen": "Su nombre viene del griego haimatites lithos, «piedra como sangre», de haima, «sangre». Por fuera es un espejo gris; al rayarla deja un polvo rojo.",
+        "invita": "Por fuera brilla firme; por dentro guarda el rojo de la vida. Te invita a mirar tu fuerza de raíz, lo que te sostiene de pie.",
+        "ancla": "Estoy en mi cuerpo, firme y presente.",
+        "creencia": "Se asocia popularmente con la fuerza, la estabilidad y la protección; guerreros antiguos se la frotaban en la piel creyendo que ese residuo «de sangre» los protegía en la batalla.",
+        "fuentes": [
+          [
+            "Etimología: Etymonline",
+            "https://www.etymonline.com/word/hematite"
+          ],
+          [
+            "Tradición: Gem Society",
+            "https://www.gemsociety.org/article/hematite-jewelry-and-gemstone-information/"
+          ]
+        ]
       },
       {
-            "id": "p11",
-            "nombre": "La Torre",
-            "tipo": "Pulsera",
-            "mat": "Tejido de cobre, hilo elástico y cubos de vidrio negro.",
-            "foto": "joyas/11.jpg",
-            "precio": 666,
-            "url": "JOYA_PAGO_URL_P11"
+        "id": "cobre",
+        "nombre": "Cobre de colores",
+        "detalle": "Plastificado, en muchos colores",
+        "foto": "materiales/cobre.jpg",
+        "disponible": true,
+        "imagen": "Su nombre viene de Chipre, la isla de donde salía; los alquimistas lo asociaban con Venus. Es el metal que lleva la corriente.",
+        "invita": "Te invita a mirar qué quieres que fluya en tu vida y qué lazos quieres cuidar.",
+        "ancla": "Dejo fluir el amor y me conecto.",
+        "creencia": "En la tradición popular se le cree conductor de la intención; es una creencia, no un efecto comprobado.",
+        "fuentes": [
+          [
+            "Etimología y Venus: Etymonline",
+            "https://www.etymonline.com/word/copper"
+          ],
+          [
+            "Tradición: Solacely",
+            "https://www.solacely.co/en-us/blogs/healing-copper/copper-magical-properties"
+          ]
+        ]
+      },
+      {
+        "id": "plata",
+        "nombre": "Plata pura",
+        "detalle": "Plata 999, para engarce y alambre",
+        "foto": "materiales/plata.jpg",
+        "disponible": true,
+        "imagen": "Los alquimistas la llamaban Luna o Diana y la dibujaban como una media luna.",
+        "invita": "Es el metal de la Luna: refleja. Te invita a mirar tu mundo interior, tus sueños y lo que sientes antes de saberlo.",
+        "ancla": "Confío en lo que siento.",
+        "creencia": "En la tradición alquímica y astrológica la plata corresponde a la Luna.",
+        "fuentes": [
+          [
+            "Luna: Encyclopædia Britannica 1911",
+            "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Silver"
+          ],
+          [
+            "Alquimia: RSC",
+            "https://periodic-table.rsc.org/alchemy/47/silver"
+          ]
+        ]
+      },
+      {
+        "id": "jade",
+        "nombre": "Jade",
+        "detalle": "Por confirmar en stock",
+        "foto": "",
+        "disponible": false,
+        "imagen": "En la tradición china el jade simboliza prosperidad, éxito y buena suerte.",
+        "invita": "Te invita a mirar lo que quieres cultivar con paciencia.",
+        "ancla": "Cultivo lo bueno con paciencia.",
+        "creencia": "Se asocia tradicionalmente con la prosperidad y la buena suerte.",
+        "fuentes": [
+          [
+            "Tradición: GIA",
+            "https://www.gia.edu/jade-history-lore"
+          ]
+        ]
+      }
+    ],
+    // Piezas hechas antes: únicas y YA VENDIDAS. Solo inspiración, sin botón de compra.
+    piezasAnteriores: [
+      {
+        "nombre": "Cianita y volcán",
+        "tipo": "Collar",
+        "foto": "joyas/01.jpg"
+      },
+      {
+        "nombre": "Turmalina de luna nueva",
+        "tipo": "Collar",
+        "foto": "joyas/02.jpg"
+      },
+      {
+        "nombre": "Jade y ámbar",
+        "tipo": "Collar",
+        "foto": "joyas/03.jpg"
+      },
+      {
+        "nombre": "Brasa y cianita",
+        "tipo": "Pulsera tejida",
+        "foto": "joyas/04.jpg"
+      },
+      {
+        "nombre": "Mar y coral",
+        "tipo": "Pulsera tejida",
+        "foto": "joyas/05.jpg"
+      },
+      {
+        "nombre": "Turquesa nocturna",
+        "tipo": "Collar",
+        "foto": "joyas/06.jpg"
+      },
+      {
+        "nombre": "Coral en la sombra",
+        "tipo": "Pulsera tejida",
+        "foto": "joyas/07.jpg"
+      },
+      {
+        "nombre": "Coral y cobre",
+        "tipo": "Pulsera tejida",
+        "foto": "joyas/08.jpg"
+      },
+      {
+        "nombre": "El Mago",
+        "tipo": "Pulsera",
+        "foto": "joyas/09.jpg"
+      },
+      {
+        "nombre": "La Amarra",
+        "tipo": "Pulsera",
+        "foto": "joyas/10.jpg"
+      },
+      {
+        "nombre": "La Torre",
+        "tipo": "Pulsera",
+        "foto": "joyas/11.jpg"
       }
     ],
 
@@ -640,52 +926,65 @@
     document.getElementById("precioMembresia").textContent = CONFIG.precioMembresia ? money(CONFIG.precioMembresia) + " al mes" : "Precio por confirmar";
     document.getElementById("btnLectura").href = payUrl(CONFIG.pagoLecturaUrl, "Hola Tania, quiero pagar mi lectura.");
     document.getElementById("btnMembresia").href = payUrl(CONFIG.pagoMembresiaUrl, "Hola Tania, quiero pagar mi membresía mensual.");
-    // joyas
-    document.getElementById("jewels").innerHTML = CONFIG.joyas.map(function(j){
-      return '<div class="jcard"><img src="' + j.foto + '" alt="' + j.nombre + '" loading="lazy"><div class="in">' +
-        '<span class="t">' + j.tipo + '</span><h3>' + j.nombre + '</h3><p class="m">' + j.mat + '</p>' +
-        '<span class="pr">' + money(j.precio) + (CONFIG.preciosDeEjemplo ? ' <span class="ex">precio de ejemplo</span>' : '') + '</span>' +
-        '<button class="btn alt" data-add="' + j.id + '">Agregar</button>' +
-        '<a class="btn ghost" href="' + payUrl(j.url, "Hola Tania, quiero la pieza " + j.nombre + ".") + '" target="_blank" rel="noopener">Pagar esta pieza</a>' +
+    // joyas: materiales para pieza a la medida
+    var esc = function(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;"); };
+    document.getElementById("materials").innerHTML = CONFIG.materiales.map(function(m){
+      var fig = m.foto ? '<img src="' + m.foto + '" alt="' + esc(m.nombre) + '" loading="lazy"><figcaption>imagen ilustrativa</figcaption>' : '';
+      var fu = (m.fuentes || []).map(function(x){ return '<a href="' + x[1] + '" target="_blank" rel="noopener">' + esc(x[0]) + '</a>'; }).join(" · ");
+      return '<div class="mcard' + (m.disponible ? '' : ' off') + '" data-mat="' + m.id + '">' + (fig ? '<figure>' + fig + '</figure>' : '') + '<div class="in">' +
+        '<span class="d">' + esc(m.detalle || "") + '</span><h3>' + esc(m.nombre) + '</h3>' +
+        '<p class="img">' + esc(m.imagen) + '</p><p class="inv">' + esc(m.invita) + '</p>' +
+        '<p class="anc"><b>Idea que ancla:</b> «' + esc(m.ancla) + '»</p>' +
+        '<p class="cre">Creencia tradicional: ' + esc(m.creencia) + '</p><p class="src">Fuentes: ' + fu + '</p>' +
+        (m.disponible ? '<button class="btn alt" data-pick="' + m.id + '">Elegir</button>' : '<button class="btn ghost" disabled>Por ahora no disponible</button>') +
         '</div></div>';
     }).join("");
-    Array.from(document.querySelectorAll("[data-add]")).forEach(function(b){
-      b.addEventListener("click", function(){ cart.push(b.getAttribute("data-add")); saveCart(); renderCart(); b.textContent = "Agregada ✓"; setTimeout(function(){ b.textContent = "Agregar"; }, 1200); });
+    Array.from(document.querySelectorAll("[data-pick]")).forEach(function(b){
+      b.addEventListener("click", function(){
+        var id = b.getAttribute("data-pick"), i = picks.indexOf(id);
+        if (i < 0) picks.push(id); else picks.splice(i, 1);
+        renderOrder();
+      });
     });
-    renderCart();
+    document.getElementById("tipoSel").innerHTML = CONFIG.pedido.tipos.map(function(t){ return '<button type="button" data-tipo="' + t + '">' + t + '</button>'; }).join("");
+    Array.from(document.querySelectorAll("[data-tipo]")).forEach(function(b){
+      b.addEventListener("click", function(){ tipo = b.getAttribute("data-tipo"); renderOrder(); });
+    });
+    document.getElementById("orderNota").addEventListener("input", renderOrder);
+    document.getElementById("soldGrid").innerHTML = CONFIG.piezasAnteriores.map(function(p){
+      return '<div><img src="' + p.foto + '" alt="' + esc(p.nombre) + ' (vendida)" loading="lazy"><b>Vendida</b>' + esc(p.nombre) + '</div>';
+    }).join("");
+    renderOrder();
   }
 
-  // ---- carrito sencillo ----
+  // ---- pedido de pieza ----
   var WA = "5215515245147";
   function money(n){ return "$" + Number(n).toLocaleString("es-MX") + " MXN"; }
   function waLink(msg){ return "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg); }
   function payUrl(u, msg){ return isPlaceholder(u) ? waLink(msg) : u; }
-  var cart = [];
-  try{ cart = JSON.parse(localStorage.getItem("gitania_cart_ana") || "[]"); }catch(e){ cart = []; }
-  function saveCart(){ try{ localStorage.setItem("gitania_cart_ana", JSON.stringify(cart)); }catch(e){} }
-  function byId(id){ return CONFIG.joyas.filter(function(j){ return j.id === id; })[0]; }
-  function renderCart(){
-    cart = cart.filter(byId);
-    var items = document.getElementById("cartItems"), tot = document.getElementById("cartTotal"), act = document.getElementById("cartActions");
-    if (!cart.length){ items.innerHTML = '<p class="small">Aún no agregas piezas.</p>'; tot.textContent = ""; act.innerHTML = ""; return; }
-    var total = 0;
-    items.innerHTML = cart.map(function(id, i){
-      var j = byId(id); total += j.precio;
-      return '<div class="row"><span>' + j.nombre + ' · ' + money(j.precio) + '</span><button data-rm="' + i + '">Quitar</button></div>';
-    }).join("");
-    tot.textContent = "Total: " + money(total);
-    var msg = "Hola Tania, quiero estas piezas:\n" + cart.map(function(id){ var j = byId(id); return "- " + j.nombre + " (" + money(j.precio) + ")"; }).join("\n") + "\nTotal: " + money(total);
-    var html = "";
-    if (cart.length === 1 && !isPlaceholder(byId(cart[0]).url)){
-      html += '<a class="btn" href="' + byId(cart[0]).url + '" target="_blank" rel="noopener">Pagar ' + money(total) + '</a>';
-    } else if (cart.every(function(id){ return !isPlaceholder(byId(id).url); })){
-      html += '<p class="small">Paga cada pieza con su botón:</p>' + cart.map(function(id){ var j = byId(id); return '<a class="btn" href="' + j.url + '" target="_blank" rel="noopener">Pagar ' + j.nombre + '</a>'; }).join("");
-    }
-    html += '<a class="btn ghost" href="' + waLink(msg) + '" target="_blank" rel="noopener">Enviar mi pedido por WhatsApp</a>';
-    act.innerHTML = html;
-    Array.from(items.querySelectorAll("[data-rm]")).forEach(function(b){
-      b.addEventListener("click", function(){ cart.splice(Number(b.getAttribute("data-rm")), 1); saveCart(); renderCart(); });
+  var picks = [], tipo = CONFIG.pedido.tipoPorDefecto;
+  function matById(id){ return CONFIG.materiales.filter(function(m){ return m.id === id && m.disponible; })[0]; }
+  function renderOrder(){
+    picks = picks.filter(matById);
+    Array.from(document.querySelectorAll("[data-mat]")).forEach(function(c){
+      var on = picks.indexOf(c.getAttribute("data-mat")) >= 0;
+      c.classList.toggle("on", on);
+      var b = c.querySelector("[data-pick]"); if (b) b.textContent = on ? "Elegida ✓ (quitar)" : "Elegir";
     });
+    Array.from(document.querySelectorAll("[data-tipo]")).forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-tipo") === tipo); });
+    var names = picks.map(function(id){ return matById(id).nombre; });
+    document.getElementById("orderMats").innerHTML = names.length ? names.map(function(n){ return "<span>" + n + "</span>"; }).join("") : '<p class="small">Aún no eliges piedras.</p>';
+    var P = CONFIG.pedido;
+    document.getElementById("orderPrice").textContent = "Precio orientativo: de " + money(P.precioMin) + " a " + money(P.precioMax) + ", según materiales y hechura. Tania te confirma el precio final.";
+    var nota = document.getElementById("orderNota").value.trim();
+    var msg = "Hola Tania, soy Ana. Quiero pedir una pieza programada:\n" +
+      "- Tipo: " + tipo + (tipo === "Pulsera" && P.para ? " para " + P.para : "") + "\n" +
+      "- Piedras y materiales: " + (names.length ? names.join(", ") : "(quiero que me recomiendes)") + "\n" +
+      (nota ? "- Nota: " + nota + "\n" : "") +
+      "Entiendo que el precio orientativo es de " + money(P.precioMin) + " a " + money(P.precioMax) + " y que tú me confirmas el final.";
+    var btn = document.getElementById("orderBtn");
+    btn.href = waLink(msg);
+    btn.textContent = "Pedir mi " + tipo.toLowerCase();
   }
 
   // Si ya entró desde vip.html (misma sesión), abrir directo. Va al final para que todo esté definido.
