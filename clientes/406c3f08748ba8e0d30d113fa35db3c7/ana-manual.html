@@ -82,6 +82,25 @@
   .jewel h3{font-size:1.1rem;font-weight:800}
   .price{font-weight:800;margin:6px 0 12px}
 
+  .featured{border:2px solid var(--gold);background:#FFFBF0}
+  .obed-img{margin:12px 0;border-radius:14px;overflow:hidden}
+  .obed-img .slot{aspect-ratio:3/4;max-width:360px;margin:0 auto;border:2px dashed var(--gold);border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:var(--soft);background:#FFF6E0;font-size:.9rem}
+  .obed-img img{max-width:420px;margin:0 auto;border-radius:14px}
+  .jgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(min-width:640px){.jgrid{grid-template-columns:repeat(3,1fr)}}
+  .jcard{background:var(--raised);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+  .jcard img{width:100%;aspect-ratio:1/1;object-fit:cover}
+  .jcard .in{padding:10px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
+  .jcard h3{font-size:.98rem;font-weight:800}
+  .jcard .t{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--sky);font-weight:700}
+  .jcard .m{font-size:.76rem;color:var(--soft);flex:1}
+  .jcard .pr{font-weight:800}
+  .jcard .ex{font-size:.68rem;color:var(--soft);font-weight:400}
+  .jcard .btn{padding:9px;font-size:.82rem;margin-top:4px}
+  .cart .row{display:flex;justify-content:space-between;gap:10px;font-size:.9rem;padding:6px 0;border-bottom:1px solid var(--line)}
+  .cart .row button{border:none;background:none;color:var(--clay);cursor:pointer;font:inherit}
+  .cart .total{font-weight:800;font-size:1.05rem}
+  .cart .btn{margin-top:8px}
   .note{background:var(--clay-soft);border-radius:14px;padding:16px 18px;font-size:.9rem}
   .note b{color:var(--clay)}
   footer{padding:30px 0 50px;text-align:center;font-size:.82rem;color:var(--soft)}
@@ -115,6 +134,7 @@
     <h1>Tu membresía mensual venció</h1>
     <p>Tu membresía mensual de seguimiento venció; renuévala para seguir viendo tus recursos.</p>
     <p>La mensualidad incluye <b>tu lectura del mes</b> y mantiene tu acceso a todos tus materiales.</p>
+    <p class="small">Tus descargas del primer mes siguen siendo tuyas.</p>
     <a class="btn" id="renewBtn" href="#" target="_blank" rel="noopener">Renovar mi membresía</a>
     <p class="small" style="margin-top:14px">¿Ya pagaste o tienes dudas? <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>.</p>
     <p class="small">Este espacio es de acompañamiento y reflexión; no sustituye la atención psicológica ni médica.</p>
@@ -130,6 +150,7 @@
         <a href="#ejercicios">Ejercicios</a>
         <a href="#tapping">Tapping</a>
         <a href="#joyas">Joyas</a>
+        <a href="#pagos">Pagos</a>
         <a href="#apoyo">Apoyo</a>
       </nav>
     </div>
@@ -153,11 +174,11 @@
     <!-- ===== Tu lectura ===== -->
     <section id="lectura">
       <span class="label">I · Tu lectura</span>
-      <h2>Lo que vimos en las cartas</h2>
-      <p class="lead">Un resumen para volver a él cuando quieras.</p>
+      <h2>Lo que mostró tu lectura</h2>
+      <p class="lead">El resumen de lo que trabajamos, para ti y para Obed.</p>
       <div class="box">
-        <p><b>Tema central:</b> desbloquear la intuición y soltar el miedo.</p>
-        <div class="pending"><b>Pendiente (Tania):</b> resumen de la lectura con tus palabras — cartas que salieron, qué te mostraron y qué te invitan a mirar.</div>
+        <p><b>Lo central:</b> desbloquear la intuición y liberar el miedo — en ti y en Obed.</p>
+        <div class="pending"><b>Pendiente (Tania):</b> resumen de la lectura — cartas que salieron, qué mostraron sobre la intuición y el miedo de Ana, y qué mostraron sobre Obed.</div>
       </div>
       <div class="media" id="lecturaMedia"></div>
     </section>
@@ -166,12 +187,12 @@
     <section id="ejercicios">
       <span class="label">II · Ejercicios</span>
       <h2>Ejercicios para Ana y Obed</h2>
-      <p class="lead">Cada ejercicio tiene un audio con mi voz y, cuando aplique, un video. Hazlos en un lugar tranquilo.</p>
+      <p class="lead">Cada ejercicio tiene un audio con mi voz y, cuando aplique, un video, con botón para descargar. Hazlos en un lugar tranquilo.</p>
 
       <div class="box ex">
         <span class="for">Para Ana y Obed</span>
         <h3>Doble cono infinito</h3>
-        <p>Un ejercicio de visualización para desbloquear y equilibrar tu energía.</p>
+        <p>Para los desbloqueos en general y para normalizar la energía, regresándola a lo que Grabovoi llama "la norma del Creador".</p>
         <div class="pending"><b>Pendiente (Tania):</b> instrucciones paso a paso, duración y cada cuándo hacerlo.</div>
         <div class="media" data-media="dobleCono"></div>
       </div>
@@ -179,16 +200,17 @@
       <div class="box ex">
         <span class="for">Para Ana y Obed</span>
         <h3>Hoyo negro</h3>
-        <p>Un ejercicio de visualización para soltar lo que pesa y dejar ir la energía estancada.</p>
+        <p>Un ejercicio de catarsis: soltar la energía estancada para poder avanzar.</p>
         <div class="pending"><b>Pendiente (Tania):</b> instrucciones paso a paso, duración y cada cuándo hacerlo.</div>
         <div class="media" data-media="hoyoNegro"></div>
       </div>
 
-      <div class="box ex">
-        <span class="for">Para Obed</span>
+      <div class="box ex featured">
+        <span class="for">Para Obed · lo trabajan Ana y Tania</span>
         <h3>Antiterrorismo</h3>
-        <p>Un ejercicio para cultivar calma y paz, contigo mismo y con los demás. Úsalo todos los días durante al menos un mes.</p>
-        <div class="pending"><b>Pendiente (Tania):</b> imagen de cuerpo completo de Obed trabajada por Tania, e instrucciones de uso.</div>
+        <p>Para apaciguar la energía violenta, hacia uno mismo y hacia los demás, y cultivar calma. Este es un material visual importante: Ana y Tania lo usan <b>todos los días durante al menos un mes</b>.</p>
+        <div class="obed-img" id="obedImg"></div>
+        <div class="pending"><b>Pendiente (Tania):</b> instrucciones de uso (cómo mirar la imagen, cuánto tiempo, a qué hora).</div>
         <div class="media" data-media="antiterrorismo"></div>
       </div>
     </section>
@@ -197,7 +219,7 @@
     <section id="tapping">
       <span class="label">III · Tapping para Ana</span>
       <h2>Tus frases, con tapping</h2>
-      <p class="lead">Para practicar de 3 a 6 meses. Frente a un espejo, mírate a los ojos y repite la frase mientras das golpecitos suaves en cada punto, en este orden.</p>
+      <p class="lead">Para practicar mínimo 3 y máximo 6 meses. Tres temas: intuición, miedo y perdón. Frente a un espejo, mírate a los ojos y repite la frase mientras das golpecitos suaves en cada punto, en este orden.</p>
 
       <div class="box">
         <span class="label">Tus frases</span>
@@ -219,15 +241,57 @@
         </ol>
       </div>
       <div class="media" data-media="tapping"></div>
+
+      <div class="box">
+        <span class="label">Práctica de perdón · según Grabovoi</span>
+        <p>Dos caminos de perdón, a tu ritmo: <b>de ti hacia tu mamá</b>, y <b>de ti hacia ti misma como madre</b>.</p>
+        <div class="grid two">
+          <div><b>Hacia tu mamá</b><div class="media" data-media="perdonMama"></div></div>
+          <div><b>Hacia ti misma como madre</b><div class="media" data-media="perdonMadre"></div></div>
+        </div>
+        <p class="small" id="grabovoiSeq"></p>
+      </div>
     </section>
 
     <!-- ===== Joyas ===== -->
     <section id="joyas">
       <span class="label">IV · Joyas para ti</span>
-      <h2>Pulseras y collares hechos con intención</h2>
-      <p class="lead">Si quieres acompañar tu proceso con una pieza, puedes pedirla aquí. Obed puede elegir la suya, con el visto bueno de su mamá. El precio cambia según el material (plata, cobre, piedras).</p>
-      <div class="grid two" id="jewels"></div>
-      <p class="small">Después de pagar, escríbeme por <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">WhatsApp</a> para elegir juntas los detalles de tu pieza.</p>
+      <h2>Pulseras y collares programados</h2>
+      <p class="lead">Si quieres acompañar tu proceso con una pieza, agrégala aquí y págala en esta misma página. Obed puede elegir la suya —collar o pulsera—, con el visto bueno de su mamá. El precio cambia según el material (plata 950 o 999, cobre, oro laminado, piedras). También hago piezas a tu medida.</p>
+      <div class="jgrid" id="jewels"></div>
+      <div class="box cart" id="cart">
+        <span class="label">Tu pedido</span>
+        <div id="cartItems"><p class="small">Aún no agregas piezas.</p></div>
+        <p class="total" id="cartTotal"></p>
+        <div id="cartActions"></div>
+      </div>
+    </section>
+
+    <!-- ===== Pagos ===== -->
+    <section id="pagos">
+      <span class="label">V · Pagos</span>
+      <h2>Tu membresía y tus lecturas</h2>
+      <div class="box">
+        <ul style="margin:0;padding-left:20px">
+          <li><b>Este primer mes</b> ya está pagado con tu lectura: usa todo y descarga lo que necesites.</li>
+          <li><b>Desde el segundo mes</b>, la mensualidad de seguimiento incluye <b>tu lectura del mes</b> y mantiene tu acceso a todos tus materiales.</li>
+        </ul>
+      </div>
+      <div class="grid two">
+        <div class="box jewel">
+          <h3>Membresía mensual de seguimiento</h3>
+          <p class="small">Incluye la lectura del mes + acceso a tus materiales + material nuevo.</p>
+          <p class="price" id="precioMembresia"></p>
+          <a class="btn" id="btnMembresia" href="#" target="_blank" rel="noopener">Pagar mi membresía</a>
+        </div>
+        <div class="box jewel">
+          <h3>Lectura</h3>
+          <p class="small">Una lectura simbólica de cartas, sin membresía.</p>
+          <p class="price" id="precioLectura"></p>
+          <a class="btn alt" id="btnLectura" href="#" target="_blank" rel="noopener">Pagar mi lectura</a>
+        </div>
+      </div>
+      <p class="small">Si tienes cualquier problema para pagar, <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">escríbeme por WhatsApp</a>.</p>
     </section>
 
     <!-- ===== Apoyo ===== -->
@@ -257,11 +321,113 @@
     // Membresía: acceso pagado hasta este día (inclusive, hora local del navegador).
     pagadoHasta: "2026-12-18",
 
-    // Links de pago (marcadores hasta que Tania elija cuenta).
+    // Precios y links de pago (MARCADORES hasta que Tania decida y cree los links).
+    // Un link de Mercado Pago por concepto. Mientras diga MAYÚSCULAS_URL, el botón abre WhatsApp.
+    precioLectura: 2520,              // confirmado por Tania
+    precioMembresia: null,            // pendiente (ver propuesta-cobro.md); null = "por confirmar"
     pagoMembresiaUrl: "PAGO_MEMBRESIA_URL",
+    pagoLecturaUrl: "PAGO_LECTURA_URL",
+    preciosDeEjemplo: true,           // true = muestra "precio de ejemplo" bajo cada joya
     joyas: [
-      { nombre: "Pulsera hecha con intención", detalle: "Plata, cobre o piedras, a tu elección.", precio: "Precio por confirmar", url: "JOYA_PAGO_URL", icono: "◯" },
-      { nombre: "Collar hecho con intención",  detalle: "Plata, cobre o piedras, a tu elección.", precio: "Precio por confirmar", url: "JOYA_PAGO_URL", icono: "◇" }
+      {
+            "id": "p01",
+            "nombre": "Cianita y volcán",
+            "tipo": "Collar",
+            "mat": "Cuentas de piedra volcánica, dije de cianita azul en bruto; broche y garra del dije de oro laminado.",
+            "foto": "joyas/01.jpg",
+            "precio": 1200,
+            "url": "JOYA_PAGO_URL_P01"
+      },
+      {
+            "id": "p02",
+            "nombre": "Turmalina de luna nueva",
+            "tipo": "Collar",
+            "mat": "Turmalina negra envuelta en alambre de plata 950, cordón de hilo de algodón encerado, cuentas de piedra volcánica.",
+            "foto": "joyas/02.jpg",
+            "precio": 1200,
+            "url": "JOYA_PAGO_URL_P02"
+      },
+      {
+            "id": "p03",
+            "nombre": "Jade y ámbar",
+            "tipo": "Collar",
+            "mat": "Dije de jade serpentino, separadores de ámbar, cuentas de piedra volcánica, broche de acero.",
+            "foto": "joyas/03.jpg",
+            "precio": 1000,
+            "url": "JOYA_PAGO_URL_P03"
+      },
+      {
+            "id": "p04",
+            "nombre": "Brasa y cianita",
+            "tipo": "Pulsera tejida",
+            "mat": "Tejido de cobre plastificado rojo, cianita, broche de acero.",
+            "foto": "joyas/04.jpg",
+            "precio": 1000,
+            "url": "JOYA_PAGO_URL_P04"
+      },
+      {
+            "id": "p05",
+            "nombre": "Mar y coral",
+            "tipo": "Pulsera tejida",
+            "mat": "Cobre plastificado verde azulado, coral rojo, broche de acero.",
+            "foto": "joyas/05.jpg",
+            "precio": 1000,
+            "url": "JOYA_PAGO_URL_P05"
+      },
+      {
+            "id": "p06",
+            "nombre": "Turquesa nocturna",
+            "tipo": "Collar",
+            "mat": "Turquesa sintética, cuentas de vidrio negro, broche de acero.",
+            "foto": "joyas/06.jpg",
+            "precio": 1000,
+            "url": "JOYA_PAGO_URL_P06"
+      },
+      {
+            "id": "p07",
+            "nombre": "Coral en la sombra",
+            "tipo": "Pulsera tejida",
+            "mat": "Cobre plastificado negro, coral rojo, broche de acero.",
+            "foto": "joyas/07.jpg",
+            "precio": 1000,
+            "url": "JOYA_PAGO_URL_P07"
+      },
+      {
+            "id": "p08",
+            "nombre": "Coral y cobre",
+            "tipo": "Pulsera tejida",
+            "mat": "Cobre plastificado negro, coral rojo, remates y broche de cobre.",
+            "foto": "joyas/08.jpg",
+            "precio": 1000,
+            "url": "JOYA_PAGO_URL_P08"
+      },
+      {
+            "id": "p09",
+            "nombre": "El Mago",
+            "tipo": "Pulsera",
+            "mat": "Cobre, cianita, broche de cobre con baño color oro.",
+            "foto": "joyas/09.jpg",
+            "precio": 1000,
+            "url": "JOYA_PAGO_URL_P09"
+      },
+      {
+            "id": "p10",
+            "nombre": "La Amarra",
+            "tipo": "Pulsera",
+            "mat": "Cobre plastificado negro, coral rojo, broche de acero.",
+            "foto": "joyas/10.jpg",
+            "precio": 1000,
+            "url": "JOYA_PAGO_URL_P10"
+      },
+      {
+            "id": "p11",
+            "nombre": "La Torre",
+            "tipo": "Pulsera",
+            "mat": "Tejido de cobre, hilo elástico y cubos de vidrio negro.",
+            "foto": "joyas/11.jpg",
+            "precio": 1000,
+            "url": "JOYA_PAGO_URL_P11"
+      }
     ],
 
     // Audios (voz de Tania, ElevenLabs) y videos. Deja "" si aún no existe.
@@ -270,7 +436,9 @@
       lectura:        { audio: "", video: "", pdf: "" },
       dobleCono:      { audio: "", video: "" },
       hoyoNegro:      { audio: "", video: "" },
-      antiterrorismo: { audio: "", video: "", imagen: "" },
+      antiterrorismo: { audio: "", video: "" },
+      perdonMama:     { audio: "", video: "" },
+      perdonMadre:    { audio: "", video: "" },
       tapping:        { audio: "", video: "" }
     },
 
@@ -280,7 +448,13 @@
       "Aunque cargué con heridas de mi mamá, elijo perdonarla y perdonarme, y me doy permiso de estar en paz.",
       "Aunque como madre no siempre supe cómo hacerlo, me perdono: hice lo mejor que pude con lo que sabía."
     ],
-    fraseCierre: "Me amo y me acepto total y completamente."
+    fraseCierre: "Me amo y me acepto total y completamente.",
+
+    // Imagen de cuerpo completo de Obed trabajada por Tania (archivo en esta carpeta).
+    imagenObed: "",
+
+    // Secuencia de Grabovoi para el perdón que elija Tania (texto libre). "" = no se muestra.
+    secuenciaPerdon: ""
   };
   // ===================== fin CONFIG =====================
 
@@ -306,7 +480,7 @@
     var m = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
     return p[2] + " de " + m[p[1]-1] + " de " + p[0];
   }
-  function isPlaceholder(u){ return !u || /^[A-Z_]+$/.test(u); }
+  function isPlaceholder(u){ return !u || !/^https?:\/\//.test(u); }  // solo cuenta como link real si empieza con http
 
   // ---- abrir ----
   var gate = document.getElementById("gate"), app = document.getElementById("app"), expired = document.getElementById("expired");
@@ -322,7 +496,6 @@
     render();
   }
   var KEY = "gitania_vip_ok";
-  try{ if (sessionStorage.getItem(KEY) === CONFIG.accessHash) open(); }catch(e){}
 
   async function tryUnlock(){
     var u = (document.getElementById("gUser").value || "").trim().toLowerCase();
@@ -380,7 +553,7 @@
     document.getElementById("lecturaMedia").innerHTML = mediaBlock(CONFIG.media.lectura, "la lectura grabada");
     Array.from(document.querySelectorAll("[data-media]")).forEach(function(el){
       var k = el.getAttribute("data-media");
-      var names = {dobleCono:"guía del doble cono infinito", hoyoNegro:"guía del hoyo negro", antiterrorismo:"guía del ejercicio", tapping:"ronda de tapping guiada"};
+      var names = {dobleCono:"guía del doble cono infinito", hoyoNegro:"guía del hoyo negro", antiterrorismo:"guía del ejercicio", tapping:"ronda de tapping guiada", perdonMama:"guía de perdón hacia tu mamá", perdonMadre:"guía de perdón hacia ti misma"};
       el.innerHTML = mediaBlock(CONFIG.media[k], names[k] || "guía");
     });
     document.getElementById("phrases").innerHTML = CONFIG.frases.map(function(f, i){
@@ -392,11 +565,69 @@
       var m = p[1] === "mp4" ? '<video src="' + src + '" autoplay muted loop playsinline></video>' : '<img src="' + src + '" alt="' + p[2] + '" loading="lazy">';
       return '<div class="tap">' + m + '<div><b>' + (i+1) + '. ' + p[2] + '</b>' + p[3] + '<br><a href="' + src + '" download>⬇ Descargar</a></div></div>';
     }).join("");
+    // imagen de Obed
+    document.getElementById("obedImg").innerHTML = CONFIG.imagenObed
+      ? '<img src="' + CONFIG.imagenObed + '" alt="Imagen de Obed para el ejercicio">' + dl(CONFIG.imagenObed, "Descargar imagen")
+      : '<div class="slot"><div><b>Aquí va la imagen de cuerpo completo de Obed</b><br>trabajada con números por Tania.<br><br>(espacio reservado)</div></div>';
+    document.getElementById("grabovoiSeq").textContent = CONFIG.secuenciaPerdon
+      ? "Secuencia para el perdón, según Grabovoi: " + CONFIG.secuenciaPerdon + ". Repítela número por número." : "";
+    // pagos
+    document.getElementById("precioLectura").textContent = money(CONFIG.precioLectura);
+    document.getElementById("precioMembresia").textContent = CONFIG.precioMembresia ? money(CONFIG.precioMembresia) + " al mes" : "Precio por confirmar";
+    document.getElementById("btnLectura").href = payUrl(CONFIG.pagoLecturaUrl, "Hola Tania, quiero pagar mi lectura.");
+    document.getElementById("btnMembresia").href = payUrl(CONFIG.pagoMembresiaUrl, "Hola Tania, quiero pagar mi membresía mensual.");
+    // joyas
     document.getElementById("jewels").innerHTML = CONFIG.joyas.map(function(j){
-      var href = isPlaceholder(j.url) ? "https://wa.me/5215515245147" : j.url;
-      return '<div class="box jewel"><div class="ph">' + j.icono + '</div><h3>' + j.nombre + '</h3><p class="small">' + j.detalle + '</p><p class="price">' + j.precio + '</p><a class="btn alt" href="' + href + '" target="_blank" rel="noopener">Pagar mi pieza</a></div>';
+      return '<div class="jcard"><img src="' + j.foto + '" alt="' + j.nombre + '" loading="lazy"><div class="in">' +
+        '<span class="t">' + j.tipo + '</span><h3>' + j.nombre + '</h3><p class="m">' + j.mat + '</p>' +
+        '<span class="pr">' + money(j.precio) + (CONFIG.preciosDeEjemplo ? ' <span class="ex">precio de ejemplo</span>' : '') + '</span>' +
+        '<button class="btn alt" data-add="' + j.id + '">Agregar</button>' +
+        '<a class="btn ghost" href="' + payUrl(j.url, "Hola Tania, quiero la pieza " + j.nombre + ".") + '" target="_blank" rel="noopener">Pagar esta pieza</a>' +
+        '</div></div>';
     }).join("");
+    Array.from(document.querySelectorAll("[data-add]")).forEach(function(b){
+      b.addEventListener("click", function(){ cart.push(b.getAttribute("data-add")); saveCart(); renderCart(); b.textContent = "Agregada ✓"; setTimeout(function(){ b.textContent = "Agregar"; }, 1200); });
+    });
+    renderCart();
   }
+
+  // ---- carrito sencillo ----
+  var WA = "5215515245147";
+  function money(n){ return "$" + Number(n).toLocaleString("es-MX") + " MXN"; }
+  function waLink(msg){ return "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg); }
+  function payUrl(u, msg){ return isPlaceholder(u) ? waLink(msg) : u; }
+  var cart = [];
+  try{ cart = JSON.parse(localStorage.getItem("gitania_cart_ana") || "[]"); }catch(e){ cart = []; }
+  function saveCart(){ try{ localStorage.setItem("gitania_cart_ana", JSON.stringify(cart)); }catch(e){} }
+  function byId(id){ return CONFIG.joyas.filter(function(j){ return j.id === id; })[0]; }
+  function renderCart(){
+    cart = cart.filter(byId);
+    var items = document.getElementById("cartItems"), tot = document.getElementById("cartTotal"), act = document.getElementById("cartActions");
+    if (!cart.length){ items.innerHTML = '<p class="small">Aún no agregas piezas.</p>'; tot.textContent = ""; act.innerHTML = ""; return; }
+    var total = 0;
+    items.innerHTML = cart.map(function(id, i){
+      var j = byId(id); total += j.precio;
+      return '<div class="row"><span>' + j.nombre + ' · ' + money(j.precio) + '</span><button data-rm="' + i + '">Quitar</button></div>';
+    }).join("");
+    tot.textContent = "Total: " + money(total);
+    var msg = "Hola Tania, quiero estas piezas:\n" + cart.map(function(id){ var j = byId(id); return "- " + j.nombre + " (" + money(j.precio) + ")"; }).join("\n") + "\nTotal: " + money(total);
+    var html = "";
+    if (cart.length === 1 && !isPlaceholder(byId(cart[0]).url)){
+      html += '<a class="btn" href="' + byId(cart[0]).url + '" target="_blank" rel="noopener">Pagar ' + money(total) + '</a>';
+    } else if (cart.every(function(id){ return !isPlaceholder(byId(id).url); })){
+      html += '<p class="small">Paga cada pieza con su botón:</p>' + cart.map(function(id){ var j = byId(id); return '<a class="btn" href="' + j.url + '" target="_blank" rel="noopener">Pagar ' + j.nombre + '</a>'; }).join("");
+    }
+    html += '<a class="btn ghost" href="' + waLink(msg) + '" target="_blank" rel="noopener">Enviar mi pedido por WhatsApp</a>';
+    act.innerHTML = html;
+    Array.from(items.querySelectorAll("[data-rm]")).forEach(function(b){
+      b.addEventListener("click", function(){ cart.splice(Number(b.getAttribute("data-rm")), 1); saveCart(); renderCart(); });
+    });
+  }
+
+  // Si ya entró desde vip.html (misma sesión), abrir directo. Va al final para que todo esté definido.
+  var autoOk = false;
+  try{ autoOk = sessionStorage.getItem(KEY) === CONFIG.accessHash; }catch(e){}
+  if (autoOk) open();
 })();
 </script>
 </body>
