@@ -253,6 +253,14 @@
       </div>
     </section>
 
+    <!-- ===== Nombres (opcional, apagada por defecto) ===== -->
+    <section id="nombres" style="display:none">
+      <span class="label">Propuesta opcional</span>
+      <h2>Nombres posibles para Obed</h2>
+      <p class="lead">Una propuesta simbólica para que tú y Obed la consideren, sin ninguna presión. Un nombre nuevo puede ser un gesto de nuevo comienzo; la decisión es solo de ustedes.</p>
+      <div class="grid two" id="nombresList"></div>
+    </section>
+
     <!-- ===== Joyas ===== -->
     <section id="joyas">
       <span class="label">IV · Joyas para ti</span>
@@ -450,6 +458,55 @@
     ],
     fraseCierre: "Me amo y me acepto total y completamente.",
 
+    // Sección opcional "Nombres posibles para Obed": false = oculta.
+    mostrarNombres: false,
+    nombres: [
+      {
+            "nombre": "Renato",
+            "significado": "Latín, de Renatus: \"nacido de nuevo\""
+      },
+      {
+            "nombre": "Uriel",
+            "significado": "Hebreo: \"Dios es mi luz\" (de ʾur, \"luz, llama\")"
+      },
+      {
+            "nombre": "Lucio",
+            "significado": "Latín, de Lucius, derivado de lux, \"luz\""
+      },
+      {
+            "nombre": "Hugo",
+            "significado": "Germánico: de hugu, \"mente, pensamiento, espíritu\""
+      },
+      {
+            "nombre": "Conrado",
+            "significado": "Germánico: \"consejo valiente\" (kuoni \"valiente\" + rat \"consejo\")"
+      },
+      {
+            "nombre": "Ireneo",
+            "significado": "Griego, de Eirenaios: \"pacífico\""
+      },
+      {
+            "nombre": "Salomón",
+            "significado": "Hebreo, de Shelomo, derivado de shalom, \"paz\""
+      },
+      {
+            "nombre": "Federico",
+            "significado": "Germánico: \"gobernante pacífico\" (fridu \"paz\" + rih \"rey\")"
+      },
+      {
+            "nombre": "Valentín",
+            "significado": "Latín, de Valens: \"fuerte, vigoroso, sano\""
+      },
+      {
+            "nombre": "Bernardo",
+            "significado": "Germánico: bern \"oso\" + hart \"firme, valiente\""
+      },
+      {
+            "nombre": "León",
+            "significado": "Griego leon: \"león\""
+      }
+    ],
+
     // Imagen de cuerpo completo de Obed trabajada por Tania (archivo en esta carpeta).
     imagenObed: "",
 
@@ -565,6 +622,13 @@
       var m = p[1] === "mp4" ? '<video src="' + src + '" autoplay muted loop playsinline></video>' : '<img src="' + src + '" alt="' + p[2] + '" loading="lazy">';
       return '<div class="tap">' + m + '<div><b>' + (i+1) + '. ' + p[2] + '</b>' + p[3] + '<br><a href="' + src + '" download>⬇ Descargar</a></div></div>';
     }).join("");
+    // nombres (opcional)
+    if (CONFIG.mostrarNombres){
+      document.getElementById("nombres").style.display = "";
+      document.getElementById("nombresList").innerHTML = CONFIG.nombres.map(function(n){
+        return '<div class="box"><h3>' + n.nombre + '</h3><p class="small">' + n.significado + '</p></div>';
+      }).join("");
+    }
     // imagen de Obed
     document.getElementById("obedImg").innerHTML = CONFIG.imagenObed
       ? '<img src="' + CONFIG.imagenObed + '" alt="Imagen de Obed para el ejercicio">' + dl(CONFIG.imagenObed, "Descargar imagen")
