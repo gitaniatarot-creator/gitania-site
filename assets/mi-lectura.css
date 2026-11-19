@@ -12,3 +12,7 @@
 .lect-panel .acciones { max-width: none; }
 #verifTxt { margin-top: 14px; }
 .lect-preview { display: inline-block; margin: 0 auto 18px; padding: 6px 14px; border-radius: 999px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #17110a; background: var(--gold-bright); }
+.lect-preguntas, .lect-q { min-width: 0; }
+.lect-q > * { min-width: 0; }
+.lect-foto { max-width: 100%; height: auto; max-height: 78vh; object-fit: contain; background: rgba(0,0,0,0.25); }
+.lect-q audio { display: block; width: 100%; max-width: 100%; }
