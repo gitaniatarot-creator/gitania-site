@@ -292,6 +292,70 @@
     .canasta .basket-stage .canasta-icon.big svg{width:54px;height:54px}
     body.has-bar{padding-bottom:84px}
   }
+  /* ===== v3: sección de joyas en un solo fondo oscuro, canastita sin caja ===== */
+  body{overflow-x:clip}
+  #joyas{position:relative;isolation:isolate;color:var(--ivory);border-bottom:none;padding-bottom:56px}
+  #joyas::before{content:"";position:absolute;top:0;bottom:0;left:calc(50% - 50vw);right:calc(50% - 50vw);background:linear-gradient(175deg,var(--void-soft) 0%,var(--void) 55%,#0a1b22 100%);z-index:-1}
+  #joyas h2,#joyas h3,#joyas .joyas-sub{color:var(--ivory)}
+  #joyas .label{color:var(--gold-bright)}
+  #joyas p.lead,#joyas .small,#joyas p{color:#d9cfbd}
+  #joyas .box.featured,#joyas .reco{background:transparent;border:none;border-left:2px solid var(--gold-bright);border-radius:0;padding:2px 0 2px 16px;box-shadow:none}
+  #joyas .reco b,#joyas .intro-joyas b{color:var(--gold-bright)}
+  #joyas .tile{background:transparent;border:none;border-radius:14px;color:var(--ivory)}
+  #joyas .tile img,#joyas .tile .noimg{border-radius:12px}
+  #joyas .tile:hover,#joyas .tile:focus-visible{box-shadow:none}
+  #joyas .tile span{color:var(--ivory)}
+  #joyas .tile small{color:var(--ink-muted)}
+  #joyas .tile .sim{color:#bfb4a2}
+  #joyas .tile.on{border:none;box-shadow:0 0 0 2px var(--gold-bright)}
+  #joyas .tile-op{background:var(--void);color:var(--ivory);border:1px solid rgba(236,200,115,.35)}
+  #joyas .tile-acts .tadd{background:var(--gold-bright);color:var(--void);border:none}
+  #joyas .tile.on .tile-acts .tadd{background:transparent;color:var(--gold-bright);border:1px solid var(--gold-bright)}
+  #joyas .tile-acts .tinfo{background:transparent;color:var(--ink-muted);border:1px solid rgba(236,200,115,.25)}
+  #joyas .sgrid div{color:var(--ink-muted)}
+  @media(max-width:520px){#joyas .tgrid{grid-template-columns:repeat(2,1fr)} #joyas .tile .badge-rec{font-size:.56rem;letter-spacing:.03em;padding:2px 6px}}
+  #joyas .hovercard{color:var(--ink)}
+  #joyas .hovercard p{color:var(--ink)}
+  #joyas .hovercard .k{color:var(--soft)}
+  .joyas-layout .canasta{background:transparent;border:none;box-shadow:none;border-radius:0;padding:0}
+  .joyas-layout .canasta.drop-on{box-shadow:none}
+  .joyas-layout .canasta.drop-on .canasta-icon.big svg{fill:var(--ivory)}
+  .canasta .tipo{margin-top:10px}
+  .canasta .tipo button{border-radius:999px;background:transparent;border:1px solid rgba(236,200,115,.4)}
+  .boceto.hero{margin:6px auto 0;max-width:380px}
+  .boceto.hero svg{width:100%}
+  .stage-row{display:flex;align-items:center;justify-content:center;gap:18px;margin:4px 0 2px}
+  .canasta .canasta-icon.big{width:120px;height:120px;background:transparent;border:none;border-radius:0}
+  .canasta .canasta-icon.big svg{width:112px;height:112px;fill:var(--gold-bright);filter:drop-shadow(0 6px 14px rgba(0,0,0,.35))}
+  .canasta .canasta-icon.big .canasta-count{top:6px;right:0}
+  .stage-row .canasta-total{text-align:left;margin:0}
+  .stage-row .basket-hint{display:block;text-align:left;margin-top:2px}
+  .canasta .price-box{margin:6px 0 10px}
+  .canasta-item{background:transparent;border:none;border-bottom:1px solid rgba(236,200,115,.18);border-radius:0;padding:8px 0}
+  .canasta textarea,.envio input{background:rgba(255,255,255,.04);border:1px solid rgba(236,200,115,.3);color:var(--ivory)}
+  .envio{display:flex;flex-direction:column;gap:8px;margin:12px 0 4px}
+  .envio-tit{font-weight:800;color:var(--gold-bright)!important;margin:0;font-size:1rem}
+  .envio label{display:flex;flex-direction:column;gap:3px;font-size:.78rem;color:var(--ink-muted)}
+  .envio input{font:inherit;font-size:.95rem;padding:9px 10px;border-radius:10px;outline:none}
+  .envio input:focus{border-color:var(--gold-bright)}
+  .envio input[aria-invalid="true"]{border-color:var(--red-bright)}
+  .envio-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .envio-err{color:var(--red-bright)!important;font-size:.84rem;margin:0;min-height:1em}
+  .envio-err a{color:var(--gold-bright)}
+  .ghost-link{display:block;text-align:center;margin-top:10px;font-size:.85rem;color:var(--gold-bright)}
+  .ghost-link[hidden]{display:none}
+  @media(min-width:1000px){
+    .joyas-layout{grid-template-columns:minmax(0,1fr) 420px}
+    .joyas-layout .canasta{top:68px;max-height:calc(100vh - 80px);padding:0 6px 0 4px;scrollbar-width:thin;scrollbar-color:rgba(236,200,115,.3) transparent}
+  }
+  @media(max-width:999px){
+    .joyas-layout .canasta{background:var(--void);border-radius:0;padding:0 16px 14px;box-shadow:0 -24px 30px -10px var(--void)}
+    .canasta-bar{background:var(--void);border-bottom:none!important}
+    .canasta-bar button{background:transparent;border:1px solid var(--gold-bright);color:var(--gold-bright)}
+    .canasta-bar .canasta-icon{background:transparent;border:none}
+    .canasta .canasta-icon.big{width:90px;height:90px}
+    .canasta .canasta-icon.big svg{width:84px;height:84px}
+  }
   .canasta-float{position:fixed;left:12px;right:12px;bottom:12px;z-index:20;display:none;align-items:center;justify-content:space-between;gap:10px;background:var(--void);color:var(--ivory);border:1px solid var(--gold);border-radius:999px;padding:10px 16px;text-decoration:none;font-weight:700;font-size:.9rem;box-shadow:0 10px 28px -12px var(--void)}
   .canasta-float.show{display:flex}
   .canasta-float span{color:var(--gold-bright)}
@@ -498,26 +562,41 @@
         <div class="canasta-full" id="basketFull">
           <span class="label">Tu canastita</span>
           <h3>Pieza para Obed</h3>
-          <div class="tipo" id="tipoSel" style="margin-top:8px"></div>
-          <div class="basket-stage">
+          <div class="tipo" id="tipoSel"></div>
+          <div class="boceto hero" id="boceto"></div>
+          <div class="stage-row">
             <div class="canasta-icon big" id="basketIcon" aria-hidden="true">
               <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 18h32l-3.2 18.2A6 6 0 0 1 30.9 42H17.1a6 6 0 0 1-5.9-5.8L8 18zm16-4a8 8 0 0 0 8-8h-3.5a4.5 4.5 0 0 1-9 0H16a8 8 0 0 0 8 8z"/></svg>
               <span class="canasta-count" id="basketCount">0</span>
             </div>
-            <p class="basket-hint">Toca «+ Agregar» o arrastra aquí</p>
+            <div class="canasta-total" aria-live="polite"><span class="lbl">Total</span><span class="num" id="totalNum">$0 MXN</span><span class="basket-hint">Toca «+ Agregar» o arrastra aquí</span></div>
           </div>
-          <div class="canasta-total" aria-live="polite"><span class="lbl">Total</span><span class="num" id="totalNum">$0 MXN</span></div>
           <p class="price-box" id="orderPrice"></p>
           <div class="canasta-actions">
-            <a class="btn" id="payPiezaBtn" href="#" target="_blank" rel="noopener">Pagar mi pieza</a>
-            <a class="btn ghost" id="orderBtn" href="#" target="_blank" rel="noopener">Enviar mi elección a Tania</a>
+            <button type="button" class="btn" id="payPiezaBtn">Pagar mi pieza</button>
           </div>
+          <form class="envio" id="envioForm" hidden novalidate>
+            <p class="envio-tit">Datos de envío</p>
+            <p class="small">Para la persona que recibe la pieza. Tania te confirma el envío.</p>
+            <label>Nombre de quien recibe<input name="nombre" autocomplete="name" required maxlength="80"></label>
+            <label>Teléfono<input name="telefono" type="tel" inputmode="tel" autocomplete="tel" required maxlength="20" placeholder="10 dígitos"></label>
+            <label>Calle y número<input name="calle" autocomplete="address-line1" required maxlength="120"></label>
+            <label>Colonia<input name="colonia" autocomplete="address-line2" required maxlength="80"></label>
+            <div class="envio-2">
+              <label>Código postal<input name="cp" inputmode="numeric" autocomplete="postal-code" required maxlength="5" placeholder="5 dígitos"></label>
+              <label>Estado<input name="estado" autocomplete="address-level1" required maxlength="60"></label>
+            </div>
+            <label>Ciudad o municipio<input name="ciudad" autocomplete="address-level2" required maxlength="80"></label>
+            <label>Referencias (opcional)<input name="referencias" maxlength="200" placeholder="Entre calles, color de la casa…"></label>
+            <p class="envio-err" id="envioErr" role="alert"></p>
+            <button type="submit" class="btn" id="envioSubmit">Ir a pagar</button>
+          </form>
           <p class="small pay-note">Pago seguro con Mercado Pago: tarjeta, OXXO o tu cuenta.</p>
-          <div class="boceto" id="boceto"></div>
           <div id="orderMats" class="canasta-list"><p class="empty">Tu canastita está vacía. Toca una piedra o un material para agregarlo.</p></div>
-          <label class="small" for="orderNota" style="display:block;margin-top:10px">Características de la pieza (opcional): medida de la muñeca, colores, largo o algún detalle…</label>
+          <label class="small" for="orderNota" style="display:block;margin-top:12px">Características de la pieza (opcional): medida de la muñeca, colores, largo o algún detalle…</label>
           <textarea id="orderNota" rows="2"></textarea>
           <p class="small">Al pagar, te envío fotos reales de las piezas para que elijas la piedra; de preferencia que la elija Obed.</p>
+          <a class="ghost-link" id="orderBtn" href="#" target="_blank" rel="noopener">¿Dudas? Enviar mi elección a Tania</a>
         </div>
       </aside>
       </div>
@@ -1850,7 +1929,7 @@
     document.getElementById("totalNum").textContent = totTxt;
     document.getElementById("barCount").textContent = count;
     document.getElementById("barPrice").textContent = totTxt;
-    document.getElementById("boceto").innerHTML = picks.length ? bocetoSVG() : "";
+    document.getElementById("boceto").innerHTML = bocetoSVG();
     Array.from(document.querySelectorAll(".tile[data-mat]")).forEach(function(c){
       var id = c.getAttribute("data-mat"), p = pickOf(id), b = c.querySelector(".tadd"), sl = c.querySelector(".tile-op");
       if (!b) return;
@@ -1869,54 +1948,119 @@
       "Al pagar, me envías fotos reales de las piezas para elegir la piedra; de preferencia que la elija Obed.";
     var btn = document.getElementById("orderBtn");
     btn.href = waPedido(msg);
-    btn.textContent = "Enviar mi elección a Tania";
+    lastMsg = msg;
     var pay = document.getElementById("payPiezaBtn");
     var payNote = document.querySelector("#order .pay-note");
-    if (st.quote){
-      pay.hidden = true;
-      pay.classList.add("dis");
-      if (payNote) payNote.hidden = true;
-    } else {
+    var sub = document.getElementById("envioSubmit");
+    var form = document.getElementById("envioForm");
+    if (!picks.length){
+      envioOpen = false;
+      form.hidden = true;
       pay.hidden = false;
-      if (payNote) payNote.hidden = false;
-      var payMsg = "Hola Tania, soy Ana. Quiero pagar mi " + tipo.toLowerCase() + (tipo === "Pulsera" && P.para ? " para " + P.para : "") + ":\n" +
-        "- Tipo: " + tipo + (tipo === "Pulsera" && P.para ? " para " + P.para : "") + "\n" +
-        "- Piedras y materiales: " + (picks.length ? picks.map(pickLabel).join(", ") : "(quiero que me recomiendes)") + "\n" +
-        "- Total: " + pricePlain(st) + "\n" +
-        (nota ? "- Características: " + nota + "\n" : "");
-      pay.href = picks.length ? pagoHref("pieza", payMsg) : "#";
-      pay.textContent = picks.length ? "Pagar mi pieza · " + pricePlain(st) : "Pagar mi pieza";
+      pay.textContent = "Pagar mi pieza";
+      pay.classList.add("dis");
+      btn.hidden = false;
       if (payNote) payNote.textContent = "Pago seguro con Mercado Pago: tarjeta, OXXO o tu cuenta.";
-      pay.classList.toggle("dis", !picks.length);
+    } else if (st.quote){
+      pay.hidden = envioOpen;
+      pay.classList.remove("dis");
+      pay.textContent = "Pedir cotización";
+      sub.textContent = "Enviar cotización a Tania";
+      btn.hidden = true;
+      if (payNote) payNote.textContent = "El oro se cotiza el día de compra. Tania te responde por WhatsApp con el precio.";
+    } else {
+      pay.hidden = envioOpen;
+      pay.classList.remove("dis");
+      pay.textContent = "Pagar mi pieza · " + pricePlain(st);
+      sub.textContent = "Ir a pagar · " + pricePlain(st);
+      btn.hidden = false;
+      if (payNote) payNote.textContent = "Pago seguro con Mercado Pago: tarjeta, OXXO o tu cuenta.";
     }
   }
 
-  // Pago exacto de la pieza: el servidor recalcula el precio y crea el cobro en Mercado Pago.
+  // Pago o cotización: primero los datos de envío; luego Mercado Pago (pieza) o WhatsApp (oro, cotización).
+  var envioOpen = false, lastMsg = "";
+  var ENVIO_KEY = "gitania_envio_ana";
+  function envioData(form){
+    var d = {};
+    Array.from(form.elements).forEach(function(el){ if (el.name) d[el.name] = (el.value || "").replace(/\s+/g, " ").trim(); });
+    return d;
+  }
+  function envioCheck(form, d){
+    var bad = [];
+    var tel = (d.telefono || "").replace(/\D/g, "");
+    function mark(name, ok, label){ var el = form.elements[name]; el.setAttribute("aria-invalid", ok ? "false" : "true"); if (!ok) bad.push(label); }
+    mark("nombre", d.nombre.length >= 3, "nombre de quien recibe");
+    mark("telefono", tel.length >= 10 && tel.length <= 13, "teléfono (10 dígitos)");
+    mark("calle", d.calle.length >= 3, "calle y número");
+    mark("colonia", d.colonia.length >= 2, "colonia");
+    mark("cp", /^\d{5}$/.test(d.cp), "código postal (5 dígitos)");
+    mark("estado", d.estado.length >= 2, "estado");
+    mark("ciudad", d.ciudad.length >= 2, "ciudad o municipio");
+    return bad;
+  }
+  function envioTexto(d){
+    return "Datos de envío:\n- Recibe: " + d.nombre + "\n- Teléfono: " + d.telefono + "\n- Dirección: " + d.calle + ", col. " + d.colonia + ", CP " + d.cp + ", " + d.ciudad + ", " + d.estado +
+      (d.referencias ? "\n- Referencias: " + d.referencias : "");
+  }
   (function(){
     var pay = document.getElementById("payPiezaBtn");
-    if (!pay || !CONFIG.API_PAGO) return;
+    var form = document.getElementById("envioForm");
+    var err = document.getElementById("envioErr");
+    var sub = document.getElementById("envioSubmit");
+    if (!pay || !form) return;
+    try { var saved = JSON.parse(sessionStorage.getItem(ENVIO_KEY) || "{}"); Object.keys(saved).forEach(function(k){ if (form.elements[k]) form.elements[k].value = saved[k]; }); } catch(e){}
+    form.addEventListener("input", function(e){
+      if (e.target && e.target.name) e.target.removeAttribute("aria-invalid");
+      if (!form.querySelector('[aria-invalid="true"]')) err.textContent = "";
+      try { sessionStorage.setItem(ENVIO_KEY, JSON.stringify(envioData(form))); } catch(x){}
+    });
+    pay.addEventListener("click", function(){
+      if (!picks.length) return;
+      envioOpen = true;
+      form.hidden = false;
+      err.textContent = "";
+      renderOrder();
+      form.scrollIntoView({ block: "nearest", behavior: reduceMotion() ? "auto" : "smooth" });
+      var first = Array.from(form.querySelectorAll("input[required]")).filter(function(i){ return !i.value; })[0] || form.elements.nombre;
+      setTimeout(function(){ first.focus({ preventScroll: true }); }, 250);
+    });
     var busy = false;
-    pay.addEventListener("click", function(e){
-      if (!picks.length || priceState().quote) return;
+    form.addEventListener("submit", function(e){
       e.preventDefault();
-      if (busy) return;
+      if (busy || !picks.length) return;
+      var d = envioData(form);
+      var bad = envioCheck(form, d);
+      if (bad.length){ err.textContent = "Revisa: " + bad.join(", ") + "."; var b1 = form.querySelector('[aria-invalid="true"]'); if (b1) b1.focus(); return; }
+      err.textContent = "";
+      var st = priceState();
+      if (st.quote){
+        var txt = lastMsg.replace("Esta es mi elección", "Quiero una cotización. Esta es mi elección") + "\n" + envioTexto(d);
+        window.open(waPedido(txt), "_blank", "noopener");
+        err.textContent = "";
+        sub.textContent = "Listo: se abrió WhatsApp con tu selección y tus datos";
+        return;
+      }
+      if (!CONFIG.API_PAGO) return;
       busy = true;
-      var label = pay.textContent;
-      pay.textContent = "Abriendo Mercado Pago…";
-      pay.classList.add("dis");
-      var fallback = CONFIG.PAGOS && CONFIG.PAGOS.pieza;
+      var label = sub.textContent;
+      sub.textContent = "Abriendo Mercado Pago…";
+      sub.classList.add("dis");
       var body = {
         tipo: "pieza",
         pieza: tipo,
         items: picks.map(function(p){ return { id: p.id, op: p.op || null, qty: p.qty || 1 }; }),
-        nota: (document.getElementById("orderNota").value || "").trim()
+        nota: (document.getElementById("orderNota").value || "").trim(),
+        envio: d
       };
       fetch(CONFIG.API_PAGO, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
-        .then(function(r){ return r.json().then(function(d){ if (!r.ok || !d.init_point) throw new Error(d.error || "error"); return d; }); })
-        .then(function(d){ window.location.href = d.init_point; })
-        .catch(function(){
-          busy = false; pay.textContent = label; pay.classList.remove("dis");
-          if (!isPlaceholder(fallback)) window.location.href = fallback;
+        .then(function(r){ return r.json().then(function(x){ if (!r.ok || !x.init_point){ var er = new Error(x.error || "error"); er.status = r.status; throw er; } return x; }); })
+        .then(function(x){ window.location.href = x.init_point; })
+        .catch(function(er){
+          busy = false; sub.textContent = label; sub.classList.remove("dis");
+          var wa = waPedido(lastMsg + "\n" + envioTexto(d));
+          if (er && er.status === 400 && er.message && er.message !== "error") err.textContent = er.message;
+          else err.innerHTML = 'No se pudo abrir Mercado Pago. Intenta de nuevo en un momento, o <a href="' + wa + '" target="_blank" rel="noopener">envía tu elección y tus datos a Tania por WhatsApp</a>.';
         });
     });
   })();
