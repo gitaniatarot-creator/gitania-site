@@ -1,0 +1,112 @@
+/* Gitania: piezas extra para Tienda, Lectura Express y Encuesta, en el mismo lenguaje del sitio
+   (fondo estelar, círculos dorados, versalitas espaciadas, botones en píldora). */
+.page-section.compact { padding-top: 96px; padding-bottom: 96px; }
+.page-section.first { padding-top: 130px; }
+.section-inner.wide { max-width: 760px; }
+.hero-tienda .section-title { font-size: clamp(30px, 5vw, 46px); }
+.hand-note { margin: 14px auto 0; color: var(--gold-bright); font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; }
+
+/* menú de secciones de la tienda (píldoras como el selector de idioma) */
+.tienda-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 34px auto 0; max-width: 640px; }
+.tienda-chips a { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; color: var(--ivory); border: 1.5px solid rgba(255, 255, 255, 0.32); border-radius: 999px; padding: 9px 14px; transition: background 180ms ease, color 180ms ease, border-color 180ms ease; }
+.tienda-chips a:hover, .tienda-chips a:focus-visible { background: var(--ivory); color: #111; border-color: var(--ivory); }
+
+/* precio */
+.precio { margin: 28px 0 0; display: flex; align-items: baseline; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.precio b { font-size: clamp(34px, 6vw, 44px); font-weight: 500; color: var(--ink); line-height: 1; }
+.precio small { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-bright); }
+.precio s { color: var(--ink-muted); font-size: 16px; }
+.precio .off { font-size: 11px; letter-spacing: 0.14em; color: #17110a; background: var(--gold-bright); border-radius: 999px; padding: 3px 9px; font-weight: 700; }
+
+/* acciones: botones en píldora del sitio */
+.acciones { display: flex; flex-direction: column; gap: 12px; max-width: 340px; margin: 28px auto 0; }
+.btn-pago, .btn-sec, .btn-wa {
+  display: flex; align-items: center; justify-content: center; text-align: center; text-decoration: none;
+  min-height: 48px; border-radius: 999px; padding: 14px 22px; font-family: "Karla", -apple-system, "Segoe UI", sans-serif;
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; transition: background 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+.btn-pago { background: var(--red); border: none; color: var(--ivory); box-shadow: 0 12px 32px rgba(200, 30, 63, 0.3); }
+.btn-pago:hover, .btn-pago:focus-visible { background: var(--red-deep); transform: translateY(-2px); }
+.btn-pago[disabled] { opacity: 0.6; cursor: progress; transform: none; }
+.btn-sec { background: transparent; border: 1px solid rgba(236, 200, 115, 0.6); color: var(--gold-bright); }
+.btn-sec:hover, .btn-sec:focus-visible { border-color: var(--gold-bright); background: rgba(236, 200, 115, 0.08); transform: translateY(-2px); }
+.btn-wa { background: #25d366; border: none; color: #fff; box-shadow: 0 12px 32px rgba(37, 211, 102, 0.22); }
+.btn-wa:hover, .btn-wa:focus-visible { background: #1fbd5a; transform: translateY(-2px); }
+.seg { margin: 4px 0 0; font-size: 12.5px; color: var(--ink-muted); text-align: center; }
+
+/* formulario de pago: mismos campos de línea dorada que el acceso VIP */
+.form-pago { display: flex; flex-direction: column; gap: 16px; text-align: left; }
+.form-pago[hidden] { display: none; }
+.form-pago .vip-login-input { width: 100%; }
+.form-pago .vip-login-input[aria-invalid="true"] { border-bottom-color: var(--red-bright); }
+.campo-nota { margin: -10px 0 0; font-size: 12px; color: var(--ink-muted); }
+
+/* listas con destellos */
+.destellos { list-style: none; padding: 0; margin: 22px auto 0; max-width: 46ch; text-align: left; color: var(--ink-muted); font-size: 15px; line-height: 1.7; display: grid; gap: 6px; }
+.destellos li { display: flex; gap: 10px; }
+.destellos li::before { content: "✦"; color: var(--gold-bright); flex: none; }
+
+/* video ligero con marco dorado */
+.yt { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: var(--void-soft); border: none; padding: 0; cursor: pointer; margin: 30px auto 0;
+  box-shadow: 0 0 0 1px rgba(236, 200, 115, 0.45), 0 0 26px 2px rgba(212, 160, 23, 0.22), 0 18px 34px -18px rgba(0, 0, 0, 0.6); }
+.yt img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.85; }
+.yt .play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.yt .play span { width: 64px; height: 64px; border-radius: 50%; background: rgba(13, 34, 43, 0.6); border: 1px solid rgba(236, 200, 115, 0.8); box-shadow: 0 0 24px rgba(212, 160, 23, 0.45); display: flex; align-items: center; justify-content: center; }
+.yt .play span::before { content: ""; margin-left: 5px; border-left: 18px solid var(--gold-bright); border-top: 11px solid transparent; border-bottom: 11px solid transparent; }
+.yt iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* joyería: pequeños círculos con cada pieza */
+.joyas-circulos { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(14px, 3vw, 24px); margin: 34px auto 0; }
+.joyas-circulos img { width: clamp(92px, 22vw, 128px); height: clamp(92px, 22vw, 128px); border-radius: 50%; object-fit: cover; background: #fff;
+  box-shadow: 0 0 0 1px rgba(236, 200, 115, 0.6), 0 0 22px 3px rgba(212, 160, 23, 0.3); transition: transform 260ms ease; }
+.joyas-circulos img:hover { transform: translateY(-4px) scale(1.04); }
+
+/* recursos gratis */
+.gratis-grid { display: grid; gap: 40px; margin-top: 30px; text-align: center; }
+@media (min-width: 900px) { .section-inner.wide .gratis-grid { grid-template-columns: repeat(3, 1fr); gap: 28px; } }
+.gratis-item h3 { margin: 18px 0 6px; font-weight: 500; font-size: 20px; color: var(--ink); }
+.gratis-item p { margin: 0 auto; color: var(--ink-muted); font-size: 14.5px; line-height: 1.7; max-width: 34ch; }
+.gratis-item .yt { margin-top: 0; }
+.gratis-item .acciones { margin-top: 16px; }
+.cuento-portada { aspect-ratio: 16 / 9; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  background: radial-gradient(circle at 50% 40%, rgba(212, 160, 23, 0.18), transparent 60%), var(--void-soft);
+  box-shadow: 0 0 0 1px rgba(236, 200, 115, 0.45), 0 0 26px 2px rgba(212, 160, 23, 0.22); }
+.cuento-portada span { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red-bright); }
+.cuento-portada strong { font-size: 26px; font-weight: 500; color: var(--ink); }
+.cuento-portada em { font-style: normal; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-bright); }
+
+/* avisos tras volver de Mercado Pago */
+.aviso { max-width: 560px; margin: 0 auto 10px; padding: 22px; border-radius: 18px; text-align: center; color: var(--ink);
+  background: rgba(13, 34, 43, 0.55); border: 1px solid rgba(236, 200, 115, 0.4); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.aviso p { margin: 0; color: var(--ink-muted); line-height: 1.7; }
+.aviso a { color: var(--gold-bright); }
+.aviso .section-title { margin-bottom: 12px; }
+.aviso .acciones { margin-top: 18px; }
+[hidden] { display: none !important; }
+
+/* encuesta: opciones en píldora */
+.pregunta { border: none; margin: 0; padding: 0; text-align: left; }
+.pregunta legend { padding: 0; margin-bottom: 12px; color: var(--ink); font-size: 16px; line-height: 1.5; }
+.pildoras { display: flex; flex-wrap: wrap; gap: 8px; }
+.pildoras label { position: relative; }
+.pildoras input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.pildoras span { display: inline-flex; align-items: center; min-height: 42px; padding: 9px 15px; border-radius: 999px; border: 1.5px solid rgba(255, 255, 255, 0.32); color: var(--ivory); font-size: 14px; cursor: pointer; user-select: none; transition: background 160ms ease, color 160ms ease, border-color 160ms ease; }
+.pildoras input:checked + span { background: var(--ivory); border-color: var(--ivory); color: #111; }
+.pildoras input:focus-visible + span { outline: 2px solid var(--gold-bright); outline-offset: 2px; }
+.encuesta-form { max-width: 460px; gap: 22px; }
+.encuesta-form .vip-consent { font-size: 14px; }
+.hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+/* círculo con el retrato de Gitania (como el sol del inicio) */
+.portal-ring.sol { background: radial-gradient(circle, #f4d27a 0%, #e9b949 55%, #c99416 100%); }
+.portal-ring.sol img { object-fit: contain; object-position: center bottom; }
+
+footer .care { display: block; margin: 10px auto 0; max-width: 620px; text-transform: none; letter-spacing: 0.02em; line-height: 1.5; }
+@media (max-width: 700px) {
+  .page-section.compact { padding: 72px 24px; }
+  .page-section.first { padding-top: 110px; }
+  .portal-button { width: 190px; height: 190px; margin: 30px auto 52px; }
+}
+.acciones .vip-login { margin: 0; max-width: none; }
+.encuesta-form .btn-pago { margin-top: 4px; }
+@media (max-width: 700px) { .side-nav--left { display: none; } }
