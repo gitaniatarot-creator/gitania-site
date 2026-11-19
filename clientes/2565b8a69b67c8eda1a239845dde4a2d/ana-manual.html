@@ -475,7 +475,7 @@
       <p class="lead">Toca una piedra o un material (o su botón «+ Agregar») y se va directo a tu canastita. «Ficha» abre su historia y su simbolismo. En la computadora también puedes arrastrarla.</p>
       <div class="reco">
         <span class="label">Para Obed</span>
-        <p><b>Recomendación de Tania:</b> enrejado de cobre que contiene una piedra roja (coral rojo u ópalo de fuego; el rojo simboliza protección). Puede combinarse con turquesa. Cada pieza que agregues suma al precio.</p>
+        <p><b>Recomendación de Tania:</b> cobre en punto vikingo que contiene una piedra roja (coral rojo u ópalo de fuego; el rojo simboliza protección). Puede combinarse con turquesa. Cada pieza que agregues suma al precio.</p>
       </div>
       <div class="joyas-layout">
       <div class="catalogo">
@@ -901,13 +901,13 @@
       },
       {
         "id": "cobre",
-        "nombre": "Cobre de colores",
-        "detalle": "Cobre de colores (o enrejado tejido)",
-        "simbolo": "Los alquimistas lo asociaban con Venus: el metal conductor, símbolo de unión, de vínculo y de lo que contiene y transmite.",
+        "nombre": "Cobre en punto vikingo",
+        "detalle": "Hilo de cobre tejido a mano en punto vikingo · tú eliges el color",
+        "simbolo": "Hilo de cobre tejido a mano en punto vikingo: un enrejado continuo que abraza la piedra. Los alquimistas asociaban el cobre con Venus: unión, vínculo y lo que contiene y transmite.",
         "foto": "materiales/cobre.jpg",
         "disponible": true,
         "recomendada": true,
-        "imagen": "Su nombre viene de Chipre, la isla de donde salía; los alquimistas lo asociaban con Venus. Es el metal que lleva la corriente.",
+        "imagen": "El punto vikingo es un tejido antiguo de alambre: cada vuelta se entrelaza con la anterior y forma una malla flexible y resistente, como una cadena viva. Tania lo teje siempre así, en hilo de cobre; solo cambia el color. El nombre del cobre viene de Chipre, la isla de donde salía; los alquimistas lo asociaban con Venus. Es el metal que lleva la corriente.",
         "invita": "Te invita a mirar qué quieres que fluya en tu vida y qué lazos quieres cuidar.",
         "ancla": "Dejo fluir el amor y me conecto.",
         "creencia": "En la tradición popular se le cree conductor de la intención; es una creencia, no un efecto comprobado.",
@@ -921,21 +921,53 @@
             "https://www.solacely.co/en-us/blogs/healing-copper/copper-magical-properties"
           ]
         ],
-        "contigo": "El enrejado de cobre es la imagen de una contención que sostiene y deja circular el vínculo.",
+        "contigo": "El tejido en punto vikingo es la imagen de una contención que sostiene la piedra y deja circular el vínculo, vuelta tras vuelta.",
         "opciones": {
-          "titulo": "Tipo de cobre",
-          "nota": "El enrejado tejido es la forma que Tania recomienda para la pulsera de Obed: una contención que sostiene la piedra.",
+          "titulo": "Color del cobre",
+          "nota": "El tejido siempre es punto vikingo; solo cambia el color del hilo. Si no eliges, Tania escoge el color que mejor acompañe la piedra.",
           "items": [
             [
-              "colores",
-              "Cobre de colores"
+              "criterio",
+              "Color a criterio de Tania"
             ],
             [
-              "tejido",
-              "Enrejado de cobre (tejido)"
+              "morado",
+              "Morado"
+            ],
+            [
+              "verde",
+              "Verde"
+            ],
+            [
+              "azul",
+              "Azul"
+            ],
+            [
+              "dorado",
+              "Dorado"
+            ],
+            [
+              "cafe",
+              "Café"
+            ],
+            [
+              "natural",
+              "Cobre natural"
+            ],
+            [
+              "naranja",
+              "Naranja"
+            ],
+            [
+              "rojo",
+              "Rojo"
+            ],
+            [
+              "rosa",
+              "Rosa"
             ]
           ],
-          "porDefecto": "colores"
+          "porDefecto": "criterio"
         }
       },
       {
@@ -1374,6 +1406,7 @@
   function pickLabel(p){
     var m = matById(p.id);
     var q = !isMetal(p.id) && p.qty > 1 ? " ×" + p.qty : "";
+    if (p.id === "cobre") return m.nombre + " · " + (p.op && p.op !== "criterio" ? "color: " + opLabel(m, p.op) : "color a criterio de Tania");
     var ol = p.op ? opLabel(m, p.op) : "";
     if (ol && ol.toLowerCase() === m.nombre.toLowerCase()) ol = "";
     if (ol && ol.toLowerCase().indexOf(m.nombre.split(" ")[0].toLowerCase()) === 0) return ol + q;
@@ -1558,7 +1591,7 @@
       if (p.op === "950") return {kind:"fixed", n:1111, label:"plata 950"};
       return {kind:"fixed", n:999, label:"plata 925"};
     }
-    if (p.id === "cobre") return {kind:"fixed", n:999, label: p.op === "tejido" ? "enrejado de cobre" : "cobre de colores"};
+    if (p.id === "cobre") return {kind:"fixed", n:999, label:"cobre en punto vikingo"};
     if (p.id === "oro") return {kind:"quote", karat:p.op || "10k"};  // oro sólido 10k–24k: siempre cotización
     return null;
   }
@@ -1632,7 +1665,12 @@
     var tint = null, metalTxt = "metal por elegir";
     if (metal){
       if (metal.id === "plata"){ tint = "#d9dde3"; metalTxt = "plata " + (metal.op || "925"); }
-      else if (metal.id === "cobre"){ tint = metal.op === "tejido" ? "#c0733a" : "#d9824a"; metalTxt = metal.op === "tejido" ? "cobre tejido" : "cobre de colores"; }
+      else if (metal.id === "cobre"){
+        var CC = { criterio:"#c47a45", natural:"#c47a45", morado:"#8e5bb5", verde:"#4f9a5c", azul:"#3f73c2", dorado:"#d8b04a", cafe:"#8a5a3b", naranja:"#e2802f", rojo:"#c9343c", rosa:"#e58aa8" };
+        var cop = metal.op && CC[metal.op] ? metal.op : "criterio";
+        tint = CC[cop];
+        metalTxt = "cobre vikingo · " + (cop === "criterio" ? "color de Tania" : opLabel(matById("cobre"), cop).toLowerCase());
+      }
       else if (metal.id === "oro"){ tint = "#e2b84c"; metalTxt = "oro " + (metal.op || "10k"); }
     }
     var collar = tipo === "Collar";
