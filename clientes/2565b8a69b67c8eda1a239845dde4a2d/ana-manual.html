@@ -549,6 +549,7 @@
     precioMembresia: 1260,            // 50% especial para Ana (mensual)
     precioMembresiaAnual: 9999,       // ~34% de descuento sobre 12 meses a 1,260
     precioMembresiaAnualMes: 833,     // 9999 / 12
+    API_PAGO: "https://gitania-pagos.netlify.app/api/crear-pago", // cobro exacto de la canastita (Netlify + Mercado Pago)
     PAGOS: { mensual: "https://mpago.la/1wTLpqT", anual: "https://mpago.la/1PN6ecm", pieza: "https://mpago.li/1ZUiypS", lectura: "" },
     // Pedido de pieza a la medida (la sección de joyas). El precio se calcula en la canastita.
     pedido: { notaLectura: "intuición, soltar el miedo, apaciguar y perdón", tipos: ["Pulsera", "Collar"], tipoPorDefecto: "Pulsera", para: "Obed", whatsapp: "525510292487", precioPiedra: 500 },
@@ -1672,15 +1673,68 @@
         (nota ? "- Características: " + nota + "\n" : "");
       pay.href = picks.length ? pagoHref("pieza", payMsg) : "#";
       pay.textContent = picks.length ? "Pagar mi pieza · " + pricePlain(st) : "Pagar mi pieza";
-      if (payNote && picks.length) payNote.textContent = "Al abrir Mercado Pago, escribe el monto " + pricePlain(st) + ". Puedes pagar con tarjeta o con tu cuenta de Mercado Pago.";
+      if (payNote) payNote.textContent = "Pago seguro con Mercado Pago: tarjeta, OXXO o tu cuenta.";
       pay.classList.toggle("dis", !picks.length);
     }
   }
+
+  // Pago exacto de la pieza: el servidor recalcula el precio y crea el cobro en Mercado Pago.
+  (function(){
+    var pay = document.getElementById("payPiezaBtn");
+    if (!pay || !CONFIG.API_PAGO) return;
+    var busy = false;
+    pay.addEventListener("click", function(e){
+      if (!picks.length || priceState().quote) return;
+      e.preventDefault();
+      if (busy) return;
+      busy = true;
+      var label = pay.textContent;
+      pay.textContent = "Abriendo Mercado Pago…";
+      pay.classList.add("dis");
+      var fallback = CONFIG.PAGOS && CONFIG.PAGOS.pieza;
+      var body = {
+        tipo: "pieza",
+        pieza: tipo,
+        items: picks.map(function(p){ return { id: p.id, op: p.op || null, qty: p.qty || 1 }; }),
+        nota: (document.getElementById("orderNota").value || "").trim()
+      };
+      fetch(CONFIG.API_PAGO, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+        .then(function(r){ return r.json().then(function(d){ if (!r.ok || !d.init_point) throw new Error(d.error || "error"); return d; }); })
+        .then(function(d){ window.location.href = d.init_point; })
+        .catch(function(){
+          busy = false; pay.textContent = label; pay.classList.remove("dis");
+          if (!isPlaceholder(fallback)) window.location.href = fallback;
+        });
+    });
+  })();
 
   // Si ya entró desde vip.html (misma sesión), abrir directo. Va al final para que todo esté definido.
   var autoOk = false;
   try{ autoOk = sessionStorage.getItem(KEY) === CONFIG.accessHash; }catch(e){}
   if (autoOk) open();
+})();
+</script>
+<script>
+// Aviso al volver de Mercado Pago (?pago=ok / pendiente / error)
+(function(){
+  var st = new URLSearchParams(location.search).get("pago");
+  var msgs = {
+    ok: "¡Gracias, Ana! Tu pago se recibió. Tania te escribirá pronto con las fotos reales de las piezas.",
+    pendiente: "Tu pago está en proceso (por ejemplo, si elegiste OXXO). En cuanto se confirme, Tania te avisa.",
+    error: "El pago no se completó. No te preocupes: puedes intentarlo de nuevo o escribirle a Tania."
+  };
+  if (!msgs[st]) return;
+  var d = document.createElement("div");
+  d.setAttribute("role", "status");
+  d.style.cssText = "position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:9999;max-width:min(92vw,520px);padding:14px 40px 14px 18px;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.18);font:15px/1.45 system-ui,sans-serif;color:#2b2320;background:" + (st === "ok" ? "#eaf6ec" : "#fbf3e4");
+  d.textContent = msgs[st];
+  var x = document.createElement("button");
+  x.type = "button"; x.setAttribute("aria-label", "Cerrar"); x.textContent = "×";
+  x.style.cssText = "position:absolute;right:10px;top:8px;border:0;background:none;font-size:20px;cursor:pointer;color:inherit";
+  x.onclick = function(){ d.remove(); };
+  d.appendChild(x);
+  document.body.appendChild(d);
+  try { history.replaceState(null, "", location.pathname + location.hash); } catch(e){}
 })();
 </script>
 </body>
