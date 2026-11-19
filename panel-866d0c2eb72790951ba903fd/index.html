@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Panel · Gitania</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700;800&display=swap');
+    :root{--paper:#FBF7EE;--ink:#17130F;--soft:#55503F;--line:#E3DFD3;--petrol:#1d4a5c;--gold:#B8860B;--gold-ink:#8a6408;--red:#B30E20}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Karla",-apple-system,"Segoe UI",sans-serif;line-height:1.45}
+    .wrap{max-width:1100px;margin:0 auto;padding:22px 18px 60px}
+    h1{color:var(--petrol);font-size:1.5rem;margin:0}
+    .k{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--gold-ink)}
+    .top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+    .top .sp{flex:1}
+    button,.btn{font:inherit;font-weight:700;border-radius:10px;border:1px solid #cfd6d8;background:#fff;color:var(--petrol);padding:9px 14px;cursor:pointer;min-height:40px}
+    button.pri{background:var(--petrol);border-color:var(--petrol);color:#fff}
+    button.del{color:var(--red);border-color:#e3b3b8}
+    input,select,textarea{font:inherit;padding:9px 10px;border-radius:10px;border:1px solid #cfd6d8;background:#fff;color:var(--ink);width:100%}
+    textarea{min-height:80px;resize:vertical}
+    label{display:flex;flex-direction:column;gap:4px;font-size:.82rem;font-weight:700;color:var(--soft)}
+    .login{max-width:360px;margin:12vh auto 0;display:flex;flex-direction:column;gap:12px}
+    .err{color:var(--red);font-weight:600;min-height:1.2em;margin:0}
+    .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin:8px 0 12px}
+    .filters label{min-width:180px;flex:1}
+    .counts{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px}
+    .counts span{background:#fff;border-radius:999px;padding:6px 12px;font-size:.85rem;box-shadow:0 1px 0 var(--line)}
+    .counts b{color:var(--petrol)}
+    table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;font-size:.88rem}
+    th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+    th{background:#f3efe6;color:var(--petrol);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+    td small{color:var(--soft);display:block}
+    .tag{display:inline-block;background:#eef3f4;color:var(--petrol);border-radius:999px;padding:2px 8px;margin:1px 2px 1px 0;font-size:.76rem;font-weight:700}
+    .si{color:#1f7a3a;font-weight:800}.no{color:var(--soft)}
+    .empty{text-align:center;color:var(--soft);padding:30px}
+    dialog{border:none;border-radius:16px;padding:0;max-width:560px;width:calc(100% - 24px);box-shadow:0 20px 60px rgba(0,0,0,.25)}
+    dialog::backdrop{background:rgba(23,19,15,.4)}
+    .dlg{padding:18px;display:grid;gap:10px;grid-template-columns:1fr 1fr}
+    .dlg .full{grid-column:1/-1}
+    .dlg h2{grid-column:1/-1;margin:0;color:var(--petrol);font-size:1.15rem}
+    .checks{display:flex;flex-wrap:wrap;gap:8px;font-weight:600;color:var(--ink)}
+    .checks label{flex-direction:row;align-items:center;gap:6px;font-weight:600;color:var(--ink)}
+    .checks input{width:auto}
+    .acts{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+    @media(max-width:760px){
+      thead{display:none}
+      table,tbody,tr,td{display:block;width:100%}
+      tr{border-bottom:8px solid var(--paper)}
+      td{border-bottom:none;padding:6px 12px}
+      .dlg{grid-template-columns:1fr}
+    }
+    [hidden]{display:none!important}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <section id="vLogin" class="login">
+    <span class="k">Gitania</span>
+    <h1>Panel de clientes</h1>
+    <form id="fLogin" style="display:flex;flex-direction:column;gap:10px">
+      <label>Contraseña<input type="password" name="pass" autocomplete="current-password" required></label>
+      <button class="pri" type="submit">Entrar</button>
+      <p class="err" id="eLogin" role="alert"></p>
+    </form>
+  </section>
+
+  <section id="vPanel" hidden>
+    <div class="top">
+      <div><span class="k">Gitania</span><h1>Clientes y encuestas</h1></div>
+      <span class="sp"></span>
+      <button class="pri" id="bNuevo">+ Agregar cliente</button>
+      <button id="bCsv">Exportar CSV</button>
+      <button id="bRec">Actualizar</button>
+      <button id="bSalir">Salir</button>
+    </div>
+    <div class="counts" id="counts"></div>
+    <div class="filters">
+      <label>Origen (cómo se enteró)<select id="fOrigen"><option value="">Todos</option></select></label>
+      <label>Interés<select id="fInteres"><option value="">Todos</option></select></label>
+      <label>Buscar<input id="fTexto" placeholder="Nombre, teléfono, correo, notas…"></label>
+    </div>
+    <p class="err" id="ePanel" role="alert"></p>
+    <table>
+      <thead><tr><th>Fecha</th><th>Nombre</th><th>Contacto</th><th>Origen</th><th>Intereses</th><th>Promos</th><th>Servicio</th><th></th></tr></thead>
+      <tbody id="tb"></tbody>
+    </table>
+  </section>
+</div>
+
+<dialog id="dlg">
+  <form class="dlg" id="fCli" method="dialog">
+    <h2 id="dTit">Cliente</h2>
+    <label class="full">Nombre<input name="nombre" maxlength="80" required></label>
+    <label>Teléfono / WhatsApp<input name="telefono" maxlength="25"></label>
+    <label>Correo<input name="correo" type="email" maxlength="120"></label>
+    <label>Origen<select name="origen"><option value="">—</option></select></label>
+    <label>Origen (otro)<input name="origenOtro" maxlength="80"></label>
+    <div class="full"><label>Intereses</label><div class="checks" id="dInt"></div></div>
+    <label>Servicio adquirido<input name="servicio" list="servicios" maxlength="80" placeholder="Lectura Express, VIP, Joya…"></label>
+    <label>Fecha del servicio<input name="fechaServicio" type="date"></label>
+    <label class="full">Notas<textarea name="notas" maxlength="2000"></textarea></label>
+    <div class="full checks"><label><input type="checkbox" name="consentimiento"> Acepta recibir promociones</label></div>
+    <p class="err full" id="eDlg" role="alert"></p>
+    <div class="acts">
+      <button type="button" class="del" id="dDel">Eliminar</button>
+      <span style="flex:1"></span>
+      <button type="button" id="dCancel">Cancelar</button>
+      <button type="submit" class="pri" id="dSave">Guardar</button>
+    </div>
+    <datalist id="servicios"><option value="Lectura Express"><option value="Sesión VIP / Membresía VIP"><option value="Joya"></datalist>
+  </form>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+  var API = "https://gitania-pagos.netlify.app/api/crm";
+  var ORIGENES = ["Instagram", "Facebook", "TikTok", "WhatsApp", "Google", "Recomendación de alguien", "Otro"];
+  var INTERESES = ["Lectura Express", "Sesión VIP / Membresía VIP", "Joyería", "Otro"];
+  var TK = "gitania_crm_token";
+  var data = [], editId = null;
+  var $ = function(id){ return document.getElementById(id); };
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  function token(){ try { return sessionStorage.getItem(TK) || ""; } catch(e){ return ""; } }
+  function api(path, opts){
+    opts = opts || {};
+    opts.headers = Object.assign({ "Content-Type": "application/json", "Authorization": "Bearer " + token() }, opts.headers || {});
+    return fetch(API + path, opts).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(x){
+        if (r.status === 401 && path !== "/login"){ salir(); throw new Error(x.error || "Sesión vencida."); }
+        if (!r.ok) throw new Error(x.error || "Error " + r.status);
+        return x;
+      });
+    });
+  }
+  function fecha(iso){ if (!iso) return ""; var d = new Date(iso); return d.toLocaleDateString("es-MX", { day:"2-digit", month:"short", year:"numeric" }) + " " + d.toLocaleTimeString("es-MX", { hour:"2-digit", minute:"2-digit" }); }
+  function origenTxt(c){ return c.origen ? c.origen + (c.origenOtro ? " (" + c.origenOtro + ")" : "") : ""; }
+  function interesesTxt(c){ return (c.intereses || []).map(function(i){ return i === "Otro" && c.interesOtro ? "Otro: " + c.interesOtro : i; }); }
+
+  ORIGENES.forEach(function(o){ $("fOrigen").insertAdjacentHTML("beforeend", "<option>" + esc(o) + "</option>"); $("fCli").elements.origen.insertAdjacentHTML("beforeend", "<option>" + esc(o) + "</option>"); });
+  INTERESES.forEach(function(i){ $("fInteres").insertAdjacentHTML("beforeend", "<option>" + esc(i) + "</option>"); $("dInt").insertAdjacentHTML("beforeend", '<label><input type="checkbox" name="intereses" value="' + esc(i) + '"> ' + esc(i) + "</label>"); });
+
+  function filtrados(){
+    var o = $("fOrigen").value, i = $("fInteres").value, t = $("fTexto").value.trim().toLowerCase();
+    return data.filter(function(c){
+      if (o && c.origen !== o) return false;
+      if (i && (c.intereses || []).indexOf(i) < 0) return false;
+      if (t){ var h = [c.nombre, c.telefono, c.correo, c.notas, c.servicio, c.origenOtro, c.interesOtro].join(" ").toLowerCase(); if (h.indexOf(t) < 0) return false; }
+      return true;
+    });
+  }
+  function pintar(){
+    var cnt = {}; data.forEach(function(c){ var k = c.origen || "Sin dato"; cnt[k] = (cnt[k] || 0) + 1; });
+    $("counts").innerHTML = '<span>Total: <b>' + data.length + "</b></span>" + Object.keys(cnt).sort(function(a, b){ return cnt[b] - cnt[a]; }).map(function(k){ return "<span>" + esc(k) + ": <b>" + cnt[k] + "</b></span>"; }).join("");
+    var rows = filtrados();
+    $("tb").innerHTML = rows.length ? rows.map(function(c){
+      return "<tr><td>" + esc(fecha(c.creado)) + "<small>" + (c.fuente === "encuesta" ? "Encuesta" : "Manual") + "</small></td>" +
+        "<td><b>" + esc(c.nombre) + "</b>" + (c.notas ? "<small>" + esc(c.notas.slice(0, 80)) + (c.notas.length > 80 ? "…" : "") + "</small>" : "") + "</td>" +
+        "<td>" + esc(c.telefono) + (c.correo ? "<small>" + esc(c.correo) + "</small>" : "") + "</td>" +
+        "<td>" + esc(origenTxt(c)) + "</td>" +
+        "<td>" + interesesTxt(c).map(function(i){ return '<span class="tag">' + esc(i) + "</span>"; }).join("") + "</td>" +
+        "<td>" + (c.consentimiento ? '<span class="si">Sí</span>' : '<span class="no">No</span>') + "</td>" +
+        "<td>" + esc(c.servicio) + (c.fechaServicio ? "<small>" + esc(c.fechaServicio) + "</small>" : "") + "</td>" +
+        '<td><button data-edit="' + esc(c.id) + '">Editar</button></td></tr>';
+    }).join("") : '<tr><td colspan="8" class="empty">' + (data.length ? "Nada coincide con los filtros." : "Aún no hay clientes ni respuestas.") + "</td></tr>";
+  }
+  function cargar(){
+    $("ePanel").textContent = "";
+    return api("/clientes").then(function(x){ data = x.clientes || []; pintar(); }).catch(function(e){ $("ePanel").textContent = e.message; });
+  }
+  function entrar(){ $("vLogin").hidden = true; $("vPanel").hidden = false; cargar(); }
+  function salir(){ try { sessionStorage.removeItem(TK); } catch(e){} data = []; $("vPanel").hidden = true; $("vLogin").hidden = false; }
+
+  $("fLogin").addEventListener("submit", function(e){
+    e.preventDefault(); $("eLogin").textContent = "Revisando…";
+    var p = this.elements.pass.value;
+    fetch(API + "/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ pass: p }) })
+      .then(function(r){ return r.json().then(function(x){ if (!r.ok) throw new Error(x.error || "No se pudo entrar."); return x; }); })
+      .then(function(x){ try { sessionStorage.setItem(TK, x.token); } catch(e){} $("fLogin").reset(); $("eLogin").textContent = ""; entrar(); })
+      .catch(function(er){ $("eLogin").textContent = er.message; });
+  });
+  ["fOrigen", "fInteres", "fTexto"].forEach(function(id){ $(id).addEventListener("input", pintar); });
+  $("bRec").addEventListener("click", cargar);
+  $("bSalir").addEventListener("click", salir);
+
+  function abrir(c){
+    var f = $("fCli"); f.reset(); $("eDlg").textContent = "";
+    editId = c ? c.id : null;
+    $("dTit").textContent = c ? "Editar cliente" : "Agregar cliente";
+    $("dDel").hidden = !c;
+    if (c){
+      ["nombre", "telefono", "correo", "origen", "origenOtro", "servicio", "fechaServicio", "notas"].forEach(function(k){ f.elements[k].value = c[k] || ""; });
+      f.elements.consentimiento.checked = !!c.consentimiento;
+      Array.from(f.querySelectorAll('[name="intereses"]')).forEach(function(x){ x.checked = (c.intereses || []).indexOf(x.value) >= 0; });
+    }
+    $("dlg").showModal();
+  }
+  $("bNuevo").addEventListener("click", function(){ abrir(null); });
+  $("tb").addEventListener("click", function(e){ var b = e.target.closest("[data-edit]"); if (b) abrir(data.filter(function(c){ return c.id === b.getAttribute("data-edit"); })[0]); });
+  $("dCancel").addEventListener("click", function(){ $("dlg").close(); });
+  $("fCli").addEventListener("submit", function(e){
+    e.preventDefault();
+    var f = this, d = {};
+    ["nombre", "telefono", "correo", "origen", "origenOtro", "servicio", "fechaServicio", "notas"].forEach(function(k){ d[k] = f.elements[k].value; });
+    d.consentimiento = f.elements.consentimiento.checked;
+    d.intereses = Array.from(f.querySelectorAll('[name="intereses"]:checked')).map(function(x){ return x.value; });
+    var c0 = editId && data.filter(function(c){ return c.id === editId; })[0];
+    if (c0 && c0.interesOtro && d.intereses.indexOf("Otro") >= 0) d.interesOtro = c0.interesOtro;
+    $("dSave").disabled = true;
+    api(editId ? "/clientes/" + encodeURIComponent(editId) : "/clientes", { method: editId ? "PUT" : "POST", body: JSON.stringify(d) })
+      .then(function(){ $("dlg").close(); return cargar(); })
+      .catch(function(er){ $("eDlg").textContent = er.message; })
+      .then(function(){ $("dSave").disabled = false; });
+  });
+  $("dDel").addEventListener("click", function(){
+    if (!editId || !confirm("¿Eliminar este registro? No se puede deshacer.")) return;
+    api("/clientes/" + encodeURIComponent(editId), { method: "DELETE" }).then(function(){ $("dlg").close(); return cargar(); }).catch(function(er){ $("eDlg").textContent = er.message; });
+  });
+  $("bCsv").addEventListener("click", function(){
+    var cols = [["Fecha", function(c){ return c.creado; }], ["Fuente", function(c){ return c.fuente; }], ["Nombre", function(c){ return c.nombre; }], ["Teléfono", function(c){ return c.telefono; }], ["Correo", function(c){ return c.correo; }],
+      ["Origen", origenTxt], ["Intereses", function(c){ return interesesTxt(c).join("; "); }], ["Acepta promociones", function(c){ return c.consentimiento ? "Sí" : "No"; }],
+      ["Servicio", function(c){ return c.servicio; }], ["Fecha del servicio", function(c){ return c.fechaServicio; }], ["Notas", function(c){ return c.notas; }]];
+    var q = function(v){ v = String(v == null ? "" : v); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; };
+    var csv = "\ufeff" + cols.map(function(c){ return q(c[0]); }).join(",") + "\r\n" + filtrados().map(function(r){ return cols.map(function(c){ return q(c[1](r)); }).join(","); }).join("\r\n");
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+    a.download = "gitania-clientes-" + new Date().toISOString().slice(0, 10) + ".csv";
+    document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  });
+  if (token()) entrar();
+})();
+</script>
+</body>
+</html>

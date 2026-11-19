@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#FBF7EE" />
+  <title>Encuesta breve | Gitania</title>
+  <meta name="description" content="Una encuesta breve de Gitania: cuéntame cómo me conociste y qué te gustaría recibir." />
+  <link rel="canonical" href="https://gitania.gold/encuesta.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Gitania" />
+  <meta property="og:title" content="Encuesta breve | Gitania" />
+  <meta property="og:description" content="Cuéntame cómo me conociste y qué te gustaría recibir. Toma un minuto." />
+  <meta property="og:url" content="https://gitania.gold/encuesta.html" />
+  <meta property="og:image" content="https://gitania.gold/assets/og/og-gitania.jpg" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap');
+    :root{--paper:#FBF7EE;--card:#FFFFFF;--ink:#17130F;--soft:#55503F;--line:#E3DFD3;--petrol:#1d4a5c;--gold:#B8860B;--gold-ink:#8a6408;--red:#B30E20}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Karla",-apple-system,"Segoe UI",sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:560px;margin:0 auto;padding:28px 20px 48px}
+    header{text-align:center;margin-bottom:18px}
+    header img{width:64px;height:64px;border-radius:50%;display:block;margin:0 auto 8px}
+    .k{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--gold-ink)}
+    h1{font-size:1.7rem;margin:6px 0 6px;color:var(--petrol);line-height:1.2}
+    .lead{color:var(--soft);margin:0}
+    .hand{font-family:"Caveat",cursive;color:var(--gold-ink);font-size:1.25rem}
+    form{display:flex;flex-direction:column;gap:18px;margin-top:20px}
+    label.f{display:flex;flex-direction:column;gap:6px;font-weight:700;color:var(--petrol)}
+    .opt{font-weight:500;color:var(--soft);font-size:.85rem}
+    input[type=text],input[type=tel],input[type=email]{font:inherit;font-size:1rem;padding:13px 14px;border-radius:12px;border:1px solid #cfd6d8;background:#fff;color:var(--ink);outline:none;width:100%}
+    input:focus{border-color:var(--petrol);box-shadow:0 0 0 3px rgba(29,74,92,.12)}
+    input[aria-invalid=true]{border-color:var(--red)}
+    fieldset{border:none;margin:0;padding:0}
+    legend{font-weight:700;color:var(--petrol);margin-bottom:8px;padding:0}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chips label{position:relative}
+    .chips input{position:absolute;opacity:0;width:1px;height:1px}
+    .chips span{display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;border-radius:999px;border:1px solid #cfd6d8;background:#fff;font-weight:600;cursor:pointer;user-select:none}
+    .chips input:checked + span{background:var(--petrol);border-color:var(--petrol);color:#fff}
+    .chips input:focus-visible + span{outline:3px solid rgba(184,134,11,.5);outline-offset:2px}
+    .otro{margin-top:8px}
+    .otro[hidden]{display:none}
+    .consent{display:flex;gap:12px;align-items:flex-start;font-size:.95rem;color:var(--ink);cursor:pointer}
+    .consent input{width:22px;height:22px;margin-top:2px;accent-color:var(--petrol);flex-shrink:0}
+    .hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+    button{font:inherit;font-weight:800;font-size:1.05rem;border:none;border-radius:14px;padding:15px;background:var(--red);color:#fff;cursor:pointer;min-height:52px}
+    button[disabled]{opacity:.6}
+    .err{color:var(--red);font-weight:600;margin:0;min-height:1.2em}
+    .priv{font-size:.82rem;color:var(--soft);margin:0}
+    .priv a{color:var(--petrol)}
+    .gracias{text-align:center;padding:30px 10px}
+    .gracias h2{color:var(--petrol);margin:0 0 8px}
+    .gracias[hidden]{display:none}
+    footer{text-align:center;font-size:.8rem;color:var(--soft);margin-top:28px}
+    footer a{color:var(--petrol)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a href="/"><img src="/assets/logo.webp" alt="Gitania" width="64" height="64"></a>
+      <span class="k">Encuesta breve</span>
+      <h1>¿Me ayudas con un minuto?</h1>
+      <p class="lead">Quiero conocerte mejor y avisarte de promociones que sí te interesen.</p>
+    </header>
+
+    <form id="f" novalidate>
+      <label class="f">Tu nombre
+        <input type="text" name="nombre" autocomplete="name" maxlength="80" required>
+      </label>
+      <label class="f">WhatsApp o teléfono <span class="opt">(opcional)</span>
+        <input type="tel" name="telefono" autocomplete="tel" inputmode="tel" maxlength="25" placeholder="10 dígitos">
+      </label>
+      <label class="f">Correo <span class="opt">(opcional)</span>
+        <input type="email" name="correo" autocomplete="email" maxlength="120">
+      </label>
+
+      <fieldset>
+        <legend>¿Cómo te enteraste de mis servicios?</legend>
+        <div class="chips" id="origen">
+          <label><input type="radio" name="origen" value="Instagram"><span>Instagram</span></label>
+          <label><input type="radio" name="origen" value="Facebook"><span>Facebook</span></label>
+          <label><input type="radio" name="origen" value="TikTok"><span>TikTok</span></label>
+          <label><input type="radio" name="origen" value="WhatsApp"><span>WhatsApp</span></label>
+          <label><input type="radio" name="origen" value="Google"><span>Google</span></label>
+          <label><input type="radio" name="origen" value="Recomendación de alguien"><span>Recomendación de alguien</span></label>
+          <label><input type="radio" name="origen" value="Otro"><span>Otro</span></label>
+        </div>
+        <input class="otro" type="text" name="origenOtro" maxlength="80" placeholder="¿Dónde?" aria-label="¿Dónde te enteraste?" hidden>
+      </fieldset>
+
+      <fieldset>
+        <legend>¿Qué servicios te interesaría adquirir más adelante si recibieras promociones?</legend>
+        <div class="chips" id="intereses">
+          <label><input type="checkbox" name="intereses" value="Lectura Express"><span>Lectura Express</span></label>
+          <label><input type="checkbox" name="intereses" value="Sesión VIP / Membresía VIP"><span>Sesión VIP / Membresía VIP</span></label>
+          <label><input type="checkbox" name="intereses" value="Joyería"><span>Joyería</span></label>
+          <label><input type="checkbox" name="intereses" value="Otro"><span>Otro</span></label>
+        </div>
+        <input class="otro" type="text" name="interesOtro" maxlength="80" placeholder="¿Cuál?" aria-label="¿Qué otro servicio?" hidden>
+      </fieldset>
+
+      <label class="consent"><input type="checkbox" name="consentimiento"> <span>Acepto recibir promociones de Gitania por WhatsApp o correo. Puedo darme de baja cuando quiera.</span></label>
+
+      <div class="hp" aria-hidden="true"><label>Sitio web <input type="text" name="sitio" tabindex="-1" autocomplete="off"></label></div>
+
+      <p class="err" id="err" role="alert"></p>
+      <button type="submit" id="btn">Enviar</button>
+      <p class="priv">Tus datos solo los ve Tania. Se usan para conocerte y, si lo aceptas, para enviarte promociones. No se comparten ni se venden. Más detalles en el <a href="/privacidad.html">aviso de privacidad</a>.</p>
+    </form>
+
+    <div class="gracias" id="gracias" hidden>
+      <h2>¡Gracias!</h2>
+      <p class="hand">Tu respuesta llegó con cariño.</p>
+      <p><a href="/" style="color:var(--petrol)">Volver a gitania.gold</a></p>
+    </div>
+
+    <footer>Gitania · <a href="/">gitania.gold</a></footer>
+  </div>
+<script>
+(function(){
+  "use strict";
+  var API = "https://gitania-pagos.netlify.app/api/encuesta";
+  var f = document.getElementById("f"), err = document.getElementById("err"), btn = document.getElementById("btn");
+  function toggleOtro(group, input){
+    var on = !!f.querySelector('[name="' + group + '"][value="Otro"]:checked');
+    f.elements[input].hidden = !on;
+    if (!on) f.elements[input].value = "";
+  }
+  f.addEventListener("change", function(e){
+    if (e.target.name === "origen") toggleOtro("origen", "origenOtro");
+    if (e.target.name === "intereses") toggleOtro("intereses", "interesOtro");
+  });
+  f.addEventListener("input", function(e){ if (e.target.removeAttribute) e.target.removeAttribute("aria-invalid"); });
+  f.addEventListener("submit", function(e){
+    e.preventDefault();
+    err.textContent = "";
+    var d = {
+      nombre: f.elements.nombre.value.trim(),
+      telefono: f.elements.telefono.value.trim(),
+      correo: f.elements.correo.value.trim(),
+      origen: (f.querySelector('[name="origen"]:checked') || {}).value || "",
+      origenOtro: f.elements.origenOtro.value.trim(),
+      intereses: Array.from(f.querySelectorAll('[name="intereses"]:checked')).map(function(x){ return x.value; }),
+      interesOtro: f.elements.interesOtro.value.trim(),
+      consentimiento: f.elements.consentimiento.checked,
+      sitio: f.elements.sitio.value
+    };
+    var bad = [];
+    if (d.nombre.length < 2){ bad.push("tu nombre"); f.elements.nombre.setAttribute("aria-invalid", "true"); }
+    if (d.telefono && d.telefono.replace(/\D/g, "").length < 8){ bad.push("el teléfono"); f.elements.telefono.setAttribute("aria-invalid", "true"); }
+    if (d.correo && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.correo)){ bad.push("el correo"); f.elements.correo.setAttribute("aria-invalid", "true"); }
+    if (!d.origen) bad.push("cómo te enteraste");
+    if (bad.length){ err.textContent = "Revisa: " + bad.join(", ") + "."; return; }
+    btn.disabled = true; btn.textContent = "Enviando…";
+    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d) })
+      .then(function(r){ return r.json().then(function(x){ if (!r.ok) throw new Error(x.error || "No se pudo enviar."); return x; }); })
+      .then(function(){ f.hidden = true; document.getElementById("gracias").hidden = false; window.scrollTo(0, 0); })
+      .catch(function(x){ err.textContent = (x && x.message && x.message !== "Failed to fetch") ? x.message : "No se pudo enviar. Revisa tu conexión e intenta de nuevo."; btn.disabled = false; btn.textContent = "Enviar"; });
+  });
+})();
+</script>
+</body>
+</html>
