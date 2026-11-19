@@ -293,7 +293,7 @@
     <a class="btn" data-pago="mensual" href="#" target="_blank" rel="noopener">Pagar mensual · $1,260 MXN</a>
     <a class="btn alt" data-pago="anual" href="#" target="_blank" rel="noopener" style="margin-top:8px">Pagar anual · $9,999 MXN</a>
     <p class="small">34% de descuento al año, equivale a $833 al mes.</p>
-    <p class="small">Pago seguro con tarjeta, Apple Pay o Google Pay (próximamente)</p>
+    <p class="small">Pago seguro con Mercado Pago</p>
     <p class="small" style="margin-top:14px">¿Ya pagaste o tienes dudas? <a href="https://wa.me/525510292487" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>.</p>
     <p class="small">Este espacio es de acompañamiento y reflexión; no sustituye la atención psicológica ni médica.</p>
   </div>
@@ -458,7 +458,7 @@
           <a class="btn ghost" id="orderBtn" href="#" target="_blank" rel="noopener">Enviar mi elección a Tania</a>
           <a class="btn" id="payPiezaBtn" href="#" target="_blank" rel="noopener">Pagar mi pieza</a>
         </div>
-        <p class="small pay-note">Pago seguro con tarjeta, Apple Pay o Google Pay (próximamente)</p>
+        <p class="small pay-note">Pago seguro con Mercado Pago</p>
       </div>
       <a class="canasta-float" id="basketFloat" href="#order">Canastita · <span id="floatCount">0</span> · <span id="floatPrice"></span></a>
 
@@ -504,14 +504,14 @@
             <a class="btn" data-pago="anual" href="#" target="_blank" rel="noopener">Pagar</a>
           </div>
         </div>
-        <p class="small pay-note">Pago seguro con tarjeta, Apple Pay o Google Pay (próximamente)</p>
+        <p class="small pay-note">Pago seguro con Mercado Pago</p>
       </div>
       <div class="box jewel">
         <h3>Lectura</h3>
         <p class="small">Una lectura simbólica de cartas, sin membresía.</p>
         <p class="price" id="precioLectura"></p>
         <a class="btn alt" id="btnLectura" href="#" target="_blank" rel="noopener">Pagar mi lectura</a>
-        <p class="small pay-note">Pago seguro con tarjeta, Apple Pay o Google Pay (próximamente)</p>
+        <p class="small pay-note">Pago seguro con Mercado Pago</p>
       </div>
       <p class="small">Si tienes cualquier problema para pagar, <a href="https://wa.me/525510292487" target="_blank" rel="noopener">escríbeme por WhatsApp</a>.</p>
     </section>
@@ -549,7 +549,7 @@
     precioMembresia: 1260,            // 50% especial para Ana (mensual)
     precioMembresiaAnual: 9999,       // ~34% de descuento sobre 12 meses a 1,260
     precioMembresiaAnualMes: 833,     // 9999 / 12
-    PAGOS: { mensual: "https://mpago.la/1wTLpqT", anual: "https://mpago.la/1PN6ecm", pieza: "", lectura: "" },
+    PAGOS: { mensual: "https://mpago.la/1wTLpqT", anual: "https://mpago.la/1PN6ecm", pieza: "https://mpago.li/1ZUiypS", lectura: "" },
     // Pedido de pieza a la medida (la sección de joyas). El precio se calcula en la canastita.
     pedido: { notaLectura: "intuición, soltar el miedo, apaciguar y perdón", tipos: ["Pulsera", "Collar"], tipoPorDefecto: "Pulsera", para: "Obed", whatsapp: "525510292487", precioPiedra: 500 },
     // Materiales en existencia. Para agregar uno, copia un bloque y cambia los textos.
@@ -1671,7 +1671,8 @@
         "- Total: " + pricePlain(st) + "\n" +
         (nota ? "- Características: " + nota + "\n" : "");
       pay.href = picks.length ? pagoHref("pieza", payMsg) : "#";
-      pay.textContent = "Pagar mi pieza";
+      pay.textContent = picks.length ? "Pagar mi pieza · " + pricePlain(st) : "Pagar mi pieza";
+      if (payNote && picks.length) payNote.textContent = "Al abrir Mercado Pago, escribe el monto " + pricePlain(st) + ". Puedes pagar con tarjeta o con tu cuenta de Mercado Pago.";
       pay.classList.toggle("dis", !picks.length);
     }
   }
