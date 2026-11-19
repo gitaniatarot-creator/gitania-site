@@ -1591,9 +1591,9 @@
         <!-- POSTS:START (lo más nuevo arriba; ver README-blog.md) -->
         <li class="post-card">
           <a href="blog/el-tarot-no-nacio-para-adivinar.html">
-            <p class="post-meta"><time datetime="2026-11-17">17 nov 2026</time> · Historia del tarot</p>
-            <h2>El tarot no nació para adivinar: era un juego de cartas de la nobleza italiana</h2>
-            <p class="post-excerpt">Los mazos más antiguos se pintaron a mano para las cortes del norte de Italia en el siglo XV. Su uso adivinatorio llegó más de tres siglos después.</p>
+            <p class="post-meta" data-i18n="post.tarot.meta"><time datetime="2026-11-17">17 nov 2026</time> · Historia del tarot</p>
+            <h2 data-i18n="post.tarot.title">El tarot no nació para adivinar: era un juego de cartas de la nobleza italiana</h2>
+            <p class="post-excerpt" data-i18n="post.tarot.excerpt">Los mazos más antiguos se pintaron a mano para las cortes del norte de Italia en el siglo XV. Su uso adivinatorio llegó más de tres siglos después.</p>
           </a>
         </li>
         <!-- POSTS:END -->
@@ -1624,6 +1624,9 @@
         "aria.whatsapp": "Escríbeme por WhatsApp",
         "aria.whatsappMeanwhile": "Mientras tanto, escríbeme por WhatsApp",
         "blog.empty": "Muy pronto, la primera entrada.",
+        "post.tarot.meta": "<time datetime=\"2026-11-17\">17 nov 2026</time> · Historia del tarot",
+        "post.tarot.title": "El tarot no nació para adivinar: era un juego de cartas de la nobleza italiana",
+        "post.tarot.excerpt": "Los mazos más antiguos se pintaron a mano para las cortes del norte de Italia en el siglo XV. Su uso adivinatorio llegó más de tres siglos después.",
         "aria.posts": "Ver las entradas del blog",
         "blog.eyebrow": "Blog",
         "blog.title": "Historia, símbolos y mitos del tarot",
@@ -1647,10 +1650,13 @@
         "aria.whatsapp": "Write to me on WhatsApp",
         "aria.whatsappMeanwhile": "In the meantime, write to me on WhatsApp",
         "blog.empty": "The first post is coming soon.",
+        "post.tarot.meta": "<time datetime=\"2026-11-17\">Nov 17, 2026</time> · Tarot history",
+        "post.tarot.title": "Tarot wasn't born for fortune-telling: it was a card game of the Italian nobility",
+        "post.tarot.excerpt": "The oldest decks were painted by hand for the courts of northern Italy in the fifteenth century. Their use for divination came more than three centuries later.",
         "aria.posts": "See the blog posts",
         "blog.eyebrow": "Blog",
         "blog.title": "History, symbols and myths of tarot",
-        "blog.copy": "Sourced notes on tarot: from the card games of Italian courts to its esoteric, psychological and artistic uses. Beliefs are explained as beliefs, with respect and with facts. Posts are written in Spanish.",
+        "blog.copy": "Sourced notes on tarot: from the card games of Italian courts to its esoteric, psychological and artistic uses. Beliefs are explained as beliefs, with respect and with facts. Every post is available in Spanish, English and French.",
         "blog.whatsappLink": "Would you like a reading? Write to me on WhatsApp",
         "footer.tarot": "Tarot",
         "footer.melomancia": "Melomancy",
@@ -1670,10 +1676,13 @@
         "aria.whatsapp": "Écris-moi sur WhatsApp",
         "aria.whatsappMeanwhile": "En attendant, écris-moi sur WhatsApp",
         "blog.empty": "Le premier article arrive bientôt.",
+        "post.tarot.meta": "<time datetime=\"2026-11-17\">17 nov. 2026</time> · Histoire du tarot",
+        "post.tarot.title": "Le tarot n'est pas né pour prédire l'avenir : c'était un jeu de cartes de la noblesse italienne",
+        "post.tarot.excerpt": "Les plus anciens jeux ont été peints à la main pour les cours du nord de l'Italie au XVe siècle. Leur usage divinatoire est arrivé plus de trois siècles plus tard.",
         "aria.posts": "Voir les articles du blog",
         "blog.eyebrow": "Blog",
         "blog.title": "Histoire, symboles et mythes du tarot",
-        "blog.copy": "Des notes sourcées sur le tarot : des jeux de cartes des cours italiennes à ses usages ésotériques, psychologiques et artistiques. Les croyances sont présentées comme des croyances, avec respect et avec des faits. Les articles sont rédigés en espagnol.",
+        "blog.copy": "Des notes sourcées sur le tarot : des jeux de cartes des cours italiennes à ses usages ésotériques, psychologiques et artistiques. Les croyances sont présentées comme des croyances, avec respect et avec des faits. Chaque article est disponible en espagnol, en anglais et en français.",
         "blog.whatsappLink": "Envie d'une lecture ? Écris-moi sur WhatsApp",
         "footer.tarot": "Tarot",
         "footer.melomancia": "Mélomancie",
@@ -1701,9 +1710,24 @@
     function t(key) {
       return (STRINGS[lang] && STRINGS[lang][key]) || (STRINGS.es[key]) || key;
     }
+    // Títulos, aria-label y alt sin clave propia: se traducen por su texto en español.
+    var GT_X = {"en": {"Gitania | Tarot simbólico, Melomancia y blog del tarot": "Gitania | Symbolic tarot, Melomancy and tarot blog", "Lecturas Express | Gitania": "Express Readings | Gitania", "Melomancia | Gitania": "Melomancy | Gitania", "Hipnosis | Gitania": "Hypnosis | Gitania", "Joyería | Gitania": "Jewelry | Gitania", "Símbolos vivos | Gitania": "Living Symbols | Gitania", "Sesiones VIP | Gitania": "VIP Sessions | Gitania", "Blog de tarot: historia, símbolos y mitos | Gitania": "Tarot blog: history, symbols and myths | Gitania", "Escríbeme por WhatsApp": "Message me on WhatsApp", "Mientras tanto, escríbeme por WhatsApp": "In the meantime, message me on WhatsApp", "Sesiones VIP": "VIP Sessions", "Joyería": "Jewelry", "Lectura Express": "Express Reading", "Lecturas Express": "Express Readings", "Hipnosis": "Hypnosis", "Símbolos vivos": "Living symbols", "Melomancia": "Melomancy", "Tienda": "Store", "Entradas del blog": "Blog posts", "Secciones": "Sections", "Idioma": "Language", "Inicio": "Home", "Carta ilustrada El Mago": "Illustrated card: The Magician", "Carta ilustrada La Estratega": "Illustrated card: The Strategist", "Carta ilustrada El Inicio": "Illustrated card: The Beginning"}, "fr": {"Gitania | Tarot simbólico, Melomancia y blog del tarot": "Gitania | Tarot symbolique, Mélomancie et blog du tarot", "Lecturas Express | Gitania": "Lectures Express | Gitania", "Melomancia | Gitania": "Mélomancie | Gitania", "Hipnosis | Gitania": "Hypnose | Gitania", "Joyería | Gitania": "Bijoux | Gitania", "Símbolos vivos | Gitania": "Symboles vivants | Gitania", "Sesiones VIP | Gitania": "Séances VIP | Gitania", "Blog de tarot: historia, símbolos y mitos | Gitania": "Blog du tarot : histoire, symboles et mythes | Gitania", "Escríbeme por WhatsApp": "Écris-moi sur WhatsApp", "Mientras tanto, escríbeme por WhatsApp": "En attendant, écris-moi sur WhatsApp", "Sesiones VIP": "Séances VIP", "Joyería": "Bijoux", "Lectura Express": "Lecture Express", "Lecturas Express": "Lectures Express", "Hipnosis": "Hypnose", "Símbolos vivos": "Symboles vivants", "Melomancia": "Mélomancie", "Tienda": "Boutique", "Entradas del blog": "Articles du blog", "Secciones": "Sections", "Idioma": "Langue", "Inicio": "Accueil", "Carta ilustrada El Mago": "Carte illustrée : Le Magicien", "Carta ilustrada La Estratega": "Carte illustrée : La Stratège", "Carta ilustrada El Inicio": "Carte illustrée : Le Commencement"}};
+    function gtExtra() {
+      var d = GT_X[lang] || {};
+      if (document._esTitle === undefined) document._esTitle = document.title;
+      document.title = (lang !== "es" && d[document._esTitle]) || document._esTitle;
+      ["aria-label", "alt"].forEach(function (a) {
+        document.querySelectorAll("[" + a + "]").forEach(function (el) {
+          if (el.hasAttribute("data-i18n-aria-label") || el.hasAttribute("data-i18n-aria") || el.hasAttribute("data-i18n-alt")) return;
+          var k = "_es_" + a; if (el[k] === undefined) el[k] = el.getAttribute(a);
+          el.setAttribute(a, (lang !== "es" && d[el[k]]) || el[k]);
+        });
+      });
+    }
+
 
     function applyI18n() {
-      document.documentElement.lang = lang;
+      document.documentElement.lang = lang; gtExtra();
       document.querySelectorAll("[data-i18n]").forEach(function (el) {
         el.innerHTML = t(el.getAttribute("data-i18n"));
       });

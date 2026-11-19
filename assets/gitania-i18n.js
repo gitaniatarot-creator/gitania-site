@@ -27,6 +27,10 @@
         el.setAttribute(p[1], pick(D.k[el.getAttribute(p[0])], el[store]));
       });
     });
+    // Bloques completos por idioma (entradas del blog): <div data-lang="es|en|fr">
+    document.querySelectorAll("[data-lang]").forEach(function (el) {
+      el.hidden = el.getAttribute("data-lang") !== lang;
+    });
     document.title = pick(D.title, orig.title);
     if (md) md.setAttribute("content", pick(D.desc, orig.desc));
     bar();

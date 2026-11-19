@@ -2131,7 +2131,7 @@
           "hero.copy": "Ask a question in silence. A song arrives to accompany your reflection.",
           "hero.note": "Explore below: the blog, express readings, the sound oracle, and private sessions.",
           "blog.title": "Notes, symbols, and readings from the path",
-          "blog.copy": "Tarot history told with sources, symbols, and myths. The first post is up (in Spanish): tarot was not born for fortune-telling.",
+          "blog.copy": "Tarot history told with sources, symbols, and myths. The first post is up: tarot was not born for fortune-telling.",
           "lecturas.title": "One question: a yes or a no, and why",
           "lecturas.copy": "One option: $444 MXN. Ask me your question and I'll answer with a yes or a no, and explain why. A brief, symbolic reading on the spot: you receive a photo of your spread and the answer as an audio message.",
           "lecturas.pay": "Get my Express Reading · $444 MXN",
@@ -2139,7 +2139,7 @@
           "calendario.title": "Book your session",
           "calendario.copy": "Message me on WhatsApp: we pick your date and I send you a secure payment link to hold your spot.",
           "calendario.cta": "Book on WhatsApp",
-          "blog.read": "Read the first post (in Spanish)",
+          "blog.read": "Read the first post",
           "melomancia.title": "The sound oracle",
           "melomancia.copy": "Ask a question in silence and receive a song, chosen for you in the moment, as a starting point for reflection.",
           "vip.title": "Your material, by private link",
@@ -2164,7 +2164,7 @@
           "hero.copy": "Pose une question en silence. Une chanson arrive pour accompagner ta réflexion.",
           "hero.note": "Explore ci-dessous : le blog, les lectures express, l'oracle sonore et les séances privées.",
           "blog.title": "Notes, symboles et lectures du chemin",
-          "blog.copy": "L'histoire du tarot racontée avec des sources, ses symboles et ses mythes. Le premier article est en ligne (en espagnol) : le tarot n'est pas né pour prédire l'avenir.",
+          "blog.copy": "L'histoire du tarot racontée avec des sources, ses symboles et ses mythes. Le premier article est en ligne : le tarot n'est pas né pour prédire l'avenir.",
           "lecturas.title": "Une question : un oui ou un non, et pourquoi",
           "lecturas.copy": "Une seule option : 444 MXN. Pose-moi ta question et je te réponds par un oui ou un non, en t'expliquant pourquoi. Une lecture symbolique, brève et immédiate : tu reçois la photo de ton tirage et la réponse en audio.",
           "lecturas.pay": "Demander ma Lecture Express · 444 MXN",
@@ -2172,7 +2172,7 @@
           "calendario.title": "Réserve ta séance",
           "calendario.copy": "Écris-moi sur WhatsApp : on choisit ta date et je t'envoie un lien de paiement sécurisé pour réserver ta place.",
           "calendario.cta": "Réserver sur WhatsApp",
-          "blog.read": "Lire le premier article (en espagnol)",
+          "blog.read": "Lire le premier article",
           "melomancia.title": "L'oracle sonore",
           "melomancia.copy": "Pose une question en silence et reçois une chanson, choisie pour toi sur l'instant, comme point de départ pour réfléchir.",
           "vip.title": "Ton matériel, par lien privé",
@@ -2200,9 +2200,24 @@
       function t(key) {
         return (STRINGS[lang] && STRINGS[lang][key]) || STRINGS.es[key] || key;
       }
+    // Títulos, aria-label y alt sin clave propia: se traducen por su texto en español.
+    var GT_X = {"en": {"Gitania | Tarot simbólico, Melomancia y blog del tarot": "Gitania | Symbolic tarot, Melomancy and tarot blog", "Lecturas Express | Gitania": "Express Readings | Gitania", "Melomancia | Gitania": "Melomancy | Gitania", "Hipnosis | Gitania": "Hypnosis | Gitania", "Joyería | Gitania": "Jewelry | Gitania", "Símbolos vivos | Gitania": "Living Symbols | Gitania", "Sesiones VIP | Gitania": "VIP Sessions | Gitania", "Blog de tarot: historia, símbolos y mitos | Gitania": "Tarot blog: history, symbols and myths | Gitania", "Escríbeme por WhatsApp": "Message me on WhatsApp", "Mientras tanto, escríbeme por WhatsApp": "In the meantime, message me on WhatsApp", "Sesiones VIP": "VIP Sessions", "Joyería": "Jewelry", "Lectura Express": "Express Reading", "Lecturas Express": "Express Readings", "Hipnosis": "Hypnosis", "Símbolos vivos": "Living symbols", "Melomancia": "Melomancy", "Tienda": "Store", "Entradas del blog": "Blog posts", "Secciones": "Sections", "Idioma": "Language", "Inicio": "Home", "Carta ilustrada El Mago": "Illustrated card: The Magician", "Carta ilustrada La Estratega": "Illustrated card: The Strategist", "Carta ilustrada El Inicio": "Illustrated card: The Beginning"}, "fr": {"Gitania | Tarot simbólico, Melomancia y blog del tarot": "Gitania | Tarot symbolique, Mélomancie et blog du tarot", "Lecturas Express | Gitania": "Lectures Express | Gitania", "Melomancia | Gitania": "Mélomancie | Gitania", "Hipnosis | Gitania": "Hypnose | Gitania", "Joyería | Gitania": "Bijoux | Gitania", "Símbolos vivos | Gitania": "Symboles vivants | Gitania", "Sesiones VIP | Gitania": "Séances VIP | Gitania", "Blog de tarot: historia, símbolos y mitos | Gitania": "Blog du tarot : histoire, symboles et mythes | Gitania", "Escríbeme por WhatsApp": "Écris-moi sur WhatsApp", "Mientras tanto, escríbeme por WhatsApp": "En attendant, écris-moi sur WhatsApp", "Sesiones VIP": "Séances VIP", "Joyería": "Bijoux", "Lectura Express": "Lecture Express", "Lecturas Express": "Lectures Express", "Hipnosis": "Hypnose", "Símbolos vivos": "Symboles vivants", "Melomancia": "Mélomancie", "Tienda": "Boutique", "Entradas del blog": "Articles du blog", "Secciones": "Sections", "Idioma": "Langue", "Inicio": "Accueil", "Carta ilustrada El Mago": "Carte illustrée : Le Magicien", "Carta ilustrada La Estratega": "Carte illustrée : La Stratège", "Carta ilustrada El Inicio": "Carte illustrée : Le Commencement"}};
+    function gtExtra() {
+      var d = GT_X[lang] || {};
+      if (document._esTitle === undefined) document._esTitle = document.title;
+      document.title = (lang !== "es" && d[document._esTitle]) || document._esTitle;
+      ["aria-label", "alt"].forEach(function (a) {
+        document.querySelectorAll("[" + a + "]").forEach(function (el) {
+          if (el.hasAttribute("data-i18n-aria-label") || el.hasAttribute("data-i18n-aria") || el.hasAttribute("data-i18n-alt")) return;
+          var k = "_es_" + a; if (el[k] === undefined) el[k] = el.getAttribute(a);
+          el.setAttribute(a, (lang !== "es" && d[el[k]]) || el[k]);
+        });
+      });
+    }
+
 
       function applyI18n() {
-        document.documentElement.lang = lang;
+        document.documentElement.lang = lang; gtExtra();
         document.querySelectorAll("[data-i18n]").forEach(function (el) {
           el.innerHTML = t(el.getAttribute("data-i18n"));
         });

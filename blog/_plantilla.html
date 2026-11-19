@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <!-- PLANTILLA: copia este archivo como blog/<slug>.html y reemplaza todo lo que esté entre {{ }}.
-       Los archivos que empiezan con "_" no se publican en GitHub Pages. -->
+       Los archivos que empiezan con "_" no se publican en GitHub Pages.
+       TRILINGÜE: cada entrada lleva el texto completo en ES, EN y FR (tres <article data-lang>). Ver BLOG.md. -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0d222b" />
   <title>{{TITULO_CORTO}} | Gitania</title>
@@ -15,6 +16,8 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Gitania" />
   <meta property="og:locale" content="es_MX" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="fr_FR" />
   <meta property="og:title" content="{{TITULO}}" />
   <meta property="og:description" content="{{DESCRIPCION_150_CARACTERES}}" />
   <meta property="og:url" content="https://gitania.gold/blog/{{SLUG}}.html" />
@@ -28,7 +31,7 @@
   <meta name="twitter:title" content="{{TITULO}}" />
   <meta name="twitter:description" content="{{DESCRIPCION_150_CARACTERES}}" />
   <meta name="twitter:image" content="https://gitania.gold/assets/og/{{IMAGEN_OG}}.jpg" />
-  <link rel="stylesheet" href="../assets/blog.css" />
+  <link rel="stylesheet" href="../assets/blog.css?v=2" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -41,7 +44,7 @@
         "image": "https://gitania.gold/assets/og/{{IMAGEN_OG}}.jpg",
         "datePublished": "{{AAAA-MM-DD}}",
         "dateModified": "{{AAAA-MM-DD}}",
-        "inLanguage": "es",
+        "inLanguage": ["es", "en", "fr"],
         "articleSection": "{{SECCION}}",
         "keywords": ["{{palabra clave 1}}", "{{palabra clave 2}}"],
         "author": { "@type": "Organization", "name": "Gitania", "url": "https://gitania.gold/" },
@@ -71,39 +74,36 @@
       <img class="brand-mark" src="../assets/logo.webp" alt="" width="40" height="40">
       Gitania
     </a>
-    <nav class="site-nav" aria-label="Secciones">
-      <a href="../blog.html" aria-current="page">Blog</a>
-      <a href="../lecturas.html">Lecturas Express</a>
-      <a href="../melomancia.html">Melomancia</a>
-      <a href="../vip.html">Sesiones VIP</a>
-      <a href="../tienda.html">Tienda</a>
-    </nav>
+    <div class="header-right">
+      <nav class="site-nav" aria-label="Secciones" data-t-aria="nav">
+        <a href="../blog.html" aria-current="page">Blog</a>
+        <a href="../lecturas.html" data-t="n1">Lecturas Express</a>
+        <a href="../melomancia.html" data-t="n2">Melomancia</a>
+        <a href="../vip.html" data-t="n3">Sesiones VIP</a>
+        <a href="../tienda.html" data-t="n4">Tienda</a>
+      </nav>
+      <div class="langbar" id="langbar" aria-label="Idioma"></div>
+    </div>
   </header>
 
   <main>
-    <article class="post">
+    <article class="post" data-lang="es" lang="es">
       <p class="breadcrumb"><a href="../index.html">Inicio</a> · <a href="../blog.html">Blog</a></p>
-      <p class="post-eyebrow">{{SECCION}}</p>
-      <h1>{{TITULO}}</h1>
-      <p class="post-dek">{{BAJADA: una o dos frases que resumen la entrada}}</p>
-      <p class="post-meta"><time datetime="{{AAAA-MM-DD}}">{{DD de mes de AAAA}}</time> · Lectura de {{N}} minutos</p>
+      <p class="post-eyebrow">{{SECCION_ES}}</p>
+      <h1>{{TITULO_ES}}</h1>
+      <p class="post-dek">{{BAJADA_ES}}</p>
+      <p class="post-meta"><time datetime="{{AAAA-MM-DD}}">{{FECHA_ES}}</time> · Lectura de {{N}} minutos</p>
 
-      <!-- Opcional: imagen. Usa una que ya exista en assets/ (por ejemplo assets/cards/*.webp). -->
       <figure class="post-figure">
-        <img src="../assets/cards/{{CARTA}}.webp" alt="{{TEXTO_ALT_IMAGEN}}" width="280" height="497" loading="eager">
-        <figcaption>{{PIE_DE_FOTO}}</figcaption>
+        <img src="../assets/cards/{{CARTA}}.webp" alt="{{ALT_ES}}" width="280" height="497" loading="eager">
+        <figcaption>{{PIE_DE_FOTO_ES}}</figcaption>
       </figure>
 
       <div class="post-body">
         <p>{{Párrafo de entrada: el mito o la pregunta, y qué dicen las fuentes.}}</p>
-
         <h2>{{Subtítulo}}</h2>
-        <p>{{Desarrollo. Cada dato debe salir de una fuente de la lista de abajo. Las creencias se presentan como creencias.}}</p>
-
-        <blockquote>«{{Cita textual traducida}}».<cite>{{Autor}}, citado en <em>{{Fuente}}</em> (traducción propia)</cite></blockquote>
-
-        <h2>{{Subtítulo}}</h2>
-        <p>{{Cierre que conecte el tema con la lectura simbólica como reflexión, sin prometer predicciones ni curas.}}</p>
+        <p>{{Desarrollo. Cada dato sale de una fuente de la lista. Las creencias se presentan como creencias.}}</p>
+        <blockquote>«{{Cita traducida}}».<cite>{{Autor}}, citado en <em>{{Fuente}}</em> (traducción propia)</cite></blockquote>
       </div>
 
       <aside class="post-cta" aria-label="Lecturas con Gitania">
@@ -116,21 +116,100 @@
         <p class="post-disclaimer">Las lecturas de Gitania son un espacio de reflexión y acompañamiento. No sustituyen la atención psicológica ni médica. Si necesitas apoyo, en México llama gratis a la Línea de la Vida: 800 911 2000 (24 h).</p>
       </aside>
 
-      <section class="sources" aria-labelledby="fuentes">
-        <h2 id="fuentes">Fuentes</h2>
+      <section class="sources" aria-labelledby="fuentes-es">
+        <h2 id="fuentes-es">Fuentes</h2>
         <ol>
           <li>{{Autor/Institución}}. <em>{{Título}}</em>. {{Editorial o medio}}, {{año}}. <a href="{{URL_FUENTE_1}}" target="_blank" rel="noopener">{{dominio}}</a></li>
-          <li>{{Autor/Institución}}. <em>{{Título}}</em>. {{Editorial o medio}}, {{año}}. <a href="{{URL_FUENTE_2}}" target="_blank" rel="noopener">{{dominio}}</a></li>
         </ol>
-        <p class="note">{{Nota opcional: de dónde vienen las citas y si las traducciones son propias.}}</p>
+        <p class="note">Las traducciones al español de las citas son nuestras.</p>
+      </section>
+    </article>
+    <article class="post" data-lang="en" lang="en" hidden>
+      <p class="breadcrumb"><a href="../index.html">Home</a> · <a href="../blog.html">Blog</a></p>
+      <p class="post-eyebrow">{{SECCION_EN}}</p>
+      <h1>{{TITULO_EN}}</h1>
+      <p class="post-dek">{{BAJADA_EN}}</p>
+      <p class="post-meta"><time datetime="{{AAAA-MM-DD}}">{{FECHA_EN}}</time> · {{N}}-minute read</p>
+
+      <figure class="post-figure">
+        <img src="../assets/cards/{{CARTA}}.webp" alt="{{ALT_EN}}" width="280" height="497" loading="lazy">
+        <figcaption>{{PIE_DE_FOTO_EN}}</figcaption>
+      </figure>
+
+      <div class="post-body">
+        <p>{{Opening paragraph (faithful English version of the Spanish text).}}</p>
+        <h2>{{Subheading}}</h2>
+        <p>{{Body. Same facts and sources as the Spanish version, nothing added.}}</p>
+        <blockquote>"{{Original English quote, verbatim from the source}}"<cite>{{Autor}}, quoted in <em>{{Fuente}}</em></cite></blockquote>
+      </div>
+
+      <aside class="post-cta" aria-label="Readings with Gitania">
+        <h2>Reading the cards for reflection</h2>
+        <p>At Gitania, this is how the cards are used: as a symbolic reading for reflection, introspection and self-knowledge, not as prediction. If you have a question you'd like to look at from another angle, you can ask for an <strong>Express Reading</strong>. And if you're looking for longer-term accompaniment, there are the <strong>VIP Sessions</strong>.</p>
+        <div class="buttons">
+          <a class="gt-buy" href="../lectura-express.html">Get my Express Reading · $444 MXN</a>
+          <a class="button secondary" href="../vip.html">VIP Sessions</a>
+        </div>
+        <p class="post-disclaimer">Gitania's readings are a space for reflection and accompaniment. They do not replace psychological or medical care. If you need support in Mexico, call the Línea de la Vida for free: 800 911 2000 (24 h).</p>
+      </aside>
+
+      <section class="sources" aria-labelledby="fuentes-en">
+        <h2 id="fuentes-en">Sources</h2>
+        <ol>
+          <li>{{Autor/Institución}}. <em>{{Título}}</em>. {{Editorial o medio}}, {{año}}. <a href="{{URL_FUENTE_1}}" target="_blank" rel="noopener">{{dominio}}</a></li>
+        </ol>
+        <p class="note">Quotes come from the sources listed above.</p>
+      </section>
+    </article>
+    <article class="post" data-lang="fr" lang="fr" hidden>
+      <p class="breadcrumb"><a href="../index.html">Accueil</a> · <a href="../blog.html">Blog</a></p>
+      <p class="post-eyebrow">{{SECCION_FR}}</p>
+      <h1>{{TITULO_FR}}</h1>
+      <p class="post-dek">{{BAJADA_FR}}</p>
+      <p class="post-meta"><time datetime="{{AAAA-MM-DD}}">{{FECHA_FR}}</time> · Lecture de {{N}} minutes</p>
+
+      <figure class="post-figure">
+        <img src="../assets/cards/{{CARTA}}.webp" alt="{{ALT_FR}}" width="280" height="497" loading="lazy">
+        <figcaption>{{PIE_DE_FOTO_FR}}</figcaption>
+      </figure>
+
+      <div class="post-body">
+        <p>{{Paragraphe d’ouverture (version française fidèle du texte espagnol).}}</p>
+        <h2>{{Sous-titre}}</h2>
+        <p>{{Développement. Mêmes faits et mêmes sources que la version espagnole, sans rien ajouter.}}</p>
+        <blockquote>« {{Citation traduite}} »<cite>{{Autor}}, cité dans <em>{{Fuente}}</em> (notre traduction)</cite></blockquote>
+      </div>
+
+      <aside class="post-cta" aria-label="Lectures avec Gitania">
+        <h2>Lire les cartes pour réfléchir</h2>
+        <p>Chez Gitania, les cartes s'utilisent ainsi : comme une lecture symbolique pour la réflexion, l'introspection et la connaissance de soi, pas comme une prédiction. Si tu as une question que tu aimerais regarder sous un autre angle, tu peux demander une <strong>Lecture Express</strong>. Et si tu cherches un accompagnement plus long, il y a les <strong>Séances VIP</strong>.</p>
+        <div class="buttons">
+          <a class="gt-buy" href="../lectura-express.html">Demander ma Lecture Express · 444 MXN</a>
+          <a class="button secondary" href="../vip.html">Séances VIP</a>
+        </div>
+        <p class="post-disclaimer">Les lectures de Gitania sont un espace de réflexion et d'accompagnement. Elles ne remplacent pas un suivi psychologique ou médical. Si tu as besoin de soutien au Mexique, appelle gratuitement la Línea de la Vida : 800 911 2000 (24 h/24).</p>
+      </aside>
+
+      <section class="sources" aria-labelledby="fuentes-fr">
+        <h2 id="fuentes-fr">Sources</h2>
+        <ol>
+          <li>{{Autor/Institución}}. <em>{{Título}}</em>. {{Editorial o medio}}, {{año}}. <a href="{{URL_FUENTE_1}}" target="_blank" rel="noopener">{{dominio}}</a></li>
+        </ol>
+        <p class="note">Les traductions en français des citations sont les nôtres.</p>
       </section>
     </article>
   </main>
 
   <footer>
     <span class="footer-address">Priv. Alejandrina 9, Hacienda Grande, Tequisquiapan, Qro., CP 76799, México © 2026</span>
-    Gitania® · <a href="../lecturas.html">Tarot</a>, <a href="../melomancia.html">Melomancia</a>, <a href="../hipnosis.html">Hipnosis</a>, <a href="../joyeria.html">Joyería</a> y <a href="../simbolos-vivos.html">Símbolos vivos</a> · <a href="../blog.html">Blog</a>
-    <span class="footer-disclaimer">Gitania ofrece lecturas simbólicas de las cartas para la reflexión, la introspección y el autoconocimiento. No sustituye la atención psicológica ni médica.</span>
+    <span data-lang="es">Gitania® · <a href="../lecturas.html">Tarot</a>, <a href="../melomancia.html">Melomancia</a>, <a href="../hipnosis.html">Hipnosis</a>, <a href="../joyeria.html">Joyería</a> y <a href="../simbolos-vivos.html">Símbolos vivos</a> · <a href="../blog.html">Blog</a>
+    <span class="footer-disclaimer">Gitania ofrece lecturas simbólicas de las cartas para la reflexión, la introspección y el autoconocimiento. No sustituye la atención psicológica ni médica.</span></span>
+    <span data-lang="en" hidden>Gitania® · <a href="../lecturas.html">Tarot</a>, <a href="../melomancia.html">Melomancy</a>, <a href="../hipnosis.html">Hypnosis</a>, <a href="../joyeria.html">Jewelry</a> and <a href="../simbolos-vivos.html">Living symbols</a> · <a href="../blog.html">Blog</a>
+    <span class="footer-disclaimer">Gitania offers symbolic card readings for reflection, introspection and self-knowledge. It does not replace psychological or medical care.</span></span>
+    <span data-lang="fr" hidden>Gitania® · <a href="../lecturas.html">Tarot</a>, <a href="../melomancia.html">Mélomancie</a>, <a href="../hipnosis.html">Hypnose</a>, <a href="../joyeria.html">Bijoux</a> et <a href="../simbolos-vivos.html">Symboles vivants</a> · <a href="../blog.html">Blog</a>
+    <span class="footer-disclaimer">Gitania propose des lectures symboliques des cartes pour la réflexion, l'introspection et la connaissance de soi. Elle ne remplace pas un suivi psychologique ou médical.</span></span>
   </footer>
+  <script>window.GITANIA_I18N={"k": {"n1": {"en": "Express Readings", "fr": "Lectures Express"}, "n2": {"en": "Melomancy", "fr": "Mélomancie"}, "n3": {"en": "VIP Sessions", "fr": "Séances VIP"}, "n4": {"en": "Store", "fr": "Boutique"}, "nav": {"en": "Sections", "fr": "Sections"}}, "js": {}, "title": {"en": "{{TITULO_CORTO_EN}} | Gitania", "fr": "{{TITULO_CORTO_FR}} | Gitania"}, "desc": {"en": "{{DESCRIPCION_EN}}", "fr": "{{DESCRIPCION_FR}}"}};</script>
+  <script src="../assets/gitania-i18n.js?v=2"></script>
 </body>
 </html>

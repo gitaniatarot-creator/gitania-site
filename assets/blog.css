@@ -104,3 +104,17 @@ footer a:hover { color: var(--gold-bright); }
   .post-body { font-size: 17px; }
   .site-nav { font-size: 11px; }
 }
+
+/* ---------------- idioma (ES / EN / FR) ---------------- */
+.header-right { display: flex; align-items: center; gap: 14px 22px; flex-wrap: wrap; justify-content: flex-end; }
+.langbar { display: flex; gap: 6px; }
+.langbtn {
+  font-family: "Karla", -apple-system, "Segoe UI", sans-serif; font-weight: 700; font-size: 0.66rem; letter-spacing: 0.04em;
+  padding: 5px 9px; border-radius: 999px; border: 1.5px solid rgba(255, 255, 255, 0.4); background: transparent; color: var(--ivory); cursor: pointer;
+}
+.langbtn.active { background: var(--ivory); border-color: var(--ivory); color: #111; }
+[data-lang][hidden] { display: none !important; }
+@media (max-width: 640px) {
+  .header-right { width: 100%; justify-content: space-between; }
+  .langbtn { padding: 4px 7px; font-size: 0.6rem; }
+}

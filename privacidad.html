@@ -133,12 +133,19 @@
     }
     .footer-disclaimer { display: block; margin: 12px auto 0; max-width: 620px; text-transform: none; letter-spacing: 0.02em; line-height: 1.5; opacity: 0.85; }
     .service-note { font-size: 13px; opacity: 0.85; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 32px; }
+    .topbar a.back { margin-bottom: 0; }
+    .langbar { display: flex; gap: 6px; }
+    .langbtn { font-family: "Karla", -apple-system, "Segoe UI", sans-serif; font-weight: 700; font-size: 0.66rem; letter-spacing: 0.04em; padding: 5px 9px; border-radius: 999px; border: 1.5px solid rgba(255, 255, 255, 0.4); background: transparent; color: var(--ink); cursor: pointer; }
+    .langbtn.active { background: var(--ink); border-color: var(--ink); color: #111; }
+    [data-lang][hidden] { display: none !important; }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <a class="back" href="index.html">&larr; Volver a Gitania</a>
+    <div class="topbar"><a class="back" href="index.html">&larr; <span data-t="back">Volver a Gitania</span></a><div class="langbar" id="langbar" aria-label="Idioma"></div></div>
 
+    <div data-lang="es" lang="es">
     <p class="eyebrow">Legal</p>
     <h1>Aviso de Privacidad</h1>
     <p class="updated">Última actualización: noviembre de 2026</p>
@@ -178,7 +185,91 @@
     <h2>Contacto</h2>
     <p>Si tienes dudas sobre este aviso de privacidad, puedes escribirnos por <a class="inline" href="https://wa.me/5215515245147" target="_blank" rel="noopener">WhatsApp</a>.</p>
 
-    <footer>Gitania® · Priv. Alejandrina 9, Hacienda Grande, Tequisquiapan, Qro., CP 76799, México © 2026<span class="footer-disclaimer">Gitania ofrece lecturas simbólicas de las cartas para la reflexión, la introspección y el autoconocimiento. No sustituye la atención psicológica ni médica.</span></footer>
+    </div>
+    <div data-lang="en" lang="en" hidden>
+    <p class="eyebrow">Legal</p>
+    <h1>Privacy Notice</h1>
+    <p class="updated">Last updated: November 2026</p>
+
+    <p>Gitania® (hereinafter "we" or "the Data Controller"), located at Priv. Alejandrina 9, Hacienda Grande, Tequisquiapan, Qro., CP 76799, Mexico, is responsible for processing your personal data in accordance with Mexico's Federal Law on the Protection of Personal Data Held by Private Parties (Ley Federal de Protección de Datos Personales en Posesión de los Particulares).</p>
+
+    <h2>What data do we collect?</h2>
+    <p>Depending on the service you use on this site (tarot readings, melomancy, hypnosis, jewelry, living symbols or your VIP space), we may collect:</p>
+    <ul>
+      <li>Identification and contact details: name, email address, WhatsApp number.</li>
+      <li>Username and password, if we give you private access (VIP Sessions).</li>
+      <li>Content you voluntarily share with us for your reading or session (questions, any personal context you choose to give).</li>
+      <li>Material created from your session: audio, PDFs and personalized guides that we send you through a private, personal link or that you open with your private access.</li>
+    </ul>
+
+    <h2>What do we use your data for?</h2>
+    <ul>
+      <li>To provide the service you requested (reading, session, follow-up guide).</li>
+      <li>To send you your personal material through a private link.</li>
+      <li>To contact you on WhatsApp to schedule or follow up on your session.</li>
+      <li>To improve the quality of our services.</li>
+    </ul>
+    <p>We do not use your data for third-party marketing or advertising, and we do not share, sell or transfer it to any third party unrelated to providing the service.</p>
+
+    <h2>Confidentiality of your session content</h2>
+    <p>The content of your readings, reflections and guides (including phrases, audio and follow-up material) is strictly personal and confidential. Your material is for you alone: it is delivered through a private, personal link or with your username and password. It is not shared with anyone else without your express authorization.</p>
+
+    <h2>How do we protect your information?</h2>
+    <p>Your personal material does not appear on the site's public pages: it is delivered through a private link or with your username and password, and the site does not store readable passwords. We recommend that you do not share that link or your login details with anyone. We work continuously to maintain reasonable security measures for the information we hold.</p>
+
+    <h2>Your rights (ARCO)</h2>
+    <p>You have the right to access, rectify, cancel or object to the use of your personal data (ARCO rights), as well as to revoke any consent you may have given us. To exercise any of these rights, message us on WhatsApp at the number shown on this site, with your name and your specific request.</p>
+
+    <h2>Changes to this notice</h2>
+    <p>This privacy notice may change. Any change will be published on this same page.</p>
+
+    <h2>Contact</h2>
+    <p>If you have questions about this privacy notice, you can message us on <a class="inline" href="https://wa.me/5215515245147" target="_blank" rel="noopener">WhatsApp</a>.</p>
+    </div>
+    <div data-lang="fr" lang="fr" hidden>
+    <p class="eyebrow">Mentions légales</p>
+    <h1>Avis de confidentialité</h1>
+    <p class="updated">Dernière mise à jour : novembre 2026</p>
+
+    <p>Gitania® (ci-après « nous » ou « le Responsable »), domiciliée Priv. Alejandrina 9, Hacienda Grande, Tequisquiapan, Qro., CP 76799, Mexique, est responsable du traitement de tes données personnelles conformément à la loi fédérale mexicaine sur la protection des données personnelles détenues par les particuliers (Ley Federal de Protección de Datos Personales en Posesión de los Particulares).</p>
+
+    <h2>Quelles données recueillons-nous ?</h2>
+    <p>Selon le service que tu utilises sur ce site (lectures de tarot, mélomancie, hypnose, bijoux, symboles vivants ou ton espace VIP), nous pouvons recueillir :</p>
+    <ul>
+      <li>Données d'identification et de contact : nom, adresse e-mail, numéro WhatsApp.</li>
+      <li>Nom d'utilisateur et mot de passe, si nous te donnons un accès privé (Séances VIP).</li>
+      <li>Le contenu que tu nous partages volontairement pour ta lecture ou ta séance (questions, contexte personnel que tu choisis de donner).</li>
+      <li>Le matériel créé à partir de ta séance : audios, PDF et guides personnalisés que nous t'envoyons par un lien privé et personnel ou que tu ouvres avec ton accès privé.</li>
+    </ul>
+
+    <h2>À quoi servent tes données ?</h2>
+    <ul>
+      <li>Te fournir le service que tu as demandé (lecture, séance, guide de suivi).</li>
+      <li>T'envoyer ton matériel personnel par un lien privé.</li>
+      <li>Te contacter sur WhatsApp pour planifier ta séance ou en assurer le suivi.</li>
+      <li>Améliorer la qualité de nos services.</li>
+    </ul>
+    <p>Nous n'utilisons pas tes données à des fins de marketing ou de publicité de tiers, et nous ne les partageons, ne les vendons ni ne les cédons à aucun tiers étranger à la prestation du service.</p>
+
+    <h2>Confidentialité du contenu de ta séance</h2>
+    <p>Le contenu de tes lectures, réflexions et guides (y compris les phrases, les audios et le matériel de suivi) est strictement personnel et confidentiel. Ton matériel est pour toi seule : il est remis par un lien privé et personnel ou avec ton nom d'utilisateur et ton mot de passe. Il n'est partagé avec personne d'autre sans ton autorisation expresse.</p>
+
+    <h2>Comment protégeons-nous tes informations ?</h2>
+    <p>Ton matériel personnel n'apparaît pas sur les pages publiques du site : il est remis par un lien privé ou avec ton nom d'utilisateur et ton mot de passe, et le site ne conserve pas de mots de passe lisibles. Nous te recommandons de ne partager ni ce lien ni tes identifiants avec des tiers. Nous travaillons en continu pour maintenir des mesures de sécurité raisonnables sur les informations que nous conservons.</p>
+
+    <h2>Tes droits (ARCO)</h2>
+    <p>Tu as le droit d'accéder à tes données personnelles, de les rectifier, de les supprimer ou de t'opposer à leur utilisation (droits ARCO), ainsi que de retirer le consentement que tu nous aurais donné. Pour exercer l'un de ces droits, écris-nous sur WhatsApp au numéro indiqué sur ce site, en précisant ton nom et ta demande.</p>
+
+    <h2>Modifications de cet avis</h2>
+    <p>Cet avis de confidentialité peut être modifié. Toute modification sera publiée sur cette même page.</p>
+
+    <h2>Contact</h2>
+    <p>Si tu as des questions sur cet avis de confidentialité, tu peux nous écrire sur <a class="inline" href="https://wa.me/5215515245147" target="_blank" rel="noopener">WhatsApp</a>.</p>
+    </div>
+
+    <footer>Gitania® · Priv. Alejandrina 9, Hacienda Grande, Tequisquiapan, Qro., CP 76799, México © 2026<span class="footer-disclaimer" data-t="disc">Gitania ofrece lecturas simbólicas de las cartas para la reflexión, la introspección y el autoconocimiento. No sustituye la atención psicológica ni médica.</span></footer>
   </div>
+  <script>window.GITANIA_I18N={"k": {"back": {"en": "Back to Gitania", "fr": "Retour à Gitania"}, "disc": {"en": "Gitania offers symbolic card readings for reflection, introspection and self-knowledge. It does not replace psychological or medical care.", "fr": "Gitania propose des lectures symboliques des cartes pour la réflexion, l'introspection et la connaissance de soi. Elle ne remplace pas un suivi psychologique ou médical."}}, "js": {}, "title": {"en": "Privacy Notice | Gitania", "fr": "Avis de confidentialité | Gitania"}, "desc": {"en": "Gitania's privacy notice: how your personal data is collected, used and protected.", "fr": "Avis de confidentialité de Gitania : comment tes données personnelles sont recueillies, utilisées et protégées."}};</script>
+  <script src="/assets/gitania-i18n.js?v=2"></script>
 </body>
 </html>

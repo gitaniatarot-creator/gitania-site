@@ -1830,9 +1830,24 @@
         container.appendChild(b);
       });
     }
+    // Títulos, aria-label y alt sin clave propia: se traducen por su texto en español.
+    var GT_X = {"en": {"Gitania | Tarot simbólico, Melomancia y blog del tarot": "Gitania | Symbolic tarot, Melomancy and tarot blog", "Lecturas Express | Gitania": "Express Readings | Gitania", "Melomancia | Gitania": "Melomancy | Gitania", "Hipnosis | Gitania": "Hypnosis | Gitania", "Joyería | Gitania": "Jewelry | Gitania", "Símbolos vivos | Gitania": "Living Symbols | Gitania", "Sesiones VIP | Gitania": "VIP Sessions | Gitania", "Blog de tarot: historia, símbolos y mitos | Gitania": "Tarot blog: history, symbols and myths | Gitania", "Escríbeme por WhatsApp": "Message me on WhatsApp", "Mientras tanto, escríbeme por WhatsApp": "In the meantime, message me on WhatsApp", "Sesiones VIP": "VIP Sessions", "Joyería": "Jewelry", "Lectura Express": "Express Reading", "Lecturas Express": "Express Readings", "Hipnosis": "Hypnosis", "Símbolos vivos": "Living symbols", "Melomancia": "Melomancy", "Tienda": "Store", "Entradas del blog": "Blog posts", "Secciones": "Sections", "Idioma": "Language", "Inicio": "Home", "Carta ilustrada El Mago": "Illustrated card: The Magician", "Carta ilustrada La Estratega": "Illustrated card: The Strategist", "Carta ilustrada El Inicio": "Illustrated card: The Beginning"}, "fr": {"Gitania | Tarot simbólico, Melomancia y blog del tarot": "Gitania | Tarot symbolique, Mélomancie et blog du tarot", "Lecturas Express | Gitania": "Lectures Express | Gitania", "Melomancia | Gitania": "Mélomancie | Gitania", "Hipnosis | Gitania": "Hypnose | Gitania", "Joyería | Gitania": "Bijoux | Gitania", "Símbolos vivos | Gitania": "Symboles vivants | Gitania", "Sesiones VIP | Gitania": "Séances VIP | Gitania", "Blog de tarot: historia, símbolos y mitos | Gitania": "Blog du tarot : histoire, symboles et mythes | Gitania", "Escríbeme por WhatsApp": "Écris-moi sur WhatsApp", "Mientras tanto, escríbeme por WhatsApp": "En attendant, écris-moi sur WhatsApp", "Sesiones VIP": "Séances VIP", "Joyería": "Bijoux", "Lectura Express": "Lecture Express", "Lecturas Express": "Lectures Express", "Hipnosis": "Hypnose", "Símbolos vivos": "Symboles vivants", "Melomancia": "Mélomancie", "Tienda": "Boutique", "Entradas del blog": "Articles du blog", "Secciones": "Sections", "Idioma": "Langue", "Inicio": "Accueil", "Carta ilustrada El Mago": "Carte illustrée : Le Magicien", "Carta ilustrada La Estratega": "Carte illustrée : La Stratège", "Carta ilustrada El Inicio": "Carte illustrée : Le Commencement"}};
+    function gtExtra() {
+      var d = GT_X[lang] || {};
+      if (document._esTitle === undefined) document._esTitle = document.title;
+      document.title = (lang !== "es" && d[document._esTitle]) || document._esTitle;
+      ["aria-label", "alt"].forEach(function (a) {
+        document.querySelectorAll("[" + a + "]").forEach(function (el) {
+          if (el.hasAttribute("data-i18n-aria-label") || el.hasAttribute("data-i18n-aria") || el.hasAttribute("data-i18n-alt")) return;
+          var k = "_es_" + a; if (el[k] === undefined) el[k] = el.getAttribute(a);
+          el.setAttribute(a, (lang !== "es" && d[el[k]]) || el[k]);
+        });
+      });
+    }
+
 
     function applyI18n() {
-      document.documentElement.lang = lang;
+      document.documentElement.lang = lang; gtExtra();
       document.querySelectorAll("[data-i18n]").forEach(function (el) {
         el.innerHTML = t(el.getAttribute("data-i18n"));
       });
