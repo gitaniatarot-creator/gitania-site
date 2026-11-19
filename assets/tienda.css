@@ -110,3 +110,8 @@ footer .care { display: block; margin: 10px auto 0; max-width: 620px; text-trans
 .acciones .vip-login { margin: 0; max-width: none; }
 .encuesta-form .btn-pago { margin-top: 4px; }
 @media (max-width: 700px) { .side-nav--left { display: none; } }
+/* portada de libro (El Matasueños) */
+.cuento-libro { display: block; width: min(62%, 220px); margin: 0 auto; border-radius: 6px; overflow: hidden; transition: transform 260ms ease;
+  box-shadow: 0 0 0 1px rgba(236, 200, 115, 0.55), 0 0 26px 2px rgba(212, 160, 23, 0.25), 0 18px 34px -18px rgba(0, 0, 0, 0.7); }
+.cuento-libro img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
+.cuento-libro:hover, .cuento-libro:focus-visible { transform: translateY(-4px) rotate(-1deg); }
