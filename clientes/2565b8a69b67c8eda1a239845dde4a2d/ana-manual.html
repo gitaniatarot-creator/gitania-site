@@ -7,7 +7,7 @@
 <title>Espacio privado de Ana · Gitania</title>
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700;800&family=Caveat:wght@500;700&display=swap');
   :root{
     --paper:#FBFAF6; --raised:#FFFFFF; --ink:#17130F; --soft:#55503F; --line:#E3DFD3;
     --clay:#B30E20; --clay-soft:#F3D2D2; --sky:#03989E; --sky-soft:#CFEBEC; --gold:#B8860B;
@@ -245,6 +245,53 @@
   .renew .plan .btn{background:var(--gold);color:var(--void);margin-top:auto}
   .renew > .price{color:var(--gold-bright);font-size:1rem}
   .renew > .price s{color:var(--ink-muted);font-weight:500;margin-right:.35em}
+  /* ===== canastita v2: al lado del catálogo (escritorio) / barra inferior (teléfono) ===== */
+  .tile{display:flex;flex-direction:column}
+  .tile > span{flex:1}
+  .tile-op{margin:0 8px 6px;font:inherit;font-size:.74rem;padding:5px 6px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);max-width:calc(100% - 16px)}
+  .tile-acts{display:flex;gap:4px;padding:0 6px 8px}
+  .tile-acts button{font:inherit;font-size:.74rem;font-weight:800;border-radius:9px;cursor:pointer;padding:7px 6px;line-height:1.1}
+  .tile-acts .tadd{flex:1;background:var(--void);color:var(--gold-bright);border:1px solid var(--void)}
+  .tile.on .tile-acts .tadd{background:#fff;color:var(--void);border-color:var(--gold)}
+  .tile-acts .tinfo{background:#fff;color:var(--soft);border:1px solid var(--line)}
+  .tile.off .tile-acts{display:none}
+  .canasta-bar{display:none}
+  .basket-stage{display:flex;flex-direction:column;align-items:center;gap:4px;margin:6px 0 4px;padding:14px 10px 10px;border:1.5px dashed var(--gold);border-radius:16px;background:radial-gradient(circle at 50% 30%, var(--void-soft), var(--void))}
+  .canasta .canasta-icon.big{width:120px;height:120px;border-radius:28px}
+  .canasta .canasta-icon.big svg{width:78px;height:78px}
+  .canasta .canasta-icon.big .canasta-count{min-width:30px;height:30px;font-size:.9rem;top:-8px;right:-8px}
+  .basket-hint{font-size:.76rem;color:var(--ink-muted);text-align:center;margin:2px 0 0}
+  .canasta-total{text-align:center;margin:8px 0 2px}
+  .canasta-total .lbl{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);font-weight:700}
+  .canasta-total .num{display:block;font-size:2rem;font-weight:800;color:var(--gold-bright);line-height:1.15}
+  .canasta-total .num.bump{animation:basketPulse .45s ease}
+  .canasta .price-box{text-align:center;font-size:.95rem}
+  .boceto{margin:10px 0 4px}
+  .boceto svg{width:100%;height:auto;display:block}
+  .boceto .cap{font-family:"Caveat",cursive;font-size:1.02rem;color:var(--ink-muted);text-align:center;margin:0}
+  .canasta-item .rm{font-size:.78rem;border:1px solid var(--red-bright);border-radius:8px;padding:5px 8px}
+  @media(min-width:1000px){
+    .joyas-layout{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:28px;align-items:start;width:min(1180px,calc(100vw - 48px));margin-left:calc(50% - min(590px, calc(50vw - 24px)))}
+    .joyas-layout .canasta{position:sticky;top:72px;margin-top:0;max-height:calc(100vh - 88px);overflow-y:auto;overscroll-behavior:contain}
+    .joyas-layout .canasta-actions{flex-direction:column}
+  }
+  @media(max-width:999px){
+    .joyas-layout .canasta{position:fixed;left:0;right:0;bottom:0;z-index:30;margin:0;border-radius:18px 18px 0 0;padding:0 16px 14px;max-height:80vh;overflow-y:auto;transform:translateY(110%);transition:transform .28s ease;overscroll-behavior:contain}
+    .joyas-layout .canasta.live{transform:none}
+    .joyas-layout .canasta .canasta-full{display:none}
+    .joyas-layout .canasta.open .canasta-full{display:block}
+    .canasta-bar{display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:2;padding:10px 0;background:var(--void-soft);margin:0 -16px;padding-left:16px;padding-right:16px;border-bottom:1px solid transparent}
+    .canasta.open .canasta-bar{border-bottom-color:var(--gold)}
+    .canasta-bar .canasta-icon{width:46px;height:46px;border-radius:12px}
+    .canasta-bar .canasta-icon svg{width:28px;height:28px}
+    .canasta-bar .bar-txt{flex:1;line-height:1.2}
+    .canasta-bar .bar-txt small{display:block;color:var(--ink-muted);font-size:.72rem}
+    .canasta-bar .bar-txt b{color:var(--gold-bright);font-size:1.15rem}
+    .canasta-bar button{font:inherit;font-weight:800;font-size:.85rem;background:var(--red);color:var(--ivory);border:none;border-radius:999px;padding:10px 14px;cursor:pointer}
+    .canasta .basket-stage .canasta-icon.big{width:84px;height:84px}
+    .canasta .basket-stage .canasta-icon.big svg{width:54px;height:54px}
+    body.has-bar{padding-bottom:84px}
+  }
   .canasta-float{position:fixed;left:12px;right:12px;bottom:12px;z-index:20;display:none;align-items:center;justify-content:space-between;gap:10px;background:var(--void);color:var(--ivory);border:1px solid var(--gold);border-radius:999px;padding:10px 16px;text-decoration:none;font-weight:700;font-size:.9rem;box-shadow:0 10px 28px -12px var(--void)}
   .canasta-float.show{display:flex}
   .canasta-float span{color:var(--gold-bright)}
@@ -425,41 +472,55 @@
         <p>Las joyas son un lenguaje para la psique. A cada pieza le confiero intenciones y programaciones; al traerla puesta, eso se suma a la carga simbólica de sus materiales, y la pieza se vuelve un anclaje muy completo: un recordatorio en la piel de la idea nueva que eliges.</p>
         <p class="small">Es un acompañamiento simbólico —una reprogramación simbólica, una forma de anclar una intención—. Lo que se cuenta de cada piedra es tradición y creencia, no un efecto comprobado. No sustituye la atención psicológica ni médica.</p>
       </div>
-      <p class="lead">Toca una piedra o un material para abrir su ficha. En una computadora también puedes arrastrarla hasta la canastita. En el teléfono, ábrela y agrégala con el botón.</p>
+      <p class="lead">Toca una piedra o un material (o su botón «+ Agregar») y se va directo a tu canastita. «Ficha» abre su historia y su simbolismo. En la computadora también puedes arrastrarla.</p>
       <div class="reco">
         <span class="label">Para Obed</span>
         <p><b>Recomendación de Tania:</b> enrejado de cobre que contiene una piedra roja (coral rojo u ópalo de fuego; el rojo simboliza protección). Puede combinarse con turquesa. Cada pieza que agregues suma al precio.</p>
       </div>
+      <div class="joyas-layout">
+      <div class="catalogo">
       <h3 class="joyas-sub">Piedras</h3>
       <div class="tgrid" id="materialsPiedras"></div>
       <h3 class="joyas-sub">Materiales</h3>
       <div class="tgrid" id="materialsMetales"></div>
+      </div>
       <div class="hovercard" id="hoverCard" aria-hidden="true"></div>
 
-      <div class="box order canasta" id="order">
-        <div class="canasta-head">
-          <div class="canasta-icon" id="basketIcon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" role="img" aria-hidden="true"><path d="M8 18h32l-3.2 18.2A6 6 0 0 1 30.9 42H17.1a6 6 0 0 1-5.9-5.8L8 18zm16-4a8 8 0 0 0 8-8h-3.5a4.5 4.5 0 0 1-9 0H16a8 8 0 0 0 8 8z"/></svg>
-            <span class="canasta-count" id="basketCount">0</span>
+      <aside class="box order canasta" id="order" aria-label="Tu canastita">
+        <div class="canasta-bar" id="basketBar">
+          <div class="canasta-icon" id="basketIconMini" aria-hidden="true">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 18h32l-3.2 18.2A6 6 0 0 1 30.9 42H17.1a6 6 0 0 1-5.9-5.8L8 18zm16-4a8 8 0 0 0 8-8h-3.5a4.5 4.5 0 0 1-9 0H16a8 8 0 0 0 8 8z"/></svg>
+            <span class="canasta-count" id="barCount">0</span>
           </div>
-          <div>
-            <span class="label">Tu canastita</span>
-            <h3>Pieza para Obed</h3>
+          <div class="bar-txt"><small>Tu canastita</small><b id="barPrice">$0 MXN</b></div>
+          <button type="button" id="barToggle" aria-expanded="false" aria-controls="basketFull">Ver ▲</button>
+        </div>
+        <div class="canasta-full" id="basketFull">
+          <span class="label">Tu canastita</span>
+          <h3>Pieza para Obed</h3>
+          <div class="tipo" id="tipoSel" style="margin-top:8px"></div>
+          <div class="basket-stage">
+            <div class="canasta-icon big" id="basketIcon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 18h32l-3.2 18.2A6 6 0 0 1 30.9 42H17.1a6 6 0 0 1-5.9-5.8L8 18zm16-4a8 8 0 0 0 8-8h-3.5a4.5 4.5 0 0 1-9 0H16a8 8 0 0 0 8 8z"/></svg>
+              <span class="canasta-count" id="basketCount">0</span>
+            </div>
+            <p class="basket-hint">Toca «+ Agregar» o arrastra aquí</p>
           </div>
+          <div class="canasta-total" aria-live="polite"><span class="lbl">Total</span><span class="num" id="totalNum">$0 MXN</span></div>
+          <p class="price-box" id="orderPrice"></p>
+          <div class="canasta-actions">
+            <a class="btn" id="payPiezaBtn" href="#" target="_blank" rel="noopener">Pagar mi pieza</a>
+            <a class="btn ghost" id="orderBtn" href="#" target="_blank" rel="noopener">Enviar mi elección a Tania</a>
+          </div>
+          <p class="small pay-note">Pago seguro con Mercado Pago: tarjeta, OXXO o tu cuenta.</p>
+          <div class="boceto" id="boceto"></div>
+          <div id="orderMats" class="canasta-list"><p class="empty">Tu canastita está vacía. Toca una piedra o un material para agregarlo.</p></div>
+          <label class="small" for="orderNota" style="display:block;margin-top:10px">Características de la pieza (opcional): medida de la muñeca, colores, largo o algún detalle…</label>
+          <textarea id="orderNota" rows="2"></textarea>
+          <p class="small">Al pagar, te envío fotos reales de las piezas para que elijas la piedra; de preferencia que la elija Obed.</p>
         </div>
-        <div class="tipo" id="tipoSel"></div>
-        <div id="orderMats" class="canasta-list"><p class="empty">Tu canastita está vacía. Arrastra aquí una piedra o un material, o tócala para ver su ficha y agregarla.</p></div>
-        <label class="small" for="orderNota">Características de la pieza (opcional): medida de la muñeca, colores, largo o algún detalle…</label>
-        <textarea id="orderNota" rows="3"></textarea>
-        <p class="price-box" id="orderPrice"></p>
-        <p class="small">Al pagar, te envío fotos reales de las piezas para que elijas la piedra; de preferencia que la elija Obed.</p>
-        <div class="canasta-actions">
-          <a class="btn ghost" id="orderBtn" href="#" target="_blank" rel="noopener">Enviar mi elección a Tania</a>
-          <a class="btn" id="payPiezaBtn" href="#" target="_blank" rel="noopener">Pagar mi pieza</a>
-        </div>
-        <p class="small pay-note">Pago seguro con Mercado Pago</p>
+      </aside>
       </div>
-      <a class="canasta-float" id="basketFloat" href="#order">Canastita · <span id="floatCount">0</span> · <span id="floatPrice"></span></a>
 
       <div class="sold">
         <span class="label">Piezas hechas antes · todas vendidas</span>
@@ -840,8 +901,8 @@
       },
       {
         "id": "cobre",
-        "nombre": "Cobre",
-        "detalle": "De colores o enrejado tejido",
+        "nombre": "Cobre de colores",
+        "detalle": "Cobre de colores (o enrejado tejido)",
         "simbolo": "Los alquimistas lo asociaban con Venus: el metal conductor, símbolo de unión, de vínculo y de lo que contiene y transmite.",
         "foto": "materiales/cobre.jpg",
         "disponible": true,
@@ -866,21 +927,21 @@
           "nota": "El enrejado tejido es la forma que Tania recomienda para la pulsera de Obed: una contención que sostiene la piedra.",
           "items": [
             [
-              "tejido",
-              "Enrejado de cobre (tejido)"
+              "colores",
+              "Cobre de colores"
             ],
             [
-              "colores",
-              "Cobre de colores, plastificado"
+              "tejido",
+              "Enrejado de cobre (tejido)"
             ]
           ],
-          "porDefecto": "tejido"
+          "porDefecto": "colores"
         }
       },
       {
         "id": "plata",
         "nombre": "Plata",
-        "detalle": "Ley 925, 950 o 999 (pura)",
+        "detalle": "Pura 999, 950 o 925 (plata ley)",
         "simbolo": "En la alquimia es la Luna: reflejo, intuición, lo receptivo y la purificación de lo que se siente antes de saberlo.",
         "foto": "materiales/plata.jpg",
         "disponible": true,
@@ -909,7 +970,7 @@
           "items": [
             [
               "925",
-              "925 · 92.5 % plata (plata esterlina, la más resistente)"
+              "925 · plata ley, 92.5 % plata (la más resistente)"
             ],
             [
               "950",
@@ -917,7 +978,7 @@
             ],
             [
               "999",
-              "999 · 99.9 % plata pura (la más blanda y blanca)"
+              "999 · plata pura, 99.9 % (la más blanda y blanca)"
             ]
           ],
           "porDefecto": "925"
@@ -926,7 +987,7 @@
       {
         "id": "oro",
         "nombre": "Oro",
-        "detalle": "Laminado o de 10k a 24k",
+        "detalle": "Oro de 10k a 24k · se cotiza el día de compra",
         "simbolo": "En la alquimia es el Sol: lo incorruptible, el valor propio, la realeza y la luz de la conciencia que el fuego no destruye, sino afina.",
         "foto": "materiales/oro.jpg",
         "disponible": true,
@@ -939,10 +1000,6 @@
           "titulo": "Quilataje",
           "nota": "El quilate mide cuántas partes de oro hay en 24 (la palabra viene del griego keration, semilla de algarrobo). Va de más aleado a más puro:",
           "items": [
-            [
-              "Laminado",
-              "Oro laminado · capa de oro sobre otro metal (la opción más accesible)"
-            ],
             [
               "10k",
               "10k · 41.7 % oro (el más aleado y duro)"
@@ -964,7 +1021,7 @@
               "24k · 99.9 % oro (el más puro y blando)"
             ]
           ],
-          "porDefecto": "Laminado"
+          "porDefecto": "10k"
         },
         "fuentes": [
           [
@@ -1317,19 +1374,25 @@
   function pickLabel(p){
     var m = matById(p.id);
     var q = !isMetal(p.id) && p.qty > 1 ? " ×" + p.qty : "";
-    return m.nombre + (p.op ? " (" + opLabel(m, p.op) + ")" : "") + q;
+    var ol = p.op ? opLabel(m, p.op) : "";
+    if (ol && ol.toLowerCase() === m.nombre.toLowerCase()) ol = "";
+    if (ol && ol.toLowerCase().indexOf(m.nombre.split(" ")[0].toLowerCase()) === 0) return ol + q;
+    return m.nombre + (ol ? " (" + ol + ")" : "") + q;
   }
   function opLabel(m, op){
     if (!m.opciones) return op;
     var found = m.opciones.items.filter(function(o){ return o[0] === op; })[0];
-    return found ? found[0] : op;
+    return found ? found[1].split(" · ")[0].split(" (")[0].split(",")[0] : op;
   }
   function tileHTML(m){
     var im = m.foto ? '<img src="' + m.foto + '" alt="' + esc(m.nombre) + '" loading="lazy" draggable="false">' : '<div class="noimg">Sin foto</div>';
     var rec = m.recomendada ? '<span class="badge-rec">Recomendada para Obed</span>' : "";
-    return '<button type="button" class="tile' + (m.disponible ? "" : " off") + '" data-mat="' + m.id + '"' + (m.disponible ? ' draggable="true"' : "") + ">" + rec + im +
+    var sel = (m.disponible && m.opciones) ? '<select class="tile-op" aria-label="' + esc(m.opciones.titulo) + '">' +
+      m.opciones.items.map(function(o){ return '<option value="' + esc(o[0]) + '"' + (o[0] === m.opciones.porDefecto ? " selected" : "") + ">" + esc(o[1].split(" · ")[0].split(" (")[0]) + "</option>"; }).join("") + "</select>" : "";
+    return '<div class="tile' + (m.disponible ? "" : " off") + '" data-mat="' + m.id + '" role="group" aria-label="' + esc(m.nombre) + '"' + (m.disponible ? ' draggable="true"' : "") + ">" + rec + im +
       "<span>" + esc(m.nombre) + "<small>" + (m.disponible ? esc(m.detalle || "") : "No disponible por ahora") + "</small>" +
-      (m.simbolo ? '<small class="sim">' + esc(m.simbolo) + "</small>" : "") + "</span></button>";
+      (m.simbolo ? '<small class="sim">' + esc(m.simbolo) + "</small>" : "") + "</span>" + sel +
+      '<div class="tile-acts"><button type="button" class="tadd">+ Agregar</button><button type="button" class="tinfo" aria-label="Ver ficha de ' + esc(m.nombre) + '">Ficha</button></div></div>';
   }
   function reduceMotion(){
     return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1341,7 +1404,7 @@
     if (!canHover || dragFlag) return;
     hc = hc || document.getElementById("hoverCard");
     var m = matById(id);
-    hc.innerHTML = "<b>" + esc(m.nombre) + "</b>" + (m.recomendada ? ' <span class="badge-rec">Recomendada para Obed</span>' : "") + "<p>" + esc(m.simbolo || m.invita) + "</p><p class=\"k\">Clic para abrir la ficha · o arrástrala a la canastita</p>";
+    hc.innerHTML = "<b>" + esc(m.nombre) + "</b>" + (m.recomendada ? ' <span class="badge-rec">Recomendada para Obed</span>' : "") + "<p>" + esc(m.simbolo || m.invita) + "</p><p class=\"k\">Clic para agregarla · «Ficha» para leer más · o arrástrala a la canastita</p>";
     var r = el.getBoundingClientRect(), w = 280, x = r.right + 10;
     if (x + w > window.innerWidth - 8) x = Math.max(8, r.left - w - 10);
     var y = Math.min(Math.max(8, r.top), window.innerHeight - 160);
@@ -1353,7 +1416,24 @@
     Array.from(root.querySelectorAll(".tile")).forEach(function(t){
       var id = t.getAttribute("data-mat");
       var m = matById(id);
-      t.addEventListener("click", function(){ if (dragFlag) return; hideHover(); openFicha(id, t); });
+      var selEl = t.querySelector(".tile-op");
+      function tileOp(){ return selEl ? selEl.value : null; }
+      if (selEl){
+        selEl.addEventListener("click", function(e){ e.stopPropagation(); });
+        selEl.addEventListener("change", function(e){ e.stopPropagation(); var p = pickOf(id); if (p){ p.op = selEl.value; renderOrder(); } });
+      }
+      t.querySelector(".tinfo").addEventListener("click", function(e){ e.stopPropagation(); hideHover(); openFicha(id, t); });
+      t.querySelector(".tadd").addEventListener("click", function(e){
+        e.stopPropagation(); hideHover();
+        if (isMetal(id) && pickOf(id)){ removePick(id); return; }
+        addToBasket(id, tileOp(), t);
+      });
+      t.addEventListener("click", function(){
+        if (dragFlag || !m || !m.disponible) return;
+        hideHover();
+        if (isMetal(id) && pickOf(id)){ var p = pickOf(id); p.op = tileOp(); pulseBasket(); renderOrder(); return; }
+        addToBasket(id, tileOp(), t);
+      });
       t.addEventListener("mouseenter", function(){ showHover(id, t); });
       t.addEventListener("mouseleave", hideHover);
       if (!m || !m.disponible) return;
@@ -1377,31 +1457,65 @@
       basket.classList.remove("drop-on");
       var id = e.dataTransfer.getData("text/plain");
       var tile = document.querySelector('.tile[data-mat="' + id + '"]');
-      addToBasket(id, null, tile);
+      var sl = tile && tile.querySelector(".tile-op");
+      addToBasket(id, sl ? sl.value : null, tile);
     });
   }
-  function bindBasketFloat(){
-    var fl = document.getElementById("basketFloat");
+  // Teléfono: barra inferior fija (siempre a la mano) · Computadora: panel pegajoso al lado.
+  var joyasVisible = false;
+  function updateBar(){
     var order = document.getElementById("order");
-    if (!fl || !order || fl._bound) return;
-    fl._bound = true;
+    var live = joyasVisible || picks.length > 0 || order.classList.contains("open");
+    order.classList.toggle("live", live);
+    document.body.classList.toggle("has-bar", live && window.matchMedia("(max-width:999px)").matches);
+  }
+  function bindBasketFloat(){
+    var order = document.getElementById("order");
+    var tg = document.getElementById("barToggle");
+    if (!order || order._barBound) return;
+    order._barBound = true;
+    tg.addEventListener("click", function(){
+      var open = !order.classList.contains("open");
+      order.classList.toggle("open", open);
+      tg.setAttribute("aria-expanded", open ? "true" : "false");
+      tg.textContent = open ? "Cerrar ▼" : "Ver ▲";
+      if (open) order.scrollTop = 0;
+      updateBar();
+    });
     if (typeof IntersectionObserver !== "undefined"){
       var io = new IntersectionObserver(function(entries){
-        var visible = entries[0] && entries[0].isIntersecting;
-        fl.classList.toggle("show", !visible && picks.length > 0);
-      }, {threshold:0.15});
-      io.observe(order);
-    }
+        joyasVisible = !!(entries[0] && entries[0].isIntersecting);
+        updateBar();
+      }, {threshold:0});
+      io.observe(document.querySelector("#joyas .catalogo"));
+    } else { joyasVisible = true; }
+    window.addEventListener("resize", updateBar);
+    // Al arrastrar cerca del borde, la página se desplaza sola.
+    document.addEventListener("dragover", function(e){
+      if (!dragFlag) return;
+      var edge = 90, y = e.clientY;
+      if (y < edge) window.scrollBy(0, -Math.ceil((edge - y) / 4));
+      else if (y > window.innerHeight - edge) window.scrollBy(0, Math.ceil((y - (window.innerHeight - edge)) / 4));
+    });
+    updateBar();
+  }
+  function basketTarget(){
+    var big = document.getElementById("basketIcon"), mini = document.getElementById("basketIconMini");
+    var r = big.getBoundingClientRect();
+    if (r.width > 0 && r.bottom > 0 && r.top < window.innerHeight) return big;
+    var r2 = mini.getBoundingClientRect();
+    return r2.width > 0 ? mini : big;
   }
   function pulseBasket(){
-    var ic = document.getElementById("basketIcon");
-    if (!ic || reduceMotion()) return;
-    ic.classList.remove("pulse");
-    void ic.offsetWidth;
-    ic.classList.add("pulse");
+    if (reduceMotion()) return;
+    ["basketIcon", "basketIconMini", "totalNum"].forEach(function(k){
+      var ic = document.getElementById(k); if (!ic) return;
+      var cls = k === "totalNum" ? "bump" : "pulse";
+      ic.classList.remove(cls); void ic.offsetWidth; ic.classList.add(cls);
+    });
   }
   function flyToBasket(fromEl){
-    var basket = document.getElementById("basketIcon");
+    var basket = basketTarget();
     var img = fromEl && fromEl.querySelector && fromEl.querySelector("img");
     if (reduceMotion() || !img || !basket){ pulseBasket(); return; }
     var r1 = img.getBoundingClientRect();
@@ -1427,7 +1541,7 @@
     setTimeout(function(){ if (ghost.parentNode) ghost.parentNode.removeChild(ghost); pulseBasket(); }, 620);
   }
   function plusAnim(fromEl){
-    var basket = document.getElementById("basketIcon");
+    var basket = basketTarget();
     var r = (basket || fromEl).getBoundingClientRect();
     var el = document.createElement("div");
     el.className = "plus-pop";
@@ -1444,11 +1558,8 @@
       if (p.op === "950") return {kind:"fixed", n:1111, label:"plata 950"};
       return {kind:"fixed", n:999, label:"plata 925"};
     }
-    if (p.id === "cobre") return {kind:"fixed", n:999, label: p.op === "tejido" ? "enrejado de cobre" : "cobre"};
-    if (p.id === "oro"){
-      if (!p.op || p.op === "Laminado") return {kind:"fixed", n:999, label:"oro laminado"};
-      return {kind:"quote", karat:p.op};
-    }
+    if (p.id === "cobre") return {kind:"fixed", n:999, label: p.op === "tejido" ? "enrejado de cobre" : "cobre de colores"};
+    if (p.id === "oro") return {kind:"quote", karat:p.op || "10k"};  // oro sólido 10k–24k: siempre cotización
     return null;
   }
   var ORO_REF = { "10k":{oro:4000, material:1000, desde:5000}, "14k":{oro:6000, material:null, desde:6000}, "18k":{oro:8000, material:null, desde:8000}, "22k":{oro:10000, material:null, desde:10000}, "24k":{oro:12000, material:null, desde:12000} };
@@ -1492,7 +1603,7 @@
     if (st.base) ref.push((st.baseLabel || "material") + " " + money(st.base));
     if (st.stones) ref.push(st.stones + (st.stones === 1 ? " piedra" : " piedras") + " (" + money(PRECIO_PIEDRA) + " c/u)");
     if (!st.base && st.stones) ref.push("el material suma su precio base al total");
-    return money(st.total) + (ref.length ? '<span class="ref">' + ref.join(" + ") + ".</span>" : "");
+    return ref.length ? '<span class="ref">' + ref.join(" + ") + ".</span>" : "";
   }
   function pricePlain(st){
     if (!picks.length) return "aún no elijo piezas";
@@ -1501,6 +1612,62 @@
       return "Cotización abierta, se cotiza el día de compra. " + goldRefText(st.quote.karat) + extra;
     }
     return money(st.total);
+  }
+  // ---- Boceto a mano de la pieza (SVG con trazo de lápiz y acuarela) ----
+  var COLOR_PIEDRA = { cuarzo:"#e8e2f0", amatista:"#9a68c6", citrino:"#e9b43a", calcita:"#f0b878", agata:"#b78a68", cornalina:"#c9542c", opalo:"#ec6a2c", cianita:"#4f74c4", coral:"#d6323f", turquesa:"#3fb6a8", hematita:"#5a5a62" };
+  var ROTULO = { cuarzo:"cuarzo", amatista:"amatista", citrino:"citrino", calcita:"calcita", agata:"ágata", cornalina:"cornalina", opalo:"ópalo", cianita:"cianita", coral:"coral", turquesa:"turquesa", hematita:"hematita" };
+  function seeded(str){ var h = 2166136261; for (var i = 0; i < str.length; i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return function(){ h ^= h << 13; h ^= h >>> 17; h ^= h << 5; return ((h >>> 0) % 10000) / 10000; }; }
+  function blobPath(cx, cy, r, rnd){
+    var n = 9, pts = [];
+    for (var i = 0; i < n; i++){ var a = i / n * Math.PI * 2, rr = r * (0.82 + rnd() * 0.32); pts.push([cx + Math.cos(a) * rr, cy + Math.sin(a) * rr * 0.92]); }
+    var d = "M" + ((pts[0][0] + pts[n-1][0]) / 2).toFixed(1) + " " + ((pts[0][1] + pts[n-1][1]) / 2).toFixed(1);
+    for (var j = 0; j < n; j++){ var a2 = pts[j], b2 = pts[(j + 1) % n]; d += " Q" + a2[0].toFixed(1) + " " + a2[1].toFixed(1) + " " + ((a2[0] + b2[0]) / 2).toFixed(1) + " " + ((a2[1] + b2[1]) / 2).toFixed(1); }
+    return d + "Z";
+  }
+  function bocetoSVG(){
+    var metal = picks.filter(function(p){ return isMetal(p.id); })[0];
+    var stones = [];
+    picks.forEach(function(p){ if (!isMetal(p.id)) for (var i = 0; i < (p.qty || 1) && stones.length < 12; i++) stones.push(p.id); });
+    var rnd = seeded(JSON.stringify(picks) + tipo);
+    var tint = null, metalTxt = "metal por elegir";
+    if (metal){
+      if (metal.id === "plata"){ tint = "#d9dde3"; metalTxt = "plata " + (metal.op || "925"); }
+      else if (metal.id === "cobre"){ tint = metal.op === "tejido" ? "#c0733a" : "#d9824a"; metalTxt = metal.op === "tejido" ? "cobre tejido" : "cobre de colores"; }
+      else if (metal.id === "oro"){ tint = "#e2b84c"; metalTxt = "oro " + (metal.op || "10k"); }
+    }
+    var collar = tipo === "Collar";
+    // punto sobre la pieza para t en [0,1] (frente de la pulsera / caída del collar)
+    function pt(t){
+      if (collar){ var u = 0.18 + t * 0.64, x = (1-u)*(1-u)*28 + 2*(1-u)*u*160 + u*u*292, y = (1-u)*(1-u)*26 + 2*(1-u)*u*232 + u*u*26; return [x, y]; }
+      var a = Math.PI * (0.18 + t * 0.64); return [160 + Math.cos(a) * 128, 92 + Math.sin(a) * 52];
+    }
+    var band = collar ? "M28 26 Q160 232 292 26" : "M32 92 a128 52 0 1 0 256 0 a128 52 0 1 0 -256 0";
+    var band2 = collar ? "M31 23 Q162 228 289 28" : "M35 90 a125 50 0 1 0 250 0 a125 54 0 1 0 -250 0";
+    var o = '<svg viewBox="0 0 320 196" role="img" aria-label="Boceto de la pieza">' +
+      '<defs><filter id="lapiz" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2.6"/></filter>' +
+      '<filter id="acuarela" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="7"/><feDisplacementMap in="SourceGraphic" scale="9"/><feGaussianBlur stdDeviation="1.1"/></filter></defs>';
+    if (tint) o += '<path d="' + band + '" fill="none" stroke="' + tint + '" stroke-width="13" stroke-linecap="round" opacity=".32" filter="url(#acuarela)"/>';
+    o += '<g filter="url(#lapiz)" fill="none" stroke-linecap="round"><path d="' + band + '" stroke="#ecc873" stroke-width="1.4" opacity=".9"/><path d="' + band2 + '" stroke="#fff7e8" stroke-width=".8" opacity=".55"/></g>';
+    var labeled = {};
+    stones.forEach(function(id, i){
+      var t = stones.length === 1 ? 0.5 : i / (stones.length - 1);
+      var spread = Math.min(0.8, 0.22 * (stones.length - 1));
+      var c = pt(stones.length === 1 ? 0.5 : 0.5 - spread / 2 + t * spread), r = 11 + rnd() * 3;
+      var col = COLOR_PIEDRA[id] || "#c9a35a";
+      o += '<path d="' + blobPath(c[0], c[1], r * 1.05, rnd) + '" fill="' + col + '" opacity=".72" filter="url(#acuarela)"/>';
+      o += '<g filter="url(#lapiz)" fill="none" stroke="#fff7e8" stroke-linecap="round"><path d="' + blobPath(c[0] + 0.8, c[1] - 0.6, r, rnd) + '" stroke-width="1.1" opacity=".85"/><path d="' + blobPath(c[0] - 1, c[1] + 0.8, r * 0.97, rnd) + '" stroke-width=".6" opacity=".5"/></g>';
+      if (!labeled[id]){
+        var nl = Object.keys(labeled).length;
+        labeled[id] = 1;
+        var below = nl % 2 === 0 && c[1] + r + 20 < 192, lx = c[0] + (rnd() - 0.5) * 10, ly = below ? c[1] + r + 18 : c[1] - r - 10;
+        o += '<path d="M' + c[0].toFixed(1) + " " + (below ? c[1] + r + 2 : c[1] - r - 2).toFixed(1) + " L" + lx.toFixed(1) + " " + (below ? ly - 11 : ly + 3).toFixed(1) + '" stroke="#a79d8c" stroke-width=".7" fill="none" filter="url(#lapiz)"/>';
+        o += '<text x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) + '" text-anchor="middle" font-family="Caveat, cursive" font-size="15" fill="#f5efe2" transform="rotate(' + ((rnd() - 0.5) * 8).toFixed(1) + " " + lx.toFixed(1) + " " + ly.toFixed(1) + ')">' + esc(ROTULO[id] || id) + "</text>";
+      }
+    });
+    var mx = collar ? 250 : 262, my = collar ? 20 : 26;
+    o += '<text x="' + mx + '" y="' + my + '" text-anchor="middle" font-family="Caveat, cursive" font-size="16" fill="#ecc873" transform="rotate(-6 ' + mx + " " + my + ')">' + esc(metalTxt) + "</text>";
+    o += "</svg>";
+    return o + '<p class="cap">Boceto de tu pieza. La pieza real es única y hecha a mano.</p>';
   }
   function addToBasket(id, op, fromEl){
     var m = matById(id);
@@ -1535,7 +1702,7 @@
     if (!p || isMetal(id)) return;
     p.qty = (p.qty || 1) + delta;
     if (p.qty < 1){ removePick(id); return; }
-    if (delta > 0) plusAnim(document.getElementById("basketIcon"));
+    if (delta > 0) plusAnim(basketTarget());
     renderOrder();
   }
   var fichaId = null, fichaOp = null, lastFocus = null;
@@ -1614,7 +1781,7 @@
     picks.forEach(function(p){ count += isMetal(p.id) ? 1 : (p.qty || 1); });
     document.getElementById("basketCount").textContent = count;
     if (!picks.length){
-      om.innerHTML = '<p class="empty">Tu canastita está vacía. Arrastra aquí una piedra o un material, o tócala para ver su ficha y agregarla.</p>';
+      om.innerHTML = '<p class="empty">Tu canastita está vacía. Toca una piedra o un material para agregarlo.</p>';
     } else {
       om.innerHTML = picks.map(function(p){
         var m = matById(p.id);
@@ -1624,7 +1791,7 @@
           qty = '<div class="qty"><button type="button" data-qty="-" data-id="' + p.id + '" aria-label="Quitar una">−</button><span>' + (p.qty || 1) + '</span><button type="button" data-qty="+" data-id="' + p.id + '" aria-label="Agregar una">+</button></div>';
         }
         return '<div class="canasta-item">' + img + '<div class="nm">' + esc(pickLabel(p)) + (m.recomendada ? '<small>Recomendada para Obed</small>' : "") + "</div>" + qty +
-          '<button type="button" class="rm" aria-label="Quitar ' + esc(pickLabel(p)) + '" data-rm="' + p.id + '">×</button></div>';
+          '<button type="button" class="rm" aria-label="Quitar ' + esc(pickLabel(p)) + '" data-rm="' + p.id + '">Quitar</button></div>';
       }).join("");
     }
     Array.from(om.querySelectorAll("[data-rm]")).forEach(function(b){
@@ -1635,14 +1802,19 @@
     });
     var st = priceState();
     document.getElementById("orderPrice").innerHTML = priceHTML(st);
-    var fl = document.getElementById("basketFloat");
-    if (fl){
-      document.getElementById("floatCount").textContent = count;
-      document.getElementById("floatPrice").textContent = st.quote ? "Cotización abierta" : (picks.length ? money(st.total) : "");
-      var rec = document.getElementById("order").getBoundingClientRect();
-      var onScreen = rec.top < window.innerHeight && rec.bottom > 0;
-      fl.classList.toggle("show", !onScreen && picks.length > 0);
-    }
+    var totTxt = st.quote ? "Cotización" : money(st.total);
+    document.getElementById("totalNum").textContent = totTxt;
+    document.getElementById("barCount").textContent = count;
+    document.getElementById("barPrice").textContent = totTxt;
+    document.getElementById("boceto").innerHTML = picks.length ? bocetoSVG() : "";
+    Array.from(document.querySelectorAll(".tile[data-mat]")).forEach(function(c){
+      var id = c.getAttribute("data-mat"), p = pickOf(id), b = c.querySelector(".tadd"), sl = c.querySelector(".tile-op");
+      if (!b) return;
+      if (isMetal(id)) b.textContent = p ? "Quitar" : "+ Agregar";
+      else b.textContent = p ? "+ Otra (" + (p.qty || 1) + ")" : "+ Agregar";
+      if (sl && p && p.op && sl.value !== p.op) sl.value = p.op;
+    });
+    updateBar();
     var P = CONFIG.pedido;
     var nota = document.getElementById("orderNota").value.trim();
     var msg = "Hola Tania, soy Ana. Esta es mi elección para la " + tipo.toLowerCase() + (tipo === "Pulsera" && P.para ? " de " + P.para : "") + ":\n" +
@@ -1712,12 +1884,12 @@
 })();
 </script>
 <script>
-// Aviso al volver de Mercado Pago (?pago=ok / pendiente / error)
+// Aviso al volver de Mercado Pago (?pago=ok / proceso / error)
 (function(){
   var st = new URLSearchParams(location.search).get("pago");
   var msgs = {
     ok: "¡Gracias, Ana! Tu pago se recibió. Tania te escribirá pronto con las fotos reales de las piezas.",
-    pendiente: "Tu pago está en proceso (por ejemplo, si elegiste OXXO). En cuanto se confirme, Tania te avisa.",
+    proceso: "Tu pago está en proceso (por ejemplo, si elegiste OXXO). En cuanto se confirme, Tania te avisa.",
     error: "El pago no se completó. No te preocupes: puedes intentarlo de nuevo o escribirle a Tania."
   };
   if (!msgs[st]) return;
