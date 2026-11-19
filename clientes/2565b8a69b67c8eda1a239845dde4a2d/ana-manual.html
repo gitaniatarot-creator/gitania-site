@@ -236,15 +236,6 @@
   .canasta-actions{display:flex;flex-direction:column;gap:8px;margin-top:10px}
   @media(min-width:640px){.canasta-actions{flex-direction:row}.canasta-actions .btn{flex:1}}
   .canasta .pay-note{margin:8px 0 0;color:var(--ink-muted)}
-  .renew .plans{display:grid;gap:12px;margin:14px 0 10px}
-  @media(min-width:640px){.renew .plans{grid-template-columns:1fr 1fr}}
-  .renew .plan{background:var(--void-soft);border:1px solid var(--gold);border-radius:14px;padding:16px 14px;text-align:center;display:flex;flex-direction:column;gap:6px}
-  .renew .plan h3{color:var(--ivory);font-size:1.05rem;margin:0}
-  .renew .plan .price{color:var(--gold-bright);font-weight:800;font-size:1.2rem;margin:4px 0}
-  .renew .plan .deal{color:var(--gold-bright);font-size:.82rem;font-weight:600;margin:0 0 8px}
-  .renew .plan .btn{background:var(--gold);color:var(--void);margin-top:auto}
-  .renew > .price{color:var(--gold-bright);font-size:1rem}
-  .renew > .price s{color:var(--ink-muted);font-weight:500;margin-right:.35em}
   /* ===== canastita v2: al lado del catálogo (escritorio) / barra inferior (teléfono) ===== */
   .tile{display:flex;flex-direction:column}
   .tile > span{flex:1}
@@ -415,6 +406,34 @@
     .canasta-bar button{background:var(--clay);color:#fff;border:none}
     .canasta-bar .canasta-icon svg{fill:var(--petrol)}
   }
+  /* ===== Pestañas ===== */
+  body.tabs #app section[data-tab]{display:none}
+  body.tabs #app section[data-tab].tab-on{display:block;border-bottom:none}
+  body.tabs #app .hero{display:none}
+  body.tabs #app .hero.tab-on{display:block}
+  header.top nav{scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  header.top nav::-webkit-scrollbar{display:none}
+  header.top nav a{scroll-snap-align:center;padding:10px 14px;font-size:.84rem;min-height:40px;display:inline-flex;align-items:center}
+  header.top nav a.on{background:var(--clay);color:#fff}
+  @media(max-width:640px){header.top .wrap{gap:8px;padding-left:12px;padding-right:0} header.top img{width:32px;height:32px} header.top nav a{padding:10px 14px;font-size:.9rem}}
+  .foot-care{max-width:620px;margin:0 auto 12px;padding:0 20px;font-size:.8rem;color:var(--soft)}
+  /* ===== Membresía VIP (clara) ===== */
+  .vip-incluye{border-left:2px solid var(--gold);padding:2px 0 2px 16px;margin:6px 0 18px}
+  .vip-incluye .vip-k{font-weight:800;margin:0 0 4px;color:#1d4a5c}
+  .vip-incluye ul{margin:0;padding-left:18px}
+  .vip-incluye li{margin:4px 0}
+  .vip-habitual{margin:0}
+  .vip-plans{display:grid;gap:14px;margin:16px 0 10px}
+  @media(min-width:640px){.vip-plans{grid-template-columns:1fr 1fr}}
+  .vip-plan{background:#fff;border-radius:16px;padding:18px 16px;text-align:center;display:flex;flex-direction:column;gap:6px;box-shadow:0 6px 22px -14px rgba(29,74,92,.35)}
+  .vip-plan h3{font-size:1.05rem;margin:0;color:#1d4a5c}
+  .vip-price{font-size:1.6rem;font-weight:800;margin:2px 0;color:#1d4a5c}
+  .vip-price s{font-size:1rem;color:var(--soft);font-weight:500;margin-right:.3em}
+  .vip-price small{font-size:.75rem;color:var(--soft);font-weight:600}
+  .vip-deal{color:#8a6408;font-weight:700;font-size:.86rem;margin:0 0 8px}
+  .vip-plan .btn{margin-top:auto}
+  .vip-lectura{margin:22px 0 12px;padding-top:16px;border-top:1px solid var(--line)}
+  .vip-lectura h3{font-size:1.05rem;margin:0 0 4px}
   .canasta-float{position:fixed;left:12px;right:12px;bottom:12px;z-index:20;display:none;align-items:center;justify-content:space-between;gap:10px;background:var(--void);color:var(--ivory);border:1px solid var(--gold);border-radius:999px;padding:10px 16px;text-decoration:none;font-weight:700;font-size:.9rem;box-shadow:0 10px 28px -12px var(--void)}
   .canasta-float.show{display:flex}
   .canasta-float span{color:var(--gold-bright)}
@@ -473,12 +492,12 @@
   <header class="top">
     <div class="wrap">
       <a href="https://gitania.gold/" target="_blank" rel="noopener"><img src="logo.png" alt="Gitania" draggable="false"></a>
-      <nav>
+      <nav id="tabNav" aria-label="Secciones">
         <a href="#lectura">Tu lectura</a>
         <a href="#ejercicios">Ejercicios</a>
         <a href="#tapping">Tapping</a>
         <a href="#joyas">Joyas</a>
-        <a href="#pagos">Pagos</a>
+        <a href="#membresia">Membresía VIP</a>
         <a href="#apoyo">Apoyo</a>
       </nav>
     </div>
@@ -494,7 +513,7 @@
         <span class="label">Cómo funciona tu espacio</span>
         <ul style="margin:8px 0 0;padding-left:20px">
           <li><b>Este primer mes</b> ya está incluido: puedes usar todo el material dentro de la plataforma.</li>
-          <li><b>La membresía</b> incluye una lectura al mes (de seguimiento o una lectura nueva) y acceso al material dentro de la plataforma.</li>
+          <li><b>Tu Membresía VIP</b> sigue después: los detalles y las formas de pago están en <a href="#membresia">Membresía VIP</a>.</li>
         </ul>
       </div>
     </div>
@@ -674,49 +693,49 @@
       <div class="fcuerpo" id="fichaCuerpo"></div>
     </div>
 
-    <!-- ===== Pagos ===== -->
-    <section id="pagos">
-      <span class="label">V · Pagos</span>
-      <h2>Tu membresía y tus lecturas</h2>
-      <div class="box">
-        <ul style="margin:0;padding-left:20px">
-          <li><b>Este primer mes</b> ya está pagado con tu lectura: puedes usar todo el material dentro de la plataforma.</li>
-          <li><b>La membresía</b> incluye una lectura al mes (de seguimiento o una lectura nueva) y acceso al material dentro de la plataforma.</li>
+    <!-- ===== Membresía VIP ===== -->
+    <section id="membresia">
+      <span class="label">V · Membresía VIP</span>
+      <h2>Tu Membresía VIP</h2>
+      <p class="lead">Elige cómo quieres seguir: mensual o anual.</p>
+      <div class="vip-incluye">
+        <p class="vip-k">Qué incluye</p>
+        <ul>
+          <li><b>Una lectura al mes</b>, de seguimiento o una lectura nueva.</li>
+          <li><b>Acceso al material</b> dentro de la plataforma: audios, videos, ejercicios y guías. Se ve aquí; no hay descargas.</li>
+          <li><b>Este primer mes</b> ya está incluido con tu lectura.</li>
         </ul>
       </div>
-      <div class="box canasta renew" id="renovar">
-        <span class="label">Renovar tu membresía</span>
-        <h3>Elige mensual o anual</h3>
-        <p class="price" id="precioMembresia"></p>
-        <p class="small" id="precioEspecial">Precio especial para ti: te respeto el 50% de descuento que platicamos; no es el precio habitual para mis consultantes.</p>
-        <p class="small">La membresía incluye una lectura al mes (de seguimiento o una lectura nueva) y acceso al material dentro de la plataforma.</p>
-        <div class="plans">
-          <div class="plan">
-            <h3>Mensual</h3>
-            <p class="price">$1,260 MXN</p>
-            <a class="btn" data-pago="mensual" href="#" target="_blank" rel="noopener">Pagar</a>
-          </div>
-          <div class="plan">
-            <h3>Anual</h3>
-            <p class="price">$9,999 MXN</p>
-            <p class="deal">34% de descuento, equivale a $833 al mes</p>
-            <a class="btn" data-pago="anual" href="#" target="_blank" rel="noopener">Pagar</a>
-          </div>
+      <p class="price vip-habitual" id="precioMembresia" style="display:none"></p>
+      <p class="small" id="precioEspecial">Precio especial para ti: te respeto el 50% de descuento que platicamos; no es el precio habitual para mis consultantes.</p>
+      <div class="vip-plans">
+        <div class="vip-plan">
+          <h3>Mensual</h3>
+          <p class="vip-price"><s>$2,520</s> $1,260 <small>MXN al mes</small></p>
+          <p class="vip-deal">50% especial para ti</p>
+          <a class="btn" data-pago="mensual" href="#" target="_blank" rel="noopener">Pagar mensual · $1,260</a>
         </div>
-        <p class="small pay-note">Pago seguro con Mercado Pago</p>
+        <div class="vip-plan">
+          <h3>Anual</h3>
+          <p class="vip-price">$9,999 <small>MXN al año</small></p>
+          <p class="vip-deal">34% de descuento, equivale a $833 al mes</p>
+          <a class="btn" data-pago="anual" href="#" target="_blank" rel="noopener">Pagar anual · $9,999</a>
+        </div>
       </div>
-      <div class="box jewel">
-        <h3>Lectura</h3>
+      <p class="small">Pago seguro con Mercado Pago: tarjeta, OXXO o tu cuenta.</p>
+      <div class="vip-lectura">
+        <h3>Una lectura sin membresía</h3>
         <p class="small">Una lectura simbólica de cartas, sin membresía.</p>
         <p class="price" id="precioLectura"></p>
         <a class="btn alt" id="btnLectura" href="#" target="_blank" rel="noopener">Pagar mi lectura</a>
-        <p class="small pay-note">Pago seguro con Mercado Pago</p>
       </div>
-      <p class="small">Si tienes cualquier problema para pagar, <a href="https://wa.me/525510292487" target="_blank" rel="noopener">escríbeme por WhatsApp</a>.</p>
+      <p class="small">Si tienes cualquier problema para pagar, <a href="https://wa.me/525510292487" target="_blank" rel="noopener">escríbeme por WhatsApp</a>. Las piezas de joyería se pagan en <a href="#joyas">Joyas</a>.</p>
     </section>
 
     <!-- ===== Apoyo ===== -->
     <section id="apoyo" style="border-bottom:none">
+      <span class="label">VI · Apoyo</span>
+      <h2>Apoyo profesional</h2>
       <div class="note">
         <p style="margin-top:0"><b>Importante.</b> Este espacio es de acompañamiento, reflexión e introspección a partir de la lectura simbólica de las cartas. <b>No sustituye la atención psicológica ni médica</b>, ni ningún tratamiento.</p>
         <p style="margin-bottom:0">Si tú u Obed necesitan apoyo profesional —también con el consumo de sustancias—, en México pueden llamar gratis a la <b>Línea de la Vida: <a href="tel:8009112000">800 911 2000</a></b>, las 24 horas, los 365 días del año.</p>
@@ -725,6 +744,7 @@
   </div>
 
   <footer>
+    <p class="foot-care">Este espacio no sustituye la atención psicológica ni médica. Si tú u Obed necesitan apoyo, llamen gratis a la <b>Línea de la Vida: <a href="tel:8009112000">800 911 2000</a></b> (24 horas).</p>
     Hecho con ♡ e intuición — <a href="https://gitania.gold/" target="_blank" rel="noopener">Gitania</a><br>
     <span id="membershipFoot"></span>
   </footer>
@@ -1643,7 +1663,8 @@
   var joyasVisible = false;
   function updateBar(){
     var order = document.getElementById("order");
-    var live = joyasVisible || picks.length > 0 || order.classList.contains("open");
+    var joyasTab = !document.body.classList.contains("tabs") || document.getElementById("joyas").classList.contains("tab-on");
+    var live = joyasTab && (joyasVisible || picks.length > 0 || order.classList.contains("open"));
     order.classList.toggle("live", live);
     document.body.classList.toggle("has-bar", live && window.matchMedia("(max-width:999px)").matches);
   }
@@ -2131,6 +2152,66 @@
         });
     });
   })();
+
+  // ---- Pestañas: solo se ve la sección elegida ----
+  var TABS = ["lectura", "ejercicios", "tapping", "joyas", "membresia", "apoyo"];
+  var heroEl = document.querySelector("#app .hero");
+  function tabOf(el){
+    var sec = el && el.closest ? el.closest("section[data-tab]") : null;
+    return sec ? sec.id : null;
+  }
+  function showTab(id, opts){
+    opts = opts || {};
+    if (TABS.indexOf(id) < 0) id = "lectura";
+    TABS.forEach(function(t){ var sec = document.getElementById(t); if (sec) sec.classList.toggle("tab-on", t === id); });
+    if (heroEl) heroEl.classList.toggle("tab-on", id === "lectura");
+    Array.from(document.querySelectorAll("#tabNav a")).forEach(function(a){
+      var on = a.getAttribute("href") === "#" + id;
+      a.classList.toggle("on", on);
+      if (on){
+        a.setAttribute("aria-current", "page");
+        var nav = a.parentNode;
+        var center = function(){ var left = a.offsetLeft - nav.offsetLeft - (nav.clientWidth - a.offsetWidth) / 2; try{ nav.scrollTo({ left: Math.max(0, left), behavior: opts.instant ? "auto" : "smooth" }); }catch(e){ nav.scrollLeft = Math.max(0, left); } };
+        center(); setTimeout(center, 120);
+      }
+      else a.removeAttribute("aria-current");
+    });
+    if (!opts.keepHash){ try{ history.replaceState(null, "", location.pathname + location.search + "#" + id); }catch(e){} }
+    if (!opts.noScroll) window.scrollTo({ top: 0, behavior: "auto" });
+    if (typeof hideHover === "function") hideHover();
+    try{ updateBar(); }catch(e){}
+  }
+  function goToHash(hash, fromLoad){
+    var id = (hash || "").replace(/^#/, "");
+    if (!id) return false;
+    var el = document.getElementById(id);
+    if (!el) return false;
+    var t = TABS.indexOf(id) >= 0 ? id : tabOf(el);
+    if (!t) return false;
+    showTab(t, { keepHash: true, noScroll: t !== id, instant: fromLoad });
+    if (t !== id) setTimeout(function(){ el.scrollIntoView({ block: "start" }); }, fromLoad ? 300 : 30);
+    return true;
+  }
+  function initTabs(){
+    TABS.forEach(function(t){ var sec = document.getElementById(t); if (sec) sec.setAttribute("data-tab", t); });
+    document.body.classList.add("tabs");
+    document.addEventListener("click", function(e){
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var h = a.getAttribute("href");
+      if (!h || h === "#") return;
+      var el = document.getElementById(h.slice(1));
+      if (!el || !tabOf(el) && TABS.indexOf(h.slice(1)) < 0) return;
+      e.preventDefault();
+      try{ history.pushState(null, "", location.pathname + location.search + h); }catch(x){}
+      goToHash(h, false);
+    });
+    window.addEventListener("popstate", function(){ if (!goToHash(location.hash, false)) showTab("lectura", { keepHash: true }); });
+    var pago = new URLSearchParams(location.search).get("pago");
+    if (pago) showTab(location.hash === "#membresia" ? "membresia" : "joyas", { instant: true });
+    else if (!goToHash(location.hash, true)) showTab("lectura", { keepHash: true, instant: true });
+  }
+  initTabs();
 
   // Si ya entró desde vip.html (misma sesión), abrir directo. Va al final para que todo esté definido.
   var autoOk = false;
