@@ -356,6 +356,63 @@
     .canasta .canasta-icon.big{width:90px;height:90px}
     .canasta .canasta-icon.big svg{width:84px;height:84px}
   }
+  /* ===== v4: todo claro (marfil), sin cajas; acentos azul petróleo, oro y rojo ===== */
+  #joyas{color:var(--ink);--petrol:#1d4a5c;--gold-ink:#8a6408}
+  #joyas::before{background:var(--paper)}
+  #joyas h2,#joyas h3,#joyas .joyas-sub{color:var(--ink)}
+  #joyas .label{color:var(--clay)}
+  #joyas p.lead,#joyas .small,#joyas p{color:var(--soft)}
+  #joyas .box.featured,#joyas .reco{border-left-color:var(--gold)}
+  #joyas .reco b,#joyas .intro-joyas b{color:var(--petrol)}
+  #joyas .tile{background:#fff;color:var(--ink);box-shadow:0 1px 0 rgba(60,40,10,.04)}
+  #joyas .tile span{color:var(--ink)}
+  #joyas .tile .badge-rec,#joyas .badge-rec{color:#fff}
+  #joyas .tile small{color:var(--soft)}
+  #joyas .tile .sim{color:#6b6556}
+  #joyas .tile.on{box-shadow:0 0 0 2px var(--gold)}
+  #joyas .tile-op{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  #joyas .tile-acts .tadd{background:var(--petrol);color:#fff;border:none}
+  #joyas .tile.on .tile-acts .tadd{background:#fff;color:var(--petrol);border:1px solid var(--gold)}
+  #joyas .tile-acts .tinfo{background:#fff;color:var(--soft);border:1px solid var(--line)}
+  #joyas .sgrid div{color:var(--soft)}
+  .joyas-layout .canasta{--ink:#17130F;--gold:#B8860B;color:#17130F}
+  .joyas-layout .canasta .label{color:var(--clay)}
+  .joyas-layout .canasta h3{color:var(--ink)}
+  .joyas-layout .canasta .small,.joyas-layout .canasta label.small,.joyas-layout .canasta .basket-hint,.joyas-layout .canasta .pay-note{color:var(--soft)}
+  .joyas-layout .canasta a,.joyas-layout .ghost-link{color:var(--petrol)}
+  .joyas-layout .canasta .tipo button{background:#fff;color:var(--petrol);border:1px solid #c9d3d6}
+  .joyas-layout .canasta .tipo button.on{background:var(--petrol);color:#fff;border-color:var(--petrol)}
+  .joyas-layout .canasta .canasta-icon.big svg{fill:var(--petrol);filter:drop-shadow(0 6px 10px rgba(29,74,92,.18))}
+  .joyas-layout .canasta.drop-on .canasta-icon.big svg{fill:var(--gold)}
+  .joyas-layout .canasta .canasta-total .lbl{color:var(--gold-ink)}
+  .joyas-layout .canasta .canasta-total .num{color:var(--petrol)}
+  .joyas-layout .canasta .price-box{color:var(--petrol)}
+  .joyas-layout .canasta .price-box .ref{color:var(--soft)}
+  .joyas-layout .canasta .btn{background:var(--clay);color:#fff}
+  .joyas-layout .canasta-item{color:var(--ink);border-bottom:1px solid var(--line)}
+  .joyas-layout .canasta-item .nm{color:var(--ink)}
+  .joyas-layout .canasta-item .nm small{color:var(--soft)}
+  .joyas-layout .canasta-item img,.joyas-layout .canasta-item .ph{background:#f3eee4}
+  .joyas-layout .canasta-item .qty button{background:#fff;color:var(--petrol);border:1px solid #c9d3d6}
+  .joyas-layout .canasta-item .rm{color:var(--clay);border-color:#e3b3b8;background:#fff}
+  .joyas-layout .canasta-list .empty{color:var(--soft)}
+  .joyas-layout .canasta textarea,.envio input{background:#fff;border:1px solid #cfd6d8;color:var(--ink)}
+  .envio input:focus,.joyas-layout .canasta textarea:focus{border-color:var(--petrol)}
+  .envio input[aria-invalid="true"]{border-color:var(--clay)}
+  .envio label{color:var(--soft)}
+  .envio-tit{color:var(--petrol)!important}
+  .envio-err{color:var(--clay)!important}
+  .envio-err a{color:var(--petrol)}
+  .boceto .cap{color:#6b6556}
+  .plus-pop{color:var(--clay)}
+  @media(max-width:999px){
+    .joyas-layout .canasta{background:var(--paper);box-shadow:0 -10px 28px -8px rgba(23,19,15,.18)}
+    .canasta-bar{background:var(--paper)}
+    .canasta-bar .bar-txt small{color:var(--soft)}
+    .canasta-bar .bar-txt b{color:var(--petrol)}
+    .canasta-bar button{background:var(--clay);color:#fff;border:none}
+    .canasta-bar .canasta-icon svg{fill:var(--petrol)}
+  }
   .canasta-float{position:fixed;left:12px;right:12px;bottom:12px;z-index:20;display:none;align-items:center;justify-content:space-between;gap:10px;background:var(--void);color:var(--ivory);border:1px solid var(--gold);border-radius:999px;padding:10px 16px;text-decoration:none;font-weight:700;font-size:.9rem;box-shadow:0 10px 28px -12px var(--void)}
   .canasta-float.show{display:flex}
   .canasta-float span{color:var(--gold-bright)}
@@ -1769,8 +1826,8 @@
     var o = '<svg viewBox="0 0 320 196" role="img" aria-label="Boceto de la pieza">' +
       '<defs><filter id="lapiz" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2.6"/></filter>' +
       '<filter id="acuarela" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="7"/><feDisplacementMap in="SourceGraphic" scale="9"/><feGaussianBlur stdDeviation="1.1"/></filter></defs>';
-    if (tint) o += '<path d="' + band + '" fill="none" stroke="' + tint + '" stroke-width="13" stroke-linecap="round" opacity=".32" filter="url(#acuarela)"/>';
-    o += '<g filter="url(#lapiz)" fill="none" stroke-linecap="round"><path d="' + band + '" stroke="#ecc873" stroke-width="1.4" opacity=".9"/><path d="' + band2 + '" stroke="#fff7e8" stroke-width=".8" opacity=".55"/></g>';
+    if (tint) o += '<path d="' + band + '" fill="none" stroke="' + tint + '" stroke-width="13" stroke-linecap="round" opacity=".42" filter="url(#acuarela)"/>';
+    o += '<g filter="url(#lapiz)" fill="none" stroke-linecap="round"><path d="' + band + '" stroke="#1d4a5c" stroke-width="1.4" opacity=".9"/><path d="' + band2 + '" stroke="#b8860b" stroke-width=".9" opacity=".75"/></g>';
     var labeled = {};
     stones.forEach(function(id, i){
       var t = stones.length === 1 ? 0.5 : i / (stones.length - 1);
@@ -1778,17 +1835,17 @@
       var c = pt(stones.length === 1 ? 0.5 : 0.5 - spread / 2 + t * spread), r = 11 + rnd() * 3;
       var col = COLOR_PIEDRA[id] || "#c9a35a";
       o += '<path d="' + blobPath(c[0], c[1], r * 1.05, rnd) + '" fill="' + col + '" opacity=".72" filter="url(#acuarela)"/>';
-      o += '<g filter="url(#lapiz)" fill="none" stroke="#fff7e8" stroke-linecap="round"><path d="' + blobPath(c[0] + 0.8, c[1] - 0.6, r, rnd) + '" stroke-width="1.1" opacity=".85"/><path d="' + blobPath(c[0] - 1, c[1] + 0.8, r * 0.97, rnd) + '" stroke-width=".6" opacity=".5"/></g>';
+      o += '<g filter="url(#lapiz)" fill="none" stroke="#1d4a5c" stroke-linecap="round"><path d="' + blobPath(c[0] + 0.8, c[1] - 0.6, r, rnd) + '" stroke-width="1.1" opacity=".85"/><path d="' + blobPath(c[0] - 1, c[1] + 0.8, r * 0.97, rnd) + '" stroke-width=".6" opacity=".5"/></g>';
       if (!labeled[id]){
         var nl = Object.keys(labeled).length;
         labeled[id] = 1;
         var below = nl % 2 === 0 && c[1] + r + 20 < 192, lx = c[0] + (rnd() - 0.5) * 10, ly = below ? c[1] + r + 18 : c[1] - r - 10;
-        o += '<path d="M' + c[0].toFixed(1) + " " + (below ? c[1] + r + 2 : c[1] - r - 2).toFixed(1) + " L" + lx.toFixed(1) + " " + (below ? ly - 11 : ly + 3).toFixed(1) + '" stroke="#a79d8c" stroke-width=".7" fill="none" filter="url(#lapiz)"/>';
-        o += '<text x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) + '" text-anchor="middle" font-family="Caveat, cursive" font-size="15" fill="#f5efe2" transform="rotate(' + ((rnd() - 0.5) * 8).toFixed(1) + " " + lx.toFixed(1) + " " + ly.toFixed(1) + ')">' + esc(ROTULO[id] || id) + "</text>";
+        o += '<path d="M' + c[0].toFixed(1) + " " + (below ? c[1] + r + 2 : c[1] - r - 2).toFixed(1) + " L" + lx.toFixed(1) + " " + (below ? ly - 11 : ly + 3).toFixed(1) + '" stroke="#6f8087" stroke-width=".7" fill="none" filter="url(#lapiz)"/>';
+        o += '<text x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) + '" text-anchor="middle" font-family="Caveat, cursive" font-size="15" fill="#1d3a46" transform="rotate(' + ((rnd() - 0.5) * 8).toFixed(1) + " " + lx.toFixed(1) + " " + ly.toFixed(1) + ')">' + esc(ROTULO[id] || id) + "</text>";
       }
     });
     var mx = collar ? 250 : 262, my = collar ? 20 : 26;
-    o += '<text x="' + mx + '" y="' + my + '" text-anchor="middle" font-family="Caveat, cursive" font-size="16" fill="#ecc873" transform="rotate(-6 ' + mx + " " + my + ')">' + esc(metalTxt) + "</text>";
+    o += '<text x="' + mx + '" y="' + my + '" text-anchor="middle" font-family="Caveat, cursive" font-size="16" fill="#8a6408" transform="rotate(-6 ' + mx + " " + my + ')">' + esc(metalTxt) + "</text>";
     o += "</svg>";
     return o + '<p class="cap">Boceto de tu pieza. La pieza real es única y hecha a mano.</p>';
   }
