@@ -1605,7 +1605,7 @@
       "- Tipo: " + tipo + (tipo === "Pulsera" && P.para ? " para " + P.para : "") + "\n" +
       "- Piedras y materiales: " + (picks.length ? picks.map(pickLabel).join(", ") : "(quiero que me recomiendes)") + "\n" +
       "- Precio: " + pricePlain(st) + "\n" +
-      (nota ? "- Nota: " + nota + "\n" : "") +
+      (nota ? "- Características: " + nota + "\n" : "") +
       "Al pagar, me envías fotos reales de las piezas para elegir la piedra; de preferencia que la elija Obed.";
     var btn = document.getElementById("orderBtn");
     btn.href = waPedido(msg);
