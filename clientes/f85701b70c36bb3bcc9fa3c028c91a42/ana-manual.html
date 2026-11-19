@@ -81,6 +81,10 @@
   .jewel .ph{aspect-ratio:1/1;border-radius:12px;background:linear-gradient(135deg,#F6EFE0,#EADBC0);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:2.4rem;margin-bottom:12px}
   .jewel h3{font-size:1.1rem;font-weight:800}
   .price{font-weight:800;margin:6px 0 12px}
+  .price s{color:var(--soft);font-weight:500;margin-right:.4em}
+  audio::-webkit-media-controls-download-button,
+  video::-webkit-media-controls-download-button{display:none!important}
+  img{-webkit-user-drag:none}
 
   .featured{border:2px solid var(--gold);background:#FFFBF0}
   .obed-img{margin:12px 0;border-radius:14px;overflow:hidden}
@@ -252,7 +256,7 @@
 
 <div id="gate">
   <div class="card">
-    <img class="logo" src="logo.png" alt="Gitania">
+    <img class="logo" src="logo.png" alt="Gitania" draggable="false">
     <span class="label">Acceso privado</span>
     <h1>Espacio de Ana</h1>
     <p>Escribe el usuario y la contraseña que te compartí.</p>
@@ -265,12 +269,11 @@
 
 <div id="expired">
   <div class="card">
-    <img class="logo" src="logo.png" alt="Gitania">
+    <img class="logo" src="logo.png" alt="Gitania" draggable="false">
     <span class="label">Membresía de seguimiento</span>
     <h1>Tu membresía mensual venció</h1>
     <p>Tu membresía mensual de seguimiento venció; renuévala para seguir viendo tus recursos.</p>
-    <p>La mensualidad incluye <b>tu lectura del mes</b> y mantiene tu acceso a todos tus materiales.</p>
-    <p class="small">Tus descargas del primer mes siguen siendo tuyas.</p>
+    <p>La membresía incluye una lectura al mes (de seguimiento o una lectura nueva) y acceso al material dentro de la plataforma.</p>
     <a class="btn" id="renewBtn" href="#" target="_blank" rel="noopener">Renovar mi membresía</a>
     <p class="small" style="margin-top:14px">¿Ya pagaste o tienes dudas? <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>.</p>
     <p class="small">Este espacio es de acompañamiento y reflexión; no sustituye la atención psicológica ni médica.</p>
@@ -280,7 +283,7 @@
 <div id="app">
   <header class="top">
     <div class="wrap">
-      <a href="https://gitania.gold/" target="_blank" rel="noopener"><img src="logo.png" alt="Gitania"></a>
+      <a href="https://gitania.gold/" target="_blank" rel="noopener"><img src="logo.png" alt="Gitania" draggable="false"></a>
       <nav>
         <a href="#lectura">Tu lectura</a>
         <a href="#ejercicios">Ejercicios</a>
@@ -301,8 +304,8 @@
       <div class="box" style="text-align:left;margin-top:18px">
         <span class="label">Cómo funciona tu espacio</span>
         <ul style="margin:8px 0 0;padding-left:20px">
-          <li><b>Este primer mes</b> puedes usar todo sin restricción y <b>descargar</b> los audios, videos y PDFs que necesites. Busca el botón <i>Descargar</i>.</li>
-          <li><b>Desde el segundo mes</b>, la mensualidad de seguimiento incluye <b>tu lectura del mes</b> y mantiene tu acceso a todos tus materiales.</li>
+          <li><b>Este primer mes</b> ya está incluido: puedes usar todo el material dentro de la plataforma.</li>
+          <li><b>La membresía</b> incluye una lectura al mes (de seguimiento o una lectura nueva) y acceso al material dentro de la plataforma.</li>
         </ul>
       </div>
     </div>
@@ -323,7 +326,7 @@
     <section id="ejercicios">
       <span class="label">II · Ejercicios</span>
       <h2>Ejercicios para Ana y Obed</h2>
-      <p class="lead">Cada ejercicio tiene un audio con mi voz y, cuando aplique, un video, con botón para descargar. Hazlos en un lugar tranquilo.</p>
+      <p class="lead">Cada ejercicio tiene un audio con mi voz y, cuando aplique, un video. Úsalos aquí, en la plataforma. Hazlos en un lugar tranquilo.</p>
 
       <div class="box ex">
         <span class="for">Para Ana y Obed</span>
@@ -456,15 +459,16 @@
       <h2>Tu membresía y tus lecturas</h2>
       <div class="box">
         <ul style="margin:0;padding-left:20px">
-          <li><b>Este primer mes</b> ya está pagado con tu lectura: usa todo y descarga lo que necesites.</li>
-          <li><b>Desde el segundo mes</b>, la mensualidad de seguimiento incluye <b>tu lectura del mes</b> y mantiene tu acceso a todos tus materiales.</li>
+          <li><b>Este primer mes</b> ya está pagado con tu lectura: puedes usar todo el material dentro de la plataforma.</li>
+          <li><b>La membresía</b> incluye una lectura al mes (de seguimiento o una lectura nueva) y acceso al material dentro de la plataforma.</li>
         </ul>
       </div>
       <div class="grid two">
         <div class="box jewel">
           <h3>Membresía mensual de seguimiento</h3>
-          <p class="small">Incluye la lectura del mes + acceso a tus materiales + material nuevo.</p>
+          <p class="small">La membresía incluye una lectura al mes (de seguimiento o una lectura nueva) y acceso al material dentro de la plataforma.</p>
           <p class="price" id="precioMembresia"></p>
+          <p class="small" id="precioEspecial">Precio especial para ti: te respeto el 50% de descuento que platicamos; no es el precio habitual para mis consultantes.</p>
           <a class="btn" id="btnMembresia" href="#" target="_blank" rel="noopener">Pagar mi membresía</a>
         </div>
         <div class="box jewel">
@@ -507,7 +511,8 @@
     // Precios y links de pago (MARCADORES hasta que Tania decida y cree los links).
     // Un link de Mercado Pago por concepto. Mientras diga MAYÚSCULAS_URL, el botón abre WhatsApp.
     precioLectura: 2520,              // confirmado por Tania
-    precioMembresia: null,            // pendiente (ver propuesta-cobro.md); null = "por confirmar"
+    precioMembresiaHabitual: 2520,    // precio habitual para consultantes (igual que una lectura)
+    precioMembresia: 1260,            // 50% especial para Ana
     pagoMembresiaUrl: "PAGO_MEMBRESIA_URL",
     pagoLecturaUrl: "PAGO_LECTURA_URL",
     // Pedido de pieza a la medida (la sección de joyas). El precio se calcula en la canastita.
@@ -1155,33 +1160,46 @@
 
   // ---- contenido ----
   function esc(t){ return String(t == null ? "" : t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;"); }
-  function dl(src, txt){
-    return '<a class="btn ghost dl" href="' + src + '" download>⬇ ' + txt + '</a>';
-  }
+  var MEDIA_GUARD = ' controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false" ';
   function mediaBlock(m, label){
     if (!m) return "";
     var out = "";
     if (m.audio){
       if (m.audioTitulo) out += '<p class="player-title">' + esc(m.audioTitulo) + '</p>';
-      out += '<audio controls preload="none" src="' + m.audio + '"></audio>' + dl(m.audio, "Descargar audio");
+      out += '<audio controls preload="none"' + MEDIA_GUARD + 'src="' + m.audio + '"></audio>';
     } else if (Object.prototype.hasOwnProperty.call(m, "audio")){
-      out += '<div class="pending"><b>Audio pendiente:</b> ' + label + ' con la voz de Tania. Tendrá botón de descarga.</div>';
+      out += '<div class="pending"><b>Audio pendiente:</b> ' + label + ' con la voz de Tania.</div>';
     }
     if (m.video){
       if (m.videoTitulo) out += '<p class="player-title">' + esc(m.videoTitulo) + '</p>';
-      out += '<video controls playsinline muted loop preload="metadata" src="' + m.video + '"></video>' + dl(m.video, "Descargar video");
+      out += '<video controls playsinline muted loop preload="metadata"' + MEDIA_GUARD + 'src="' + m.video + '"></video>';
     } else if (Object.prototype.hasOwnProperty.call(m, "video")){
       out += '<div class="pending"><b>Video pendiente</b> (opcional).</div>';
     }
     if (Object.prototype.hasOwnProperty.call(m, "pdf")){
-      if (m.pdf) out += '<a class="btn ghost" href="' + m.pdf + '" target="_blank" rel="noopener">Abrir el PDF de tu lectura ↗</a>' + dl(m.pdf, "Descargar PDF");
+      if (m.pdf) out += '<a class="btn ghost" href="' + m.pdf + '" target="_blank" rel="noopener">Ver el PDF de tu lectura en la plataforma ↗</a>';
       else out += '<div class="pending"><b>PDF pendiente:</b> tu lectura por escrito.</div>';
     }
     if (Object.prototype.hasOwnProperty.call(m, "imagen")){
-      if (m.imagen) out += '<img src="' + m.imagen + '" alt="Imagen de Obed para el ejercicio" style="border-radius:12px">' + dl(m.imagen, "Descargar imagen");
+      if (m.imagen) out += '<img src="' + m.imagen + '" alt="Imagen de Obed para el ejercicio" style="border-radius:12px" draggable="false" oncontextmenu="return false">';
       else out += '<div class="pending"><b>Imagen pendiente:</b> foto de cuerpo completo de Obed, trabajada por Tania.</div>';
     }
     return out;
+  }
+  function protectMedia(root){
+    root = root || document;
+    Array.from(root.querySelectorAll("audio, video")).forEach(function(el){
+      el.setAttribute("controlsList", "nodownload noplaybackrate");
+      try{ el.disablePictureInPicture = true; }catch(e){}
+      el.addEventListener("contextmenu", function(ev){ ev.preventDefault(); });
+    });
+    Array.from(root.querySelectorAll("img")).forEach(function(el){
+      el.setAttribute("draggable", "false");
+      el.draggable = false;
+    });
+    Array.from(root.querySelectorAll("#obedImg img, .obed-img img, audio, video")).forEach(function(el){
+      el.addEventListener("contextmenu", function(ev){ ev.preventDefault(); });
+    });
   }
   var POINTS = [
     ["crown","jpg","Coronilla","En el centro de la parte más alta de la cabeza."],
@@ -1210,8 +1228,10 @@
     document.getElementById("closingPhrase").textContent = "“" + CONFIG.fraseCierre + "”";
     document.getElementById("tapGrid").innerHTML = POINTS.map(function(p, i){
       var src = "tapping/" + p[0] + "." + p[1];
-      var m = p[1] === "mp4" ? '<video src="' + src + '" autoplay muted loop playsinline></video>' : '<img src="' + src + '" alt="' + p[2] + '" loading="lazy">';
-      return '<div class="tap">' + m + '<div><b>' + (i+1) + '. ' + p[2] + '</b>' + p[3] + '<br><a href="' + src + '" download>⬇ Descargar</a></div></div>';
+      var m = p[1] === "mp4"
+        ? '<video src="' + src + '" autoplay muted loop playsinline' + MEDIA_GUARD + '></video>'
+        : '<img src="' + src + '" alt="' + p[2] + '" loading="lazy" draggable="false">';
+      return '<div class="tap">' + m + '<div><b>' + (i+1) + '. ' + p[2] + '</b>' + p[3] + '</div></div>';
     }).join("");
     if (CONFIG.mostrarNombres){
       document.getElementById("nombres").style.display = "";
@@ -1220,13 +1240,20 @@
       }).join("");
     }
     document.getElementById("obedImg").innerHTML = CONFIG.imagenObed
-      ? '<img src="' + CONFIG.imagenObed + '" alt="Foto de Obed con los números 1 4 7 8 9">' + dl(CONFIG.imagenObed, "Descargar imagen")
+      ? '<img src="' + CONFIG.imagenObed + '" alt="Foto de Obed con los números 1 4 7 8 9" draggable="false" oncontextmenu="return false">'
       : '<div class="slot"><div><b>Aquí va la imagen de cuerpo completo de Obed</b><br>trabajada con números por Tania.<br><br>(espacio reservado)</div></div>';
     var seq = document.getElementById("grabovoiSeq");
     if (seq) seq.textContent = CONFIG.secuenciaPerdon
       ? "Secuencia para el perdón, según Grabovoi: " + CONFIG.secuenciaPerdon + ". Repítela número por número." : "";
     document.getElementById("precioLectura").textContent = money(CONFIG.precioLectura);
-    document.getElementById("precioMembresia").textContent = CONFIG.precioMembresia ? money(CONFIG.precioMembresia) + " al mes" : "Precio por confirmar";
+    var pm = document.getElementById("precioMembresia");
+    if (CONFIG.precioMembresia && CONFIG.precioMembresiaHabitual && CONFIG.precioMembresiaHabitual > CONFIG.precioMembresia){
+      pm.innerHTML = "<s>" + money(CONFIG.precioMembresiaHabitual) + "</s> " + money(CONFIG.precioMembresia) + " al mes";
+    } else if (CONFIG.precioMembresia){
+      pm.textContent = money(CONFIG.precioMembresia) + " al mes";
+    } else {
+      pm.textContent = "Precio por confirmar";
+    }
     document.getElementById("btnLectura").href = payUrl(CONFIG.pagoLecturaUrl, "Hola Tania, quiero pagar mi lectura.");
     document.getElementById("btnMembresia").href = payUrl(CONFIG.pagoMembresiaUrl, "Hola Tania, quiero pagar mi membresía mensual.");
     var piedras = [], metales = [];
@@ -1241,11 +1268,12 @@
     });
     document.getElementById("orderNota").addEventListener("input", renderOrder);
     document.getElementById("soldGrid").innerHTML = CONFIG.piezasAnteriores.map(function(p){
-      return '<div><img src="' + p.foto + '" alt="' + esc(p.nombre) + ' (vendida)" loading="lazy"><b>Vendida</b>' + esc(p.nombre) + '</div>';
+      return '<div><img src="' + p.foto + '" alt="' + esc(p.nombre) + ' (vendida)" loading="lazy" draggable="false"><b>Vendida</b>' + esc(p.nombre) + '</div>';
     }).join("");
     bindBasketDrop();
     bindBasketFloat();
     renderOrder();
+    protectMedia(document.getElementById("app"));
   }
 
   // ---- pedido de pieza (canastita) ----
@@ -1272,7 +1300,7 @@
     return found ? found[0] : op;
   }
   function tileHTML(m){
-    var im = m.foto ? '<img src="' + m.foto + '" alt="' + esc(m.nombre) + '" loading="lazy">' : '<div class="noimg">Sin foto</div>';
+    var im = m.foto ? '<img src="' + m.foto + '" alt="' + esc(m.nombre) + '" loading="lazy" draggable="false">' : '<div class="noimg">Sin foto</div>';
     var rec = m.recomendada ? '<span class="badge-rec">Recomendada para Obed</span>' : "";
     return '<button type="button" class="tile' + (m.disponible ? "" : " off") + '" data-mat="' + m.id + '"' + (m.disponible ? ' draggable="true"' : "") + ">" + rec + im +
       "<span>" + esc(m.nombre) + "<small>" + (m.disponible ? esc(m.detalle || "") : "No disponible por ahora") + "</small>" +
@@ -1488,7 +1516,7 @@
   var fichaId = null, fichaOp = null, lastFocus = null;
   function fichaHTML(m){
     var p = pickOf(m.id), on = !!p;
-    var fig = m.foto ? '<figure><img src="' + m.foto + '" alt="' + esc(m.nombre) + '"><figcaption>imagen ilustrativa</figcaption></figure>' : "";
+    var fig = m.foto ? '<figure><img src="' + m.foto + '" alt="' + esc(m.nombre) + '" draggable="false"><figcaption>imagen ilustrativa</figcaption></figure>' : "";
     var fu = (m.fuentes || []).map(function(x){ return '<a href="' + x[1] + '" target="_blank" rel="noopener">' + esc(x[0]) + "</a>"; }).join(" · ");
     var ops = "";
     if (m.opciones){
@@ -1516,6 +1544,7 @@
   function paintFicha(){
     var m = matById(fichaId);
     document.getElementById("fichaCuerpo").innerHTML = fichaHTML(m);
+    protectMedia(document.getElementById("ficha"));
     Array.from(document.querySelectorAll('#ficha input[name="fop"]')).forEach(function(r){
       r.addEventListener("change", function(){ fichaOp = r.value; var p = pickOf(fichaId); if (p) p.op = fichaOp; paintFicha(); renderOrder(); });
     });
@@ -1564,7 +1593,7 @@
     } else {
       om.innerHTML = picks.map(function(p){
         var m = matById(p.id);
-        var img = m.foto ? '<img src="' + m.foto + '" alt="">' : '<span class="ph"></span>';
+        var img = m.foto ? '<img src="' + m.foto + '" alt="" draggable="false">' : '<span class="ph"></span>';
         var qty = "";
         if (!isMetal(p.id)){
           qty = '<div class="qty"><button type="button" data-qty="-" data-id="' + p.id + '" aria-label="Quitar una">−</button><span>' + (p.qty || 1) + '</span><button type="button" data-qty="+" data-id="' + p.id + '" aria-label="Agregar una">+</button></div>';
