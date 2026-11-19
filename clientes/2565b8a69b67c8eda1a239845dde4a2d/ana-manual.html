@@ -342,6 +342,8 @@
   .envio-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .envio-err{color:var(--red-bright)!important;font-size:.84rem;margin:0;min-height:1em}
   .envio-err a{color:var(--gold-bright)}
+  .envio-line{text-align:center;font-weight:700;font-size:.9rem;margin:-4px 0 10px;color:#1d4a5c}
+  .envio-line[hidden]{display:none}
   .ghost-link{display:block;text-align:center;margin-top:10px;font-size:.85rem;color:var(--gold-bright)}
   .ghost-link[hidden]{display:none}
   @media(min-width:1000px){
@@ -629,12 +631,13 @@
             <div class="canasta-total" aria-live="polite"><span class="lbl">Total</span><span class="num" id="totalNum">$0 MXN</span><span class="basket-hint">Toca «+ Agregar» o arrastra aquí</span></div>
           </div>
           <p class="price-box" id="orderPrice"></p>
+          <p class="envio-line" id="envioLine" hidden></p>
           <div class="canasta-actions">
             <button type="button" class="btn" id="payPiezaBtn">Pagar mi pieza</button>
           </div>
           <form class="envio" id="envioForm" hidden novalidate>
             <p class="envio-tit">Datos de envío</p>
-            <p class="small">Para la persona que recibe la pieza. Tania te confirma el envío.</p>
+            <p class="small">Para la persona que recibe la pieza. <span id="envioCosto">Tania te confirma el envío.</span></p>
             <label>Nombre de quien recibe<input name="nombre" autocomplete="name" required maxlength="80"></label>
             <label>Teléfono<input name="telefono" type="tel" inputmode="tel" autocomplete="tel" required maxlength="20" placeholder="10 dígitos"></label>
             <label>Calle y número<input name="calle" autocomplete="address-line1" required maxlength="120"></label>
@@ -2010,6 +2013,13 @@
     var payNote = document.querySelector("#order .pay-note");
     var sub = document.getElementById("envioSubmit");
     var form = document.getElementById("envioForm");
+    // Envío incluido desde $1,499 (regla de Tania); abajo de eso, Tania confirma el costo.
+    var ENVIO_GRATIS_DESDE = 1499;
+    var envTxt = st.quote ? "Tania te confirma el envío." : (st.total >= ENVIO_GRATIS_DESDE ? "Envío incluido." : "Tania te confirma el costo de envío.");
+    var envLine = document.getElementById("envioLine");
+    envLine.hidden = !picks.length;
+    envLine.textContent = envTxt;
+    document.getElementById("envioCosto").textContent = envTxt;
     if (!picks.length){
       envioOpen = false;
       form.hidden = true;
