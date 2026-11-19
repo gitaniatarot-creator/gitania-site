@@ -781,6 +781,15 @@
       filter: drop-shadow(0 0 18px rgba(236, 200, 115, 0.35));
     }
 
+    /* la luna se funde con el cielo: máscara radial suave, sin borde de caja (también en iOS) */
+    .gitania-portrait {
+      -webkit-mask-image: radial-gradient(closest-side ellipse at 50% 50%, #000 64%, rgba(0,0,0,.55) 82%, transparent 100%);
+      mask-image: radial-gradient(closest-side ellipse at 50% 50%, #000 64%, rgba(0,0,0,.55) 82%, transparent 100%);
+      transform: translateZ(0);
+    }
+    .gitania-portrait img { will-change: opacity; }
+
+
     .eyebrow {
       margin: 0 0 18px;
       color: var(--gold-light);
@@ -1507,7 +1516,13 @@
     .footer-disclaimer { display: block; margin: 12px auto 0; max-width: 620px; text-transform: none; letter-spacing: 0.02em; line-height: 1.5; opacity: 0.85; }
     .service-note { font-size: 13px; opacity: 0.85; max-width: 560px; margin-left: auto; margin-right: auto; }
     h1.section-eyebrow { font-weight: 400; line-height: normal; text-shadow: none; }
-  </style>
+  
+    /* móvil: el botón de WhatsApp baja a la esquina y no tapa textos */
+    @media (max-width: 760px) {
+      .side-nav--right { top: auto; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); right: 14px; transform: none; }
+      .whatsapp-rail { width: 46px; height: 46px; }
+    }
+</style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
@@ -1614,11 +1629,10 @@
     // ---- acceso VIP (varias clientas) ----
     // No hay contraseñas en este archivo, ni nombres de carpetas.
     // v1 (Elois): SHA-256 de "usuario:contraseña". Carpeta = SHA-256("gitania-path:usuario:contraseña")[0:32].
-    // v2 (clientas nuevas): PBKDF2-SHA256 de la contraseña (sal "gitania-vip:usuario", 200000 vueltas),
-    //    mucho más lento de adivinar. Carpeta = SHA-256("gitania-path-v2:" + ese hash)[0:32].
+    // v3 (clientas nuevas): PBKDF2-SHA256 de la contraseña (sal "gitania-vip:usuario", 200000 vueltas) que se
+    //    verifica EN EL SERVIDOR (gitania-pagos /api/vip/login); el contenido y los medios se entregan solo con sesión.
     // Para dar de alta o cambiar contraseña: python3 tools/set-vip-pass.py usuario  (ver README-blog.md).
     const VIP_HASHES = ["df83a0614e0dc729f34313e72f92ea852ea66dda9677a27ddece5c37902c0986"];
-    const VIP_HASHES_V2 = ["df3b9f6d91a76c59f8757e3696c25dd4ad9acc4d01daf12247693e746479e81a"];
     const VIP_PBKDF2_ITER = 200000;
 
     function toHex(buf) {
@@ -1658,10 +1672,15 @@
           if (VIP_HASHES.indexOf(await sha256Hex(user + ":" + pass)) > -1) {
             folder = (await sha256Hex("gitania-path:" + user + ":" + pass)).slice(0, 32);
           } else {
+            // v3: la contraseña se verifica en el servidor (gitania-pagos); aquí no hay hashes.
             const k = await pbkdf2Hex(user, pass);
-            if (VIP_HASHES_V2.indexOf(k) > -1) {
-              folder = (await sha256Hex("gitania-path-v2:" + k)).slice(0, 32);
-              try { sessionStorage.setItem("gitania_vip_ok", k); } catch (err) {}
+            const r = await fetch("https://gitania-pagos.netlify.app/api/vip/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ usuario: user, k: k }) });
+            if (r.ok) {
+              const x = await r.json();
+              try { sessionStorage.setItem("gitania_vip_t", x.token); } catch (err) {}
+              vipLoginError.hidden = true;
+              window.location.href = x.url;
+              return;
             }
           }
         } catch (err) {

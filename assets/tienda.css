@@ -108,7 +108,7 @@ footer .care { display: block; margin: 10px auto 0; max-width: 620px; text-trans
   .portal-button { width: 190px; height: 190px; margin: 30px auto 52px; }
 }
 .acciones .vip-login { margin: 0; max-width: none; }
-.encuesta-form .btn-pago { margin-top: 4px; }
+.encuesta-form .gt-buy { margin-top: 4px; }
 @media (max-width: 700px) { .side-nav--left { display: none; } }
 /* portada de libro (El Matasueños) */
 .cuento-libro { display: block; width: min(62%, 220px); margin: 0 auto; border-radius: 6px; overflow: hidden; transition: transform 260ms ease;
