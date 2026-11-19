@@ -336,7 +336,6 @@
       <p class="lead">El resumen de lo que trabajamos, para ti y para Obed.</p>
       <div class="box">
         <p><b>Lo central:</b> desbloquear la intuición y liberar el miedo — en ti y en Obed.</p>
-        <div class="pending"><b>Pendiente (Tania):</b> resumen de la lectura — cartas que salieron, qué mostraron sobre la intuición y el miedo de Ana, y qué mostraron sobre Obed.</div>
       </div>
       <div class="media" id="lecturaMedia"></div>
     </section>
@@ -1184,21 +1183,19 @@
       if (m.audioTitulo) out += '<p class="player-title">' + esc(m.audioTitulo) + '</p>';
       out += '<audio controls preload="none"' + MEDIA_GUARD + 'src="' + m.audio + '"></audio>';
     } else if (Object.prototype.hasOwnProperty.call(m, "audio")){
-      out += '<div class="pending"><b>Audio pendiente:</b> ' + label + ' con la voz de Tania.</div>';
+      /* sin aviso de pendiente */
     }
     if (m.video){
       if (m.videoTitulo) out += '<p class="player-title">' + esc(m.videoTitulo) + '</p>';
       out += '<video controls playsinline muted loop preload="metadata"' + MEDIA_GUARD + 'src="' + m.video + '"></video>';
     } else if (Object.prototype.hasOwnProperty.call(m, "video")){
-      out += '<div class="pending"><b>Video pendiente</b> (opcional).</div>';
+      /* sin aviso de pendiente */
     }
     if (Object.prototype.hasOwnProperty.call(m, "pdf")){
       if (m.pdf) out += '<a class="btn ghost" href="' + m.pdf + '" target="_blank" rel="noopener">Ver el PDF de tu lectura en la plataforma ↗</a>';
-      else out += '<div class="pending"><b>PDF pendiente:</b> tu lectura por escrito.</div>';
     }
     if (Object.prototype.hasOwnProperty.call(m, "imagen")){
       if (m.imagen) out += '<img src="' + m.imagen + '" alt="Imagen de Obed para el ejercicio" style="border-radius:12px" draggable="false" oncontextmenu="return false">';
-      else out += '<div class="pending"><b>Imagen pendiente:</b> foto de cuerpo completo de Obed, trabajada por Tania.</div>';
     }
     return out;
   }
