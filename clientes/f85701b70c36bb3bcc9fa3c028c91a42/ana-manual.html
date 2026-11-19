@@ -230,7 +230,21 @@
   .canasta .price-box{font-weight:800;font-size:1.15rem;margin:10px 0 6px;color:var(--gold-bright)}
   .canasta .price-box .ref{display:block;font-weight:500;font-size:.82rem;color:var(--ink-muted);margin-top:4px}
   .canasta .btn{background:var(--red);color:var(--ivory)}
+  .canasta .btn.ghost{background:transparent;color:var(--ivory);border:1.5px solid var(--gold-bright)}
   .canasta .btn.dis{opacity:.5;pointer-events:none}
+  .canasta [hidden], #payPiezaBtn[hidden]{display:none!important}
+  .canasta-actions{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+  @media(min-width:640px){.canasta-actions{flex-direction:row}.canasta-actions .btn{flex:1}}
+  .canasta .pay-note{margin:8px 0 0;color:var(--ink-muted)}
+  .renew .plans{display:grid;gap:12px;margin:14px 0 10px}
+  @media(min-width:640px){.renew .plans{grid-template-columns:1fr 1fr}}
+  .renew .plan{background:var(--void-soft);border:1px solid var(--gold);border-radius:14px;padding:16px 14px;text-align:center;display:flex;flex-direction:column;gap:6px}
+  .renew .plan h3{color:var(--ivory);font-size:1.05rem;margin:0}
+  .renew .plan .price{color:var(--gold-bright);font-weight:800;font-size:1.2rem;margin:4px 0}
+  .renew .plan .deal{color:var(--gold-bright);font-size:.82rem;font-weight:600;margin:0 0 8px}
+  .renew .plan .btn{background:var(--gold);color:var(--void);margin-top:auto}
+  .renew > .price{color:var(--gold-bright);font-size:1rem}
+  .renew > .price s{color:var(--ink-muted);font-weight:500;margin-right:.35em}
   .canasta-float{position:fixed;left:12px;right:12px;bottom:12px;z-index:20;display:none;align-items:center;justify-content:space-between;gap:10px;background:var(--void);color:var(--ivory);border:1px solid var(--gold);border-radius:999px;padding:10px 16px;text-decoration:none;font-weight:700;font-size:.9rem;box-shadow:0 10px 28px -12px var(--void)}
   .canasta-float.show{display:flex}
   .canasta-float span{color:var(--gold-bright)}
@@ -274,8 +288,13 @@
     <h1>Tu membresía mensual venció</h1>
     <p>Tu membresía mensual de seguimiento venció; renuévala para seguir viendo tus recursos.</p>
     <p>La membresía incluye una lectura al mes (de seguimiento o una lectura nueva) y acceso al material dentro de la plataforma.</p>
-    <a class="btn" id="renewBtn" href="#" target="_blank" rel="noopener">Renovar mi membresía</a>
-    <p class="small" style="margin-top:14px">¿Ya pagaste o tienes dudas? <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>.</p>
+    <p class="small">Precio especial para ti: te respeto el 50% de descuento que platicamos; no es el precio habitual para mis consultantes.</p>
+    <p class="price"><s>$2,520 MXN</s></p>
+    <a class="btn" data-pago="mensual" href="#" target="_blank" rel="noopener">Pagar mensual · $1,260 MXN</a>
+    <a class="btn alt" data-pago="anual" href="#" target="_blank" rel="noopener" style="margin-top:8px">Pagar anual · $10,584 MXN</a>
+    <p class="small">30% de descuento al año, equivale a $882 al mes.</p>
+    <p class="small">Pago seguro con tarjeta, Apple Pay o Google Pay (próximamente)</p>
+    <p class="small" style="margin-top:14px">¿Ya pagaste o tienes dudas? <a href="https://wa.me/525510292487" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>.</p>
     <p class="small">Este espacio es de acompañamiento y reflexión; no sustituye la atención psicológica ni médica.</p>
   </div>
 </div>
@@ -435,8 +454,11 @@
         <textarea id="orderNota" rows="3"></textarea>
         <p class="price-box" id="orderPrice"></p>
         <p class="small">Al pagar, te envío fotos reales de las piezas para que elijas la piedra; de preferencia que la elija Obed.</p>
-        <a class="btn" id="orderBtn" href="#" target="_blank" rel="noopener">Enviar mi elección a Tania</a>
-        <p class="small">Se abre WhatsApp con tu elección y el precio. Aquí no se cobra.</p>
+        <div class="canasta-actions">
+          <a class="btn ghost" id="orderBtn" href="#" target="_blank" rel="noopener">Enviar mi elección a Tania</a>
+          <a class="btn" id="payPiezaBtn" href="#" target="_blank" rel="noopener">Pagar mi pieza</a>
+        </div>
+        <p class="small pay-note">Pago seguro con tarjeta, Apple Pay o Google Pay (próximamente)</p>
       </div>
       <a class="canasta-float" id="basketFloat" href="#order">Canastita · <span id="floatCount">0</span> · <span id="floatPrice"></span></a>
 
@@ -463,22 +485,35 @@
           <li><b>La membresía</b> incluye una lectura al mes (de seguimiento o una lectura nueva) y acceso al material dentro de la plataforma.</li>
         </ul>
       </div>
-      <div class="grid two">
-        <div class="box jewel">
-          <h3>Membresía mensual de seguimiento</h3>
-          <p class="small">La membresía incluye una lectura al mes (de seguimiento o una lectura nueva) y acceso al material dentro de la plataforma.</p>
-          <p class="price" id="precioMembresia"></p>
-          <p class="small" id="precioEspecial">Precio especial para ti: te respeto el 50% de descuento que platicamos; no es el precio habitual para mis consultantes.</p>
-          <a class="btn" id="btnMembresia" href="#" target="_blank" rel="noopener">Pagar mi membresía</a>
+      <div class="box canasta renew" id="renovar">
+        <span class="label">Renovar tu membresía</span>
+        <h3>Elige mensual o anual</h3>
+        <p class="price" id="precioMembresia"></p>
+        <p class="small" id="precioEspecial">Precio especial para ti: te respeto el 50% de descuento que platicamos; no es el precio habitual para mis consultantes.</p>
+        <p class="small">La membresía incluye una lectura al mes (de seguimiento o una lectura nueva) y acceso al material dentro de la plataforma.</p>
+        <div class="plans">
+          <div class="plan">
+            <h3>Mensual</h3>
+            <p class="price">$1,260 MXN</p>
+            <a class="btn" data-pago="mensual" href="#" target="_blank" rel="noopener">Pagar</a>
+          </div>
+          <div class="plan">
+            <h3>Anual</h3>
+            <p class="price">$10,584 MXN</p>
+            <p class="deal">30% de descuento, equivale a $882 al mes</p>
+            <a class="btn" data-pago="anual" href="#" target="_blank" rel="noopener">Pagar</a>
+          </div>
         </div>
-        <div class="box jewel">
-          <h3>Lectura</h3>
-          <p class="small">Una lectura simbólica de cartas, sin membresía.</p>
-          <p class="price" id="precioLectura"></p>
-          <a class="btn alt" id="btnLectura" href="#" target="_blank" rel="noopener">Pagar mi lectura</a>
-        </div>
+        <p class="small pay-note">Pago seguro con tarjeta, Apple Pay o Google Pay (próximamente)</p>
       </div>
-      <p class="small">Si tienes cualquier problema para pagar, <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">escríbeme por WhatsApp</a>.</p>
+      <div class="box jewel">
+        <h3>Lectura</h3>
+        <p class="small">Una lectura simbólica de cartas, sin membresía.</p>
+        <p class="price" id="precioLectura"></p>
+        <a class="btn alt" id="btnLectura" href="#" target="_blank" rel="noopener">Pagar mi lectura</a>
+        <p class="small pay-note">Pago seguro con tarjeta, Apple Pay o Google Pay (próximamente)</p>
+      </div>
+      <p class="small">Si tienes cualquier problema para pagar, <a href="https://wa.me/525510292487" target="_blank" rel="noopener">escríbeme por WhatsApp</a>.</p>
     </section>
 
     <!-- ===== Apoyo ===== -->
@@ -508,13 +543,13 @@
     // Membresía: acceso pagado hasta este día (inclusive, hora local del navegador).
     pagadoHasta: "2026-12-18",
 
-    // Precios y links de pago (MARCADORES hasta que Tania decida y cree los links).
-    // Un link de Mercado Pago por concepto. Mientras diga MAYÚSCULAS_URL, el botón abre WhatsApp.
+    // Precios y links de pago (Stripe Payment Links). Si PAGOS.* está vacío, el botón abre WhatsApp.
     precioLectura: 2520,              // confirmado por Tania
     precioMembresiaHabitual: 2520,    // precio habitual para consultantes (igual que una lectura)
-    precioMembresia: 1260,            // 50% especial para Ana
-    pagoMembresiaUrl: "PAGO_MEMBRESIA_URL",
-    pagoLecturaUrl: "PAGO_LECTURA_URL",
+    precioMembresia: 1260,            // 50% especial para Ana (mensual)
+    precioMembresiaAnual: 10584,      // 30% de descuento sobre 12 meses a 1,260
+    precioMembresiaAnualMes: 882,     // 10584 / 12
+    PAGOS: { mensual: "", anual: "", pieza: "", lectura: "" },
     // Pedido de pieza a la medida (la sección de joyas). El precio se calcula en la canastita.
     pedido: { notaLectura: "intuición, soltar el miedo, apaciguar y perdón", tipos: ["Pulsera", "Collar"], tipoPorDefecto: "Pulsera", para: "Obed", whatsapp: "525510292487", precioPiedra: 500 },
     // Materiales en existencia. Para agregar uno, copia un bloque y cambia los textos.
@@ -1112,8 +1147,7 @@
     gate.style.display = "none";
     if (isExpired()){
       expired.style.display = "flex";
-      var rb = document.getElementById("renewBtn");
-      rb.href = isPlaceholder(CONFIG.pagoMembresiaUrl) ? "https://wa.me/5215515245147" : CONFIG.pagoMembresiaUrl;
+      bindPagos();
       return;
     }
     app.classList.add("on");
@@ -1228,15 +1262,14 @@
       ? "Secuencia para el perdón, según Grabovoi: " + CONFIG.secuenciaPerdon + ". Repítela número por número." : "";
     document.getElementById("precioLectura").textContent = money(CONFIG.precioLectura);
     var pm = document.getElementById("precioMembresia");
-    if (CONFIG.precioMembresia && CONFIG.precioMembresiaHabitual && CONFIG.precioMembresiaHabitual > CONFIG.precioMembresia){
-      pm.innerHTML = "<s>" + money(CONFIG.precioMembresiaHabitual) + "</s> " + money(CONFIG.precioMembresia) + " al mes";
-    } else if (CONFIG.precioMembresia){
-      pm.textContent = money(CONFIG.precioMembresia) + " al mes";
-    } else {
-      pm.textContent = "Precio por confirmar";
+    if (pm){
+      if (CONFIG.precioMembresiaHabitual){
+        pm.innerHTML = "<s>" + money(CONFIG.precioMembresiaHabitual) + " al mes</s> precio habitual";
+      } else {
+        pm.textContent = "";
+      }
     }
-    document.getElementById("btnLectura").href = payUrl(CONFIG.pagoLecturaUrl, "Hola Tania, quiero pagar mi lectura.");
-    document.getElementById("btnMembresia").href = payUrl(CONFIG.pagoMembresiaUrl, "Hola Tania, quiero pagar mi membresía mensual.");
+    bindPagos();
     var piedras = [], metales = [];
     CONFIG.materiales.forEach(function(m){ (METALES[m.id] ? metales : piedras).push(m); });
     document.getElementById("materialsPiedras").innerHTML = piedras.map(tileHTML).join("");
@@ -1263,9 +1296,22 @@
   var METALES = {cobre:1, plata:1, oro:1};
   var PRECIO_PIEDRA = (CONFIG.pedido && CONFIG.pedido.precioPiedra) || 500;
   function money(n){ return "$" + Number(n).toLocaleString("es-MX") + " MXN"; }
-  function waLink(msg){ return "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg); }
-  function waPedido(msg){ return "https://wa.me/" + WA_PEDIDO + "?text=" + encodeURIComponent(msg); }
-  function payUrl(u, msg){ return isPlaceholder(u) ? waLink(msg) : u; }
+  function waLink(msg){ return "https://wa.me/" + WA_PEDIDO + "?text=" + encodeURIComponent(msg); }
+  function waPedido(msg){ return waLink(msg); }
+  function payUrl(u, msg){ return isPlaceholder(u) ? waPedido(msg) : u; }
+  function pagoHref(key, msg){
+    var u = CONFIG.PAGOS && CONFIG.PAGOS[key];
+    return isPlaceholder(u) ? waPedido(msg) : u;
+  }
+  function bindPagos(){
+    var mensMsg = "Hola Tania, soy Ana. Quiero pagar la membresía mensual de " + money(CONFIG.precioMembresia) + ".";
+    var anualMsg = "Hola Tania, soy Ana. Quiero pagar la membresía anual de " + money(CONFIG.precioMembresiaAnual) + " (30% de descuento, equivale a " + money(CONFIG.precioMembresiaAnualMes) + " al mes).";
+    var lecMsg = "Hola Tania, soy Ana. Quiero pagar mi lectura de " + money(CONFIG.precioLectura) + ".";
+    Array.from(document.querySelectorAll('[data-pago="mensual"]')).forEach(function(a){ a.href = pagoHref("mensual", mensMsg); });
+    Array.from(document.querySelectorAll('[data-pago="anual"]')).forEach(function(a){ a.href = pagoHref("anual", anualMsg); });
+    var lec = document.getElementById("btnLectura");
+    if (lec) lec.href = pagoHref("lectura", lecMsg);
+  }
   var picks = [], tipo = CONFIG.pedido.tipoPorDefecto;
   function matById(id){ return CONFIG.materiales.filter(function(m){ return m.id === id; })[0]; }
   function pickOf(id){ return picks.filter(function(p){ return p.id === id; })[0]; }
@@ -1610,6 +1656,24 @@
     var btn = document.getElementById("orderBtn");
     btn.href = waPedido(msg);
     btn.textContent = "Enviar mi elección a Tania";
+    var pay = document.getElementById("payPiezaBtn");
+    var payNote = document.querySelector("#order .pay-note");
+    if (st.quote){
+      pay.hidden = true;
+      pay.classList.add("dis");
+      if (payNote) payNote.hidden = true;
+    } else {
+      pay.hidden = false;
+      if (payNote) payNote.hidden = false;
+      var payMsg = "Hola Tania, soy Ana. Quiero pagar mi " + tipo.toLowerCase() + (tipo === "Pulsera" && P.para ? " para " + P.para : "") + ":\n" +
+        "- Tipo: " + tipo + (tipo === "Pulsera" && P.para ? " para " + P.para : "") + "\n" +
+        "- Piedras y materiales: " + (picks.length ? picks.map(pickLabel).join(", ") : "(quiero que me recomiendes)") + "\n" +
+        "- Total: " + pricePlain(st) + "\n" +
+        (nota ? "- Características: " + nota + "\n" : "");
+      pay.href = picks.length ? pagoHref("pieza", payMsg) : "#";
+      pay.textContent = "Pagar mi pieza";
+      pay.classList.toggle("dis", !picks.length);
+    }
   }
 
   // Si ya entró desde vip.html (misma sesión), abrir directo. Va al final para que todo esté definido.
