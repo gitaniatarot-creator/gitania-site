@@ -102,6 +102,7 @@
     <div class="full"><label>Intereses</label><div class="checks" id="dInt"></div></div>
     <label>Servicio adquirido<input name="servicio" list="servicios" maxlength="80" placeholder="Lectura Express, VIP, Joya…"></label>
     <label>Fecha del servicio<input name="fechaServicio" type="date"></label>
+    <label class="full">Estado del pago<select name="estado"><option value="">—</option><option value="checkout iniciado">Checkout iniciado (por confirmar)</option><option value="pagado">Pagado</option></select></label>
     <label class="full">Notas<textarea name="notas" maxlength="2000"></textarea></label>
     <div class="full checks"><label><input type="checkbox" name="consentimiento"> Acepta recibir promociones</label></div>
     <p class="err full" id="eDlg" role="alert"></p>
@@ -138,6 +139,7 @@
     });
   }
   function fecha(iso){ if (!iso) return ""; var d = new Date(iso); return d.toLocaleDateString("es-MX", { day:"2-digit", month:"short", year:"numeric" }) + " " + d.toLocaleTimeString("es-MX", { hour:"2-digit", minute:"2-digit" }); }
+  function fuenteTxt(c){ var f = c.fuente === "encuesta" ? "Encuesta" : c.fuente === "lectura-express" ? "Pago Lectura Express" : "Manual"; return c.estado ? f + " · " + c.estado : f; }
   function origenTxt(c){ return c.origen ? c.origen + (c.origenOtro ? " (" + c.origenOtro + ")" : "") : ""; }
   function interesesTxt(c){ return (c.intereses || []).map(function(i){ return i === "Otro" && c.interesOtro ? "Otro: " + c.interesOtro : i; }); }
 
@@ -149,7 +151,7 @@
     return data.filter(function(c){
       if (o && c.origen !== o) return false;
       if (i && (c.intereses || []).indexOf(i) < 0) return false;
-      if (t){ var h = [c.nombre, c.telefono, c.correo, c.notas, c.servicio, c.origenOtro, c.interesOtro].join(" ").toLowerCase(); if (h.indexOf(t) < 0) return false; }
+      if (t){ var h = [c.nombre, c.telefono, c.correo, c.notas, c.servicio, c.origenOtro, c.interesOtro, c.referencia, c.estado].join(" ").toLowerCase(); if (h.indexOf(t) < 0) return false; }
       return true;
     });
   }
@@ -158,7 +160,7 @@
     $("counts").innerHTML = '<span>Total: <b>' + data.length + "</b></span>" + Object.keys(cnt).sort(function(a, b){ return cnt[b] - cnt[a]; }).map(function(k){ return "<span>" + esc(k) + ": <b>" + cnt[k] + "</b></span>"; }).join("");
     var rows = filtrados();
     $("tb").innerHTML = rows.length ? rows.map(function(c){
-      return "<tr><td>" + esc(fecha(c.creado)) + "<small>" + (c.fuente === "encuesta" ? "Encuesta" : "Manual") + "</small></td>" +
+      return "<tr><td>" + esc(fecha(c.creado)) + "<small>" + esc(fuenteTxt(c)) + "</small></td>" +
         "<td><b>" + esc(c.nombre) + "</b>" + (c.notas ? "<small>" + esc(c.notas.slice(0, 80)) + (c.notas.length > 80 ? "…" : "") + "</small>" : "") + "</td>" +
         "<td>" + esc(c.telefono) + (c.correo ? "<small>" + esc(c.correo) + "</small>" : "") + "</td>" +
         "<td>" + esc(origenTxt(c)) + "</td>" +
@@ -193,7 +195,7 @@
     $("dTit").textContent = c ? "Editar cliente" : "Agregar cliente";
     $("dDel").hidden = !c;
     if (c){
-      ["nombre", "telefono", "correo", "origen", "origenOtro", "servicio", "fechaServicio", "notas"].forEach(function(k){ f.elements[k].value = c[k] || ""; });
+      ["nombre", "telefono", "correo", "origen", "origenOtro", "servicio", "fechaServicio", "notas", "estado"].forEach(function(k){ f.elements[k].value = c[k] || ""; });
       f.elements.consentimiento.checked = !!c.consentimiento;
       Array.from(f.querySelectorAll('[name="intereses"]')).forEach(function(x){ x.checked = (c.intereses || []).indexOf(x.value) >= 0; });
     }
@@ -205,7 +207,7 @@
   $("fCli").addEventListener("submit", function(e){
     e.preventDefault();
     var f = this, d = {};
-    ["nombre", "telefono", "correo", "origen", "origenOtro", "servicio", "fechaServicio", "notas"].forEach(function(k){ d[k] = f.elements[k].value; });
+    ["nombre", "telefono", "correo", "origen", "origenOtro", "servicio", "fechaServicio", "notas", "estado"].forEach(function(k){ d[k] = f.elements[k].value; });
     d.consentimiento = f.elements.consentimiento.checked;
     d.intereses = Array.from(f.querySelectorAll('[name="intereses"]:checked')).map(function(x){ return x.value; });
     var c0 = editId && data.filter(function(c){ return c.id === editId; })[0];
@@ -221,7 +223,7 @@
     api("/clientes/" + encodeURIComponent(editId), { method: "DELETE" }).then(function(){ $("dlg").close(); return cargar(); }).catch(function(er){ $("eDlg").textContent = er.message; });
   });
   $("bCsv").addEventListener("click", function(){
-    var cols = [["Fecha", function(c){ return c.creado; }], ["Fuente", function(c){ return c.fuente; }], ["Nombre", function(c){ return c.nombre; }], ["Teléfono", function(c){ return c.telefono; }], ["Correo", function(c){ return c.correo; }],
+    var cols = [["Fecha", function(c){ return c.creado; }], ["Fuente", fuenteTxt], ["Referencia", function(c){ return c.referencia; }], ["Nombre", function(c){ return c.nombre; }], ["Teléfono", function(c){ return c.telefono; }], ["Correo", function(c){ return c.correo; }],
       ["Origen", origenTxt], ["Intereses", function(c){ return interesesTxt(c).join("; "); }], ["Acepta promociones", function(c){ return c.consentimiento ? "Sí" : "No"; }],
       ["Servicio", function(c){ return c.servicio; }], ["Fecha del servicio", function(c){ return c.fechaServicio; }], ["Notas", function(c){ return c.notas; }]];
     var q = function(v){ v = String(v == null ? "" : v); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; };
