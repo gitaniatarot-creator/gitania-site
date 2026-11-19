@@ -102,7 +102,7 @@
     <div class="full"><label>Intereses</label><div class="checks" id="dInt"></div></div>
     <label>Servicio adquirido<input name="servicio" list="servicios" maxlength="80" placeholder="Lectura Express, VIP, Joya…"></label>
     <label>Fecha del servicio<input name="fechaServicio" type="date"></label>
-    <label class="full">Estado del pago<select name="estado"><option value="">—</option><option value="checkout iniciado">Checkout iniciado (por confirmar)</option><option value="pagado">Pagado</option></select></label>
+    <label class="full">Estado del pago<select name="estado"><option value="">—</option><option value="sin pagar">Sin pagar</option><option value="checkout iniciado">Checkout iniciado (por confirmar)</option><option value="pagado">Pagado</option></select></label>
     <label class="full">Notas<textarea name="notas" maxlength="2000"></textarea></label>
     <div class="full checks"><label><input type="checkbox" name="consentimiento"> Acepta recibir promociones</label></div>
     <p class="err full" id="eDlg" role="alert"></p>
@@ -139,7 +139,7 @@
     });
   }
   function fecha(iso){ if (!iso) return ""; var d = new Date(iso); return d.toLocaleDateString("es-MX", { day:"2-digit", month:"short", year:"numeric" }) + " " + d.toLocaleTimeString("es-MX", { hour:"2-digit", minute:"2-digit" }); }
-  function fuenteTxt(c){ var f = c.fuente === "encuesta" ? "Encuesta" : c.fuente === "lectura-express" ? "Pago Lectura Express" : c.fuente === "lectura-personal" ? "Pago Lectura personal" : "Manual"; return c.estado ? f + " · " + c.estado : f; }
+  function fuenteTxt(c){ var f = c.fuente === "encuesta" ? "Encuesta" : c.fuente === "lectura-express" ? "Pago Lectura Express" : c.fuente === "lectura-personal" ? "Pago Lectura personal" : c.fuente === "lectura-privada" ? "Lectura privada" : "Manual"; return c.estado ? f + " · " + c.estado : f; }
   function origenTxt(c){ return c.origen ? c.origen + (c.origenOtro ? " (" + c.origenOtro + ")" : "") : ""; }
   function interesesTxt(c){ return (c.intereses || []).map(function(i){ return i === "Otro" && c.interesOtro ? "Otro: " + c.interesOtro : i; }); }
 

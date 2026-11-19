@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#0d222b" />
+  <title>Tu Lectura Express | Gitania</title>
+  <meta name="description" content="Tu Lectura Express personal de Gitania." />
+  <link rel="canonical" href="https://gitania.gold/mi-lectura.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Gitania" />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:title" content="Tu Lectura Express | Gitania" />
+  <meta property="og:description" content="Tu Lectura Express personal de Gitania." />
+  <meta property="og:url" content="https://gitania.gold/mi-lectura.html" />
+  <meta property="og:image" content="https://gitania.gold/assets/og/og-gitania.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="/assets/gitania-site.css?v=1" />
+  <link rel="stylesheet" href="/assets/tienda.css?v=1" />
+  <link rel="stylesheet" href="/assets/mi-lectura.css?v=1" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+</head>
+<body>
+  <div class="starfield" aria-hidden="true">
+    <div class="stars-dense"></div>
+    <span class="twinkle-dot d1"></span>
+    <span class="twinkle-dot d2"></span>
+    <span class="twinkle-dot d3"></span>
+    <span class="twinkle-dot d4"></span>
+    <span class="twinkle-dot d5"></span>
+    <span class="twinkle-dot d6"></span>
+    <span class="twinkle-dot d7"></span>
+    <span class="twinkle-dot d8"></span>
+    <span class="twinkle-dot d9"></span>
+    <span class="twinkle-dot d10"></span>
+    <span class="twinkle-dot d11"></span>
+    <span class="twinkle-dot d12"></span>
+    <span class="twinkle-dot d13"></span>
+    <span class="twinkle-dot d14"></span>
+    <span class="twinkle-dot d15"></span>
+    <span class="twinkle-dot d16"></span>
+    <span class="twinkle-dot d17"></span>
+    <span class="twinkle-dot d18"></span>
+    <span class="twinkle-dot d19"></span>
+    <span class="twinkle-dot d20"></span>
+    <span class="twinkle-dot d21"></span>
+    <span class="twinkle-dot d22"></span>
+    <span class="twinkle-dot d23"></span>
+    <span class="twinkle-dot d24"></span>
+    <span class="twinkle-dot d25"></span>
+    <span class="twinkle-dot d26"></span>
+    <span class="twinkle-dot d27"></span>
+    <span class="twinkle-dot d28"></span>
+    <span class="twinkle-dot d29"></span>
+    <span class="twinkle-dot d30"></span>
+  </div>
+
+  <header class="site-header">
+    <a class="brand" href="/">
+      <img class="brand-mark" src="/assets/logo.webp" alt="" onerror="this.style.display='none'">
+      Gitania
+    </a>
+    <a class="contact-link" href="https://wa.me/5215515245147" target="_blank" rel="noopener">WhatsApp</a>
+  </header>
+
+  <nav class="side-nav side-nav--left" aria-label="Secciones">
+    <a href="blog.html" data-section="blog"><span class="rail-dot"></span><span>Blog</span></a>
+    <a href="lecturas.html" data-section="lecturas" class="is-active"><span class="rail-dot"></span><span>Lecturas Express</span></a>
+    <a href="melomancia.html" data-section="melomancia"><span class="rail-dot"></span><span>Melomancia</span></a>
+    <a href="vip.html" data-section="vip"><span class="rail-dot"></span><span>Sesiones VIP</span></a>
+    <a href="tienda.html" data-section="tienda"><span class="rail-dot"></span><span>Tienda</span></a>
+  </nav>
+
+  <nav class="side-nav side-nav--right" aria-label="Contacto">
+    <a class="whatsapp-rail" href="https://wa.me/5215515245147" target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp">
+      <img src="/assets/whatsapp-gitania.png" alt="" loading="lazy">
+    </a>
+  </nav>
+
+  <main>
+    <section class="page-section first compact" id="lecturas">
+      <div class="section-inner" data-reveal="scale">
+        <a class="portal-button" data-reveal-child href="#preguntas" aria-label="Tu Lectura Express">
+          <span class="portal-ring "><img src="/assets/portals/lecturas.webp" alt="" loading="lazy"></span>
+        </a>
+        <h1 class="section-eyebrow" data-reveal-child>Tu Lectura Express</h1>
+        <h2 class="section-title" data-reveal-child id="saludo">Tus respuestas te esperan</h2>
+        <p class="section-copy" data-reveal-child id="intro">Cargando tu lectura…</p>
+        <div id="preguntas" class="lect-preguntas" data-reveal-child></div>
+
+        <div id="vPagar" class="lect-panel" hidden>
+          <p class="precio"><b>$444</b><small>MXN · pago único</small></p>
+          <p class="seg" id="pagarTxt">Paga aquí y escucha tus respuestas en cuanto se confirme. Con estos datos se crea tu acceso personal.</p>
+          <form class="form-pago vip-login" id="fPagar" novalidate>
+            <input class="vip-login-input" name="nombre" autocomplete="name" maxlength="80" placeholder="Tu nombre" aria-label="Tu nombre" required>
+            <input class="vip-login-input" name="telefono" type="tel" inputmode="tel" autocomplete="tel" maxlength="25" placeholder="WhatsApp con lada (ej. +1 555 123 4567)" aria-label="WhatsApp" required>
+            <input class="vip-login-input" name="correo" type="email" autocomplete="email" maxlength="120" placeholder="Correo (opcional)" aria-label="Correo (opcional)">
+            <input class="vip-login-input" name="pass" type="password" autocomplete="new-password" maxlength="100" placeholder="Crea una contraseña (mínimo 6)" aria-label="Contraseña" required>
+            <p class="vip-login-error" role="alert" hidden></p>
+            <button class="btn-pago" type="submit" id="bPagar">Pagar $444 y desbloquear</button>
+          </form>
+          <div class="acciones" style="margin-top:14px">
+            <button class="btn-sec" type="button" id="bVerificar">Ya pagué, verificar</button>
+            <button class="btn-sec" type="button" data-ver="vEntrar">Ya tengo cuenta, entrar</button>
+          </div>
+          <p class="seg" id="verifTxt" hidden></p>
+        </div>
+
+        <div id="vEntrar" class="lect-panel" hidden>
+          <p class="seg">Entra con tu WhatsApp o correo y tu contraseña.</p>
+          <form class="form-pago vip-login" id="fEntrar" novalidate>
+            <input class="vip-login-input" name="usuario" autocomplete="username" maxlength="120" placeholder="WhatsApp o correo" aria-label="WhatsApp o correo" required>
+            <input class="vip-login-input" name="pass" type="password" autocomplete="current-password" maxlength="100" placeholder="Contraseña" aria-label="Contraseña" required>
+            <p class="vip-login-error" role="alert" hidden></p>
+            <button class="btn-pago" type="submit">Entrar</button>
+          </form>
+          <div class="acciones" style="margin-top:14px"><button class="btn-sec" type="button" data-ver="vPagar" id="bVolverPagar">Aún no he pagado</button></div>
+        </div>
+
+        <div id="vSalir" class="acciones" hidden><button class="btn-sec" type="button" id="bSalir">Salir</button></div>
+        <p class="vip-login-help">¿Dudas? <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>.</p>
+        <p class="vip-login-help service-note">Es una lectura simbólica de las cartas, un espacio de reflexión; no sustituye la atención psicológica, médica ni legal.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span class="footer-address">Priv. Alejandrina 9, Hacienda Grande, Tequisquiapan, Qro., CP 76799, México © 2026</span>
+    Gitania® · <a href="/lecturas.html">Tarot</a>, <a href="/melomancia.html">Melomancia</a>, <a href="/hipnosis.html">Hipnosis</a>, <a href="/joyeria.html">Joyería</a>, <a href="/tienda.html">Tienda</a> y <a href="/simbolos-vivos.html">Símbolos vivos</a><br>
+    <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">WhatsApp 55 1524 5147</a> · <a href="/privacidad.html">Aviso de privacidad</a><br>
+    <span>Hecho con ❤ e intuición</span>
+    <span class="footer-disclaimer">Gitania ofrece lecturas simbólicas de las cartas para la reflexión, la introspección y el autoconocimiento. No sustituye la atención psicológica, médica ni legal.</span>
+    <span class="care">Si necesitas apoyo profesional, en México puedes llamar gratis a la Línea de la Vida: 800 911 2000, las 24 horas.</span>
+  </footer>
+
+  <script src="/assets/gitania-site.js?v=1" defer></script>
+  <script>
+(function(){
+  "use strict";
+  var API = "https://gitania-pagos.netlify.app/api/lectura/";
+  var q = new URLSearchParams(location.search), id = q.get("l") || "";
+  var TK = "gitania_lectura_" + id, info = null;
+  var $ = function(i){ return document.getElementById(i); };
+  function token(){ try { return localStorage.getItem(TK) || ""; } catch(e){ return ""; } }
+  function setToken(t){ try { t ? localStorage.setItem(TK, t) : localStorage.removeItem(TK); } catch(e){} }
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  function post(path, body){
+    return fetch(API + id + "/" + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body || {}) })
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(x){ if (!r.ok){ var e = new Error(x.error || "Algo salió mal. Intenta de nuevo."); e.status = r.status; e.data = x; throw e; } return x; }); });
+  }
+  function ver(panel){ ["vPagar", "vEntrar"].forEach(function(p){ $(p).hidden = p !== panel; }); }
+  function pintar(abierto){
+    var t = token();
+    $("preguntas").innerHTML = info.preguntas.map(function(p, i){
+      var n = i + 1, media = "";
+      if (abierto){
+        if (info.fotos[i]) media += '<img class="lect-foto" src="' + API + id + "/media/f" + n + "?t=" + encodeURIComponent(t) + '" alt="Foto de la tirada de la pregunta ' + n + '" loading="lazy">';
+        if (info.audios[i]) media += '<audio class="lect-audio" controls preload="metadata" src="' + API + id + "/media/a" + n + "?t=" + encodeURIComponent(t) + '"></audio>';
+      } else if (info.audios[i]) {
+        media = '<div class="lect-candado"><span aria-hidden="true">🔒</span> Respuesta en audio' + (info.fotos[i] ? " y foto de tu tirada" : "") + "</div>";
+      }
+      return '<article class="lect-q"><span class="lect-n">' + n + '</span><h3>' + esc(p) + "</h3>" + media + "</article>";
+    }).join("");
+    $("vSalir").hidden = !abierto;
+  }
+  function estado(){
+    var t = token(), sesion = info.sesion;
+    if (info.pagado && sesion){ ["vPagar", "vEntrar"].forEach(function(p){ $(p).hidden = true; }); $("intro").textContent = "Tu lectura está desbloqueada. Escucha cada respuesta con calma."; pintar(true); return; }
+    pintar(false);
+    if (info.pagado && !info.cuenta){
+      $("intro").textContent = "Tu pago ya está confirmado. Crea tu acceso para escuchar tus respuestas.";
+      $("pagarTxt").textContent = "Crea tu acceso con el WhatsApp con el que hablas con Tania."; $("bPagar").textContent = "Crear mi acceso y escuchar";
+      document.querySelector("#vPagar .precio").hidden = true; $("bVerificar").hidden = true; ver("vPagar"); return;
+    }
+    if (info.pagado){ $("intro").textContent = "Tu pago ya está confirmado. Entra para escuchar tus respuestas."; $("bVolverPagar").hidden = true; ver("vEntrar"); return; }
+    $("intro").textContent = "Aquí están tus " + info.preguntas.length + " preguntas. Tus respuestas en audio se desbloquean al pagar.";
+    ver("vPagar");
+  }
+  function cargar(){
+    var t = token();
+    return fetch(API + id + (t ? "?t=" + encodeURIComponent(t) : "")).then(function(r){ return r.json().then(function(x){ if (!r.ok) throw new Error(x.error || "No encontramos esta lectura."); return x; }); })
+      .then(function(x){ info = x; if (x.nombre) $("saludo").textContent = "Hola, " + x.nombre; estado(); });
+  }
+  function verificar(silencioso){
+    var tx = $("verifTxt"); if (!silencioso){ tx.hidden = false; tx.textContent = "Verificando con Mercado Pago…"; }
+    return post("verificar").then(function(x){
+      if (x.pagado) return cargar();
+      if (!silencioso){ tx.textContent = "Aún no vemos tu pago aprobado. Si pagaste en efectivo o transferencia puede tardar un poco; intenta de nuevo en unos minutos."; }
+    }).catch(function(e){ if (!silencioso) tx.textContent = e.message; });
+  }
+  function err(f, m){ var e = f.querySelector(".vip-login-error"); e.textContent = m || ""; e.hidden = !m; }
+  $("fPagar").addEventListener("submit", function(e){
+    e.preventDefault(); var f = this, b = $("bPagar"), lbl = b.textContent; err(f, "");
+    var d = { nombre: f.elements.nombre.value.trim(), telefono: f.elements.telefono.value.trim(), correo: f.elements.correo.value.trim(), pass: f.elements.pass.value };
+    if (d.nombre.length < 2 || d.telefono.replace(/\D/g, "").length < 10 || d.pass.length < 6){ err(f, "Revisa tu nombre, tu WhatsApp con lada y una contraseña de al menos 6 caracteres."); return; }
+    b.disabled = true; b.textContent = "Un momento…";
+    post("pagar", d).then(function(x){
+      if (x.token) setToken(x.token);
+      if (x.init_point){ b.textContent = "Abriendo Mercado Pago…"; location.href = x.init_point; return; }
+      return cargar();
+    }).catch(function(x){ err(f, x.message); if (x.status === 409) ver("vEntrar"); })
+      .then(function(){ if (!location.href.includes("mercadopago")){ b.disabled = false; b.textContent = lbl; } });
+  });
+  $("fEntrar").addEventListener("submit", function(e){
+    e.preventDefault(); var f = this; err(f, "");
+    post("entrar", { usuario: f.elements.usuario.value.trim(), pass: f.elements.pass.value }).then(function(x){
+      setToken(x.token); if (!x.pagado) err(f, "Aún no vemos tu pago aprobado. Usa “Ya pagué, verificar” o escríbeme por WhatsApp."); return cargar();
+    }).catch(function(x){ err(f, x.message); });
+  });
+  $("bVerificar").addEventListener("click", function(){ verificar(false); });
+  document.querySelectorAll("[data-ver]").forEach(function(b){ b.addEventListener("click", function(){ ver(b.getAttribute("data-ver")); }); });
+  $("bSalir").addEventListener("click", function(){ setToken(""); cargar(); });
+  if (!id){ $("intro").textContent = "Este enlace no es válido. Escríbeme por WhatsApp."; return; }
+  cargar().then(function(){
+    var p = q.get("pago");
+    if (p && info && !info.pagado){
+      $("verifTxt").hidden = false;
+      if (p === "error") $("verifTxt").textContent = "El pago no se completó. Puedes intentarlo de nuevo.";
+      else { $("verifTxt").textContent = p === "proceso" ? "Tu pago está en proceso. En cuanto se apruebe se desbloquea tu lectura." : "Confirmando tu pago…"; verificar(true).then(function(){ if (info && !info.pagado) setTimeout(function(){ verificar(true); }, 4000); }); }
+    }
+  }).catch(function(e){ $("intro").textContent = e.message; });
+})();
+  </script>
+</body>
+</html>
