@@ -112,7 +112,7 @@
       <button type="button" id="dCancel">Cancelar</button>
       <button type="submit" class="pri" id="dSave">Guardar</button>
     </div>
-    <datalist id="servicios"><option value="Lectura Express"><option value="Sesión VIP / Membresía VIP"><option value="Joya"></datalist>
+    <datalist id="servicios"><option value="Lectura Express"><option value="Sesión VIP / Membresía VIP"><option value="Joya"><option value="Lectura personal virtual (1 hora)"><option value="Sesión The Magician"></datalist>
   </form>
 </dialog>
 
@@ -139,7 +139,7 @@
     });
   }
   function fecha(iso){ if (!iso) return ""; var d = new Date(iso); return d.toLocaleDateString("es-MX", { day:"2-digit", month:"short", year:"numeric" }) + " " + d.toLocaleTimeString("es-MX", { hour:"2-digit", minute:"2-digit" }); }
-  function fuenteTxt(c){ var f = c.fuente === "encuesta" ? "Encuesta" : c.fuente === "lectura-express" ? "Pago Lectura Express" : "Manual"; return c.estado ? f + " · " + c.estado : f; }
+  function fuenteTxt(c){ var f = c.fuente === "encuesta" ? "Encuesta" : c.fuente === "lectura-express" ? "Pago Lectura Express" : c.fuente === "lectura-personal" ? "Pago Lectura personal" : "Manual"; return c.estado ? f + " · " + c.estado : f; }
   function origenTxt(c){ return c.origen ? c.origen + (c.origenOtro ? " (" + c.origenOtro + ")" : "") : ""; }
   function interesesTxt(c){ return (c.intereses || []).map(function(i){ return i === "Otro" && c.interesOtro ? "Otro: " + c.interesOtro : i; }); }
 

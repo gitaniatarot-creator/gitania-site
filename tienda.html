@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#FBF7EE" />
+  <title>Tienda | Gitania · Lecturas, Membresía VIP, joyería y recursos gratis</title>
+  <meta name="description" content="Tienda de Gitania: Lectura Express, lectura personal virtual, Membresía VIP, sesión The Magician, joyería de diseño hecha a mano, curso de tarot y recursos gratis." />
+  <link rel="canonical" href="https://gitania.gold/tienda.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Gitania" />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:title" content="Tienda | Gitania" />
+  <meta property="og:description" content="Lecturas simbólicas de tarot, Membresía VIP, joyería hecha a mano y recursos gratis." />
+  <meta property="og:url" content="https://gitania.gold/tienda.html" />
+  <meta property="og:image" content="https://gitania.gold/assets/og/og-gitania.jpg" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap');
+    :root{--paper:#FBF7EE;--card:#FFFFFF;--ink:#17130F;--soft:#55503F;--line:#E8E2D4;--petrol:#1d4a5c;--petrol-2:#2b6377;--gold:#B8860B;--gold-ink:#8a6408;--red:#B30E20;--wa:#1f8f4e}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:64px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Karla",-apple-system,"Segoe UI",sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+    a{color:var(--petrol)}
+    .wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+    .top{display:flex;align-items:center;gap:10px;padding:14px 0}
+    .top img{width:40px;height:40px;border-radius:50%}
+    .top .brand{font-weight:800;color:var(--petrol);text-decoration:none;letter-spacing:.06em}
+    .top .sp{flex:1}
+    .top .wa-mini{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:800;color:var(--wa);font-size:.9rem;min-height:40px}
+    .hero{text-align:center;padding:18px 0 8px}
+    .k{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--gold-ink)}
+    h1{font-size:clamp(2rem,6vw,2.8rem);margin:6px 0 6px;color:var(--petrol);line-height:1.1}
+    .hand{font-family:"Caveat",cursive;color:var(--gold-ink);font-size:1.45rem;margin:0}
+    .chips{position:sticky;top:0;z-index:10;background:rgba(251,247,238,.94);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;gap:8px;overflow-x:auto;padding:10px 18px;margin:14px -18px 0;scrollbar-width:none;box-shadow:0 6px 14px -12px rgba(23,19,15,.35)}
+    .chips::-webkit-scrollbar{display:none}
+    .chips a{flex:0 0 auto;text-decoration:none;font-weight:700;font-size:.92rem;color:var(--petrol);background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 15px;min-height:42px;display:inline-flex;align-items:center}
+    section{padding:30px 0 6px}
+    h2{color:var(--petrol);font-size:1.5rem;margin:0 0 4px}
+    .sub{color:var(--soft);margin:0 0 16px}
+    .grid{display:grid;gap:16px;grid-template-columns:1fr}
+    @media(min-width:760px){.grid.two{grid-template-columns:1fr 1fr}.grid.three{grid-template-columns:repeat(3,1fr)}}
+    .card{background:var(--card);border-radius:20px;padding:20px;box-shadow:0 1px 0 var(--line),0 10px 30px -22px rgba(29,74,92,.45);display:flex;flex-direction:column;gap:10px}
+    .card h3{margin:0;color:var(--petrol);font-size:1.25rem;line-height:1.25}
+    .card p{margin:0}
+    .tag{align-self:flex-start;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--gold-ink);background:#faf3df;border-radius:999px;padding:4px 10px}
+    .price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:2px}
+    .price b{font-size:1.9rem;color:var(--petrol);line-height:1}
+    .price s{color:var(--soft);font-weight:600}
+    .price small{color:var(--soft);font-weight:600}
+    .off{font-size:.78rem;font-weight:800;color:#fff;background:var(--gold);border-radius:999px;padding:3px 9px}
+    .acts{display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:6px}
+    .btn{display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;text-decoration:none;font:inherit;font-weight:800;font-size:1.02rem;border:none;border-radius:14px;padding:13px 16px;min-height:50px;cursor:pointer;width:100%}
+    .btn.pay{background:var(--red);color:#fff}
+    .btn.wa{background:var(--wa);color:#fff}
+    .btn.ghost{background:#fff;color:var(--petrol);border:1.5px solid var(--petrol)}
+    .btn[disabled]{opacity:.6}
+    .btn svg{width:20px;height:20px;flex:0 0 auto}
+    ul.pts{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+    ul.pts li{display:flex;gap:9px}
+    ul.pts li::before{content:"✦";color:var(--gold);font-weight:800}
+    .yt{position:relative;display:block;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#123543;border:none;padding:0;cursor:pointer}
+    .yt img{width:100%;height:100%;object-fit:cover;display:block;opacity:.92}
+    .yt .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+    .yt .play span{width:62px;height:62px;border-radius:50%;background:rgba(251,247,238,.95);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+    .yt .play span::before{content:"";margin-left:5px;border-left:18px solid var(--petrol);border-top:11px solid transparent;border-bottom:11px solid transparent}
+    .yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .form{display:none;flex-direction:column;gap:10px;background:#f7f3ea;border-radius:14px;padding:14px}
+    .form.on{display:flex}
+    .form label{display:flex;flex-direction:column;gap:5px;font-weight:700;color:var(--petrol);font-size:.92rem}
+    .form .opt{font-weight:500;color:var(--soft);font-size:.82rem}
+    .form input{font:inherit;font-size:1rem;padding:12px 13px;border-radius:12px;border:1px solid #cfd6d8;background:#fff;color:var(--ink);width:100%;outline:none}
+    .form input:focus{border-color:var(--petrol);box-shadow:0 0 0 3px rgba(29,74,92,.12)}
+    .form input[aria-invalid=true]{border-color:var(--red)}
+    .err{color:var(--red);font-weight:600;margin:0;min-height:1.1em;font-size:.92rem}
+    .seg{color:var(--soft);font-size:.82rem;text-align:center;margin:0}
+    .joyas{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .joyas img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;background:#fff;display:block}
+    .joyas img:first-child{grid-column:span 3;aspect-ratio:4/3;object-fit:contain}
+    @media(min-width:760px){.joya-card{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:start}.joya-card .txt{display:flex;flex-direction:column;gap:10px}}
+    .cover{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#1d4a5c,#123543);color:#FBF7EE;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px}
+    .cover .k{color:#e9c46a}
+    .cover strong{font-size:1.6rem;line-height:1.15;margin-top:4px}
+    .cover em{font-family:"Caveat",cursive;font-style:normal;font-size:1.25rem;color:#e9c46a}
+    .banner{border-radius:16px;padding:16px 18px;margin:16px 0 0;display:flex;flex-direction:column;gap:10px;background:#fff;box-shadow:0 1px 0 var(--line)}
+    .banner h2{font-size:1.25rem}
+    .banner[hidden]{display:none}
+    .contacto{text-align:center;padding:34px 0 10px}
+    .contacto .btn{max-width:420px;margin:12px auto 0}
+    footer{margin-top:26px;padding:20px 0 34px;border-top:1px solid var(--line);font-size:.86rem;color:var(--soft);text-align:center}
+    footer p{margin:6px auto;max-width:640px}
+    [hidden]{display:none!important}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <a href="/"><img src="/assets/logo.webp" alt="Gitania" width="40" height="40"></a>
+      <a class="brand" href="/">GITANIA</a>
+      <span class="sp"></span>
+      <a class="wa-mini" href="https://wa.me/5215515245147" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+
+    <header class="hero">
+      <span class="k">Tienda</span>
+      <h1>Lecturas, joyería y recursos</h1>
+      <p class="hand">Elige lo que hoy te acompaña.</p>
+    </header>
+
+    <div class="banner" id="bOk" hidden>
+      <h2>Gracias, tu pago quedó registrado.</h2>
+      <p>Escríbeme por WhatsApp para agendar tu lectura personal virtual.</p>
+      <a class="btn wa" href="https://wa.me/5215515245147?text=Hola%20Tania%2C%20ya%20pagu%C3%A9%20mi%20lectura%20personal%20virtual.%20Quiero%20agendar." target="_blank" rel="noopener">Agendar por WhatsApp</a>
+    </div>
+    <div class="banner" id="bProceso" hidden><p>Tu pago está en proceso (por ejemplo, si elegiste pago en efectivo). En cuanto se confirme, escríbeme por <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">WhatsApp</a> para agendar.</p></div>
+    <div class="banner" id="bError" hidden><p>El pago no se completó. Puedes intentarlo de nuevo o escribirme por <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">WhatsApp</a>.</p></div>
+
+    <nav class="chips" aria-label="Secciones de la tienda">
+      <a href="#lecturas">Lecturas</a>
+      <a href="#membresia">Membresía VIP</a>
+      <a href="#magician">The Magician</a>
+      <a href="#joyeria">Joyería</a>
+      <a href="#curso">Curso de tarot</a>
+      <a href="#gratis">Gratis</a>
+    </nav>
+
+    <!-- LECTURAS -->
+    <section id="lecturas">
+      <h2>Lecturas de tarot</h2>
+      <p class="sub">Lecturas simbólicas para mirar tu momento con más claridad.</p>
+      <div class="grid two">
+        <article class="card">
+          <span class="tag">Al momento</span>
+          <h3>Lectura Express ✨</h3>
+          <p><b>¿Necesitas claridad ya?</b> Hazme tu pregunta y te respondo con un sí o un no, y te explico el porqué. Es una lectura breve y al momento, para cuando surge una urgencia y quieres resolver un tema rápido. Recibes la foto de tu tirada y la respuesta en audio.</p>
+          <div class="price"><b>$444</b><small>MXN</small></div>
+          <div class="acts"><a class="btn pay" href="/lectura-express.html">Pedir mi Lectura Express</a></div>
+        </article>
+
+        <article class="card" id="lectura-personal">
+          <span class="tag">1 hora · Virtual</span>
+          <h3>Lectura personal virtual</h3>
+          <p>Una hora para mirar con calma tu momento. Las cartas me ayudan a interpretar tu estado actual y a abrir espacio a tus preguntas sobre el amor, la salud, el dinero o lo que hoy te inquiete.</p>
+          <p><b>No se trata de predecir el futuro</b>, sino de entender el presente y elegir con más conciencia tus siguientes pasos.</p>
+          <div class="price"><b>$2,520</b><small>MXN</small></div>
+          <div class="acts">
+            <button class="btn pay" type="button" data-abrir="fPersonal">Pagar mi lectura personal</button>
+            <form class="form" id="fPersonal" data-tipo="lectura-personal" novalidate>
+              <label>Tu nombre<input name="nombre" autocomplete="name" maxlength="80" required></label>
+              <label>WhatsApp o teléfono<input name="telefono" type="tel" inputmode="tel" autocomplete="tel" maxlength="25" placeholder="10 dígitos" required></label>
+              <label>Correo <span class="opt">(opcional)</span><input name="correo" type="email" autocomplete="email" maxlength="120"></label>
+              <p class="err" role="alert"></p>
+              <button class="btn pay" type="submit">Continuar a Mercado Pago · $2,520</button>
+              <p class="seg">Pago seguro con Mercado Pago. Después agendamos por WhatsApp.</p>
+            </form>
+            <a class="btn ghost" href="https://wa.me/5215515245147?text=Hola%20Tania%2C%20quiero%20informaci%C3%B3n%20de%20la%20lectura%20personal%20virtual." target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- MEMBRESÍA -->
+    <section id="membresia">
+      <h2>Membresía VIP</h2>
+      <p class="sub">Acompañamiento constante, a tu ritmo.</p>
+      <div class="grid two">
+        <article class="card">
+          <span class="tag">Anual · la mejor opción</span>
+          <h3>Membresía VIP anual</h3>
+          <div class="price"><b>$9,999</b><small>MXN</small><s>$30,240</s><span class="off">−67%</span></div>
+          <p>Por menos de lo que cuestan 4 lecturas, tienes una lectura al mes durante todo un año. ¡Puedes adelantar lecturas! Además, tienes acceso a los recursos exclusivos de tu cuenta VIP en gitania.gold.</p>
+          <div class="acts"><a class="btn pay" href="https://mpago.la/1PN6ecm" target="_blank" rel="noopener">Pagar membresía anual</a></div>
+        </article>
+        <article class="card">
+          <span class="tag">Mensual</span>
+          <h3>Membresía VIP mensual</h3>
+          <div class="price"><b>$1,260</b><small>MXN al mes</small></div>
+          <p>Una lectura al mes y acceso a los recursos exclusivos de tu cuenta VIP en gitania.gold, mes con mes.</p>
+          <div class="acts"><a class="btn ghost" href="https://mpago.la/1wTLpqT" target="_blank" rel="noopener">Pagar membresía mensual</a></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- THE MAGICIAN -->
+    <section id="magician">
+      <h2>Sesión The Magician</h2>
+      <p class="sub">Hipnosis guiada para reordenar tu información interior.</p>
+      <article class="card">
+        <span class="tag">Sesión personalizada</span>
+        <button class="yt" type="button" data-yt="d9U8-MH_jb0" aria-label="Ver video de la sesión The Magician"><img src="https://i.ytimg.com/vi/d9U8-MH_jb0/hqdefault.jpg" alt="" loading="lazy"><span class="play"><span></span></span></button>
+        <h3>The Magician</h3>
+        <p>Hay momentos en que algo simplemente no fluye y no alcanzas a ver de dónde viene. En esta sesión te acompaño con hipnosis guiada a un estado de calma profunda para observar tu información interior, encontrar su raíz y reordenarla con intención, como El Mago que reúne sus herramientas sobre la mesa.</p>
+        <div class="price"><b>$4,999</b><small>MXN</small></div>
+        <div class="acts"><a class="btn wa" href="https://wa.me/5215515245147?text=Hola%20Tania%2C%20me%20interesa%20la%20sesi%C3%B3n%20The%20Magician." target="_blank" rel="noopener">Quiero mi sesión · WhatsApp</a></div>
+      </article>
+    </section>
+
+    <!-- JOYERÍA -->
+    <section id="joyeria">
+      <h2>Joyería de diseño</h2>
+      <p class="sub">Piezas hechas a mano, una por una.</p>
+      <article class="card joya-card">
+        <div class="joyas">
+          <img src="/assets/tienda/joya-982af41c.webp" alt="Collar de piedras volcánicas con cianita azul" loading="lazy" width="800" height="800">
+          <img src="/assets/tienda/joya-4ea0ae98.webp" alt="Pulsera tejida en tono petróleo con coral rojo" loading="lazy" width="800" height="800">
+          <img src="/assets/tienda/joya-17fdebee.webp" alt="Pulsera tejida roja con cianita" loading="lazy" width="800" height="800">
+          <img src="/assets/tienda/joya-179b3e31.webp" alt="Collar negro con turquesas" loading="lazy" width="800" height="800">
+        </div>
+        <div class="txt">
+          <h3>Collares, pulseras y anillos</h3>
+          <p>Diseño y tejo cada pieza a mano con piedras semipreciosas y metales trabajados en tramas finas. Cada joya nace con una intención y un símbolo, y puede hacerse a tu medida: eliges piedras, metal y color, o me dejas proponerte una pieza para ti.</p>
+          <ul class="pts">
+            <li>Piedras semipreciosas: cuarzos, cianita, coral, turquesa, ónix y más.</li>
+            <li>Diseños tejidos a mano, únicos.</li>
+            <li>Piezas a pedido y cotizaciones personalizadas.</li>
+          </ul>
+          <div class="acts"><a class="btn wa" href="https://wa.me/5215515245147?text=Hola%20Tania%2C%20quiero%20cotizar%20una%20joya." target="_blank" rel="noopener">Pedir o cotizar por WhatsApp</a></div>
+        </div>
+      </article>
+    </section>
+
+    <!-- CURSO -->
+    <section id="curso">
+      <h2>Curso rápido de tarot</h2>
+      <p class="sub">Aprende a interpretar con tu propia voz.</p>
+      <article class="card">
+        <span class="tag">En línea · Udemy · en inglés</span>
+        <h3>Learning how to interpret Tarot – With your own voice</h3>
+        <p>Un curso breve para acercarte a las cartas desde tu intuición y tu manera de mirar: aprendes a leer los símbolos y a encontrar tus propias palabras para interpretarlos.</p>
+        <div class="acts"><a class="btn ghost" href="https://www.udemy.com/course/draft/4301689/?couponCode=EXPRESS" target="_blank" rel="noopener">Ver el curso en Udemy</a></div>
+      </article>
+    </section>
+
+    <!-- GRATIS -->
+    <section id="gratis">
+      <h2>Gratis para ti</h2>
+      <p class="sub">Pequeños regalos para escuchar, respirar y leer.</p>
+      <div class="grid three">
+        <article class="card">
+          <button class="yt" type="button" data-yt="-XooF04o8wk" aria-label="Reproducir Meditación del amor"><img src="https://i.ytimg.com/vi/-XooF04o8wk/hqdefault.jpg" alt="" loading="lazy"><span class="play"><span></span></span></button>
+          <span class="tag">Meditación</span>
+          <h3>Meditación del amor</h3>
+          <p>Una pausa guiada para volver a tu corazón y mirar el amor con ternura.</p>
+        </article>
+        <article class="card">
+          <button class="yt" type="button" data-yt="8Ukp8e764j8" aria-label="Reproducir Meditación Siguiendo al Sol"><img src="https://i.ytimg.com/vi/8Ukp8e764j8/hqdefault.jpg" alt="" loading="lazy"><span class="play"><span></span></span></button>
+          <span class="tag">Meditación</span>
+          <h3>Siguiendo al Sol</h3>
+          <p>Una meditación para seguir la luz y recargar tu energía.</p>
+        </article>
+        <article class="card">
+          <div class="cover" aria-hidden="true"><span class="k">Cuento</span><strong>El Matasueños</strong><em>poesía-ficción</em></div>
+          <span class="tag">Cuento</span>
+          <h3>El Matasueños</h3>
+          <p>Un cuento de poesía-ficción sobre rostros, identidades y sueños. También existe en inglés, en Kindle.</p>
+          <div class="acts"><a class="btn ghost" href="https://share.icloud.com/photos/001ONfRocOU7Xe63A6u2kMRVQ" target="_blank" rel="noopener">Leer el cuento</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="contacto">
+      <h2>¿Dudas o algo a tu medida?</h2>
+      <p class="sub">Escríbeme por WhatsApp Business: 55 1524 5147</p>
+      <a class="btn wa" href="https://wa.me/5215515245147" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+    </section>
+
+    <footer>
+      <p>Gitania ofrece lecturas simbólicas de las cartas para la reflexión, la introspección y el autoconocimiento. No sustituyen la atención psicológica, médica ni legal.</p>
+      <p>Si necesitas apoyo profesional, en México puedes llamar gratis a la <b>Línea de la Vida: 800 911 2000</b>, las 24 horas.</p>
+      <p><a href="/">gitania.gold</a> · <a href="/privacidad.html">Aviso de privacidad</a> · <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">WhatsApp 55 1524 5147</a></p>
+    </footer>
+  </div>
+<script>
+(function(){
+  "use strict";
+  var API = "https://gitania-pagos.netlify.app/api/crear-pago";
+  var q = new URLSearchParams(location.search);
+  if (q.get("producto") === "lectura-personal"){
+    var st = q.get("pago"), id = st === "ok" ? "bOk" : st === "proceso" ? "bProceso" : st === "error" ? "bError" : "";
+    if (id) document.getElementById(id).hidden = false;
+  }
+  document.querySelectorAll(".yt").forEach(function(b){
+    b.addEventListener("click", function(){
+      var f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + b.getAttribute("data-yt") + "?autoplay=1&rel=0";
+      f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true; f.title = b.getAttribute("aria-label") || "Video";
+      b.innerHTML = ""; b.appendChild(f); b.style.cursor = "default";
+    }, { once: true });
+  });
+  document.querySelectorAll("[data-abrir]").forEach(function(b){
+    b.addEventListener("click", function(){ var f = document.getElementById(b.getAttribute("data-abrir")); f.classList.add("on"); b.hidden = true; f.elements.nombre.focus(); });
+  });
+  document.querySelectorAll("form.form").forEach(function(f){
+    var err = f.querySelector(".err"), btn = f.querySelector("button[type=submit]"), label = btn.textContent;
+    f.addEventListener("input", function(e){ if (e.target.removeAttribute) e.target.removeAttribute("aria-invalid"); err.textContent = ""; });
+    f.addEventListener("submit", function(e){
+      e.preventDefault();
+      var d = { tipo: f.getAttribute("data-tipo"), nombre: f.elements.nombre.value.trim(), telefono: f.elements.telefono.value.trim(), correo: f.elements.correo.value.trim() };
+      var bad = [];
+      if (d.nombre.length < 2){ bad.push("tu nombre"); f.elements.nombre.setAttribute("aria-invalid", "true"); }
+      if (d.telefono.replace(/\D/g, "").length < 10){ bad.push("WhatsApp o teléfono (10 dígitos)"); f.elements.telefono.setAttribute("aria-invalid", "true"); }
+      if (d.correo && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.correo)){ bad.push("el correo"); f.elements.correo.setAttribute("aria-invalid", "true"); }
+      if (bad.length){ err.textContent = "Revisa: " + bad.join(", ") + "."; return; }
+      btn.disabled = true; btn.textContent = "Abriendo Mercado Pago…";
+      fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d) })
+        .then(function(r){ return r.json().then(function(x){ if (!r.ok || !x.init_point) throw new Error(x.error || "No se pudo abrir el pago."); return x; }); })
+        .then(function(x){ window.location.href = x.init_point; })
+        .catch(function(x){ btn.disabled = false; btn.textContent = label; err.textContent = (x && x.message && x.message !== "Failed to fetch") ? x.message : "No se pudo abrir el pago. Intenta de nuevo o escríbeme por WhatsApp."; });
+    });
+  });
+})();
+</script>
+</body>
+</html>
