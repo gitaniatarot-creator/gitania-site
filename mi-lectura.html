@@ -22,7 +22,6 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="/assets/gitania-site.css?v=1" />
   <link rel="stylesheet" href="/assets/tienda.css?v=2" />
-  <link rel="stylesheet" href="/assets/mi-lectura.css?v=1" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 </head>
@@ -89,6 +88,7 @@
         <a class="portal-button" data-reveal-child href="#preguntas" aria-label="Tu Lectura Express">
           <span class="portal-ring "><img src="/assets/portals/lecturas.webp" alt="" loading="lazy"></span>
         </a>
+        <p class="lect-preview" id="bPreview" hidden>Vista previa · solo Tania</p>
         <h1 class="section-eyebrow" data-reveal-child>Tu Lectura Express</h1>
         <h2 class="section-title" data-reveal-child id="saludo">Tus respuestas te esperan</h2>
         <p class="section-copy" data-reveal-child id="intro">Cargando tu lectura…</p>
@@ -123,6 +123,15 @@
           <div class="acciones" style="margin-top:14px"><button class="btn-sec" type="button" data-ver="vPagar" id="bVolverPagar">Aún no he pagado</button></div>
         </div>
 
+        <div id="vPreview" class="lect-panel" hidden>
+          <p class="seg">Vista previa · solo Tania. Escribe la contraseña del panel.</p>
+          <form class="form-pago vip-login" id="fPreview" novalidate>
+            <input class="vip-login-input" name="pass" type="password" autocomplete="current-password" maxlength="200" placeholder="Contraseña del panel" aria-label="Contraseña del panel" required>
+            <p class="vip-login-error" role="alert" hidden></p>
+            <button class="btn-pago" type="submit">Ver lectura</button>
+          </form>
+        </div>
+
         <div id="vSalir" class="acciones" hidden><button class="btn-sec" type="button" id="bSalir">Salir</button></div>
         <p class="vip-login-help">¿Dudas? <a href="https://wa.me/5215515245147" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>.</p>
         <p class="vip-login-help service-note">Es una lectura simbólica de las cartas, un espacio de reflexión; no sustituye la atención psicológica, médica ni legal.</p>
@@ -145,16 +154,18 @@
   "use strict";
   var API = "https://gitania-pagos.netlify.app/api/lectura/";
   var q = new URLSearchParams(location.search), id = q.get("l") || "";
-  var TK = "gitania_lectura_" + id, info = null;
+  var PREVIEW = q.get("preview") === "1";
+  var TK = (PREVIEW ? "gitania_lectura_prev_" : "gitania_lectura_") + id, info = null;
+  var ST = PREVIEW ? sessionStorage : localStorage;
   var $ = function(i){ return document.getElementById(i); };
-  function token(){ try { return localStorage.getItem(TK) || ""; } catch(e){ return ""; } }
-  function setToken(t){ try { t ? localStorage.setItem(TK, t) : localStorage.removeItem(TK); } catch(e){} }
+  function token(){ try { return ST.getItem(TK) || ""; } catch(e){ return ""; } }
+  function setToken(t){ try { t ? ST.setItem(TK, t) : ST.removeItem(TK); } catch(e){} }
   function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
   function post(path, body){
     return fetch(API + id + "/" + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body || {}) })
       .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(x){ if (!r.ok){ var e = new Error(x.error || "Algo salió mal. Intenta de nuevo."); e.status = r.status; e.data = x; throw e; } return x; }); });
   }
-  function ver(panel){ ["vPagar", "vEntrar"].forEach(function(p){ $(p).hidden = p !== panel; }); }
+  function ver(panel){ ["vPagar", "vEntrar", "vPreview"].forEach(function(p){ $(p).hidden = p !== panel; }); }
   function pintar(abierto){
     var t = token();
     $("preguntas").innerHTML = info.preguntas.map(function(p, i){
@@ -171,8 +182,10 @@
   }
   function estado(){
     var t = token(), sesion = info.sesion;
-    if (info.pagado && sesion){ ["vPagar", "vEntrar"].forEach(function(p){ $(p).hidden = true; }); $("intro").textContent = "Tu lectura está desbloqueada. Escucha cada respuesta con calma."; pintar(true); return; }
+    $("bPreview").hidden = !info.preview;
+    if (sesion && (info.pagado || info.preview)){ ver(""); $("intro").textContent = info.preview ? "Así verá la lectura tu cliente cuando pague. Esta vista no cambia su estado de pago ni su cuenta." : "Tu lectura está desbloqueada. Escucha cada respuesta con calma."; pintar(true); return; }
     pintar(false);
+    if (PREVIEW){ $("intro").textContent = "Vista previa protegida."; ver("vPreview"); return; }
     if (info.pagado && !info.cuenta){
       $("intro").textContent = "Tu pago ya está confirmado. Crea tu acceso para escuchar tus respuestas.";
       $("pagarTxt").textContent = "Crea tu acceso con el WhatsApp con el que hablas con Tania."; $("bPagar").textContent = "Crear mi acceso y escuchar";
@@ -212,6 +225,10 @@
     post("entrar", { usuario: f.elements.usuario.value.trim(), pass: f.elements.pass.value }).then(function(x){
       setToken(x.token); if (!x.pagado) err(f, "Aún no vemos tu pago aprobado. Usa “Ya pagué, verificar” o escríbeme por WhatsApp."); return cargar();
     }).catch(function(x){ err(f, x.message); });
+  });
+  $("fPreview").addEventListener("submit", function(e){
+    e.preventDefault(); var f = this; err(f, "");
+    post("preview", { pass: f.elements.pass.value }).then(function(x){ setToken(x.token); f.reset(); return cargar(); }).catch(function(x){ err(f, x.message); });
   });
   $("bVerificar").addEventListener("click", function(){ verificar(false); });
   document.querySelectorAll("[data-ver]").forEach(function(b){ b.addEventListener("click", function(){ ver(b.getAttribute("data-ver")); }); });

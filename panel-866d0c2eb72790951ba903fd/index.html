@@ -166,7 +166,7 @@
         "<td>" + esc(origenTxt(c)) + "</td>" +
         "<td>" + interesesTxt(c).map(function(i){ return '<span class="tag">' + esc(i) + "</span>"; }).join("") + "</td>" +
         "<td>" + (c.consentimiento ? '<span class="si">Sí</span>' : '<span class="no">No</span>') + "</td>" +
-        "<td>" + esc(c.servicio) + (c.fechaServicio ? "<small>" + esc(c.fechaServicio) + "</small>" : "") + "</td>" +
+        "<td>" + esc(c.servicio) + (c.fechaServicio ? "<small>" + esc(c.fechaServicio) + "</small>" : "") + (c.fuente === "lectura-privada" && /^[A-Za-z0-9_-]{16,40}$/.test(c.referencia || "") ? '<small><a href="/mi-lectura.html?l=' + encodeURIComponent(c.referencia) + '&preview=1" target="_blank" rel="noopener">Ver lectura</a> · <a href="/mi-lectura.html?l=' + encodeURIComponent(c.referencia) + '" target="_blank" rel="noopener">Link del cliente</a></small>' : "") + "</td>" +
         '<td><button data-edit="' + esc(c.id) + '">Editar</button></td></tr>';
     }).join("") : '<tr><td colspan="8" class="empty">' + (data.length ? "Nada coincide con los filtros." : "Aún no hay clientes ni respuestas.") + "</td></tr>";
   }

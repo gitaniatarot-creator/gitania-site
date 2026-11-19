@@ -11,3 +11,4 @@
 .lect-panel .vip-login { margin: 18px 0 0; max-width: none; }
 .lect-panel .acciones { max-width: none; }
 #verifTxt { margin-top: 14px; }
+.lect-preview { display: inline-block; margin: 0 auto 18px; padding: 6px 14px; border-radius: 999px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #17110a; background: var(--gold-bright); }
