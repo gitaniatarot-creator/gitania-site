@@ -60,6 +60,14 @@ Agrega las tres claves (`post.<id>.meta`, `.title`, `.excerpt`) en los tres bloq
 - Marca: lectura simbólica para la reflexión, la introspección y el autoconocimiento / *symbolic reading for reflection, introspection and self-knowledge* / *lecture symbolique pour la réflexion, l’introspection et la connaissance de soi*. Nunca terapia, predicción, adivinación como servicio, ni promesas de sanar. Se dice “consultantes”.
 - El precio de la Lectura Express es siempre **$444 MXN** (EN “Get my Express Reading · $444 MXN”, FR “Demander ma Lecture Express · 444 MXN”).
 
+## Tono y voz
+
+- El sesgo de la marca es artístico. La voz de cada entrada es la de un texto de arte contemporáneo: evocativa, precisa, sensorial, reflexiva, guiada por la imagen. No es un tono académico-correctivo ni esotérico cursi.
+- Los datos duros, las citas y las fuentes se mantienen intactos. Nunca se inventan. Un post no debe socavar la oferta de Gitania (lectura simbólica, oráculo sonoro Melomancia, joyas programadas, sincronía).
+- Los mitos se presentan como tradiciones vivas, con valor artístico y simbólico. Se cierra abriendo el sentido, no cerrándolo: los documentos dicen de dónde vienen las cartas o las ideas, pero no agotan lo que ocurre cuando alguien las lee. Se deja margen al misterio.
+- Se evitan títulos que desmienten o juzgan (por ejemplo «Por qué es un mito», «por qué no se sostiene»). Se prefieren formulaciones como «Lo que dicen los documentos».
+- Si se menciona el nombre Gitania o la figura de la gitana, se honra como tradición artística y cultural viva (una imagen poderosa en el arte, la literatura y el cine), no como un desmentido de la marca.
+
 ## Lista de revisión antes de subir
 
 1. `python3 -m http.server 8000` y abre la entrada. Cambia ES → EN → FR con los botones: solo debe verse un `<article>`, y deben cambiar el título de la pestaña, el H1 y el menú.
